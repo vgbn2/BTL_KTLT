@@ -64,4 +64,4 @@ cmake --build build
 ```
 
 ### 4. Trong Visual Studio Code
-* Mở tệp `src/main.cpp` $\to$ Bấm nút **▶️ Play** ở góc trên bên phải hoặc nhấn **`F5`** / **`Ctrl + F5`**.
+* Mở tệp `src/main.cpp` $\to$ Bấm nút ** Play ** ở góc trên bên phải hoặc nhấn **`F5`** / **`Ctrl + F5`**.
