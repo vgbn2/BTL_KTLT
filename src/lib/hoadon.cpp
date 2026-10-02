@@ -3,5 +3,5 @@
 //
 // Chức năng:
 //   - Gom toàn bộ cước phát sinh trong tháng, áp dụng chiết khấu/ưu đãi và tạo hóa đơn thanh toán
-//   - Ghi nhận phản ánh của khách hàng về sự cố cước, chất lượng mạng, thẻ nạp và tiến hành tra soát
+//   - Ghi nhận phản ánh của khách hàng về sự cố cước, chất lượng mạng, thẻ nạp và tiến hành tra soát, vd gói SODA155, VD149 của VNPT
 #include "hoadon.h"

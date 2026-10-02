@@ -33,6 +33,12 @@ public:
         : AppException("Loi IMEI: Ma '" + imei + "' khong hop le theo chuan 3GPP (Luhn Checksum that bai)!") {}
 };
 
+class InvalidPhoneNumberException : public AppException {
+public:
+    explicit InvalidPhoneNumberException(const std::string& phone)
+        : AppException("Loi so dien thoai: '" + phone + "' khong dung dinh dang thue bao di dong Viet Nam (Yeu cau 10 chu so bat dau bang so 0)!") {}
+};
+
 class FileIOException : public AppException {
 public:
     explicit FileIOException(const std::string& message)

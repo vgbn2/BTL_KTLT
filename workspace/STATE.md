@@ -3,31 +3,32 @@ Date: 2026-10-02
 Branch: DucAnh-B24DCVT021
 
 ## Current State
-- Completed all 6 execution batches for Trần Đức Anh (B24DCVT021):
-  1. **Batch 1 (Documentation Suite):**
+- All 6 mass-implement batches completed, hardened, and verified for Trần Đức Anh (B24DCVT021):
+  1. **Documentation Suite:**
      - `docs/Overview/ARCHITECTURE_AND_REQUIREMENTS.md`
      - `docs/Operational/TECHNICAL_DESIGN_SPECIFICATION.md`
      - `docs/Operational/USE_CASE_SPEC_DUCANH.md`
      - `docs/Display/CONSOLE_UI_SPEC.md`
      - `docs/UserGuide/USER_MANUAL.md`
-     - `docs/ducanh.md` (Personal Defense & 10 Q&A Guide)
+     - `docs/ducanh.md` (Technical guide with naming policy and Luhn walkthrough)
      - `Readme.md`
-  2. **Batch 2 (Core Library):**
+  2. **Shared Core Foundation:**
      - `src/lib/Entity.h`, `Exceptions.h`, `Date.h/cpp`, `InputHelper.h/cpp`, `Repository.h`, `fileio.h/cpp`.
-     - Removed stray `src/lib/fileio.c`.
-  3. **Batch 3 (Domain Models):**
-     - `src/lib/hopdong.h/cpp` (UC01)
-     - `src/lib/imei.h/cpp` (UC02 with 3GPP Luhn Mod-10 Checksum Algorithm)
-  4. **Batch 4 (Interactive Menus):**
+  3. **Domain Models & Validation Hardening:**
+     - `src/lib/hopdong.h/cpp` (UC01: Contracts with price $\ge 0$, valid states, 10-digit phone number validation).
+     - `src/lib/imei.h/cpp` (UC02: 3GPP Luhn Mod-10 Checksum, EIR Blacklist, BTS location, phone validation with unassigned state support).
+     - Delimiter injection protection against pipe characters `|`.
+     - Full birth date boundary & age validation (14–120 years, no future dates).
+  4. **Interactive Console Controllers:**
      - `src/lib/HopDongMenu.h/cpp`
      - `src/lib/ThietBiIMEIMenu.h/cpp`
-  5. **Batch 5 (Data & App Entry):**
-     - `data/hopdong.txt` (10 seed records)
-     - `data/imei.txt` (10 seed records with valid Luhn IMEIs)
-     - `src/main.cpp` (Full 6-menu application hierarchy)
-     - `Makefile` (GNU Makefile with `-std=c++11 -Wall -Wextra`)
-     - Removed empty `main.c`.
-  6. **Batch 6 (Verification Suite):**
-     - `tests/test_runner.cpp` passing 50/50 assertions (100% PASS).
-- Documented intentional Bilingual Naming Policy in `docs/Operational/TECHNICAL_DESIGN_SPECIFICATION.md`, `docs/ducanh.md` (Q&A 11), and `workspace/SESSION_MEMORY.md`.
-
+  5. **Data, Application Entry & Cross-Platform Runners:**
+     - `data/hopdong.txt` (10 valid seed records)
+     - `data/imei.txt` (10 valid Luhn seed records)
+     - `src/main.cpp` (Full 6-menu application hierarchy with updated exit message)
+     - `run_windows.bat` (1-click Windows runner with UTF-8 support)
+     - `CMakeLists.txt` (Cross-platform CMake build system)
+     - `Makefile` (GNU Makefile)
+     - `.vscode/` (Clean tasks, launch, and c_cpp_properties configs)
+  6. **Automated Verification Test Suite:**
+     - `tests/test_runner.cpp` with 85 test assertions (100% PASS).

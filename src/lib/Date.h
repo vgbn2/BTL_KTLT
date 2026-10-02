@@ -7,6 +7,8 @@
 namespace CalendarConstants {
     const int MIN_VALID_YEAR = 1900;
     const int MAX_VALID_YEAR = 2100;
+    const int DEFAULT_MIN_SUBSCRIBER_AGE = 14;
+    const int DEFAULT_MAX_SUBSCRIBER_AGE = 120;
     const int MONTHS_PER_YEAR = 12;
     const int MONTH_FEBRUARY = 2;
     const int DAYS_FEB_LEAP = 29;
@@ -39,8 +41,16 @@ public:
     static bool isLeapYear(int y);
     static int daysInMonth(int m, int y);
     static bool isValid(int d, int m, int y);
+    static bool isValidBirthDate(const Date& d,
+                                 int minAge = CalendarConstants::DEFAULT_MIN_SUBSCRIBER_AGE,
+                                 int maxAge = CalendarConstants::DEFAULT_MAX_SUBSCRIBER_AGE,
+                                 const Date& relativeTo = Date::now());
     static Date parse(const std::string& str);
     static Date now();
+
+    int calculateAge(const Date& relativeTo = Date::now()) const;
+    bool isFuture(const Date& relativeTo = Date::now()) const;
+    bool isPast(const Date& relativeTo = Date::now()) const;
 
     bool operator<(const Date& other) const;
     bool operator<=(const Date& other) const;

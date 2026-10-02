@@ -8,6 +8,7 @@
 #include "imei.h"
 #include "Repository.h"
 #include "Exceptions.h"
+#include "InputHelper.h"
 
 namespace TestStats {
     int passed = 0;
@@ -51,6 +52,65 @@ void testDate() {
     TEST_ASSERT(parsed.toString() == "05/04/2024", "Date toString sai format");
 }
 
+void testBirthDateAndAgeValidation() {
+    std::cout << "[RUN] Kiem thu Ngay sinh (Birth Date) va Do tuoi chu thue bao...\n";
+
+    Date referenceDate(15, 10, 2024);
+
+    Date validBirth(20, 5, 2000);
+    TEST_ASSERT(validBirth.calculateAge(referenceDate) == 24, "Nguoi sinh 20/05/2000 den 15/10/2024 phai 24 tuoi");
+    TEST_ASSERT(Date::isValidBirthDate(validBirth, 14, 120, referenceDate), "Nguoi 24 tuoi phai hop le");
+
+    Date youngValid(15, 10, 2010);
+    TEST_ASSERT(youngValid.calculateAge(referenceDate) == 14, "Nguoi sinh 15/10/2010 den 15/10/2024 dung 14 tuoi");
+    TEST_ASSERT(Date::isValidBirthDate(youngValid, 14, 120, referenceDate), "Dung 14 tuoi phai duoc dang ky thue bao");
+
+    Date tooYoung(16, 10, 2010);
+    TEST_ASSERT(tooYoung.calculateAge(referenceDate) == 13, "Nguoi sinh 16/10/2010 den 15/10/2024 la 13 tuoi (chua den sinh nhat)");
+    TEST_ASSERT(!Date::isValidBirthDate(tooYoung, 14, 120, referenceDate), "13 tuoi phai bi tu choi");
+
+    Date futureDate(1, 1, 2025);
+    TEST_ASSERT(futureDate.isFuture(referenceDate), "Ngay 01/01/2025 phai la tuong lai so voi 15/10/2024");
+    TEST_ASSERT(!Date::isValidBirthDate(futureDate, 14, 120, referenceDate), "Ngay sinh trong tuong lai phai bi tu choi");
+
+    Date tooOld(1, 1, 1901);
+    TEST_ASSERT(!Date::isValidBirthDate(tooOld, 14, 120, referenceDate), "Tuoi > 120 phai bi tu choi");
+
+    bool threwInvalidYear = false;
+    try {
+        Date invalidYear(1, 1, 1850);
+    } catch (const InvalidDateException&) {
+        threwInvalidYear = true;
+    }
+    TEST_ASSERT(threwInvalidYear, "Nam < 1900 phai nem InvalidDateException");
+}
+
+void testPhoneNumberValidation() {
+    std::cout << "[RUN] Kiem thu So dien thoai di dong Viet Nam (10 chu so)...\n";
+
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("0981234567"), "0981234567 (Viettel) phai hop le");
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("0912345678"), "0912345678 (VinaPhone) phai hop le");
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("0903456789"), "0903456789 (MobiFone) phai hop le");
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("0888123456"), "0888123456 (VinaPhone) phai hop le");
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("0778901234"), "0778901234 (MobiFone) phai hop le");
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("0381234567"), "0381234567 (Viettel) phai hop le");
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("0581234567"), "0581234567 (Vietnamobile) phai hop le");
+
+    TEST_ASSERT(!InputHelper::isValidPhoneNumber("098123456"), "So 9 chu so phai bi tu choi");
+    TEST_ASSERT(!InputHelper::isValidPhoneNumber("09812345678"), "So 11 chu so phai bi tu choi");
+    TEST_ASSERT(!InputHelper::isValidPhoneNumber("1981234567"), "Khong bat dau bang 0 phai bi tu choi");
+    TEST_ASSERT(!InputHelper::isValidPhoneNumber("0181234567"), "Dau so 01x cu phai bi tu choi");
+    TEST_ASSERT(!InputHelper::isValidPhoneNumber("0281234567"), "Dau so co dinh 02x phai bi tu choi");
+    TEST_ASSERT(!InputHelper::isValidPhoneNumber("0481234567"), "Dau so 04x phai bi tu choi");
+    TEST_ASSERT(!InputHelper::isValidPhoneNumber("098123456A"), "Chua ky tu chu cai phai bi tu choi");
+    TEST_ASSERT(!InputHelper::isValidPhoneNumber("098 123456"), "Chua khoang trang phai bi tu choi");
+    TEST_ASSERT(!InputHelper::isValidPhoneNumber(""), "Chuoi rong phai bi tu choi khi khong cho phep ChuaGan");
+
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("ChuaGan", true), "ChuaGan phai hop le khi cho phep unassigned");
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("", true), "Chuoi rong phai hop le khi cho phep unassigned");
+    TEST_ASSERT(!InputHelper::isValidPhoneNumber("ChuaGan", false), "ChuaGan khong the hop le khi bat buoc nhap sdt");
+}
+
 void testIMEILuhn() {
     std::cout << "[RUN] Kiem thu ThietBiIMEI va thuat toan Luhn Checksum 3GPP...\n";
 
@@ -84,8 +144,24 @@ void testIMEILuhn() {
     tb.setBlacklist(false);
     TEST_ASSERT(!tb.isBlacklisted(), "setBlacklist false phai chuyen thanh HoatDong");
 
+    bool threwBadDeviceStatus = false;
+    try {
+        tb.setTrangThai("FakeStatus");
+    } catch (const AppException&) {
+        threwBadDeviceStatus = true;
+    }
+    TEST_ASSERT(threwBadDeviceStatus, "Trang thai thiet bi sai phai bi tu choi");
+
     tb.ganSIM("0912345678");
-    TEST_ASSERT(tb.getSoDienThoai() == "0912345678", "ganSIM phai cap nhat sdt");
+    TEST_ASSERT(tb.getSoDienThoai() == "0912345678", "ganSIM phai cap nhat sdt hop le");
+
+    bool threwInvalidPhone = false;
+    try {
+        tb.ganSIM("012345");
+    } catch (const InvalidPhoneNumberException&) {
+        threwInvalidPhone = true;
+    }
+    TEST_ASSERT(threwInvalidPhone, "ganSIM voi sdt sai dinh dang phai nem InvalidPhoneNumberException");
 
     tb.goSIM();
     TEST_ASSERT(tb.getSoDienThoai() == IMEIConstants::UNASSIGNED_PHONE, "goSIM phai thanh ChuaGan");
@@ -103,15 +179,47 @@ void testHopDong() {
 
     Date start(1, 1, 2024);
     Date end(1, 1, 2025);
-    HopDong hd("HD9999", "KH9999", "0999999999", "GC999", start, end, "TraSau", "HieuLuc", 100000.0);
+    HopDong hd("HD9999", "KH9999", "0981234567", "GC999", start, end, "TraSau", "HieuLuc", 100000.0);
 
     TEST_ASSERT(hd.getId() == "HD9999", "HopDong getId phai khop");
     TEST_ASSERT(!hd.isExpired(Date(1, 6, 2024)), "HopDong khong the expired vao thang 6/2024");
     TEST_ASSERT(hd.isExpired(Date(2, 1, 2025)), "HopDong phai expired vao 02/01/2025");
 
+    bool threwInvalidPhone = false;
+    try {
+        HopDong badPhone("HD8888", "KH8888", "12345", "GC001", start, end, "TraSau", "HieuLuc", 100.0);
+    } catch (const InvalidPhoneNumberException&) {
+        threwInvalidPhone = true;
+    }
+    TEST_ASSERT(threwInvalidPhone, "HopDong tao voi sdt sai dinh dang phai nem InvalidPhoneNumberException");
+
     Date newEnd(1, 1, 2026);
     hd.giaHan(newEnd);
     TEST_ASSERT(hd.getNgayHetHan() == newEnd, "Gia han hop dong thanh cong");
+
+    bool threwNegPrice = false;
+    try {
+        HopDong badPrice("HD8887", "KH8887", "0981234567", "GC001", start, end, "TraSau", "HieuLuc", -50000.0);
+    } catch (const AppException&) {
+        threwNegPrice = true;
+    }
+    TEST_ASSERT(threwNegPrice, "Gia tri goi am phai bi tu choi");
+
+    bool threwBadType = false;
+    try {
+        HopDong badType("HD8886", "KH8886", "0981234567", "GC001", start, end, "InvalidType", "HieuLuc", 1000.0);
+    } catch (const AppException&) {
+        threwBadType = true;
+    }
+    TEST_ASSERT(threwBadType, "Loai hop dong sai phai bi tu choi");
+
+    bool threwBadStatus = false;
+    try {
+        HopDong badStatus("HD8885", "KH8885", "0981234567", "GC001", start, end, "TraSau", "InvalidStatus", 1000.0);
+    } catch (const AppException&) {
+        threwBadStatus = true;
+    }
+    TEST_ASSERT(threwBadStatus, "Trang thai hop dong sai phai bi tu choi");
 
     hd.chamDut();
     TEST_ASSERT(hd.getTrangThai() == HopDongConstants::STATUS_TERMINATED, "chamDut phai thanh ThanhLy");
@@ -150,7 +258,7 @@ void testRepository() {
     TEST_ASSERT(found != nullptr, "Phai tim thay HD0001");
     TEST_ASSERT(found->getMaKhachHang() == "KH0001", "Khach hang phai la KH0001");
 
-    HopDong notFound = HopDong("HD9999", "KH9999", "0999999999", "GC999", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 100.0);
+    HopDong notFound = HopDong("HD9999", "KH9999", "0989999999", "GC999", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 100.0);
     bool threwNotFound = false;
     try {
         repo.update("HD9999", notFound);
@@ -177,6 +285,8 @@ int main() {
               << "========================================================\n";
 
     testDate();
+    testBirthDateAndAgeValidation();
+    testPhoneNumberValidation();
     testIMEILuhn();
     testHopDong();
     testRepository();

@@ -70,10 +70,7 @@ void ThietBiIMEIMenu::themThietBi() {
 
     std::string tenTB = InputHelper::getString("Nhap Ten thiet bi (VD: iPhone 15 Pro, Galaxy S24): ", false);
     std::string hangSX = InputHelper::getString("Nhap Hang san xuat (VD: Apple, Samsung, Xiaomi): ", false);
-    std::string sdt = InputHelper::getString("Nhap So dien thoai gan kem (hoac Enter de mac dinh 'ChuaGan'): ", true);
-    if (sdt.empty()) {
-        sdt = IMEIConstants::UNASSIGNED_PHONE;
-    }
+    std::string sdt = InputHelper::getPhoneNumber("Nhap So dien thoai gan kem (hoac de trong de mac dinh 'ChuaGan'): ", true);
 
     Date ngayKH = InputHelper::getDate("Nhap Ngay kich hoat (DD/MM/YYYY): ");
     std::string bts = InputHelper::getString("Nhap Tram BTS gan nhat (VD: BTS-HN-001): ", false);
@@ -196,7 +193,7 @@ void ThietBiIMEIMenu::capNhatThietBi() {
     int choice = InputHelper::getInt("Nhap lua chon [0-4]: ", UPDATE_CANCEL, UPDATE_UNLOCK);
 
     if (choice == UPDATE_ASSIGN_SIM) {
-        std::string sdtMoi = InputHelper::getString("Nhap So dien thoai moi (hoac de trong de go SIM): ", true);
+        std::string sdtMoi = InputHelper::getPhoneNumber("Nhap So dien thoai moi (hoac de trong de go SIM): ", true);
         tb->ganSIM(sdtMoi);
         repo.update(imei, *tb);
         std::cout << "[THANH CONG] Da cap nhat so SIM gan voi thiet bi " << imei << "!\n";

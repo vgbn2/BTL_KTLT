@@ -1,6 +1,7 @@
 #include "hopdong.h"
 #include "Exceptions.h"
 #include "fileio.h"
+#include "InputHelper.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -39,6 +40,25 @@ HopDong::HopDong(const std::string& maHD,
     if (ngayHetHan < ngayDangKy) {
         throw InvalidDateException("Ngay het han khong duoc nho hon ngay dang ky!");
     }
+    if (!soDienThoai.empty() && !InputHelper::isValidPhoneNumber(soDienThoai)) {
+        throw InvalidPhoneNumberException(soDienThoai);
+    }
+    if (giaTriGoi < 0.0) {
+        throw AppException("Loi: Gia tri goi cuoc khong the am!");
+    }
+    if (!loaiHopDong.empty() && loaiHopDong != TYPE_PREPAID && loaiHopDong != TYPE_POSTPAID) {
+        throw AppException("Loi: Loai hop dong phai la 'TraTruoc' hoac 'TraSau'!");
+    }
+    if (!trangThai.empty() && trangThai != STATUS_ACTIVE && trangThai != STATUS_SUSPENDED && trangThai != STATUS_TERMINATED) {
+        throw AppException("Loi: Trang thai hop dong khong hop le!");
+    }
+}
+
+void HopDong::setSoDienThoai(const std::string& sdt) {
+    if (!sdt.empty() && !InputHelper::isValidPhoneNumber(sdt)) {
+        throw InvalidPhoneNumberException(sdt);
+    }
+    soDienThoai = sdt;
 }
 
 void HopDong::setNgayHetHan(const Date& d) {
@@ -46,6 +66,27 @@ void HopDong::setNgayHetHan(const Date& d) {
         throw InvalidDateException("Ngay het han khong duoc nho hon ngay dang ky!");
     }
     ngayHetHan = d;
+}
+
+void HopDong::setLoaiHopDong(const std::string& loai) {
+    if (loai != TYPE_PREPAID && loai != TYPE_POSTPAID) {
+        throw AppException("Loi: Loai hop dong phai la 'TraTruoc' hoac 'TraSau'!");
+    }
+    loaiHopDong = loai;
+}
+
+void HopDong::setTrangThai(const std::string& tThai) {
+    if (tThai != STATUS_ACTIVE && tThai != STATUS_SUSPENDED && tThai != STATUS_TERMINATED) {
+        throw AppException("Loi: Trang thai hop dong khong hop le!");
+    }
+    trangThai = tThai;
+}
+
+void HopDong::setGiaTriGoi(double gia) {
+    if (gia < 0.0) {
+        throw AppException("Loi: Gia tri goi cuoc khong the am!");
+    }
+    giaTriGoi = gia;
 }
 
 bool HopDong::isExpired(const Date& currentDate) const {

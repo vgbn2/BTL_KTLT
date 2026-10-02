@@ -1,6 +1,7 @@
 #include "imei.h"
 #include "Exceptions.h"
 #include "fileio.h"
+#include "InputHelper.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -32,6 +33,12 @@ ThietBiIMEI::ThietBiIMEI(const std::string& imei,
       tramBTSGanNhat(bts) {
     if (!validateLuhn(imei)) {
         throw InvalidLuhnException(imei);
+    }
+    if (!soDienThoai.empty() && soDienThoai != UNASSIGNED_PHONE && !InputHelper::isValidPhoneNumber(soDienThoai, true)) {
+        throw InvalidPhoneNumberException(soDienThoai);
+    }
+    if (!trangThai.empty() && trangThai != STATUS_ACTIVE && trangThai != STATUS_LOCKED && trangThai != STATUS_SUSPENDED) {
+        throw AppException("Loi: Trang thai thiet bi khong hop le!");
     }
 }
 
@@ -83,7 +90,17 @@ void ThietBiIMEI::setBlacklist(bool lock) {
     trangThai = lock ? STATUS_LOCKED : STATUS_ACTIVE;
 }
 
+void ThietBiIMEI::setTrangThai(const std::string& tThai) {
+    if (tThai != STATUS_ACTIVE && tThai != STATUS_LOCKED && tThai != STATUS_SUSPENDED) {
+        throw AppException("Loi: Trang thai thiet bi khong hop le!");
+    }
+    trangThai = tThai;
+}
+
 void ThietBiIMEI::ganSIM(const std::string& sdt) {
+    if (!sdt.empty() && sdt != UNASSIGNED_PHONE && !InputHelper::isValidPhoneNumber(sdt, true)) {
+        throw InvalidPhoneNumberException(sdt);
+    }
     soDienThoai = sdt.empty() ? UNASSIGNED_PHONE : sdt;
 }
 

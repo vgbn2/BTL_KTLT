@@ -85,6 +85,30 @@ Date Date::now() {
     return Date(localTime->tm_mday, localTime->tm_mon + 1, localTime->tm_year + 1900);
 }
 
+int Date::calculateAge(const Date& relativeTo) const {
+    int age = relativeTo.year - year;
+    if (relativeTo.month < month || (relativeTo.month == month && relativeTo.day < day)) {
+        age--;
+    }
+    return age;
+}
+
+bool Date::isFuture(const Date& relativeTo) const {
+    return *this > relativeTo;
+}
+
+bool Date::isPast(const Date& relativeTo) const {
+    return *this < relativeTo;
+}
+
+bool Date::isValidBirthDate(const Date& d, int minAge, int maxAge, const Date& relativeTo) {
+    if (d.isFuture(relativeTo)) {
+        return false;
+    }
+    int age = d.calculateAge(relativeTo);
+    return (age >= minAge && age <= maxAge);
+}
+
 std::string Date::toString() const {
     std::ostringstream oss;
     oss << std::setfill('0') << std::setw(2) << day << "/"

@@ -1,5 +1,6 @@
 #include "InputHelper.h"
 #include "Exceptions.h"
+#include "fileio.h"
 #include <iostream>
 #include <limits>
 
@@ -19,8 +20,13 @@ std::string InputHelper::getString(const std::string& prompt, bool allowEmpty) {
             clearBuffer();
             continue;
         }
+        val = FileIO::trim(val);
         if (!allowEmpty && val.empty()) {
             std::cout << "  [!] Gia tri khong duoc de trong! Vui long nhap lai.\n";
+            continue;
+        }
+        if (val.find('|') != std::string::npos) {
+            std::cout << "  [!] Gia tri khong duoc chua ky tu phan cach '|'! Vui long nhap lai.\n";
             continue;
         }
         return val;
@@ -68,6 +74,55 @@ Date InputHelper::getDate(const std::string& prompt) {
         } catch (const InvalidDateException& e) {
             std::cout << "  [!] " << e.what() << " Vui long nhap lai.\n";
         }
+    }
+}
+
+Date InputHelper::getBirthDate(const std::string& prompt, int minAge, int maxAge) {
+    while (true) {
+        Date d = getDate(prompt);
+        if (Date::isValidBirthDate(d, minAge, maxAge)) {
+            return d;
+        }
+        if (d.isFuture()) {
+            std::cout << "  [!] Ngay sinh khong the la ngay trong tuong lai! Vui long nhap lai.\n";
+        } else {
+            std::cout << "  [!] Do tuoi chu thue bao khong hop le (Yeu cau tu " << minAge << " den " << maxAge << " tuoi)! Thu lai.\n";
+        }
+    }
+}
+
+bool InputHelper::isValidPhoneNumber(const std::string& phone, bool allowUnassigned) {
+    if (allowUnassigned && (phone.empty() || phone == InputLimits::UNASSIGNED_PHONE_TAG)) {
+        return true;
+    }
+    if (phone.length() != InputLimits::REQUIRED_PHONE_LENGTH) {
+        return false;
+    }
+    if (phone[0] != InputLimits::PHONE_PREFIX) {
+        return false;
+    }
+    char secondDigit = phone[1];
+    if (secondDigit != '3' && secondDigit != '5' && secondDigit != '7' && secondDigit != '8' && secondDigit != '9') {
+        return false;
+    }
+    for (char c : phone) {
+        if (c < '0' || c > '9') {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::string InputHelper::getPhoneNumber(const std::string& prompt, bool allowUnassigned) {
+    while (true) {
+        std::string s = getString(prompt, allowUnassigned);
+        if (allowUnassigned && s.empty()) {
+            return InputLimits::UNASSIGNED_PHONE_TAG;
+        }
+        if (isValidPhoneNumber(s, allowUnassigned)) {
+            return s;
+        }
+        std::cout << "  [!] So dien thoai khong hop le! Yeu cau dung 10 chu so Viet Nam (bat dau bang 03, 05, 07, 08, 09).\n";
     }
 }
 

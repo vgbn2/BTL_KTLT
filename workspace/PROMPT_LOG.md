@@ -13,5 +13,15 @@
 
 - **Prompt 1:** `/session-orchestrator` boot sequence.
 - **Prompt 2:** `/mass-implement reffine and refetc context` - Refined and executed all 6 batches (Documentation Suite, Shared Core Foundation, Domain Models with Luhn check, Menus, Datasets, Makefile, and 50-assertion test suite).
+- **Prompt 3:** Naming consistency review across files, libs, and headers.
+- **Prompt 4:** Removal of roleplay Q&A script from `docs/ducanh.md` and documentation of Bilingual Naming Policy.
+- **Prompt 5:** Execution commands and launch guidance for main application.
+- **Prompt 6:** VS Code run/debug configuration (`.vscode/tasks.json`, `launch.json`, `settings.json`, `c_cpp_properties.json`).
+- **Prompt 7:** Bayesian troubleshooting on VS Code F5 build failure and `compile_commands.json` warnings.
+- **Prompt 8:** Cross-platform Windows 1-click launcher (`run_windows.bat`) and `CMakeLists.txt`.
+- **Prompt 9:** Flaw audit: 10-digit Vietnamese mobile phone validation, birth date / subscriber age bounds, delimiter injection protection, price constraints, and test expansion to 85 assertions.
+- **Prompt 10:** Update exit message to `[Luu du lieu] Da dong bo du lieu.`
+- **Closeout:** Session state, handoff, and durable memory persisted.
+
 
 

@@ -60,7 +60,7 @@ public:
     void setHangSanXuat(const std::string& hang) { hangSanXuat = hang; }
     void setSoDienThoai(const std::string& sdt) { soDienThoai = sdt; }
     void setNgayKichHoat(const Date& d) { ngayKichHoat = d; }
-    void setTrangThai(const std::string& tThai) { trangThai = tThai; }
+    void setTrangThai(const std::string& tThai);
     void setTramBTSGanNhat(const std::string& bts) { tramBTSGanNhat = bts; }
 
     bool isBlacklisted() const;

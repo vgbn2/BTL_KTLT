@@ -9,4 +9,7 @@
 - **Coding Style Reference:** `coding_practice/code-c` (clean, straightforward C/C++ style, standard library first, zero external dependencies).
 - **YAGNI Constraint:** No live data metering, real-time packet tracking, or socket streaming.
 - **Bilingual Naming Policy:** Intentional separation between Vietnamese domain filenames (`hopdong.h/cpp`, `imei.h/cpp`, `data/hopdong.txt`, `data/imei.txt`) matching PTIT group assignment specs, standard English for core OOP architecture & algorithms (`getId`, `validateLuhn`, `isExpired`, `toFileString`, `fromFileString`, `saveToFile`), and Vietnamese for console action handlers (`themHopDong`, `xemDanhSach`, `ganSIM`).
+- **Validation Rules:** Vietnamese mobile phone numbers must be exactly 10 digits starting with `03`, `05`, `07`, `08`, `09`. Subscriber birth dates must be $\ge 14$ and $\le 120$ years old, rejecting future dates. All text inputs reject the `|` pipe delimiter to prevent database corruption. Contract prices must be $\ge 0$.
+- **VS Code Workspace Wiring:** Parent workspace `.vscode/tasks.json` uses Makefile-aware builds that detect `../Makefile` or `./Makefile`, compiling multi-file projects with `make` and copying binaries to `${fileDirname}/${fileBasenameNoExtension}` while preserving single-file competitive programming tasks.
+
 

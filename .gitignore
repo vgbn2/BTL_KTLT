@@ -9,7 +9,7 @@ src/main
 # Build directories
 build/
 bin/
-
+workspace/
 # Editor / Agent metadata
 .claude/
 .DS_Store

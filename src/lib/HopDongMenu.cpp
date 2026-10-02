@@ -61,7 +61,7 @@ void HopDongMenu::themHopDong() {
     }
 
     std::string maKH = InputHelper::getString("Nhap Ma khach hang (VD: KH0001): ", false);
-    std::string sdt = InputHelper::getString("Nhap So dien thoai (10 so): ", false);
+    std::string sdt = InputHelper::getPhoneNumber("Nhap So dien thoai (10 chu so): ", false);
     std::string maGC = InputHelper::getString("Nhap Ma goi cuoc (VD: GC001, VD149): ", false);
 
     Date ngayDK = InputHelper::getDate("Nhap Ngay dang ky (DD/MM/YYYY): ");

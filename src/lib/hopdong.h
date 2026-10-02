@@ -57,13 +57,13 @@ public:
     double getGiaTriGoi() const { return giaTriGoi; }
 
     void setMaKhachHang(const std::string& maKH) { maKhachHang = maKH; }
-    void setSoDienThoai(const std::string& sdt) { soDienThoai = sdt; }
+    void setSoDienThoai(const std::string& sdt);
     void setMaGoiCuoc(const std::string& maGC) { maGoiCuoc = maGC; }
     void setNgayDangKy(const Date& d) { ngayDangKy = d; }
     void setNgayHetHan(const Date& d);
-    void setLoaiHopDong(const std::string& loai) { loaiHopDong = loai; }
-    void setTrangThai(const std::string& tThai) { trangThai = tThai; }
-    void setGiaTriGoi(double gia) { giaTriGoi = gia; }
+    void setLoaiHopDong(const std::string& loai);
+    void setTrangThai(const std::string& tThai);
+    void setGiaTriGoi(double gia);
 
     bool isExpired(const Date& currentDate) const;
     void giaHan(const Date& ngayHetHanMoi);
