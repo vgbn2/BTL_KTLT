@@ -1,0 +1,124 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++-15 build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-std=c++11",
+                "-Wall",
+                "-Wextra",
+                "-g",
+                "-I${workspaceFolder}/src",
+                "-I${workspaceFolder}/src/lib",
+                "${workspaceFolder}/src/main.cpp",
+                "${workspaceFolder}/src/lib/Date.cpp",
+                "${workspaceFolder}/src/lib/InputHelper.cpp",
+                "${workspaceFolder}/src/lib/fileio.cpp",
+                "${workspaceFolder}/src/lib/hopdong.cpp",
+                "${workspaceFolder}/src/lib/imei.cpp",
+                "${workspaceFolder}/src/lib/HopDongMenu.cpp",
+                "${workspaceFolder}/src/lib/ThietBiIMEIMenu.cpp",
+                "-o",
+                "${workspaceFolder}/quanlythuebao"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compiler: /usr/bin/g++ compiling all project sources"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++-14 build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-std=c++11",
+                "-Wall",
+                "-Wextra",
+                "-g",
+                "-I${workspaceFolder}/src",
+                "-I${workspaceFolder}/src/lib",
+                "${workspaceFolder}/src/main.cpp",
+                "${workspaceFolder}/src/lib/Date.cpp",
+                "${workspaceFolder}/src/lib/InputHelper.cpp",
+                "${workspaceFolder}/src/lib/fileio.cpp",
+                "${workspaceFolder}/src/lib/hopdong.cpp",
+                "${workspaceFolder}/src/lib/imei.cpp",
+                "${workspaceFolder}/src/lib/HopDongMenu.cpp",
+                "${workspaceFolder}/src/lib/ThietBiIMEIMenu.cpp",
+                "-o",
+                "${workspaceFolder}/quanlythuebao"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "Compiler: /usr/bin/g++ compiling all project sources"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-std=c++11",
+                "-Wall",
+                "-Wextra",
+                "-g",
+                "-I${workspaceFolder}/src",
+                "-I${workspaceFolder}/src/lib",
+                "${workspaceFolder}/src/main.cpp",
+                "${workspaceFolder}/src/lib/Date.cpp",
+                "${workspaceFolder}/src/lib/InputHelper.cpp",
+                "${workspaceFolder}/src/lib/fileio.cpp",
+                "${workspaceFolder}/src/lib/hopdong.cpp",
+                "${workspaceFolder}/src/lib/imei.cpp",
+                "${workspaceFolder}/src/lib/HopDongMenu.cpp",
+                "${workspaceFolder}/src/lib/ThietBiIMEIMenu.cpp",
+                "-o",
+                "${workspaceFolder}/quanlythuebao"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "Compiler: /usr/bin/g++ compiling all project sources"
+        },
+        {
+            "label": "Build Project (make)",
+            "type": "shell",
+            "command": "make",
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Run Application (make run)",
+            "type": "shell",
+            "command": "make run",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

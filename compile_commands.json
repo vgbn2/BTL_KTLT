@@ -1,0 +1,47 @@
+[
+  {
+    "directory": "/home/vgbn/Documents/codeptit/KTLT",
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/main.cpp -o src/main.o",
+    "file": "src/main.cpp"
+  },
+  {
+    "directory": "/home/vgbn/Documents/codeptit/KTLT",
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/Date.cpp -o src/lib/Date.o",
+    "file": "src/lib/Date.cpp"
+  },
+  {
+    "directory": "/home/vgbn/Documents/codeptit/KTLT",
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/InputHelper.cpp -o src/lib/InputHelper.o",
+    "file": "src/lib/InputHelper.cpp"
+  },
+  {
+    "directory": "/home/vgbn/Documents/codeptit/KTLT",
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/fileio.cpp -o src/lib/fileio.o",
+    "file": "src/lib/fileio.cpp"
+  },
+  {
+    "directory": "/home/vgbn/Documents/codeptit/KTLT",
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/hopdong.cpp -o src/lib/hopdong.o",
+    "file": "src/lib/hopdong.cpp"
+  },
+  {
+    "directory": "/home/vgbn/Documents/codeptit/KTLT",
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/imei.cpp -o src/lib/imei.o",
+    "file": "src/lib/imei.cpp"
+  },
+  {
+    "directory": "/home/vgbn/Documents/codeptit/KTLT",
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/HopDongMenu.cpp -o src/lib/HopDongMenu.o",
+    "file": "src/lib/HopDongMenu.cpp"
+  },
+  {
+    "directory": "/home/vgbn/Documents/codeptit/KTLT",
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/ThietBiIMEIMenu.cpp -o src/lib/ThietBiIMEIMenu.o",
+    "file": "src/lib/ThietBiIMEIMenu.cpp"
+  },
+  {
+    "directory": "/home/vgbn/Documents/codeptit/KTLT",
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c tests/test_runner.cpp -o tests/test_runner.o",
+    "file": "tests/test_runner.cpp"
+  }
+]

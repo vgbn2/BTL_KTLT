@@ -1,6 +1,172 @@
-// hopdong.cpp — Hợp đồng đăng ký
-// Người thực hiện: Trần Đức Anh (B24DCVT021)
-//
-// Chức năng:
-//   - Khởi tạo, ký kết, gia hạn hoặc chấm dứt hợp đồng cung cấp dịch vụ viễn thông
 #include "hopdong.h"
+#include "Exceptions.h"
+#include "fileio.h"
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+
+using namespace HopDongConstants;
+
+HopDong::HopDong()
+    : Entity(""),
+      maKhachHang(""),
+      soDienThoai(""),
+      maGoiCuoc(""),
+      ngayDangKy(Date()),
+      ngayHetHan(Date()),
+      loaiHopDong(TYPE_PREPAID),
+      trangThai(STATUS_ACTIVE),
+      giaTriGoi(0.0) {}
+
+HopDong::HopDong(const std::string& maHD,
+                 const std::string& maKH,
+                 const std::string& sdt,
+                 const std::string& maGC,
+                 const Date& ngayDK,
+                 const Date& ngayHH,
+                 const std::string& loaiHD,
+                 const std::string& tThai,
+                 double gia)
+    : Entity(maHD),
+      maKhachHang(maKH),
+      soDienThoai(sdt),
+      maGoiCuoc(maGC),
+      ngayDangKy(ngayDK),
+      ngayHetHan(ngayHH),
+      loaiHopDong(loaiHD),
+      trangThai(tThai),
+      giaTriGoi(gia) {
+    if (ngayHetHan < ngayDangKy) {
+        throw InvalidDateException("Ngay het han khong duoc nho hon ngay dang ky!");
+    }
+}
+
+void HopDong::setNgayHetHan(const Date& d) {
+    if (d < ngayDangKy) {
+        throw InvalidDateException("Ngay het han khong duoc nho hon ngay dang ky!");
+    }
+    ngayHetHan = d;
+}
+
+bool HopDong::isExpired(const Date& currentDate) const {
+    return currentDate > ngayHetHan;
+}
+
+void HopDong::giaHan(const Date& ngayHetHanMoi) {
+    if (ngayHetHanMoi <= ngayHetHan) {
+        throw InvalidDateException("Ngay gia han moi phai lon hon ngay het han hien tai!");
+    }
+    ngayHetHan = ngayHetHanMoi;
+    trangThai = STATUS_ACTIVE;
+}
+
+void HopDong::chamDut() {
+    trangThai = STATUS_TERMINATED;
+}
+
+void HopDong::tamDung() {
+    trangThai = STATUS_SUSPENDED;
+}
+
+void HopDong::kichHoatLai() {
+    trangThai = STATUS_ACTIVE;
+}
+
+void HopDong::displayHeader() const {
+    std::cout << "+"
+              << std::string(COL_WIDTH_ID, '-') << "+"
+              << std::string(COL_WIDTH_CUST, '-') << "+"
+              << std::string(COL_WIDTH_PHONE, '-') << "+"
+              << std::string(COL_WIDTH_PACKAGE, '-') << "+"
+              << std::string(COL_WIDTH_DATE, '-') << "+"
+              << std::string(COL_WIDTH_DATE, '-') << "+"
+              << std::string(COL_WIDTH_TYPE, '-') << "+"
+              << std::string(COL_WIDTH_STATUS, '-') << "+"
+              << std::string(COL_WIDTH_PRICE, '-') << "+\n";
+
+    std::cout << "|"
+              << std::left << std::setw(COL_WIDTH_ID) << " Ma HD" << "|"
+              << std::left << std::setw(COL_WIDTH_CUST) << " Ma KH" << "|"
+              << std::left << std::setw(COL_WIDTH_PHONE) << " So Dien Thoai" << "|"
+              << std::left << std::setw(COL_WIDTH_PACKAGE) << " Ma Goi" << "|"
+              << std::left << std::setw(COL_WIDTH_DATE) << " Ngay DK" << "|"
+              << std::left << std::setw(COL_WIDTH_DATE) << " Ngay HH" << "|"
+              << std::left << std::setw(COL_WIDTH_TYPE) << " Loai HD" << "|"
+              << std::left << std::setw(COL_WIDTH_STATUS) << " Trang Thai" << "|"
+              << std::right << std::setw(COL_WIDTH_PRICE) << "Gia Cuoc (VND) " << "|\n";
+
+    std::cout << "+"
+              << std::string(COL_WIDTH_ID, '-') << "+"
+              << std::string(COL_WIDTH_CUST, '-') << "+"
+              << std::string(COL_WIDTH_PHONE, '-') << "+"
+              << std::string(COL_WIDTH_PACKAGE, '-') << "+"
+              << std::string(COL_WIDTH_DATE, '-') << "+"
+              << std::string(COL_WIDTH_DATE, '-') << "+"
+              << std::string(COL_WIDTH_TYPE, '-') << "+"
+              << std::string(COL_WIDTH_STATUS, '-') << "+"
+              << std::string(COL_WIDTH_PRICE, '-') << "+\n";
+}
+
+void HopDong::displayRow() const {
+    std::cout << "|"
+              << " " << std::left << std::setw(COL_WIDTH_ID - 1) << id << "|"
+              << " " << std::left << std::setw(COL_WIDTH_CUST - 1) << maKhachHang << "|"
+              << " " << std::left << std::setw(COL_WIDTH_PHONE - 1) << soDienThoai << "|"
+              << " " << std::left << std::setw(COL_WIDTH_PACKAGE - 1) << maGoiCuoc << "|"
+              << " " << std::left << std::setw(COL_WIDTH_DATE - 1) << ngayDangKy.toString() << "|"
+              << " " << std::left << std::setw(COL_WIDTH_DATE - 1) << ngayHetHan.toString() << "|"
+              << " " << std::left << std::setw(COL_WIDTH_TYPE - 1) << loaiHopDong << "|"
+              << " " << std::left << std::setw(COL_WIDTH_STATUS - 1) << trangThai << "|"
+              << std::right << std::setw(COL_WIDTH_PRICE - 1) << std::fixed << std::setprecision(0) << giaTriGoi << " |\n";
+}
+
+void HopDong::displayDetail() const {
+    std::cout << "  --------------------------------------------------\n"
+              << "  Ma hop dong    : " << id << "\n"
+              << "  Ma khach hang  : " << maKhachHang << "\n"
+              << "  So dien thoai  : " << soDienThoai << "\n"
+              << "  Ma goi cuoc    : " << maGoiCuoc << "\n"
+              << "  Ngay dang ky   : " << ngayDangKy.toString() << "\n"
+              << "  Ngay het han   : " << ngayHetHan.toString() << "\n"
+              << "  Loai hop dong  : " << loaiHopDong << "\n"
+              << "  Trang thai     : " << trangThai << "\n"
+              << "  Gia tri goi    : " << std::fixed << std::setprecision(0) << giaTriGoi << " VND\n"
+              << "  --------------------------------------------------\n";
+}
+
+std::string HopDong::toFileString() const {
+    std::ostringstream oss;
+    oss << id << "|"
+        << maKhachHang << "|"
+        << soDienThoai << "|"
+        << maGoiCuoc << "|"
+        << ngayDangKy.toString() << "|"
+        << ngayHetHan.toString() << "|"
+        << loaiHopDong << "|"
+        << trangThai << "|"
+        << std::fixed << std::setprecision(0) << giaTriGoi;
+    return oss.str();
+}
+
+bool HopDong::fromFileString(const std::string& line) {
+    std::vector<std::string> tokens = FileIO::split(line, '|');
+    const size_t EXPECTED_FIELD_COUNT = 9;
+    if (tokens.size() < EXPECTED_FIELD_COUNT) {
+        return false;
+    }
+
+    try {
+        id = tokens[0];
+        maKhachHang = tokens[1];
+        soDienThoai = tokens[2];
+        maGoiCuoc = tokens[3];
+        ngayDangKy = Date::parse(tokens[4]);
+        ngayHetHan = Date::parse(tokens[5]);
+        loaiHopDong = tokens[6];
+        trangThai = tokens[7];
+        giaTriGoi = std::stod(tokens[8]);
+        return true;
+    } catch (...) {
+        return false;
+    }
+}

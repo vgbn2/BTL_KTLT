@@ -1,0 +1,18 @@
+{
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/src",
+        "${workspaceFolder}/src/lib"
+    ],
+    "C_Cpp.default.cppStandard": "c++11",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/compile_commands.json",
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.cwd": "${workspaceFolder}",
+    "code-runner.executorMap": {
+        "c": "cd \"$workspaceRoot\" && make run",
+        "cpp": "cd \"$workspaceRoot\" && make run"
+    }
+}

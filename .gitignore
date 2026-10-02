@@ -1,0 +1,16 @@
+# Binaries and object files
+*.o
+quanlythuebao
+quanlythuebao.exe
+test_runner
+test_runner.exe
+src/main
+
+# Build directories
+build/
+bin/
+
+# Editor / Agent metadata
+.claude/
+.DS_Store
+*.tmp
