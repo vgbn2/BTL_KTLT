@@ -1,11 +1,11 @@
 #include <iostream>
-#include "lib/fileio.h"
-#include "lib/Repository.h"
-#include "lib/hopdong.h"
-#include "lib/imei.h"
-#include "lib/HopDongMenu.h"
-#include "lib/ThietBiIMEIMenu.h"
-#include "lib/InputHelper.h"
+#include "lib/shared/fileio.h"
+#include "lib/shared/Repository.h"
+#include "lib/models/hopdong.h"
+#include "lib/models/imei.h"
+#include "lib/menus/HopDongMenu.h"
+#include "lib/menus/ThietBiIMEIMenu.h"
+#include "lib/shared/InputHelper.h"
 
 namespace MainMenuChoices {
     const int MENU_EXIT = 0;

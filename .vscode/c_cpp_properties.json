@@ -5,7 +5,11 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/src",
-                "${workspaceFolder}/src/lib"
+                "${workspaceFolder}/src/lib",
+                "${workspaceFolder}/src/lib/shared",
+                "${workspaceFolder}/src/lib/models",
+                "${workspaceFolder}/src/lib/menus",
+                "${workspaceFolder}/src/lib/stubs"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",

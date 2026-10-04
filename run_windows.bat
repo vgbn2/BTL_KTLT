@@ -17,7 +17,7 @@ if %errorlevel% neq 0 (
 )
 
 echo Dang bien dich ma nguon...
-g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib src/main.cpp src/lib/Date.cpp src/lib/InputHelper.cpp src/lib/fileio.cpp src/lib/hopdong.cpp src/lib/imei.cpp src/lib/HopDongMenu.cpp src/lib/ThietBiIMEIMenu.cpp -o quanlythuebao.exe
+g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Isrc/lib/stubs src/main.cpp src/lib/shared/Date.cpp src/lib/shared/InputHelper.cpp src/lib/shared/fileio.cpp src/lib/models/hopdong.cpp src/lib/models/imei.cpp src/lib/menus/HopDongMenu.cpp src/lib/menus/ThietBiIMEIMenu.cpp -o quanlythuebao.exe
 
 if %errorlevel% neq 0 (
     echo [LOI] Bien dich that bai!

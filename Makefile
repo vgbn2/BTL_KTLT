@@ -1,16 +1,16 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall -Wextra -Isrc -Isrc/lib
+CXXFLAGS = -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Isrc/lib/stubs
 
 TARGET = quanlythuebao
 TEST_TARGET = test_runner
 
-LIB_SRCS = src/lib/Date.cpp \
-           src/lib/InputHelper.cpp \
-           src/lib/fileio.cpp \
-           src/lib/hopdong.cpp \
-           src/lib/imei.cpp \
-           src/lib/HopDongMenu.cpp \
-           src/lib/ThietBiIMEIMenu.cpp
+LIB_SRCS = src/lib/shared/Date.cpp \
+           src/lib/shared/InputHelper.cpp \
+           src/lib/shared/fileio.cpp \
+           src/lib/models/hopdong.cpp \
+           src/lib/models/imei.cpp \
+           src/lib/menus/HopDongMenu.cpp \
+           src/lib/menus/ThietBiIMEIMenu.cpp
 
 MAIN_SRC = src/main.cpp
 TEST_SRC = tests/test_runner.cpp
@@ -23,7 +23,7 @@ $(TARGET): $(MAIN_SRC) $(LIB_SRCS)
 test: $(TEST_TARGET)
 	./$(TEST_TARGET)
 
-$(TEST_TARGET): $(TEST_SRC) src/lib/Date.cpp src/lib/InputHelper.cpp src/lib/fileio.cpp src/lib/hopdong.cpp src/lib/imei.cpp
+$(TEST_TARGET): $(TEST_SRC) src/lib/shared/Date.cpp src/lib/shared/InputHelper.cpp src/lib/shared/fileio.cpp src/lib/models/hopdong.cpp src/lib/models/imei.cpp
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean:

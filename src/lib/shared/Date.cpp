@@ -6,7 +6,7 @@
 
 using namespace CalendarConstants;
 
-Date::Date() : day(1), month(1), year(2024) {}
+Date::Date() : day(1), month(1), year(2000) {}
 
 Date::Date(int d, int m, int y) {
     if (!isValid(d, m, y)) {
