@@ -10,6 +10,7 @@ src/main
 build/
 bin/
 workspace/
+graphify-out/
 # Editor / Agent metadata
 .claude/
 .DS_Store

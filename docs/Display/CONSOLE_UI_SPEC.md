@@ -6,9 +6,8 @@
 ## 1. Nguyên Tắc Thiết Kế Giao Diện
 
 1. **Chuẩn mực đồ án học thuật:** Tuân thủ cấu trúc menu số 0–9 trực quan, rõ ràng, đúng theo ví dụ minh họa tại Mục 5 Đề bài BTL KTLT.
-2. **Không rác giao diện (Zero AI Fluff):** Không chèn các biểu ngữ màu mè, không in thông tin cá nhân/watermark làm rối mắt giảng viên khi chấm điểm console.
-3. **Căn chỉnh hoàn hảo:** Sử dụng thư viện chuẩn `<iomanip>` (`std::setw`, `std::left`, `std::right`, `std::setfill`) để mọi bảng dữ liệu hiển thị thẳng hàng tuyệt đối.
-4. **Trải nghiệm nhập liệu an toàn:** Luôn có hướng dẫn rõ ràng, nhắc lại khi nhập sai kiểu dữ liệu, xác nhận `(y/n)` trước các thao tác phá hủy dữ liệu (Xóa/Thanh lý).
+2. **Căn chỉnh hoàn hảo:** Sử dụng thư viện chuẩn `<iomanip>` (`std::setw`, `std::left`, `std::right`, `std::setfill`) để mọi bảng dữ liệu hiển thị thẳng hàng tuyệt đối.
+3. **Trải nghiệm nhập liệu an toàn:** Luôn có hướng dẫn rõ ràng, nhắc lại khi nhập sai kiểu dữ liệu, xác nhận `(y/n)` trước các thao tác phá hủy dữ liệu (Xóa/Thanh lý).
 
 ---
 

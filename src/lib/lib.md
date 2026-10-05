@@ -88,7 +88,7 @@ private:
     int year;
 
 public:
-    Date();                                      // Defaults to 01/01/2024
+    Date();                                      // Defaults to 01/01/2000
     Date(int d, int m, int y);                  // Validates calendar bounds
     explicit Date(const std::string& dateStr);   // Parses "DD/MM/YYYY"
 
