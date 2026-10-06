@@ -1,47 +1,47 @@
 [
   {
     "directory": "/home/vgbn/Documents/codeptit/KTLT",
-    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/main.cpp -o src/main.o",
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Isrc/lib/stubs -c src/main.cpp -o src/main.o",
     "file": "src/main.cpp"
   },
   {
     "directory": "/home/vgbn/Documents/codeptit/KTLT",
-    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/Date.cpp -o src/lib/Date.o",
-    "file": "src/lib/Date.cpp"
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Isrc/lib/stubs -c src/lib/shared/Date.cpp -o src/lib/shared/Date.o",
+    "file": "src/lib/shared/Date.cpp"
   },
   {
     "directory": "/home/vgbn/Documents/codeptit/KTLT",
-    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/InputHelper.cpp -o src/lib/InputHelper.o",
-    "file": "src/lib/InputHelper.cpp"
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Isrc/lib/stubs -c src/lib/shared/InputHelper.cpp -o src/lib/shared/InputHelper.o",
+    "file": "src/lib/shared/InputHelper.cpp"
   },
   {
     "directory": "/home/vgbn/Documents/codeptit/KTLT",
-    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/fileio.cpp -o src/lib/fileio.o",
-    "file": "src/lib/fileio.cpp"
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Isrc/lib/stubs -c src/lib/shared/fileio.cpp -o src/lib/shared/fileio.o",
+    "file": "src/lib/shared/fileio.cpp"
   },
   {
     "directory": "/home/vgbn/Documents/codeptit/KTLT",
-    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/hopdong.cpp -o src/lib/hopdong.o",
-    "file": "src/lib/hopdong.cpp"
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Isrc/lib/stubs -c src/lib/models/hopdong.cpp -o src/lib/models/hopdong.o",
+    "file": "src/lib/models/hopdong.cpp"
   },
   {
     "directory": "/home/vgbn/Documents/codeptit/KTLT",
-    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/imei.cpp -o src/lib/imei.o",
-    "file": "src/lib/imei.cpp"
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Isrc/lib/stubs -c src/lib/models/imei.cpp -o src/lib/models/imei.o",
+    "file": "src/lib/models/imei.cpp"
   },
   {
     "directory": "/home/vgbn/Documents/codeptit/KTLT",
-    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/HopDongMenu.cpp -o src/lib/HopDongMenu.o",
-    "file": "src/lib/HopDongMenu.cpp"
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Isrc/lib/stubs -c src/lib/menus/HopDongMenu.cpp -o src/lib/menus/HopDongMenu.o",
+    "file": "src/lib/menus/HopDongMenu.cpp"
   },
   {
     "directory": "/home/vgbn/Documents/codeptit/KTLT",
-    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c src/lib/ThietBiIMEIMenu.cpp -o src/lib/ThietBiIMEIMenu.o",
-    "file": "src/lib/ThietBiIMEIMenu.cpp"
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Isrc/lib/stubs -c src/lib/menus/ThietBiIMEIMenu.cpp -o src/lib/menus/ThietBiIMEIMenu.o",
+    "file": "src/lib/menus/ThietBiIMEIMenu.cpp"
   },
   {
     "directory": "/home/vgbn/Documents/codeptit/KTLT",
-    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -c tests/test_runner.cpp -o tests/test_runner.o",
+    "command": "/usr/bin/g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Isrc/lib/stubs -c tests/test_runner.cpp -o tests/test_runner.o",
     "file": "tests/test_runner.cpp"
   }
 ]

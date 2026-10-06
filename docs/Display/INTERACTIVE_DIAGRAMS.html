@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>He Thong So Do Tuong Tac &amp; Luong Goi Ham — KTLT Mobile Subscriber</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+:root {
+  --bg: #090d16;
+  --surface: #111827;
+  --surface-alt: #1f2937;
+  --border: #374151;
+  --text: #f3f4f6;
+  --text-muted: #9ca3af;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.2);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+aside {
+  width: 320px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-header h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+.sidebar-header p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+nav {
+  overflow-y: auto;
+  padding: 12px;
+  flex: 1;
+}
+.nav-group-title {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+  padding: 12px 10px 4px;
+  letter-spacing: 0.05em;
+}
+.nav-item {
+  display: block;
+  padding: 10px 12px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.88rem;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.nav-item:hover {
+  background: var(--surface-alt);
+  color: var(--accent);
+}
+.nav-item.active {
+  background: var(--accent-glow);
+  color: var(--accent);
+  font-weight: 600;
+  border-left: 3px solid var(--accent);
+}
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+.top-bar {
+  padding: 12px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.diagram-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn {
+  background: var(--surface-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s;
+}
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.zoom-display {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  min-width: 48px;
+  text-align: center;
+  font-family: monospace;
+}
+.viewport {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  cursor: grab;
+}
+.viewport.is-panning {
+  cursor: grabbing;
+}
+.diagram-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  padding: 40px;
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mermaid {
+  display: inline-block;
+}
+.panel-tab {
+  display: none;
+}
+.panel-tab.active {
+  display: block;
+}
+.hint-badge {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="sidebar-header">
+    <h1>KTLT Architecture &amp; Call Flows</h1>
+    <p>Tran Duc Anh (B24DCVT021) — Module Hop Dong &amp; IMEI</p>
+  </div>
+  <nav>
+    <div class="nav-group-title">So Do Tuong Tac He Thong</div>
+    <a class="nav-item active" onclick="switchDiagram('d1', 'Kien Truc Tuong Tac Da Tang')">1. Kien Truc 3-Tier Da Tang</a>
+    <a class="nav-item" onclick="switchDiagram('d2', 'Tuan Tu: UC01 Them Hop Dong Dang Ky')">2. Tuan Tu: UC01 Hop Dong</a>
+    <a class="nav-item" onclick="switchDiagram('d3', 'Tuan Tu: UC02 Ghi Nhan IMEI &amp; Luhn 3GPP')">3. Tuan Tu: UC02 IMEI Luhn</a>
+    <a class="nav-item" onclick="switchDiagram('d4', 'Luu Tru File Nguyen Tu')">4. Luu Tru File Nguyen Tu</a>
+    <a class="nav-item" onclick="switchDiagram('d5', 'Vong Doi Trang Thai')">5. Vong Doi Trang Thai</a>
+
+    <div class="nav-group-title">Dac Ta Luong Goi Ham</div>
+    <a class="nav-item" onclick="switchDiagram('d6', 'Kien Truc Goi Ham Toan Cuc')">6. Phan Cap Goi Ham Toan Cuc</a>
+    <a class="nav-item" onclick="switchDiagram('d7', 'Chu Trinh Khoi Dong &amp; Nap Du Lieu')">7. Nap Du Lieu Khoi Dong</a>
+    <a class="nav-item" onclick="switchDiagram('d8', 'Luong Goi Ham: Them Hop Dong Chi Tiet')">8. Goi Ham: UC01 Hop Dong</a>
+    <a class="nav-item" onclick="switchDiagram('d9', 'Luong Goi Ham: Them IMEI &amp; Luhn Chi Tiet')">9. Goi Ham: UC02 Thiet Bi IMEI</a>
+    <a class="nav-item" onclick="switchDiagram('d10', 'Luong Goi Ham: Tra Cuu &amp; Sap Xep')">10. Goi Ham: Tra Cuu &amp; Sap Xep</a>
+  </nav>
+</aside>
+
+<main>
+  <div class="top-bar">
+    <div class="diagram-title" id="currentTitle">Kien Truc Tuong Tac Da Tang</div>
+    <div class="controls">
+      <button class="btn" onclick="zoomIn()">[+] Phong to</button>
+      <button class="btn" onclick="zoomOut()">[-] Thu nho</button>
+      <span class="zoom-display" id="zoomVal">100%</span>
+      <button class="btn" onclick="resetZoom()">Mac dinh</button>
+      <button class="btn" onclick="centerDiagram()">Can giua</button>
+    </div>
+  </div>
+
+  <div class="viewport" id="viewport">
+    <div class="diagram-container" id="container">
+
+      <!-- D1 -->
+      <div id="d1" class="panel-tab active">
+        <div class="mermaid">
+flowchart TD
+    classDef entry fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    classDef menu fill:#1e1b4b,stroke:#818cf8,stroke-width:1.5px,color:#e0e7ff;
+    classDef helper fill:#042f2e,stroke:#2dd4bf,stroke-width:1.5px,color:#ccfbf1;
+    classDef domain fill:#451a03,stroke:#fbbf24,stroke-width:1.5px,color:#fef3c7;
+    classDef storage fill:#064e3b,stroke:#34d399,stroke-width:1.5px,color:#d1fae5;
+    classDef file fill:#111827,stroke:#64748b,stroke-width:1.5px,color:#cbd5e1;
+
+    User([Nguoi dung / Giang vien]):::entry -->|Nhap lua chon 0-6| Main["src/main.cpp (Menu Chinh)"]:::entry
+
+    subgraph UI ["1. TANG GIAO DIEN CONSOLE (src/lib/menus/)"]
+        direction TB
+        Main -->|Choice 3| HDMenu["HopDongMenu"]:::menu
+        Main -->|Choice 4| IMEIMenu["ThietBiIMEIMenu"]:::menu
+        Main -.->|Choice 1,2,5,6| Stubs["Stubs: GoiCuoc, ThueBao, NapTien, HoaDon"]:::file
+    end
+
+    subgraph Core ["2. TANG NGHIEP VU & TIEN ICH XAC THUC (src/lib/models/ & src/lib/shared/)"]
+        direction TB
+        subgraph Models ["Mo Hinh Nghiep Vu"]
+            direction TB
+            HDModel["HopDong : Entity"]:::domain
+            IMEIModel["ThietBiIMEI : Entity (Luhn Mod-10)"]:::domain
+        end
+        subgraph Helpers ["Xac Thuc & Tien Ich"]
+            direction TB
+            InputHelper["InputHelper (Loc '|', EOF Safe)"]:::helper
+            DateEngine["Date Engine (Lich Nhuan & Tuoi)"]:::helper
+            FileIO["FileIO Helper (Trim / Split)"]:::helper
+            InputHelper --> DateEngine
+            InputHelper --> FileIO
+        end
+        HDMenu -->|Khoi tao / Gia han| HDModel
+        IMEIMenu -->|Gan SIM / Khoa may| IMEIModel
+        HDMenu & IMEIMenu -->|Nhap du lieu an toan| InputHelper
+    end
+
+    subgraph Storage ["3. TANG LUU TRU NGUYEN TU (src/lib/shared/ & data/)"]
+        direction TB
+        subgraph StorageHD ["Phan He Hop Dong"]
+            direction TB
+            RepoHD["Repository&lt;HopDong&gt;"]:::storage
+            DiskHD[("data/hopdong.txt")]:::file
+            RepoHD -->|Ghi .tmp -> Rename| DiskHD
+        end
+        subgraph StorageIMEI ["Phan He Thiet Bi IMEI"]
+            direction TB
+            RepoIMEI["Repository&lt;ThietBiIMEI&gt;"]:::storage
+            DiskIMEI[("data/imei.txt")]:::file
+            RepoIMEI -->|Ghi .tmp -> Rename| DiskIMEI
+        end
+    end
+
+    HDMenu -->|CRUD trong RAM & Sync| RepoHD
+    IMEIMenu -->|CRUD trong RAM & Sync| RepoIMEI
+        </div>
+      </div>
+
+      <!-- D2 -->
+      <div id="d2" class="panel-tab">
+        <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor User as Nguoi dung
+    participant Menu as HopDongMenu
+    participant Input as InputHelper
+    participant DateMod as Date
+    participant HD as HopDong
+    participant Repo as Repository&lt;HopDong&gt;
+    participant File as Disk (data/hopdong.txt)
+
+    User->>Menu: Chon [1] Them moi hop dong
+    Menu->>Input: getString("Nhap ma hop dong")
+    Input-->>Menu: "HD0011"
+
+    Menu->>Repo: findById("HD0011")
+    alt Ma trung lap
+        Repo-->>Menu: Con tro != nullptr
+        Menu-->>User: Bao loi "Ma hop dong da ton tai!"
+    else Ma hop le
+        Repo-->>Menu: nullptr
+    end
+
+    Menu->>Input: getPhoneNumber("Nhap so dien thoai")
+    Input-->>Menu: "0912345678"
+
+    Menu->>Input: getDate("Nhap ngay dang ky (DD/MM/YYYY)")
+    Input->>DateMod: parse("01/10/2024")
+    DateMod-->>Input: Date(01, 10, 2024)
+    Input-->>Menu: ngayDangKy
+
+    Menu->>Input: getDate("Nhap ngay het han (DD/MM/YYYY)")
+    Input-->>Menu: ngayHetHan
+
+    Menu->>HD: HopDong("HD0011", "KH001", "0912345678", ..., ngayDangKy, ngayHetHan, ...)
+    Menu->>Repo: add(newHopDong)
+    Repo->>Repo: items.push_back(newHopDong)
+    Repo->>File: saveToFile()
+    File-->>Repo: Ghi file thanh cong
+    Repo-->>Menu: return true
+    Menu-->>User: "[THANH CONG] Da them hop dong moi vao he thong!"
+        </div>
+      </div>
+
+      <!-- D3 -->
+      <div id="d3" class="panel-tab">
+        <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor User as Nguoi dung
+    participant Menu as ThietBiIMEIMenu
+    participant Input as InputHelper
+    participant IMEI as ThietBiIMEI
+    participant Repo as Repository&lt;ThietBiIMEI&gt;
+    participant File as Disk
+
+    User->>Menu: Chon 1 Ghi nhan thiet bi IMEI moi
+    Menu->>Input: getString("Nhap ma IMEI")
+    Input-->>Menu: "860123456789012"
+
+    Menu->>IMEI: validateLuhn("860123456789012")
+    alt Luhn Checksum That Bai
+        IMEI-->>Menu: false
+        Menu-->>User: "[LOI] Ma IMEI khong hop le theo tieu chuan 3GPP!"
+    else Luhn Checksum Hop Le
+        IMEI-->>Menu: true
+    end
+
+    Menu->>Repo: findById("860123456789012")
+    Menu->>Input: getPhoneNumber("Nhap SDT gan SIM")
+    Input-->>Menu: "0987654321"
+
+    Menu->>IMEI: ThietBiIMEI(imei, tenTB, hangSX, sdt, ngayKH, "HoatDong", bts)
+    Menu->>Repo: add(newIMEI)
+    Repo->>File: saveToFile()
+    File-->>Repo: Ghi thanh cong
+    Repo-->>Menu: return true
+    Menu-->>User: "[THANH CONG] Da ghi nhan thiet bi IMEI thanh cong!"
+        </div>
+      </div>
+
+      <!-- D4 -->
+      <div id="d4" class="panel-tab">
+        <div class="mermaid">
+sequenceDiagram
+    autonumber
+    participant App as Ung dung / Repository
+    participant TmpFile as Tep tam
+    participant LiveFile as Tep chinh
+
+    App->>TmpFile: 1. Mo tep tam de ghi
+    loop Ghi toan bo ban ghi trong RAM
+        App->>TmpFile: 2. outFile << item.toFileString() << "\n"
+    end
+    App->>TmpFile: 3. outFile.close()
+    App->>LiveFile: 4. std::rename("data/hopdong.txt.tmp", "data/hopdong.txt")
+        </div>
+      </div>
+
+      <!-- D5 -->
+      <div id="d5" class="panel-tab">
+        <div class="mermaid">
+stateDiagram-v2
+    [*] --> HieuLuc : Khoi tao hop dong moi (Add)
+    HieuLuc --> TamDung : Tam dung dich vu (tamDung)
+    TamDung --> HieuLuc : Kich hoat lai (kichHoatLai)
+    HieuLuc --> HieuLuc : Gia han ngay het han (giaHan)
+    HieuLuc --> ThanhLy : Cham dut / Thanh ly hop dong (chamDut)
+    TamDung --> ThanhLy : Thanh ly hop dong
+    ThanhLy --> [*] : Dong hop dong vinh vien
+        </div>
+      </div>
+
+      <!-- D6 -->
+      <div id="d6" class="panel-tab">
+        <div class="mermaid">
+flowchart TD
+    classDef entry fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    classDef menu fill:#1e1b4b,stroke:#818cf8,stroke-width:1.5px,color:#e0e7ff;
+    classDef helper fill:#042f2e,stroke:#2dd4bf,stroke-width:1.5px,color:#ccfbf1;
+    classDef domain fill:#451a03,stroke:#fbbf24,stroke-width:1.5px,color:#fef3c7;
+    classDef storage fill:#064e3b,stroke:#34d399,stroke-width:1.5px,color:#d1fae5;
+    classDef file fill:#111827,stroke:#64748b,stroke-width:1.5px,color:#cbd5e1;
+
+    Main["main() [src/main.cpp]"]:::entry
+
+    subgraph MenuLayer ["1. TANG MENU & DIEU HUONG NGHIEP VU"]
+        direction TB
+        subgraph HD_MenuBox ["Phan He Hop Dong"]
+            direction TB
+            HD_Show["HopDongMenu::showMenu()"]:::menu
+            HD_Actions["themHopDong() | xemDanhSach()<br/>timKiemHopDong() | sapXepDanhSach()<br/>capNhatHopDong() | xoaHopDong()"]:::menu
+            HD_Show --> HD_Actions
+        end
+        subgraph IMEI_MenuBox ["Phan He Thiet Bi IMEI"]
+            direction TB
+            IMEI_Show["ThietBiIMEIMenu::showMenu()"]:::menu
+            IMEI_Actions["themThietBi() | xemDanhSach()<br/>timKiemThietBi() | danhSachKhoaMang()<br/>capNhatThietBi() | xoaThietBi()"]:::menu
+            IMEI_Show --> IMEI_Actions
+        end
+        HD_MenuBox --> IMEI_MenuBox
+    end
+
+    subgraph HelperLayer ["2. TANG TIEN ICH XAC THUC & NGAY THANG"]
+        direction TB
+        InputHelpGroup["InputHelper::getString() | getInt() | getDouble()<br/>InputHelper::getPhoneNumber() | getConfirm()"]:::helper
+        DateEngineGroup["Date::parse() | Date::isValid()<br/>Date::isLeapYear() | Date::calculateAge()"]:::helper
+        FileIOGroup["FileIO::trim() | FileIO::split()<br/>FileIO::ensureDirectoryExists()"]:::helper
+        InputHelpGroup --> DateEngineGroup --> FileIOGroup
+    end
+
+    subgraph DomainLayer ["3. TANG MO HINH NGHIEP VU & XAC THUC"]
+        direction TB
+        HD_ModelBox["HopDong Model<br/><small>HopDong() | giaHan() | isExpired() | chamDut()</small>"]:::domain
+        IMEI_ModelBox["ThietBiIMEI Model<br/><small>ThietBiIMEI() | validateLuhn() | ganSIM() | setBlacklist()</small>"]:::domain
+        HD_ModelBox --> IMEI_ModelBox
+    end
+
+    subgraph StorageLayer ["4. TANG LUU TRU FILE NGUYEN TU"]
+        direction TB
+        RepoOps["Repository&lt;T&gt;::add() | update() | remove()<br/>Repository&lt;T&gt;::findById() | filter() | sort()"]:::storage
+        RepoSync["Repository&lt;T&gt;::saveToFile() & loadFromFile()<br/><small>(Atomic .tmp -> std::rename replace)</small>"]:::storage
+        DataFilesGroup[("data/hopdong.txt<br/>data/imei.txt")]:::file
+        RepoOps --> RepoSync --> DataFilesGroup
+    end
+
+    Main --> MenuLayer
+    MenuLayer --> HelperLayer
+    HelperLayer --> DomainLayer
+    DomainLayer --> StorageLayer
+    Main -.->|Exit & Sync| StorageLayer
+        </div>
+      </div>
+
+      <!-- D7 -->
+      <div id="d7" class="panel-tab">
+        <div class="mermaid">
+sequenceDiagram
+    autonumber
+    participant Main as main()
+    participant RepoHD as Repository&lt;HopDong&gt;
+    participant RepoIMEI as Repository&lt;ThietBiIMEI&gt;
+    participant FileIO as FileIO
+    participant HD as HopDong
+    participant DateMod as Date
+
+    Main->>RepoHD: loadFromFile()
+    activate RepoHD
+    RepoHD->>FileIO: ensureDirectoryExists("data/hopdong.txt")
+    loop Doc tung dong (getline)
+        RepoHD->>FileIO: trim(line)
+        RepoHD->>HD: fromFileString(trimmedLine)
+        HD->>FileIO: split(trimmedLine, '|')
+        HD->>DateMod: parse(tokens[4])
+        HD->>DateMod: parse(tokens[5])
+        RepoHD->>RepoHD: items.push_back(hd)
+    end
+    RepoHD-->>Main: return true
+    deactivate RepoHD
+
+    Main->>RepoIMEI: loadFromFile()
+    activate RepoIMEI
+    RepoIMEI->>FileIO: ensureDirectoryExists("data/imei.txt")
+    RepoIMEI-->>Main: return true
+    deactivate RepoIMEI
+        </div>
+      </div>
+
+      <!-- D8 -->
+      <div id="d8" class="panel-tab">
+        <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor User as Nguoi dung
+    participant Menu as HopDongMenu::themHopDong
+    participant Input as InputHelper
+    participant DateMod as Date
+    participant Repo as Repository&lt;HopDong&gt;
+    participant Model as HopDong::HopDong
+
+    User->>Menu: Chon 1 Them hop dong
+    Menu->>Input: getString("Nhap Ma hop dong")
+    Menu->>Repo: findById(maHD)
+    Menu->>Input: getPhoneNumber("Nhap So DT")
+    Menu->>Input: getDate("Nhap Ngay dang ky")
+    Input->>DateMod: parse(str)
+    Menu->>Input: getDate("Nhap Ngay het han")
+    Menu->>Model: HopDong(maHD, maKH, sdt, maGC, ...)
+    Menu->>Repo: add(hd)
+    Repo->>Repo: saveToFile()
+    Menu-->>User: "[THANH CONG] Da them hop dong vao he thong!"
+        </div>
+      </div>
+
+      <!-- D9 -->
+      <div id="d9" class="panel-tab">
+        <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor User as Nguoi dung
+    participant Menu as ThietBiIMEIMenu::themThietBi
+    participant Input as InputHelper
+    participant IMEIMod as ThietBiIMEI
+    participant Repo as Repository&lt;ThietBiIMEI&gt;
+
+    User->>Menu: Chon 1 Them thiet bi moi
+    Menu->>Input: getString("Nhap Ma IMEI")
+    Menu->>IMEIMod: validateLuhn(imei)
+    Menu->>Repo: findById(imei)
+    Menu->>Input: getString("Ten thiet bi")
+    Menu->>Input: getPhoneNumber("So dien thoai gan kem")
+    Menu->>Input: getDate("Ngay kich hoat")
+    Menu->>IMEIMod: ThietBiIMEI(imei, ten, hang, sdt, ...)
+    Menu->>Repo: add(tb)
+    Repo->>Repo: saveToFile()
+    Menu-->>User: "[THANH CONG] Da them thiet bi IMEI thanh cong!"
+        </div>
+      </div>
+
+      <!-- D10 -->
+      <div id="d10" class="panel-tab">
+        <div class="mermaid">
+sequenceDiagram
+    autonumber
+    participant Menu as HopDongMenu
+    participant Repo as Repository&lt;HopDong&gt;
+    participant StdSort as std::sort
+
+    Menu->>Repo: filter
+    Repo-->>Menu: vector&lt;HopDong&gt; results
+
+    Menu->>Repo: sort
+    Repo->>StdSort: std::sort(items.begin(), items.end(), comparator)
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="hint-badge">Huong dan: Keo tha chuot de di chuyen • Lan chuot de phong to / thu nho</div>
+</main>
+
+<script>
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'dark',
+  themeVariables: {
+    fontSize: '15px',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    primaryColor: '#1e293b',
+    primaryTextColor: '#f8fafc',
+    primaryBorderColor: '#38bdf8',
+    lineColor: '#64748b'
+  },
+  flowchart: { useMaxWidth: false, htmlLabels: true }
+});
+
+let scale = 1;
+let posX = 0;
+let posY = 0;
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+
+const viewport = document.getElementById('viewport');
+const container = document.getElementById('container');
+const zoomVal = document.getElementById('zoomVal');
+
+function updateTransform() {
+  container.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+  zoomVal.innerText = Math.round(scale * 100) + '%';
+}
+
+function zoomIn() {
+  scale = Math.min(scale * 1.25, 4.0);
+  updateTransform();
+}
+
+function zoomOut() {
+  scale = Math.max(scale / 1.25, 0.25);
+  updateTransform();
+}
+
+function resetZoom() {
+  scale = 1;
+  posX = 0;
+  posY = 0;
+  updateTransform();
+}
+
+function centerDiagram() {
+  posX = 0;
+  posY = 0;
+  updateTransform();
+}
+
+// Mouse Drag / Pan
+viewport.addEventListener('mousedown', (e) => {
+  if (e.button !== 0) return;
+  isDragging = true;
+  viewport.classList.add('is-panning');
+  startX = e.clientX - posX;
+  startY = e.clientY - posY;
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  posX = e.clientX - startX;
+  posY = e.clientY - startY;
+  updateTransform();
+});
+
+window.addEventListener('mouseup', () => {
+  isDragging = false;
+  viewport.classList.remove('is-panning');
+});
+
+// Wheel Zoom
+viewport.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const zoomFactor = e.deltaY < 0 ? 1.15 : 0.85;
+  const newScale = Math.min(Math.max(scale * zoomFactor, 0.25), 4.0);
+  scale = newScale;
+  updateTransform();
+}, { passive: false });
+
+// Switch active diagram
+function switchDiagram(id, title) {
+  document.querySelectorAll('.panel-tab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
+
+  const links = document.querySelectorAll('.nav-item');
+  links.forEach(l => {
+    if (l.innerText.includes(title.split(':')[0]) || l.getAttribute('onclick').includes(id)) {
+      l.classList.add('active');
+    }
+  });
+
+  document.getElementById('currentTitle').innerText = title;
+  resetZoom();
+}
+</script>
+</body>
+</html>

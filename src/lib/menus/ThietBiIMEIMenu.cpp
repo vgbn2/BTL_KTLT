@@ -9,11 +9,11 @@ void ThietBiIMEIMenu::showMenu() {
         std::cout << "\n--------------------------------------------------------------------\n"
                   << "                     QUAN LY THIET BI DAU CUOI (IMEI)\n"
                   << "--------------------------------------------------------------------\n"
-                  << "  [" << MENU_ADD << "] Them thiet bi moi (Kiem tra Luhn Checksum 3GPP)\n"
+                  << "  [" << MENU_ADD << "] Them thiet bi moi\n"
                   << "  [" << MENU_LIST << "] Xem danh sach thiet bi\n"
-                  << "  [" << MENU_SEARCH << "] Tim kiem thiet bi (Theo IMEI / So DT / Hang SX)\n"
-                  << "  [" << MENU_BLACKLIST << "] Danh sach thiet bi bi khoa mang (EIR Blacklist)\n"
-                  << "  [" << MENU_UPDATE << "] Cap nhat thiet bi (Gan SIM / Doi BTS / Khoa may)\n"
+                  << "  [" << MENU_SEARCH << "] Tim kiem thiet bi\n"
+                  << "  [" << MENU_BLACKLIST << "] Danh sach thiet bi bi khoa mang\n"
+                  << "  [" << MENU_UPDATE << "] Cap nhat thiet bi\n"
                   << "  [" << MENU_DELETE << "] Xoa thiet bi\n"
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
                   << "--------------------------------------------------------------------\n";
@@ -58,7 +58,7 @@ void ThietBiIMEIMenu::themThietBi() {
             continue;
         }
         if (!ThietBiIMEI::validateLuhn(imei)) {
-            std::cout << "  [!] Ma IMEI khong hop le theo chuan 3GPP (Sai ma kiem tra Luhn Mod-10)! Vui long kiem tra lai.\n";
+            std::cout << "  [!] Ma IMEI khong hop le. Vui long kiem tra lai.\n";
             continue;
         }
         if (repo.findById(imei) != nullptr) {
@@ -70,7 +70,7 @@ void ThietBiIMEIMenu::themThietBi() {
 
     std::string tenTB = InputHelper::getString("Nhap Ten thiet bi (VD: iPhone 15 Pro, Galaxy S24): ", false);
     std::string hangSX = InputHelper::getString("Nhap Hang san xuat (VD: Apple, Samsung, Xiaomi): ", false);
-    std::string sdt = InputHelper::getPhoneNumber("Nhap So dien thoai gan kem (hoac de trong de mac dinh 'ChuaGan'): ", true);
+    std::string sdt = InputHelper::getPhoneNumber("Nhap So dien thoai gan kem: ", true);
 
     Date ngayKH = InputHelper::getDate("Nhap Ngay kich hoat (DD/MM/YYYY): ");
     std::string bts = InputHelper::getString("Nhap Tram BTS gan nhat (VD: BTS-HN-001): ", false);
@@ -104,7 +104,7 @@ void ThietBiIMEIMenu::xemDanhSach() {
 
 void ThietBiIMEIMenu::timKiemThietBi() {
     std::cout << "\n>>> TIM KIEM THIET BI <<<\n"
-              << "  [" << SEARCH_BY_IMEI << "] Tra cuu theo Ma IMEI (chinh xac)\n"
+              << "  [" << SEARCH_BY_IMEI << "] Tra cuu theo Ma IMEI\n"
               << "  [" << SEARCH_BY_PHONE << "] Tra cuu theo So dien thoai dang gan\n"
               << "  [" << SEARCH_BY_BRAND << "] Tra cuu theo Hang san xuat\n"
               << "  [0] Quay lai\n";
@@ -154,13 +154,13 @@ void ThietBiIMEIMenu::timKiemThietBi() {
 }
 
 void ThietBiIMEIMenu::danhSachKhoaMang() {
-    std::cout << "\n>>> DANH SACH THIET BI BI KHOA MANG (EIR BLACKLIST) <<<\n";
+    std::cout << "\n>>> DANH SACH THIET BI BI KHOA MANG <<<\n";
     auto blacklisted = repo.filter([](const ThietBiIMEI& tb) {
         return tb.isBlacklisted();
     });
 
     if (blacklisted.empty()) {
-        std::cout << "[THONG BAO] Hien khong co thiet bi nao bi khoa mang (EIR Blacklist trong)!\n";
+        std::cout << "[THONG BAO] Hien khong co thiet bi nao bi khoa mang\n";
     } else {
         blacklisted[0].displayHeader();
         for (const auto& tb : blacklisted) {
@@ -185,10 +185,10 @@ void ThietBiIMEIMenu::capNhatThietBi() {
     tb->displayDetail();
 
     std::cout << "\nChon thao tac cap nhat:\n"
-              << "  [" << UPDATE_ASSIGN_SIM << "] Gan lai So dien thoai (Doi SIM)\n"
+              << "  [" << UPDATE_ASSIGN_SIM << "] Gan lai So dien thoai\n"
               << "  [" << UPDATE_BTS << "] Cap nhat vi tri tram BTS\n"
-              << "  [" << UPDATE_LOCK << "] Khoa mang thiet bi (Dua vao EIR Blacklist)\n"
-              << "  [" << UPDATE_UNLOCK << "] Mo khoa mang thiet bi (Whitelist)\n"
+              << "  [" << UPDATE_LOCK << "] Khoa mang thiet bi\n"
+              << "  [" << UPDATE_UNLOCK << "] Mo khoa mang thiet bi\n"
               << "  [" << UPDATE_CANCEL << "] Huy bo thao tac\n";
     int choice = InputHelper::getInt("Nhap lua chon [0-4]: ", UPDATE_CANCEL, UPDATE_UNLOCK);
 

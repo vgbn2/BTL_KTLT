@@ -51,7 +51,7 @@ Trong đồ án nhóm Kỹ thuật Lập trình (5 thành viên, 10 use cases), 
 
 ---
 
-## 3. Giải Thích Chi Tiết Thuật Toán Luhn Mod-10 (Kiểm Tra IMEI)
+## 3. Giải Thích Chi Tiết Thuật Toán Luhn Mod-10
 
 ### 3.1 Cấu Trúc Mã IMEI 15 Chữ Số Chuẩn 3GPP
 $$\text{IMEI} = \underbrace{d_1 d_2 d_3 d_4 d_5 d_6 d_7 d_8}_{\text{TAC (Type Allocation Code)}} \underbrace{d_9 d_{10} d_{11} d_{12} d_{13} d_{14}}_{\text{SNR (Serial Number)}} \underbrace{d_{15}}_{\text{CD (Check Digit)}}$$
@@ -83,20 +83,20 @@ Trong mã nguồn, hàm `ThietBiIMEI::validateLuhn(const std::string& imei)` cà
 
 ## 4. Giải Thích Các Hàm & Thành Phần Trong Codebase
 
-### 4.1 Lớp `Entity` (Lớp Cơ Sở Trừu Tượng)
+### 4.1 Lớp `Entity`
 * `getId()`, `setId()`: Quản lý khóa chính của bản ghi.
 * `toFileString()`: Đóng gói các thuộc tính thành định dạng chuỗi `col1|col2|col3...` để ghi file.
 * `fromFileString(line)`: Tách chuỗi theo dấu `|` và khôi phục dữ liệu vào các biến thành viên.
 * `displayHeader()`, `displayRow()`, `displayDetail()`: Định dạng in bảng đẹp mắt bằng `<iomanip>`.
 
-### 4.2 Lớp `Repository<T>` (Database Engine Dạng Template)
+### 4.2 Lớp `Repository<T>`
 * Quản lý `std::vector<T>` trong bộ nhớ RAM.
 * `loadFromFile()`: Đọc dữ liệu từ file đĩa vào RAM khi khởi động.
 * `saveToFile()`: Ghi an toàn thông qua tệp `.tmp` rồi đổi tên (Atomic Write) tránh hỏng dữ liệu khi mất điện.
 * `add()`, `update()`, `remove()`, `findById()`: Các thao tác CRUD chuẩn mực.
 * `filter()`, `sort()`: Sử dụng con trỏ hàm / Lambda function của C++11 để lọc và sắp xếp dữ liệu linh hoạt.
 
-### 4.3 Lớp `Date` (Xử Lý Thời Gian Chuẩn Xác)
+### 4.3 Lớp `Date`
 * `isLeapYear(year)`: Kiểm tra năm nhuận theo quy tắc dương lịch: `(year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)`.
 * `daysInMonth(month, year)`: Trả về số ngày tối đa của tháng (xử lý tháng 2 năm nhuận có 29 ngày).
 * Nạp chồng toán tử so sánh (`<`, `==`, `<=`) để kiểm tra logic: Ngày hết hạn $\ge$ Ngày đăng ký.

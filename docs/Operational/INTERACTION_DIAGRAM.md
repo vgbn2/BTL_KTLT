@@ -1,46 +1,72 @@
-# Sơ Đồ Tương Tác Hệ Thống (Interaction & Sequence Diagrams)
-## Dự án: Quản Lý Thuê Bao Di Động (Topic 1 - PTIT KTLT)
-### Phụ trách: Trần Đức Anh (B24DCVT021) | Nhánh: `DucAnh-B24DCVT021`
+# Sơ Đồ Tương Tác Hệ Thống
+## Dự án: Quản Lý Thuê Bao Di Động - PTIT KTLT
+### Phụ trách: Trần Đức Anh - B24DCVT021 | Nhánh: DucAnh-B24DCVT021
 
 ---
 
-## 1. Tổng Quan Kiến Trúc Tương Tác Đa Tầng (Multi-Tier Interaction)
+> [Thông tin] Đặc tả luồng gọi hàm chi tiết: Xem tài liệu [FUNCTION_CALLFLOW_SPEC.md](FUNCTION_CALLFLOW_SPEC.md).
+> [Thông tin] Công cụ xem sơ đồ tương tác đa màn hình: [INTERACTIVE_DIAGRAMS.html](../Display/INTERACTIVE_DIAGRAMS.html).
 
-Hệ thống được thiết kế theo mô hình phân lớp rõ ràng (**Layered Architecture**), phân tách hoàn toàn giữa giao diện người dùng console, tầng xử lý nghiệp vụ, tầng xác thực dữ liệu và tầng lưu trữ tệp tin nguyên tử.
+---
+
+## 1. Tổng Quan Kiến Trúc Tương Tác Đa Tầng
+
+Hệ thống được thiết kế theo mô hình phân lớp rõ ràng, phân tách hoàn toàn giữa giao diện người dùng console, tầng xử lý nghiệp vụ, tầng xác thực dữ liệu và tầng lưu trữ tệp tin nguyên tử.
 
 ```mermaid
-graph TD
-    User([Người dùng / Giảng viên]) <-->|Nhập 0-9 / Xem bảng| Main[src/main.cpp - Menu Điều Khiển Chính]
-    
-    subgraph UI_Layer [Tầng Giao Diện Console UI - src/lib/menus/]
-        Main <-->|Choice 3| HDMenu[HopDongMenu]
-        Main <-->|Choice 4| IMEIMenu[ThietBiIMEIMenu]
-        Main -.->|Choice 1,2,5,6| Stubs[Placeholder Stubs: goicuoc, thuebao, naptien, hoadon]
+flowchart TD
+    User([Nguoi dung / Giang vien]) -->|Nhap lua chon 0-6| Main["src/main.cpp (Menu Chinh)"]
+
+    subgraph UI ["1. TANG GIAO DIEN CONSOLE (src/lib/menus/)"]
+        direction TB
+        Main -->|Choice 3| HDMenu["HopDongMenu"]
+        Main -->|Choice 4| IMEIMenu["ThietBiIMEIMenu"]
+        Main -.->|Choice 1,2,5,6| Stubs["Stubs: GoiCuoc, ThueBao, NapTien, HoaDon"]
     end
 
-    subgraph Validation_Layer [Tầng Xác Thực & Tiện Ích - src/lib/shared/]
-        HDMenu & IMEIMenu -->|Nhập chuỗi / số an toàn| InputHelper[InputHelper]
-        HDMenu & IMEIMenu -->|Xác thực lịch / Tuổi| DateEngine[Date Engine]
-        InputHelper -->|Loại bỏ khoảng trắng / Tách chuỗi| FileIO[FileIO Helper]
-        HDMenu & IMEIMenu -.->|Ném & Bắt lỗi| Exceptions[Custom Exceptions]
+    subgraph Core ["2. TANG NGHIEP VU & TIEN ICH XAC THUC (src/lib/models/ & src/lib/shared/)"]
+        direction TB
+        subgraph Models ["Mo Hinh Nghiep Vu"]
+            direction TB
+            HDModel["HopDong : Entity"]
+            IMEIModel["ThietBiIMEI : Entity (Luhn Mod-10)"]
+        end
+        subgraph Helpers ["Xac Thuc & Tien Ich"]
+            direction TB
+            InputHelper["InputHelper (Loc '|', EOF Safe)"]
+            DateEngine["Date Engine (Lich Nhuan & Tuoi)"]
+            FileIO["FileIO Helper (Trim / Split)"]
+            InputHelper --> DateEngine
+            InputHelper --> FileIO
+        end
+        HDMenu -->|Khoi tao / Gia han| HDModel
+        IMEIMenu -->|Gan SIM / Khoa may| IMEIModel
+        HDMenu & IMEIMenu -->|Nhap du lieu an toan| InputHelper
     end
 
-    subgraph Domain_Layer [Tầng Nghiệp Vụ - src/lib/models/]
-        HDMenu <-->|Khởi tạo / Gia hạn / Thanh lý| ModelHD[HopDong : Entity]
-        IMEIMenu <-->|3GPP Luhn Mod-10 / EIR Blacklist| ModelIMEI[ThietBiIMEI : Entity]
+    subgraph Storage ["3. TANG LUU TRU NGUYEN TU (src/lib/shared/ & data/)"]
+        direction TB
+        subgraph StorageHD ["Phan He Hop Dong"]
+            direction TB
+            RepoHD["Repository&lt;HopDong&gt;"]
+            DiskHD[("data/hopdong.txt")]
+            RepoHD -->|Ghi .tmp -> Rename| DiskHD
+        end
+        subgraph StorageIMEI ["Phan He Thiet Bi IMEI"]
+            direction TB
+            RepoIMEI["Repository&lt;ThietBiIMEI&gt;"]
+            DiskIMEI[("data/imei.txt")]
+            RepoIMEI -->|Ghi .tmp -> Rename| DiskIMEI
+        end
     end
 
-    subgraph Data_Layer [Tầng Lưu Trữ File Phẳng Nguyên Tử - src/lib/shared/]
-        HDMenu <-->|CRUD trong RAM| RepoHD["Repository&lt;HopDong&gt;"]
-        IMEIMenu <-->|CRUD trong RAM| RepoIMEI["Repository&lt;ThietBiIMEI&gt;"]
-        RepoHD <-->|Đọc / Ghi nguyên tử .tmp| DiskHD[("data/hopdong.txt")]
-        RepoIMEI <-->|Đọc / Ghi nguyên tử .tmp| DiskIMEI[("data/imei.txt")]
-    end
+    HDMenu -->|CRUD trong RAM & Sync| RepoHD
+    IMEIMenu -->|CRUD trong RAM & Sync| RepoIMEI
 ```
 
 ---
 
-## 2. Sơ Đồ Tuần Tự (Sequence Diagram) — UC01: Thêm Mới Hợp Đồng Đăng Ký
+## 2. Sơ Đồ Tuần Tự — UC01: Thêm Mới Hợp Đồng Đăng Ký
 
 Quy trình người dùng tạo hợp đồng mới, xác thực số điện thoại 10 chữ số, ngày tháng hợp lệ và lưu trữ vào cơ sở dữ liệu:
 
@@ -53,9 +79,9 @@ sequenceDiagram
     participant DateMod as Date
     participant HD as HopDong
     participant Repo as Repository<HopDong>
-    participant File as Disk (data/hopdong.txt)
+    participant File as Disk
 
-    User->>Menu: Chọn [1] Thêm mới hợp đồng
+    User->>Menu: Chọn 1 Thêm mới hợp đồng
     Menu->>Input: getString("Nhap ma hop dong")
     Input-->>Menu: "HD0011"
     
@@ -68,23 +94,20 @@ sequenceDiagram
     end
 
     Menu->>Input: getPhoneNumber("Nhap so dien thoai")
-    Note over Input: Kiểm tra 10 chữ số & đầu số 03, 05, 07, 08, 09
     Input-->>Menu: "0912345678"
 
-    Menu->>Input: getDate("Nhap ngay dang ky (DD/MM/YYYY)")
+    Menu->>Input: getDate("Nhap ngay dang ky")
     Input->>DateMod: parse("01/10/2024")
     DateMod-->>Input: Date(01, 10, 2024)
     Input-->>Menu: ngayDangKy
 
-    Menu->>Input: getDate("Nhap ngay het han (DD/MM/YYYY)")
+    Menu->>Input: getDate("Nhap ngay het han")
     Input-->>Menu: ngayHetHan
 
     Menu->>HD: HopDong("HD0011", "KH001", "0912345678", ..., ngayDangKy, ngayHetHan, ...)
-    Note over HD: Kiểm tra: ngayHetHan >= ngayDangKy & giaTri >= 0
-
     Menu->>Repo: add(newHopDong)
     Repo->>Repo: items.push_back(newHopDong)
-    Repo->>File: saveToFile() [Ghi data/hopdong.txt.tmp -> rename sang data/hopdong.txt]
+    Repo->>File: saveToFile()
     File-->>Repo: Ghi file thành công
     Repo-->>Menu: return true
     Menu-->>User: "[THANH CONG] Da them hop dong moi vao he thong!"
@@ -92,7 +115,7 @@ sequenceDiagram
 
 ---
 
-## 3. Sơ Đồ Tuần Tự (Sequence Diagram) — UC02: Ghi Nhận IMEI & Kiểm Tra Chuẩn 3GPP Luhn
+## 3. Sơ Đồ Tuần Tự — UC02: Ghi Nhận IMEI & Kiểm Tra Chuẩn 3GPP Luhn
 
 Quy trình nhập mã IMEI 15 chữ số, chạy thuật toán Luhn Mod-10, gán SIM và lưu trữ:
 
@@ -104,14 +127,13 @@ sequenceDiagram
     participant Input as InputHelper
     participant IMEI as ThietBiIMEI
     participant Repo as Repository<ThietBiIMEI>
-    participant File as Disk (data/imei.txt)
+    participant File as Disk
 
-    User->>Menu: Chọn [1] Ghi nhận thiết bị IMEI mới
-    Menu->>Input: getString("Nhap ma IMEI (15 chu so)")
+    User->>Menu: Chọn 1 Ghi nhận thiết bị IMEI mới
+    Menu->>Input: getString("Nhap ma IMEI")
     Input-->>Menu: "860123456789012"
 
     Menu->>IMEI: validateLuhn("860123456789012")
-    Note over IMEI: Nhân đôi vị trí chẵn từ phải sang (Mod-10 Sum)
     alt Luhn Checksum Thất Bại
         IMEI-->>Menu: false
         Menu-->>User: "[LOI] Ma IMEI khong hop le theo tieu chuan 3GPP!"
@@ -127,12 +149,12 @@ sequenceDiagram
         Repo-->>Menu: nullptr
     end
 
-    Menu->>Input: getPhoneNumber("Nhap SDT gan SIM (de trong neu ChuaGan)")
+    Menu->>Input: getPhoneNumber("Nhap SDT gan SIM")
     Input-->>Menu: "0987654321"
 
     Menu->>IMEI: ThietBiIMEI(imei, tenTB, hangSX, sdt, ngayKH, "HoatDong", bts)
     Menu->>Repo: add(newIMEI)
-    Repo->>File: saveToFile() [Atomic rename]
+    Repo->>File: saveToFile()
     File-->>Repo: Ghi thành công
     Repo-->>Menu: return true
     Menu-->>User: "[THANH CONG] Da ghi nhan thiet bi IMEI thanh cong!"
@@ -140,32 +162,30 @@ sequenceDiagram
 
 ---
 
-## 4. Sơ Đồ Tương Tác Lưu Trữ Nguyên Tử (Atomic Persistence Engine)
-
-Quy trình đảm bảo cơ sở dữ liệu file phẳng không bao giờ bị hỏng (corrupted) kể cả khi chương trình bị tắt đột ngột:
+## 4. Sơ Đồ Tương Tác Lưu Trữ
+Quy trình đảm bảo cơ sở dữ liệu file phẳng không bao giờ bị hỏng kể cả khi chương trình bị tắt đột ngột:
 
 ```mermaid
 sequenceDiagram
     autonumber
     participant App as Ứng dụng / Repository
-    participant TmpFile as Tệp tạm (data/hopdong.txt.tmp)
-    participant LiveFile as Tệp chính (data/hopdong.txt)
+    participant TmpFile as Tệp tạm
+    participant LiveFile as Tệp chính
 
-    App->>TmpFile: 1. Mở tệp tạm data/hopdong.txt.tmp để ghi
+    App->>TmpFile: 1. Mở tệp tạm để ghi
     loop Ghi toàn bộ bản ghi trong RAM
         App->>TmpFile: 2. outFile << item.toFileString() << "\n"
     end
-    App->>TmpFile: 3. outFile.close() (Xả toàn bộ buffer vào đĩa)
+    App->>TmpFile: 3. outFile.close()
     App->>LiveFile: 4. std::remove("data/hopdong.txt")
     App->>LiveFile: 5. std::rename("data/hopdong.txt.tmp", "data/hopdong.txt")
-    Note over LiveFile: Thao tác đổi tên nguyên tử (Atomic Replace) hoàn tất
 ```
 
 ---
 
-## 5. Sơ Đồ Chuyển Trạng Thái Vòng Đời (State Transition Diagram)
+## 5. Sơ Đồ Chuyển Trạng Thái Vòng Đời
 
-### 5.1 Vòng Đời Hợp Đồng (`HopDong`)
+### 5.1 Vòng Đời Hợp Đồng
 ```mermaid
 stateDiagram-v2
     [*] --> HieuLuc : Khởi tạo hợp đồng mới (Add)
@@ -177,7 +197,7 @@ stateDiagram-v2
     ThanhLy --> [*] : Đóng hợp đồng vĩnh viễn
 ```
 
-### 5.2 Vòng Đời Trạng Thái Thiết Bị IMEI (`ThietBiIMEI`)
+### 5.2 Vòng Đời Trạng Thái Thiết Bị IMEI
 ```mermaid
 stateDiagram-v2
     [*] --> HoatDong : Nhập thiết bị mới (Hợp lệ Luhn Mod-10)

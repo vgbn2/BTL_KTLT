@@ -30,7 +30,7 @@ Hệ thống mô phỏng hệ sinh thái phần mềm quản trị nghiệp vụ
 
 ---
 
-## 3. Kiến Trúc Tổng Thể 3 Tầng (3-Tier Layered Architecture)
+## 3. Kiến Trúc Tổng Thể 3 Tầng
 
 Hệ thống được thiết kế theo mô hình 3 tầng phân tách trách nhiệm (Separation of Concerns), tuân thủ nguyên lý Lập trình hướng đối tượng (OOP) thuần C++11 chuẩn mực:
 
@@ -65,7 +65,7 @@ Hệ thống được thiết kế theo mô hình 3 tầng phân tách trách nh
 
 ---
 
-## 4. Đặc Tả Yêu Cầu Chức Năng (Functional Requirements)
+## 4. Đặc Tả Yêu Cầu Chức Năng
 
 ### 4.1 Phân hệ Hợp đồng đăng ký (UC01 - `HopDong`)
 * **FR-HD-01 (Thêm mới):** Tạo hợp đồng với mã hợp đồng duy nhất (`HDxxxx`), gắn kết `maKhachHang`, `soDienThoai`, `maGoiCuoc`, ngày đăng ký, ngày hết hạn, loại hợp đồng (`TraTruoc` / `TraSau`), và giá cước.
@@ -85,7 +85,7 @@ Hệ thống được thiết kế theo mô hình 3 tầng phân tách trách nh
 
 ---
 
-## 5. Đặc Tả Yêu Cầu Phi Chức Năng (Non-Functional Requirements)
+## 5. Đặc Tả Yêu Cầu Phi Chức Năng
 
 1. **Chuẩn mã nguồn & Thư viện:**
    - 100% C++11 tiêu chuẩn (ISO/IEC 14882:2011).

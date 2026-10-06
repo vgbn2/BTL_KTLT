@@ -1,5 +1,5 @@
-# HƯỚNG DẪN SỬ DỤNG VÀ CHẠY ĐA NỀN TẢNG (USER MANUAL)
-## HỆ THỐNG QUẢN LÝ THUÊ BAO DI ĐỘNG (KTLT - PTIT)
+# HƯỚNG DẪN SỬ DỤNG VÀ CHẠY ĐA NỀN TẢNG
+## HỆ THỐNG QUẢN LÝ THUÊ BAO DI ĐỘNG - PTIT KTLT
 
 ---
 

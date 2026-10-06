@@ -94,7 +94,9 @@ void testPhoneNumberValidation() {
     TEST_ASSERT(InputHelper::isValidPhoneNumber("0888123456"), "0888123456 (VinaPhone) phai hop le");
     TEST_ASSERT(InputHelper::isValidPhoneNumber("0778901234"), "0778901234 (MobiFone) phai hop le");
     TEST_ASSERT(InputHelper::isValidPhoneNumber("0381234567"), "0381234567 (Viettel) phai hop le");
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("0851234567"), "0851234567 (VinaPhone) phai hop le");
     TEST_ASSERT(InputHelper::isValidPhoneNumber("0581234567"), "0581234567 (Vietnamobile) phai hop le");
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("0591234567"), "0591234567 (Gmobile) phai hop le");
 
     TEST_ASSERT(!InputHelper::isValidPhoneNumber("098123456"), "So 9 chu so phai bi tu choi");
     TEST_ASSERT(!InputHelper::isValidPhoneNumber("09812345678"), "So 11 chu so phai bi tu choi");

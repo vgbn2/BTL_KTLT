@@ -131,7 +131,7 @@ bool InputHelper::getConfirm(const std::string& prompt) {
         std::string s = getString(prompt + " (y/n): ", false);
         if (s == "y" || s == "Y") return true;
         if (s == "n" || s == "N") return false;
-        std::cout << "  [!] Vui long chi nhap 'y' (Dong y) hoac 'n' (Huy thao tac).\n";
+        std::cout << "  [!] Vui long chi nhap 'y' hoac 'n'.\n";
     }
 }
 

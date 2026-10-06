@@ -1,4 +1,4 @@
-# C++ Syntax Guide for C Programmers (`src/lib/syntax.md`)
+# C++ Syntax Guide for C Programmers (`docs/Overview/syntax.md`)
 
 This guide explains modern C++ language features, keywords, and idioms used across `src/lib/` for students familiar with introductory C.
 
@@ -26,7 +26,7 @@ This guide explains modern C++ language features, keywords, and idioms used acro
 
 ```cpp
 // Date.cpp
-Date::Date() : day(1), month(1), year(2024) {}
+Date::Date() : day(1), month(1), year(2000) {}
 
 // hopdong.cpp (calling base constructor and initializing fields)
 HopDong::HopDong(...)

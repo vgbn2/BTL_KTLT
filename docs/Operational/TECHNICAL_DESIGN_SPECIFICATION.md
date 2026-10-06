@@ -1,9 +1,9 @@
-# ĐẶC TẢ THIẾT KẾ KỸ THUẬT (TECHNICAL DESIGN SPECIFICATION)
+# ĐẶC TẢ THIẾT KẾ KỸ THUẬT
 ## HỆ THỐNG QUẢN LÝ THUÊ BAO DI ĐỘNG — PHÂN HỆ TRẦN ĐỨC ANH (B24DCVT021)
 
 ---
 
-## 1. Sơ Đồ Lớp Kế Thừa (Class Diagram & Architecture)
+## 1. Sơ Đồ Lớp Kế Thừa
 
 ```
 +---------------------------------------------------------------+
@@ -110,7 +110,7 @@
 
 ---
 
-## 3. Quản Lý Ngoại Lệ (Exception Hierarchy) (`src/lib/Exceptions.h`)
+## 3. Quản Lý Ngoại Lệ (`src/lib/shared/Exceptions.h`)
 
 Kế thừa từ `std::runtime_error` để bắt và hiển thị thông báo lỗi nghiệp vụ rõ ràng:
 - `AppException`: Ngoại lệ cơ sở của ứng dụng.
@@ -122,7 +122,7 @@ Kế thừa từ `std::runtime_error` để bắt và hiển thị thông báo l
 
 ---
 
-## 4. Quy Ước Đặt Tên & Phối Hợp Ngôn Ngữ (Bilingual Naming Policy)
+## 4. Quy Ước Đặt Tên & Phối Hợp Ngôn Ngữ
 
 Hệ thống áp dụng chiến lược phân tách ngôn ngữ có chủ đích giữa Tên tệp tin nghiệp vụ (Tiếng Việt) và Tên hàm/Phương thức kiến trúc (Tiếng Anh):
 
