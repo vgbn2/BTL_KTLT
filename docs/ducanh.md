@@ -101,6 +101,23 @@ Trong mã nguồn, hàm `ThietBiIMEI::validateLuhn(const std::string& imei)` cà
 * `daysInMonth(month, year)`: Trả về số ngày tối đa của tháng (xử lý tháng 2 năm nhuận có 29 ngày).
 * Nạp chồng toán tử so sánh (`<`, `==`, `<=`) để kiểm tra logic: Ngày hết hạn $\ge$ Ngày đăng ký.
 
+### 4.4 Thư Viện Tiện Ích `DisplayHelper`
+* Đóng gói toàn bộ cơ chế vẽ bảng ASCII (`+---+---+`) và thẻ chi tiết vào namespace `DisplayHelper`.
+* Loại bỏ mã lặp `<iomanip>` trong `HopDong` và `ThietBiIMEI`, đảm bảo tất cả các bảng dữ liệu trong hệ thống có cùng chuẩn căn chỉnh và lề.
+
+### 4.5 Phân Định Họ Hàm: `Normalized` (Validation) & `InputHelper` (Console Input)
+* **Sanitization & Validation Family (`Normalized`):**
+  - Đóng gói các hàm thuần túy (pure functions) xử lý chuỗi và thẩm định dữ liệu không phát sinh hiệu ứng phụ (side effects).
+  - Hàm `Normalized::isValidPhoneNumber(phone, allowUnassigned)` kiểm tra nghiêm ngặt quy chuẩn thuê bao di động Việt Nam: đúng 10 chữ số, bắt đầu bằng `0`, và thuộc các dải đầu số hợp lệ (`03`, `05`, `07`, `08`, `09`).
+  - Namespace `Normalized` còn cung cấp các tiện ích làm sạch: `trim`, `CollapseSpace`, `removeSymbols` (ngăn chặn chèn ký tự phân tách `|`), `NormalizedName`, `toUpper`, `toLower`.
+* **Console Input Family (`InputHelper`):**
+  - Đóng vai trò là tầng tiện ích nhập liệu dòng lệnh (Terminal Console UI).
+  - Quản lý luồng nhập `std::cin`, xử lý lỗi bộ đệm (`cin.clear()`, `cin.ignore()`), kiểm tra giới hạn min/max, và duy trì vòng lặp hỏi lại cho đến khi người dùng nhập đúng cú pháp.
+* **Tách rời mô hình khỏi phân hệ nhập liệu (Decoupling Architecture):**
+  - Các lớp thực thể cốt lõi (`HopDong`, `ThietBiIMEI`) thuộc tầng Domain Layer hoàn toàn không phụ thuộc vào `InputHelper`.
+  - Mọi thao tác kiểm tra tính toàn vẹn của số thuê bao khi tạo hợp đồng (`HopDong::HopDong`), cập nhật số thuê bao (`HopDong::setSoDienThoai`), hoặc gán SIM vào thiết bị (`ThietBiIMEI::ganSIM`) đều gọi trực tiếp `Normalized::isValidPhoneNumber`.
+  - Nhờ đó, các thực thể dữ liệu có thể vận hành độc lập, dễ dàng kiểm thử tự động (`test_runner.cpp`), nạp từ tệp tin qua `Repository<T>`, và không bị gắn chặt vào bất kỳ môi trường console cụ thể nào.
+
 ---
 
 ## 5. Quy Ước Đặt Tên & Ngôn Ngữ Trong Mã Nguồn
@@ -108,7 +125,7 @@ Trong mã nguồn, hàm `ThietBiIMEI::validateLuhn(const std::string& imei)` cà
 Dự án áp dụng quy ước ngôn ngữ phân tầng rõ ràng:
 
 1. **Tên tệp tin thực thể & lưu trữ (Tiếng Việt):**
-   * `src/lib/hopdong.h/cpp`, `src/lib/imei.h/cpp`, `data/hopdong.txt`, `data/imei.txt`.
+   * `src/lib/models/hopdong.h/cpp`, `src/lib/models/imei.h/cpp`, `data/hopdong.txt`, `data/imei.txt`.
    * Khớp 1:1 với tên module phân công trong đề tài BTL KTLT của Học viện PTIT giữa 5 thành viên.
 2. **Tên phương thức hạ tầng & thuật toán (Tiếng Anh):**
    * `getId()`, `setId()`, `isExpired()`, `validateLuhn()`, `isBlacklisted()`, `setBlacklist()`.
@@ -117,3 +134,56 @@ Dự án áp dụng quy ước ngôn ngữ phân tầng rõ ràng:
 3. **Tên hàm điều hướng giao diện (Tiếng Việt):**
    * `themHopDong()`, `xemDanhSach()`, `timKiemHopDong()`, `sapXepDanhSach()`, `capNhatHopDong()`, `xoaHopDong()`, `ganSIM()`, `goSIM()`, `capNhatBTS()`.
    * Phản ánh trực quan quy trình nghiệp vụ viễn thông tại các điểm giao dịch trong nước.
+
+---
+
+## 6. Bảng Phân Loại Họ Hàm (Function Family Taxonomy)
+
+| Phân tầng kiến trúc | Tệp nguồn / Header | Lớp / Namespace | Họ hàm (Function Family) | Danh sách hàm chính | Mục đích kỹ thuật |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Foundation / Shared** | `Date.h`, `Date.cpp` | `Date` | Date Arithmetic & Validation | `isLeapYear`, `daysInMonth`, `isValid`, operators `<`, `==`, `>` | Xử lý ngày tháng chuẩn lịch Gregory, hỗ trợ năm nhuận |
+| **Foundation / Shared** | `DisplayHelper.h` | `DisplayHelper` | Presentation & ASCII Layout | `printBorder`, `printHeader`, `printRow`, `printCard` | Xuất bảng và thẻ chi tiết chuẩn hóa trên Console |
+| **Foundation / Shared** | `Normalized.h`, `Normalized.cpp` | `Normalized` | Sanitization & Validation Family | `trim`, `CollapseSpace`, `removeSymbols`, `NormalizedName`, `isValidPhoneNumber`, `toUpper` | Chuẩn hóa chuỗi họ tên, cắt khoảng trắng thừa, thẩm định định dạng số điện thoại viễn thông |
+| **Foundation / Shared** | `Exceptions.h` | Global | Domain Error Handling | `ValidationException`, `NotFoundException`, `DuplicateException` | Xử lý lỗi theo mô hình ngoại lệ tường minh (C++ Exception) |
+| **Presentation / Input** | `InputHelper.h`, `InputHelper.cpp` | `InputHelper` | Console Input Family | `clearBuffer`, `getString`, `getInt`, `getDouble`, `getDate`, `getBirthDate`, `getPhoneNumber`, `getConfirm`, `pause` | Trích xuất và kiểm soát nhập liệu an toàn từ bàn phím Console, chống trôi dòng `cin` |
+| **Data Access Layer** | `Repository.h` | `Repository<T>` | Generic In-Memory CRUD | `add`, `update`, `remove`, `findById`, `filter`, `sort`, `saveToFile`, `loadFromFile` | Quản lý tập thực thể, tìm kiếm qua Lambda, ghi file an toàn (Atomic Write) |
+| **Data Access Layer** | `BTSRegister.h`, `BTSRegister.cpp` | `BTSRegister` | Hardware Registry | `loadBTSData`, `isValidBTS`, `getBTSInfo`, `suggestNearestBTS` | Quản lý danh mục trạm phát sóng di động Việt Nam |
+| **Domain Models** | `Entity.h` | `Entity` | Abstract Base Contract | `getId`, `setId`, `toFileString`, `fromFileString`, `display...` | Giao diện đa hình cho mọi thực thể nghiệp vụ |
+| **Domain Models** | `hopdong.h`, `hopdong.cpp` | `HopDong` | Invariants & Lifecycle Mutators | `isExpired`, `giaHan`, `chamDut`, `tamDung`, `kichHoatLai` | Quản lý vòng đời hợp đồng cung cấp dịch vụ viễn thông |
+| **Domain Models** | `imei.h`, `imei.cpp` | `ThietBiIMEI` | Telecom Invariants & EIR | `validateLuhn`, `isBlacklisted`, `setBlacklist`, `ganSIM`, `capNhatBTS` | Quản lý định danh thiết bị vô tuyến và danh sách đen EIR |
+| **Controller / Menu** | `HopDongMenu.h`, `HopDongMenu.cpp` | `HopDongMenu` | Interactive Console Workflow | `displayMenu`, `handleSelection`, `themHopDong`, `giaHanHopDong`, `traCuuHopDong` | Điều hướng menu quản lý hợp đồng cho giao dịch viên |
+| **Controller / Menu** | `ThietBiIMEIMenu.h`, `ThietBiIMEIMenu.cpp` | `ThietBiIMEIMenu` | Interactive Console Workflow | `displayMenu`, `handleSelection`, `themThietBi`, `khoaMoKhoaIMEI`, `traCuuTheoBTS` | Điều hướng menu quản lý thiết bị và trạm phát sóng |
+
+---
+
+## 7. Hướng Dẫn Vấn Đáp & Phản Biện Đồ Án (Defense Q&A Guide)
+
+### Câu 1: Tại sao lớp `Entity` lại chứa các phương thức thuần ảo `displayHeader()`, `displayRow()`, `displayDetail()`?
+* **Trả lời:**
+  - `Entity` là lớp cơ sở trừu tượng (Abstract Base Class). Việc khai báo các phương thức thuần ảo (`= 0`) tạo hợp đồng giao diện bắt buộc các thực thể con phải triển khai cách hiển thị dữ liệu của chính mình.
+  - Hỗ trợ **Tính đa hình (Polymorphism)**: Có thể duyệt qua danh sách con trỏ `Entity*` để hiển thị dữ liệu bảng mà không cần ép kiểu thủ công.
+  - Để đảm bảo nguyên lý đơn nhiệm (SRP), các thực thể con không tự xử lý căn lề hay vẽ đường kẻ viền mà ủy nhiệm hoàn toàn cho `DisplayHelper`.
+
+### Câu 2: Thuật toán Luhn Mod-10 kiểm tra tính hợp lệ của IMEI ra sao?
+* **Trả lời:**
+  - Tiêu chuẩn quốc tế 3GPP TS 22.016 quy định mã IMEI gồm 15 chữ số, chữ số thứ 15 là Check Digit (CD).
+  - Thuật toán nhân đôi các chữ số ở vị trí chẵn từ phải sang trái (vị trí 2, 4, 6, 8, 10, 12, 14). Nếu kết quả nhân $\ge 10$, trừ 9 để thu được tổng 2 chữ số. Giữ nguyên các chữ số ở vị trí lẻ.
+  - Tổng của tất cả 15 chữ số sau biến đổi phải chia hết cho 10 ($S \pmod{10} == 0$).
+  - Hàm `ThietBiIMEI::validateLuhn` tự động phát hiện các lỗi nhập sai chữ số đơn lẻ hoặc đảo vị trí 2 chữ số liền kề.
+
+### Câu 3: Làm thế nào để đảm bảo tính an toàn dữ liệu (Atomic Persistence) khi ghi dữ liệu ra file?
+* **Trả lời:**
+  - Trong lớp `Repository<T>`, phương thức `saveToFile(filename)` không ghi đè trực tiếp lên tệp dữ liệu chính mà ghi ra một tệp tạm thời `filename + ".tmp"`.
+  - Chỉ khi toàn bộ dữ liệu được ghi thành công và không phát sinh lỗi I/O, hệ thống mới tiến hành xóa tệp cũ và đổi tên tệp `.tmp` thành tệp chính thức (`std::rename`).
+  - Cơ chế này (Atomic Write) bảo vệ cơ sở dữ liệu không bị hỏng (corrupted) khi chương trình bị tắt đột ngột hoặc xảy ra sự cố mất điện giữa chừng.
+
+### Câu 4: Phân hệ xử lý kiểm tra năm nhuận và ngày hợp lệ như thế nào?
+* **Trả lời:**
+  - Lớp `Date` cài đặt thuật toán kiểm tra năm nhuận theo lịch Gregory: `(year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)`.
+  - Hàm `daysInMonth(month, year)` tự động xác định tháng 2 có 28 hay 29 ngày, các tháng khác có 30 hay 31 ngày.
+  - Bất kỳ thao tác khởi tạo hoặc gán ngày nào không hợp lệ đều ném ngoại lệ `ValidationException` để thông báo lỗi rõ ràng cho người dùng.
+
+### Câu 5: Tại sao cần tách rời `HopDong` và `ThietBiIMEI` khỏi `InputHelper`, và phân định vai trò giữa `Normalized::isValidPhoneNumber` với `InputHelper` thế nào?
+* **Trả lời:**
+  - **Phân định ranh giới:** `InputHelper` thuộc Console Input Family (tầng giao diện người dùng), phụ trách việc đọc dòng từ `std::cin`, xử lý lỗi bộ đệm và lặp lại nhắc lệnh. Ngược lại, `Normalized::isValidPhoneNumber` thuộc Sanitization & Validation Family, là hàm thuần túy (pure function) xác thực định dạng và đầu số viễn thông Việt Nam độc lập với môi trường dòng lệnh.
+  - **Tách rời kiến trúc (Decoupling):** Các lớp mô hình nghiệp vụ (`HopDong`, `ThietBiIMEI`) là thực thể dữ liệu cốt lõi (Domain Layer). Việc loại bỏ hoàn toàn sự phụ thuộc vào `InputHelper` giúp mô hình dữ liệu giữ nguyên tính đóng gói, dễ dàng kiểm thử tự động (`test_runner.cpp`), nạp từ tệp tin (`Repository::loadFromFile`), và không bị ràng buộc vào giao diện dòng lệnh.

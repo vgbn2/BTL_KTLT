@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Date.h"
+#include "Normalized.h"
 
 namespace InputLimits {
     const int DEFAULT_MIN_INT = -2147483647;//32 bits

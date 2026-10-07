@@ -53,6 +53,7 @@ void ThietBiIMEIMenu::themThietBi() {
     std::string imei;
     while (true) {
         imei = InputHelper::getString("Nhap Ma IMEI (15 chu so): ", false);
+        if (std::cin.eof()) return;
         if (imei.length() != IMEIConstants::REQUIRED_IMEI_LENGTH) {
             std::cout << "  [!] Do dai IMEI phai dung 15 chu so! Vui long nhap lai.\n";
             continue;
@@ -75,8 +76,8 @@ void ThietBiIMEIMenu::themThietBi() {
     Date ngayKH = InputHelper::getDate("Nhap Ngay kich hoat (DD/MM/YYYY): ");
     std::string bts = InputHelper::getString("Nhap Tram BTS gan nhat (VD: BTS-HN-001): ", false);
 
-    ThietBiIMEI tb(imei, tenTB, hangSX, sdt, ngayKH, IMEIConstants::STATUS_ACTIVE, bts);
     try {
+        ThietBiIMEI tb(imei, tenTB, hangSX, sdt, ngayKH, IMEIConstants::STATUS_ACTIVE, bts);
         repo.add(tb);
         std::cout << "[THANH CONG] Da them thiet bi IMEI " << imei << " vao he thong!\n";
     } catch (const AppException& e) {
@@ -89,7 +90,7 @@ void ThietBiIMEIMenu::xemDanhSach() {
     std::cout << "\n>>> DANH SACH THIET BI DAU CUOI (IMEI) <<<\n";
     const auto& list = repo.getAll();
     if (list.empty()) {
-        std::cout << "Danh sach thiet bi hien dang trong!\n";
+        std::cout << "[THONG BAO] Danh sach thiet bi hien dang trong!\n";
         InputHelper::pause();
         return;
     }
@@ -192,24 +193,34 @@ void ThietBiIMEIMenu::capNhatThietBi() {
               << "  [" << UPDATE_CANCEL << "] Huy bo thao tac\n";
     int choice = InputHelper::getInt("Nhap lua chon [0-4]: ", UPDATE_CANCEL, UPDATE_UNLOCK);
 
-    if (choice == UPDATE_ASSIGN_SIM) {
-        std::string sdtMoi = InputHelper::getPhoneNumber("Nhap So dien thoai moi (hoac de trong de go SIM): ", true);
-        tb->ganSIM(sdtMoi);
-        repo.update(imei, *tb);
-        std::cout << "[THANH CONG] Da cap nhat so SIM gan voi thiet bi " << imei << "!\n";
-    } else if (choice == UPDATE_BTS) {
-        std::string btsMoi = InputHelper::getString("Nhap Ma tram BTS moi: ", false);
-        tb->capNhatBTS(btsMoi);
-        repo.update(imei, *tb);
-        std::cout << "[THANH CONG] Da cap nhat vi tri tram BTS thanh " << btsMoi << "!\n";
-    } else if (choice == UPDATE_LOCK) {
-        tb->setBlacklist(true);
-        repo.update(imei, *tb);
-        std::cout << "[THANH CONG] Da KHOA MANG thiet bi " << imei << " (EIR Blacklist)!\n";
-    } else if (choice == UPDATE_UNLOCK) {
-        tb->setBlacklist(false);
-        repo.update(imei, *tb);
-        std::cout << "[THANH CONG] Da MO KHOA MANG thiet bi " << imei << " (Trang thai: HoatDong)!\n";
+    if (choice == UPDATE_CANCEL) {
+        std::cout << "[DA HUY] Thao tac cap nhat da duoc huy bo.\n";
+        InputHelper::pause();
+        return;
+    }
+
+    try {
+        if (choice == UPDATE_ASSIGN_SIM) {
+            std::string sdtMoi = InputHelper::getPhoneNumber("Nhap So dien thoai moi (hoac de trong de go SIM): ", true);
+            tb->ganSIM(sdtMoi);
+            repo.update(imei, *tb);
+            std::cout << "[THANH CONG] Da cap nhat so SIM gan voi thiet bi " << imei << "!\n";
+        } else if (choice == UPDATE_BTS) {
+            std::string btsMoi = InputHelper::getString("Nhap Ma tram BTS moi: ", false);
+            tb->capNhatBTS(btsMoi);
+            repo.update(imei, *tb);
+            std::cout << "[THANH CONG] Da cap nhat vi tri tram BTS thanh " << btsMoi << "!\n";
+        } else if (choice == UPDATE_LOCK) {
+            tb->setBlacklist(true);
+            repo.update(imei, *tb);
+            std::cout << "[THANH CONG] Da KHOA MANG thiet bi " << imei << " (EIR Blacklist)!\n";
+        } else if (choice == UPDATE_UNLOCK) {
+            tb->setBlacklist(false);
+            repo.update(imei, *tb);
+            std::cout << "[THANH CONG] Da MO KHOA MANG thiet bi " << imei << " (Trang thai: HoatDong)!\n";
+        }
+    } catch (const AppException& e) {
+        std::cout << "[LOI] " << e.what() << "\n";
     }
     InputHelper::pause();
 }

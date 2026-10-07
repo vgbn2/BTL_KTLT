@@ -10,7 +10,7 @@
 
 ## 1. Tổng Quan Kiến Trúc Gọi Hàm
 
-Tài liệu này mô tả chi tiết luồng gọi hàm từ cấp độ điều khiển chương trình (`main`), qua các menu tương tác (`HopDongMenu`, `ThietBiIMEIMenu`), đến các hàm tiện ích nhập liệu (`InputHelper`), động cơ lịch (`Date`), các lớp thực thể nghiệp vụ (`HopDong`, `ThietBiIMEI`), và tầng lưu trữ tệp tin nguyên tử (`Repository<T>`, `FileIO`).
+Tài liệu này mô tả chi tiết luồng gọi hàm từ cấp độ điều khiển chương trình (`main`), qua các menu tương tác (`HopDongMenu`, `ThietBiIMEIMenu`), đến các hàm tiện ích nhập liệu dòng lệnh (`InputHelper`), bộ tiện ích chuẩn hóa & xác thực (`Normalized`), động cơ hiển thị ASCII (`DisplayHelper`), động cơ lịch (`Date`), các lớp thực thể nghiệp vụ (`HopDong`, `ThietBiIMEI`), và tầng lưu trữ tệp tin nguyên tử (`Repository<T>`, `FileIO`).
 
 ```mermaid
 flowchart TD
@@ -33,15 +33,19 @@ flowchart TD
         HD_MenuBox --> IMEI_MenuBox
     end
 
-    subgraph HelperLayer ["2. TANG TIEN ICH XAC THUC & NGAY THANG"]
+    subgraph HelperLayer ["2. TANG TIEN ICH, CHUAN HOA & GIAO DIEN"]
         direction TB
-        InputHelpGroup["InputHelper::getString | getInt | getDouble<br/>InputHelper::getPhoneNumber | getConfirm"]
-        DateEngineGroup["Date::parse | Date::isValid<br/>Date::isLeapYear | Date::calculateAge"]
-        FileIOGroup["FileIO::trim | FileIO::split<br/>FileIO::ensureDirectoryExists"]
-        InputHelpGroup --> DateEngineGroup --> FileIOGroup
+        InputHelpGroup["InputHelper (Console Input Family)<br/><small>getString | getInt | getDouble | getDate | pause</small>"]
+        NormGroup["Normalized (Sanitization & Validation Family)<br/><small>isValidPhoneNumber | trim | CollapseSpace | toUpper</small>"]
+        DisplayGroup["DisplayHelper (Presentation & ASCII Layout)<br/><small>printBorder | printHeader | printRow | printCard</small>"]
+        DateEngineGroup["Date (Calendar Date Engine)<br/><small>parse | isValid | isLeapYear | calculateAge</small>"]
+        FileIOGroup["FileIO (String & Disk IO)<br/><small>trim | split | ensureDirectoryExists</small>"]
+        InputHelpGroup --> NormGroup
+        NormGroup --> DateEngineGroup
+        DisplayGroup --> FileIOGroup
     end
 
-    subgraph DomainLayer ["3. TANG MO HINH NGHIEP VU & XAC THUC"]
+    subgraph DomainLayer ["3. TANG MO HINH NGHIEP VU (DECOUPLED TU INPUTHELPER)"]
         direction TB
         HD_ModelBox["HopDong Model<br/><small>HopDong | giaHan | isExpired | chamDut</small>"]
         IMEI_ModelBox["ThietBiIMEI Model<br/><small>ThietBiIMEI | validateLuhn | ganSIM | setBlacklist</small>"]
@@ -57,11 +61,24 @@ flowchart TD
     end
 
     Main --> MenuLayer
-    MenuLayer --> HelperLayer
-    HelperLayer --> DomainLayer
+    MenuLayer -->|Console Input| InputHelpGroup
+    InputHelpGroup -->|Xac thuc logic| NormGroup
+    DomainLayer -->|Validation Invariants| NormGroup
+    DomainLayer -->|Uy nhiem format| DisplayGroup
+    MenuLayer --> DomainLayer
     DomainLayer --> StorageLayer
     Main -.->|Exit & Sync| StorageLayer
 ```
+
+### 1.1 Nguyên Tắc Tách Rời Phân Hệ (Decoupling Architecture)
+* **Phân định họ hàm nghiêm ngặt:**
+  - **`InputHelper` (Console Input Family):** Chuyên trách tương tác bàn phím, điều phối luồng `std::cin`, xóa bộ đệm lỗi (`cin.clear()`, `cin.ignore()`), kiểm tra giới hạn min/max, và xử lý vòng lặp nhập lại trên Console.
+  - **`Normalized::isValidPhoneNumber` (Sanitization & Validation Family):** Là hàm thuần túy (pure function) kiểm tra định dạng và đầu số viễn thông Việt Nam (`03`, `05`, `07`, `08`, `09`), hoàn toàn độc lập với console hoặc bất kỳ môi trường I/O nào.
+* **Tách rời Domain Models (`HopDong`, `ThietBiIMEI`) khỏi `InputHelper`:**
+  - Các lớp mô hình nghiệp vụ (`HopDong`, `ThietBiIMEI`) thuộc tầng Domain Layer **tuyệt đối không phụ thuộc vào `InputHelper`**.
+  - Khi cần thẩm định tính hợp lệ của số điện thoại, mô hình gọi trực tiếp `Normalized::isValidPhoneNumber`.
+  - Khi cần hiển thị dữ liệu bảng hoặc thẻ chi tiết, mô hình ủy nhiệm cho `DisplayHelper`.
+  - Sự tách rời này đảm bảo các lớp mô hình có thể nạp từ file qua `Repository<T>`, chạy hàng loạt test tự động trong `test_runner.cpp`, hoặc mở rộng giao diện đồ họa/API sau này mà không bị kéo theo mã nguồn console.
 
 ---
 
@@ -120,6 +137,7 @@ sequenceDiagram
     actor User as Người dùng
     participant Menu as HopDongMenu::themHopDong
     participant Input as InputHelper
+    participant Norm as Normalized
     participant DateMod as Date
     participant Repo as Repository<HopDong>
     participant Model as HopDong::HopDong
@@ -140,7 +158,8 @@ sequenceDiagram
 
     Menu->>Input: getPhoneNumber("Nhap So dien thoai", false)
     activate Input
-    Input->>Input: isValidPhoneNumber(sdt, false)
+    Input->>Norm: isValidPhoneNumber(sdt, false)
+    Norm-->>Input: true
     Input-->>Menu: sdt = "0981234567"
     deactivate Input
 
@@ -164,8 +183,11 @@ sequenceDiagram
     Menu->>Input: getDouble("Nhap Gia tri goi cuoc", 0.0)
     Input-->>Menu: gia = 149000.0
 
+    Note over Model,Norm: HopDong duoc tach roi khoi InputHelper, goi truc tiep Normalized de kiem tra bat bien
     Menu->>Model: HopDong("HD0011", "KH001", "0981234567", "VD149", ngayDK, ngayHH, "TraTruoc", "HieuLuc", 149000.0)
     activate Model
+    Model->>Norm: isValidPhoneNumber(sdt, false)
+    Norm-->>Model: true
     Model-->>Menu: hd
     deactivate Model
 
@@ -198,6 +220,7 @@ sequenceDiagram
     actor User as Người dùng
     participant Menu as ThietBiIMEIMenu::themThietBi
     participant Input as InputHelper
+    participant Norm as Normalized
     participant IMEIMod as ThietBiIMEI
     participant Repo as Repository<ThietBiIMEI>
 
@@ -221,7 +244,11 @@ sequenceDiagram
     Input-->>Menu: hangSX = "Apple"
 
     Menu->>Input: getPhoneNumber("Nhap So dien thoai gan kem", true)
+    activate Input
+    Input->>Norm: isValidPhoneNumber(sdt, true)
+    Norm-->>Input: true
     Input-->>Menu: sdt = "0981234567"
+    deactivate Input
 
     Menu->>Input: getDate("Nhap Ngay kich hoat")
     Input-->>Menu: ngayKH
@@ -229,9 +256,12 @@ sequenceDiagram
     Menu->>Input: getString("Nhap Tram BTS gan nhat", false)
     Input-->>Menu: bts = "BTS-HN-001"
 
+    Note over IMEIMod,Norm: ThietBiIMEI duoc tach roi khoi InputHelper, goi Normalized truc tiep
     Menu->>IMEIMod: ThietBiIMEI(imei, tenTB, hangSX, sdt, ngayKH, "HoatDong", bts)
     activate IMEIMod
     IMEIMod->>IMEIMod: validateLuhn(imei)
+    IMEIMod->>Norm: isValidPhoneNumber(sdt, true)
+    Norm-->>IMEIMod: true
     IMEIMod-->>Menu: tb
     deactivate IMEIMod
 
@@ -322,9 +352,9 @@ sequenceDiagram
 
 ---
 
-## 7. Bảng Đối Chiếu Nguyên Mẫu Hàm
+## 7. Bảng Đối Chiếu Nguyên Mẫu Hàm Theo Phân Tầng
 
-### 7.1 Lớp `InputHelper` (`src/lib/shared/InputHelper.h`)
+### 7.1 Lớp `InputHelper` — Console Input Family (`src/lib/shared/InputHelper.h`)
 ```cpp
 static void clearBuffer();
 static std::string getString(const std::string& prompt, bool allowEmpty = false);
@@ -338,7 +368,30 @@ static bool getConfirm(const std::string& prompt);
 static void pause(const std::string& message = "Nhan Enter de tiep tuc...");
 ```
 
-### 7.2 Lớp `Repository<T>` (`src/lib/shared/Repository.h`)
+### 7.2 Phân Hệ `Normalized` — Sanitization & Validation Family (`src/lib/shared/Normalized.h`)
+```cpp
+namespace Normalized {
+    std::string trim(const std::string& str);
+    std::string CollapseSpace(const std::string& str);
+    std::string removeSymbols(const std::string& str);
+    std::string toLower(const std::string& str);
+    std::string toUpper(const std::string& str);
+    std::string NormalizedName(const std::string& str);
+    bool isValidPhoneNumber(const std::string& phone, bool allowUnassigned = false);
+}
+```
+
+### 7.3 Thư Viện Tiện Ích `DisplayHelper` — Presentation & ASCII Layout (`src/lib/shared/DisplayHelper.h`)
+```cpp
+namespace DisplayHelper {
+    void printBorder(const std::vector<int>& widths, std::ostream& os = std::cout);
+    void printHeader(const std::vector<std::string>& headers, const std::vector<int>& widths, const std::vector<bool>& rightAlign = {}, std::ostream& os = std::cout);
+    void printRow(const std::vector<std::string>& cells, const std::vector<int>& widths, const std::vector<bool>& rightAlign = {}, std::ostream& os = std::cout);
+    void printCard(const std::vector<std::pair<std::string, std::string>>& fields, int labelWidth = 16, std::ostream& os = std::cout);
+}
+```
+
+### 7.4 Lớp `Repository<T>` — Generic In-Memory CRUD & Flat-File Store (`src/lib/shared/Repository.h`)
 ```cpp
 bool loadFromFile();
 bool saveToFile() const;
@@ -351,7 +404,7 @@ std::vector<T> filter(std::function<bool(const T&)> predicate) const;
 void sort(std::function<bool(const T&, const T&)> comparator);
 ```
 
-### 7.3 Lớp `ThietBiIMEI` (`src/lib/models/imei.h`)
+### 7.5 Lớp `ThietBiIMEI` — Telecom Domain Entity (`src/lib/models/imei.h`)
 ```cpp
 static bool validateLuhn(const std::string& imeiStr);
 bool isBlacklisted() const;
@@ -361,7 +414,7 @@ void goSIM();
 void capNhatBTS(const std::string& bts);
 ```
 
-### 7.4 Lớp `HopDong` (`src/lib/models/hopdong.h`)
+### 7.6 Lớp `HopDong` — Contract Lifecycle Domain Entity (`src/lib/models/hopdong.h`)
 ```cpp
 bool isExpired(const Date& currentDate) const;
 void giaHan(const Date& ngayHetHanMoi);

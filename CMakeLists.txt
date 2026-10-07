@@ -9,6 +9,7 @@ include_directories(src src/lib src/lib/shared src/lib/models src/lib/menus src/
 set(LIB_SOURCES
     src/lib/shared/Date.cpp
     src/lib/shared/InputHelper.cpp
+    src/lib/shared/Normalized.cpp
     src/lib/shared/fileio.cpp
     src/lib/models/hopdong.cpp
     src/lib/models/imei.cpp
@@ -20,9 +21,5 @@ add_executable(quanlythuebao src/main.cpp ${LIB_SOURCES})
 
 add_executable(test_runner
     tests/test_runner.cpp
-    src/lib/shared/Date.cpp
-    src/lib/shared/InputHelper.cpp
-    src/lib/shared/fileio.cpp
-    src/lib/models/hopdong.cpp
-    src/lib/models/imei.cpp
+    ${LIB_SOURCES}
 )

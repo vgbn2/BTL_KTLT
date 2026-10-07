@@ -20,7 +20,7 @@ namespace HopDongConstants {
     const int COL_WIDTH_DATE = 13;
     const int COL_WIDTH_TYPE = 11;
     const int COL_WIDTH_STATUS = 12;
-    const int COL_WIDTH_PRICE = 14;
+    const int COL_WIDTH_PRICE = 16;
 }
 
 class HopDong : public Entity {

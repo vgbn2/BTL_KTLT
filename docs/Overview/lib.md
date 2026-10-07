@@ -15,7 +15,9 @@ src/lib/
 │   ├── Exceptions.h           # Domain-Specific Exception Hierarchy (Derived from std::runtime_error)
 │   ├── Date.h / Date.cpp      # Calendar Date Engine (Validation, Age Calculation, Parsing)
 │   ├── fileio.h / fileio.cpp  # String Utilities & Cross-Platform Path Handling
-│   ├── InputHelper.h / .cpp   # Safe Console Input Extraction & Validation
+│   ├── Normalized.h / .cpp    # Sanitization & Validation Engine (Phone & String Cleaning)
+│   ├── InputHelper.h / .cpp   # Safe Console Input Extraction (Console Input Family)
+│   ├── DisplayHelper.h        # Unified Terminal Table & Detail Card Layout Engine
 │   └── Repository.h           # Generic In-Memory Collection & Flat-File Persistence Engine
 │
 ├── models/                    # Tier 2: Domain Entities & Business Logic
@@ -27,10 +29,10 @@ src/lib/
 │   └── ThietBiIMEIMenu.h / .cpp # 0–9 Console Controller for Terminal & IMEI Tracking
 │
 └── stubs/                     # Tier 4: Team Extension Placeholders (Cross-Member Integration)
-    ├── goicuoc.h / .cpp       # Tariff Packages & Plan Types (Nguyễn Tùng Dương)
-    ├── thuebao.h / .cpp       # Customer KYC & SIM Provisioning (Trương Quốc Khánh)
-    ├── naptien.h / .cpp       # Top-Up Transactions & CDR Raw Records (Phạm Đức Chính)
-    └── hoadon.h / .cpp        # Billing, Invoicing & Dispute Tickets (Nguyễn Minh Quang)
+    ├── goicuoc.h / .cpp       # Tariff Packages & Plan Types (Nguyễn Tùng Dương - B24DCVT106)
+    ├── thuebao.h / .cpp       # Customer KYC & SIM Provisioning (Nguyễn Tất Thắng - B24DCVT331)
+    ├── naptien.h / .cpp       # Top-Up Transactions & CDR Raw Records (Nguyễn Mạnh Dũng - B24DCVT094)
+    └── hoadon.h / .cpp        # Billing, Invoicing & Dispute Tickets (Đặng Việt Hùng - B24DCVT167)
 ```
 
 ---
@@ -156,10 +158,25 @@ namespace FileConstants {
 
 ---
 
-### `InputHelper.h` / `InputHelper.cpp` — Safe Console Input Handler
+### `Normalized.h` / `Normalized.cpp` — Sanitization & Validation Engine
+- **Header:** `src/lib/shared/Normalized.h`
+- **Implementation:** `src/lib/shared/Normalized.cpp`
+- **Purpose:** Pure functions for string sanitization, delimiter injection prevention, and strict Vietnamese 10-digit mobile phone validation. Decoupled from interactive I/O.
+
+#### Key Functions (`Normalized` Namespace)
+- `bool isValidPhoneNumber(const std::string& phone, bool allowUnassigned = false)`: Validates 10-digit mobile phone number starting with `03`, `05`, `07`, `08`, `09`.
+- `std::string trim(const std::string& str)`: Strips leading/trailing whitespace.
+- `std::string CollapseSpace(const std::string& str)`: Collapses multiple consecutive spaces into a single space.
+- `std::string removeSymbols(const std::string& str)`: Strips forbidden delimiter and control symbols.
+- `std::string NormalizedName(const std::string& str)`: Standardizes Vietnamese person/customer names.
+- `std::string toUpper(const std::string& str)` / `toLower(const std::string& str)`: Case transformations.
+
+---
+
+### `InputHelper.h` / `InputHelper.cpp` — Safe Console Input Handler (Console Input Family)
 - **Header:** `src/lib/shared/InputHelper.h`
 - **Implementation:** `src/lib/shared/InputHelper.cpp`
-- **Purpose:** Prevents `std::cin` buffer lockups, handles invalid input types gracefully, enforces numeric ranges, sanitizes delimiter injection, and verifies Vietnamese 10-digit mobile phone numbers.
+- **Purpose:** Prevents `std::cin` buffer lockups, handles invalid input types gracefully, enforces numeric ranges, sanitizes delimiter injection, and delegates phone validation to `Normalized::isValidPhoneNumber`.
 
 #### Key Constants (`InputLimits` Namespace)
 ```cpp
@@ -229,6 +246,18 @@ public:
     virtual bool fromFileString(const std::string& line) = 0;
 };
 ```
+
+---
+
+### `DisplayHelper.h` — Unified Table & Detail Card Layout Engine
+- **Header:** `src/lib/shared/DisplayHelper.h`
+- **Purpose:** Eliminates redundant ASCII table border and padding boilerplate across models and menus. Provides reusable functions for fixed-width header rows, data rows with left/right alignment, and multi-line detail cards.
+
+#### Key Functions (`DisplayHelper` Namespace)
+- `void printBorder(const std::vector<int>& widths, std::ostream& os = std::cout)`: Generates dynamic `+---+---+` border rows matching column widths.
+- `void printHeader(const std::vector<std::string>& headers, const std::vector<int>& widths, const std::vector<bool>& rightAlign = {}, std::ostream& os = std::cout)`: Renders table header with automatic uppercase/spacing and surrounding borders.
+- `void printRow(const std::vector<std::string>& cells, const std::vector<int>& widths, const std::vector<bool>& rightAlign = {}, std::ostream& os = std::cout)`: Formats single entity row with column padding and optional right-alignment (e.g. currency).
+- `void printCard(const std::vector<std::pair<std::string, std::string>>& fields, int labelWidth = 16, std::ostream& os = std::cout)`: Prints multi-line key-value detailed view for single-record inspection.
 
 ---
 
@@ -395,9 +424,9 @@ These header and stub files define integration contracts for the remaining group
 | Library Header | Module & Use Case | Responsible Member | Key Features |
 |---|---|---|---|
 | `stubs/goicuoc.h` / `.cpp` | Gói cước & Loại hình thuê bao | Nguyễn Tùng Dương (B24DCVT106) | Data/Voice/SMS packages, prepaid/postpaid conversion |
-| `stubs/thuebao.h` / `.cpp` | Khách hàng & SIM Số | Trương Quốc Khánh (B24DCVT201) | CCCD/eKYC identification, MSISDN inventory, lock/unlock line |
-| `stubs/naptien.h` / `.cpp` | Nạp tiền & Bản ghi cước (CDR) | Phạm Đức Chính (B24DCVT047) | Scratch card top-up, e-wallet, raw CDR call/data parsing |
-| `stubs/hoadon.h` / `.cpp` | Hóa đơn & Khiếu nại cước | Nguyễn Minh Quang (B24DCVT308) | Monthly invoice aggregation, discount calculation, dispute tickets |
+| `stubs/thuebao.h` / `.cpp` | Khách hàng & SIM Số | Nguyễn Tất Thắng (B24DCVT331) | CCCD/eKYC identification, MSISDN inventory, lock/unlock line |
+| `stubs/naptien.h` / `.cpp` | Nạp tiền & Bản ghi cước (CDR) | Nguyễn Mạnh Dũng (B24DCVT094) | Scratch card top-up, e-wallet, raw CDR call/data parsing |
+| `stubs/hoadon.h` / `.cpp` | Hóa đơn & Khiếu nại cước | Đặng Việt Hùng (B24DCVT167) | Monthly invoice aggregation, discount calculation, dispute tickets |
 
 ---
 
@@ -412,7 +441,8 @@ These header and stub files define integration contracts for the remaining group
 | `Date::parse` | `shared/Date.cpp` | `const std::string& str` | `Date` | $O(1)$ | Very Easy (Stream extraction) |
 | `FileIO::trim` | `shared/fileio.cpp` | `const std::string& s` | `std::string` | $O(N)$ | Very Easy (`find_first_not_of`) |
 | `FileIO::split` | `shared/fileio.cpp` | `const std::string& s, char del`| `vector<string>` | $O(N)$ | Easy (`getline` token stream) |
-| `InputHelper::isValidPhoneNumber` | `shared/InputHelper.cpp` | `const std::string& phone` | `bool` | $O(1)$ | Very Easy (Prefix & length check) |
+| `Normalized::isValidPhoneNumber` | `shared/Normalized.cpp` | `const std::string& phone` | `bool` | $O(1)$ | Very Easy (Prefix & length check) |
+| `InputHelper::isValidPhoneNumber` | `shared/InputHelper.cpp` | `const std::string& phone` | `bool` | $O(1)$ | Very Easy (Delegates to Normalized) |
 | `ThietBiIMEI::validateLuhn` | `models/imei.cpp` | `const std::string& imeiStr` | `bool` | $O(1)$ | Easy (15-step Mod-10 loop) |
 | `Repository::loadFromFile` | `shared/Repository.h` | None | `bool` | $O(N)$ | Easy (File stream line reader) |
 | `Repository::saveToFile` | `shared/Repository.h` | None | `bool` | $O(N)$ | Easy (Temp file + rename) |

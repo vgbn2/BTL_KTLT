@@ -6,6 +6,7 @@ TEST_TARGET = test_runner
 
 LIB_SRCS = src/lib/shared/Date.cpp \
            src/lib/shared/InputHelper.cpp \
+           src/lib/shared/Normalized.cpp \
            src/lib/shared/fileio.cpp \
            src/lib/models/hopdong.cpp \
            src/lib/models/imei.cpp \
@@ -23,7 +24,7 @@ $(TARGET): $(MAIN_SRC) $(LIB_SRCS)
 test: $(TEST_TARGET)
 	./$(TEST_TARGET)
 
-$(TEST_TARGET): $(TEST_SRC) src/lib/shared/Date.cpp src/lib/shared/InputHelper.cpp src/lib/shared/fileio.cpp src/lib/models/hopdong.cpp src/lib/models/imei.cpp
+$(TEST_TARGET): $(TEST_SRC) $(LIB_SRCS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean:

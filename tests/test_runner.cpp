@@ -9,6 +9,11 @@
 #include "Repository.h"
 #include "Exceptions.h"
 #include "InputHelper.h"
+#include "Normalized.h"
+#include "DisplayHelper.h"
+#include "HopDongMenu.h"
+#include "ThietBiIMEIMenu.h"
+#include <sstream>
 
 namespace TestStats {
     int passed = 0;
@@ -88,29 +93,49 @@ void testBirthDateAndAgeValidation() {
 void testPhoneNumberValidation() {
     std::cout << "[RUN] Kiem thu So dien thoai di dong Viet Nam (10 chu so)...\n";
 
-    TEST_ASSERT(InputHelper::isValidPhoneNumber("0981234567"), "0981234567 (Viettel) phai hop le");
-    TEST_ASSERT(InputHelper::isValidPhoneNumber("0912345678"), "0912345678 (VinaPhone) phai hop le");
-    TEST_ASSERT(InputHelper::isValidPhoneNumber("0903456789"), "0903456789 (MobiFone) phai hop le");
-    TEST_ASSERT(InputHelper::isValidPhoneNumber("0888123456"), "0888123456 (VinaPhone) phai hop le");
-    TEST_ASSERT(InputHelper::isValidPhoneNumber("0778901234"), "0778901234 (MobiFone) phai hop le");
-    TEST_ASSERT(InputHelper::isValidPhoneNumber("0381234567"), "0381234567 (Viettel) phai hop le");
-    TEST_ASSERT(InputHelper::isValidPhoneNumber("0851234567"), "0851234567 (VinaPhone) phai hop le");
-    TEST_ASSERT(InputHelper::isValidPhoneNumber("0581234567"), "0581234567 (Vietnamobile) phai hop le");
-    TEST_ASSERT(InputHelper::isValidPhoneNumber("0591234567"), "0591234567 (Gmobile) phai hop le");
+    // ponytail: direct verification of Normalized::isValidPhoneNumber across VN telco prefixes
+    TEST_ASSERT(Normalized::isValidPhoneNumber("0981234567"), "0981234567 (Viettel) phai hop le");
+    TEST_ASSERT(Normalized::isValidPhoneNumber("0912345678"), "0912345678 (VinaPhone) phai hop le");
+    TEST_ASSERT(Normalized::isValidPhoneNumber("0903456789"), "0903456789 (MobiFone) phai hop le");
+    TEST_ASSERT(Normalized::isValidPhoneNumber("0888123456"), "0888123456 (VinaPhone) phai hop le");
+    TEST_ASSERT(Normalized::isValidPhoneNumber("0778901234"), "0778901234 (MobiFone) phai hop le");
+    TEST_ASSERT(Normalized::isValidPhoneNumber("0381234567"), "0381234567 (Viettel) phai hop le");
+    TEST_ASSERT(Normalized::isValidPhoneNumber("0851234567"), "0851234567 (VinaPhone) phai hop le");
+    TEST_ASSERT(Normalized::isValidPhoneNumber("0581234567"), "0581234567 (Vietnamobile) phai hop le");
+    TEST_ASSERT(Normalized::isValidPhoneNumber("0591234567"), "0591234567 (Gmobile) phai hop le");
 
-    TEST_ASSERT(!InputHelper::isValidPhoneNumber("098123456"), "So 9 chu so phai bi tu choi");
-    TEST_ASSERT(!InputHelper::isValidPhoneNumber("09812345678"), "So 11 chu so phai bi tu choi");
-    TEST_ASSERT(!InputHelper::isValidPhoneNumber("1981234567"), "Khong bat dau bang 0 phai bi tu choi");
-    TEST_ASSERT(!InputHelper::isValidPhoneNumber("0181234567"), "Dau so 01x cu phai bi tu choi");
-    TEST_ASSERT(!InputHelper::isValidPhoneNumber("0281234567"), "Dau so co dinh 02x phai bi tu choi");
-    TEST_ASSERT(!InputHelper::isValidPhoneNumber("0481234567"), "Dau so 04x phai bi tu choi");
-    TEST_ASSERT(!InputHelper::isValidPhoneNumber("098123456A"), "Chua ky tu chu cai phai bi tu choi");
-    TEST_ASSERT(!InputHelper::isValidPhoneNumber("098 123456"), "Chua khoang trang phai bi tu choi");
-    TEST_ASSERT(!InputHelper::isValidPhoneNumber(""), "Chuoi rong phai bi tu choi khi khong cho phep ChuaGan");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("098123456"), "So 9 chu so phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("09812345678"), "So 11 chu so phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("1981234567"), "Khong bat dau bang 0 phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("8498123456"), "Dau ma quoc gia khong dung chuan 0x phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("0181234567"), "Dau so 01x cu phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("0281234567"), "Dau so co dinh 02x phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("0481234567"), "Dau so 04x phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("0681234567"), "Dau so 06x phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("098123456A"), "Chua ky tu chu cai phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("098 123456"), "Chua khoang trang phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("098-123456"), "Chua dau gach noi phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber(""), "Chuoi rong phai bi tu choi khi khong cho phep ChuaGan");
 
-    TEST_ASSERT(InputHelper::isValidPhoneNumber("ChuaGan", true), "ChuaGan phai hop le khi cho phep unassigned");
-    TEST_ASSERT(InputHelper::isValidPhoneNumber("", true), "Chuoi rong phai hop le khi cho phep unassigned");
-    TEST_ASSERT(!InputHelper::isValidPhoneNumber("ChuaGan", false), "ChuaGan khong the hop le khi bat buoc nhap sdt");
+    TEST_ASSERT(Normalized::isValidPhoneNumber("ChuaGan", true), "ChuaGan phai hop le khi cho phep unassigned");
+    TEST_ASSERT(Normalized::isValidPhoneNumber("", true), "Chuoi rong phai hop le khi cho phep unassigned");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("ChuaGan", false), "ChuaGan khong the hop le khi bat buoc nhap sdt");
+    TEST_ASSERT(!Normalized::isValidPhoneNumber("", false), "Chuoi rong khong hop le khi khong cho phep unassigned");
+
+    // Kiem thu uy quyen InputHelper::isValidPhoneNumber
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("0981234567"), "InputHelper uy quyen Normalized phai hop le");
+    TEST_ASSERT(!InputHelper::isValidPhoneNumber("0123456789"), "InputHelper uy quyen Normalized phai tu choi 01x");
+    TEST_ASSERT(InputHelper::isValidPhoneNumber("ChuaGan", true), "InputHelper uy quyen Normalized hop le voi ChuaGan");
+}
+
+void testNormalizedUtils() {
+    std::cout << "[RUN] Kiem thu Normalized string utils...\n";
+    TEST_ASSERT(Normalized::trim("  hello world  \t\n") == "hello world", "Normalized::trim phai cat khoang trang hai dau");
+    TEST_ASSERT(Normalized::Trim("  test  ") == "test", "Normalized::Trim alias phai hoat dong");
+    TEST_ASSERT(Normalized::CollapseSpace("  a   b   c  ") == "a b c", "Normalized::CollapseSpace phai thu gon khoang trang");
+    TEST_ASSERT(Normalized::NormalizedName("  Nguyen   Van   A!  ") == "Nguyen Van A", "NormalizedName phai chuan hoa ten va loai ky tu cam");
+    TEST_ASSERT(Normalized::toUpper("abcDef") == "ABCDEF", "Normalized::toUpper phai viet hoa toan bo");
+    TEST_ASSERT(Normalized::toLower("ABCdef") == "abcdef", "Normalized::toLower phai viet thuong toan bo");
 }
 
 void testIMEILuhn() {
@@ -157,13 +182,42 @@ void testIMEILuhn() {
     tb.ganSIM("0912345678");
     TEST_ASSERT(tb.getSoDienThoai() == "0912345678", "ganSIM phai cap nhat sdt hop le");
 
-    bool threwInvalidPhone = false;
-    try {
-        tb.ganSIM("012345");
-    } catch (const InvalidPhoneNumberException&) {
-        threwInvalidPhone = true;
+    // ponytail: test ThietBiIMEI constructor & mutator phone validation against invalid prefixes/lengths
+    const std::vector<std::string> invalidTbPhones = {"012345", "0241234567", "09812345678", "098123456A"};
+    for (const auto& bad : invalidTbPhones) {
+        bool threwCtor = false;
+        try {
+            ThietBiIMEI badTb(VALID_IMEI_1, "iPhone 15", "Apple", bad, Date(15, 1, 2024), "HoatDong", "BTS-HN-001");
+        } catch (const InvalidPhoneNumberException&) {
+            threwCtor = true;
+        }
+        TEST_ASSERT(threwCtor, "ThietBiIMEI constructor phai nem InvalidPhoneNumberException voi sdt: " + bad);
+
+        bool threwGanSIM = false;
+        try {
+            tb.ganSIM(bad);
+        } catch (const InvalidPhoneNumberException&) {
+            threwGanSIM = true;
+        }
+        TEST_ASSERT(threwGanSIM, "ThietBiIMEI ganSIM phai nem InvalidPhoneNumberException voi sdt: " + bad);
+
+        bool threwSetPhone = false;
+        try {
+            tb.setSoDienThoai(bad);
+        } catch (const InvalidPhoneNumberException&) {
+            threwSetPhone = true;
+        }
+        TEST_ASSERT(threwSetPhone, "ThietBiIMEI setSoDienThoai phai nem InvalidPhoneNumberException voi sdt: " + bad);
     }
-    TEST_ASSERT(threwInvalidPhone, "ganSIM voi sdt sai dinh dang phai nem InvalidPhoneNumberException");
+
+    tb.setSoDienThoai("0987654321");
+    TEST_ASSERT(tb.getSoDienThoai() == "0987654321", "ThietBiIMEI setSoDienThoai hop le thanh cong");
+
+    ThietBiIMEI tbUnassigned(VALID_IMEI_1, "iPhone 15", "Apple", "ChuaGan", Date(15, 1, 2024), "HoatDong", "BTS-HN-001");
+    TEST_ASSERT(tbUnassigned.getSoDienThoai() == "ChuaGan", "ThietBiIMEI constructor voi ChuaGan phai hop le");
+
+    ThietBiIMEI tbEmptyPhone(VALID_IMEI_1, "iPhone 15", "Apple", "", Date(15, 1, 2024), "HoatDong", "BTS-HN-001");
+    TEST_ASSERT(tbEmptyPhone.getSoDienThoai().empty(), "ThietBiIMEI constructor voi chuoi rong phai hop le");
 
     tb.goSIM();
     TEST_ASSERT(tb.getSoDienThoai() == IMEIConstants::UNASSIGNED_PHONE, "goSIM phai thanh ChuaGan");
@@ -187,13 +241,29 @@ void testHopDong() {
     TEST_ASSERT(!hd.isExpired(Date(1, 6, 2024)), "HopDong khong the expired vao thang 6/2024");
     TEST_ASSERT(hd.isExpired(Date(2, 1, 2025)), "HopDong phai expired vao 02/01/2025");
 
-    bool threwInvalidPhone = false;
-    try {
-        HopDong badPhone("HD8888", "KH8888", "12345", "GC001", start, end, "TraSau", "HieuLuc", 100.0);
-    } catch (const InvalidPhoneNumberException&) {
-        threwInvalidPhone = true;
+    // ponytail: test HopDong constructor & mutator phone validation against invalid prefixes/lengths
+    const std::vector<std::string> invalidHdPhones = {"12345", "0123456789", "0241234567", "09812345678", "098123456A"};
+    for (const auto& bad : invalidHdPhones) {
+        bool threwCtor = false;
+        try {
+            HopDong badPhone("HD8888", "KH8888", bad, "GC001", start, end, "TraSau", "HieuLuc", 100.0);
+        } catch (const InvalidPhoneNumberException&) {
+            threwCtor = true;
+        }
+        TEST_ASSERT(threwCtor, "HopDong constructor phai nem InvalidPhoneNumberException voi sdt: " + bad);
+
+        bool threwMutator = false;
+        try {
+            hd.setSoDienThoai(bad);
+        } catch (const InvalidPhoneNumberException&) {
+            threwMutator = true;
+        }
+        TEST_ASSERT(threwMutator, "HopDong setSoDienThoai phai nem InvalidPhoneNumberException voi sdt: " + bad);
     }
-    TEST_ASSERT(threwInvalidPhone, "HopDong tao voi sdt sai dinh dang phai nem InvalidPhoneNumberException");
+
+    hd.setSoDienThoai("0912345678");
+    TEST_ASSERT(hd.getSoDienThoai() == "0912345678", "HopDong setSoDienThoai hop le thanh cong");
+    hd.setSoDienThoai("0981234567");
 
     Date newEnd(1, 1, 2026);
     hd.giaHan(newEnd);
@@ -281,6 +351,162 @@ void testRepository() {
     std::remove(TEST_FILE.c_str());
 }
 
+void testDisplayHelper() {
+    std::cout << "[RUN] Kiem thu DisplayHelper va format ASCII table/card...\n";
+
+    std::ostringstream ossBorder;
+    DisplayHelper::printBorder({6, 8}, ossBorder);
+    std::string borderExpected = "+------+--------+\n";
+    TEST_ASSERT(ossBorder.str() == borderExpected, "DisplayHelper printBorder phai dung dinh dang +------+--------+");
+
+    std::ostringstream ossHeader;
+    DisplayHelper::printHeader({"Col A", "Col B"}, {7, 8}, {false, true}, ossHeader);
+    std::string headerStr = ossHeader.str();
+    TEST_ASSERT(headerStr.find("+-------+--------+") != std::string::npos, "Header phai co duong vien tren va duoi");
+    TEST_ASSERT(headerStr.find("| Col A |  Col B |") != std::string::npos, "Header phai can chinh dung le trai va le phai");
+
+    std::ostringstream ossRow;
+    DisplayHelper::printRow({"val1", "val2"}, {7, 8}, {false, true}, ossRow);
+    std::string rowStr = ossRow.str();
+    TEST_ASSERT(rowStr == "| val1  |   val2 |\n", "Row phai can chinh dung le va do rong");
+
+    std::ostringstream ossCard;
+    DisplayHelper::printCard({{"Key A", "Value A"}, {"Key B", "Value B"}}, 10, ossCard);
+    std::string cardStr = ossCard.str();
+    TEST_ASSERT(cardStr.find("Key A     : Value A") != std::string::npos, "Card phai in nhan va gia tri dung dinh dang");
+
+    // Kiem thu tich hop voi Model
+    HopDong hd("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 150000.0);
+    ThietBiIMEI tb("860123456789014", "iPhone 15", "Apple", "0981234567", Date(15, 1, 2024), "HoatDong", "BTS-HN-001");
+
+    // Redirect cout tam thoi de xac nhan khong crash va output non-empty
+    std::ostringstream ossModel;
+    std::streambuf* oldCout = std::cout.rdbuf(ossModel.rdbuf());
+    hd.displayHeader();
+    hd.displayRow();
+    hd.displayDetail();
+    tb.displayHeader();
+    tb.displayRow();
+    tb.displayDetail();
+    std::cout.rdbuf(oldCout);
+
+    std::string modelOut = ossModel.str();
+    TEST_ASSERT(!modelOut.empty(), "Model display methods phai tao ra output qua DisplayHelper");
+    TEST_ASSERT(modelOut.find("HD0001") != std::string::npos, "Output phai chua Ma HD0001");
+    TEST_ASSERT(modelOut.find("860123456789014") != std::string::npos, "Output phai chua Ma IMEI");
+}
+
+void testMenuControllers() {
+    std::cout << "[RUN] Kiem thu Menu Controllers (HopDongMenu & ThietBiIMEIMenu)...\n";
+
+    const std::string HD_TEST_FILE = "data/test_hd_menu.txt";
+    const std::string IMEI_TEST_FILE = "data/test_imei_menu.txt";
+
+    Repository<HopDong> hdRepo(HD_TEST_FILE);
+    hdRepo.clear();
+    HopDong sampleHd("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 150000.0);
+    hdRepo.add(sampleHd);
+
+    Repository<ThietBiIMEI> imeiRepo(IMEI_TEST_FILE);
+    imeiRepo.clear();
+    ThietBiIMEI sampleImei("860123456789014", "iPhone 15", "Apple", "0981234567", Date(15, 1, 2024), "HoatDong", "BTS-HN-001");
+    imeiRepo.add(sampleImei);
+
+    HopDongMenu hdMenu(hdRepo);
+    ThietBiIMEIMenu imeiMenu(imeiRepo);
+
+    std::streambuf* origCin = std::cin.rdbuf();
+    std::streambuf* origCout = std::cout.rdbuf();
+
+    // Test 1: HopDongMenu [0] Quay lai menu chinh
+    {
+        std::istringstream inputSim("0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        hdMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        TEST_ASSERT(out.find("QUAN LY HOP DONG DANG KY") != std::string::npos, "HopDongMenu phai hien thi tieu de menu");
+        TEST_ASSERT(out.find("[0] Quay lai menu chinh") != std::string::npos, "HopDongMenu phai co option [0] Quay lai menu chinh");
+    }
+
+    // Test 2: ThietBiIMEIMenu [0] Quay lai menu chinh
+    {
+        std::istringstream inputSim("0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        imeiMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        TEST_ASSERT(out.find("QUAN LY THIET BI DAU CUOI (IMEI)") != std::string::npos, "ThietBiIMEIMenu phai hien thi tieu de menu");
+        TEST_ASSERT(out.find("[0] Quay lai menu chinh") != std::string::npos, "ThietBiIMEIMenu phai co option [0] Quay lai menu chinh");
+    }
+
+    // Test 3: HopDongMenu Submenu Tim kiem -> Quay lai [0] -> Thoat [0]
+    {
+        std::istringstream inputSim("3\n0\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        hdMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        TEST_ASSERT(out.find("TIM KIEM HOP DONG") != std::string::npos, "HopDongMenu timKiemHopDong phai vao submenu");
+    }
+
+    // Test 4: HopDongMenu Cap nhat -> Huy bo [0] -> Thoat [0]
+    {
+        std::istringstream inputSim("5\nHD0001\n0\n\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        hdMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        TEST_ASSERT(out.find("[DA HUY] Thao tac cap nhat da duoc huy bo.") != std::string::npos, "HopDongMenu cap nhat choice 0 phai thong bao huy bo");
+    }
+
+    // Test 5: ThietBiIMEIMenu Cap nhat -> Huy bo [0] -> Thoat [0]
+    {
+        std::istringstream inputSim("5\n860123456789014\n0\n\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        imeiMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        TEST_ASSERT(out.find("[DA HUY] Thao tac cap nhat da duoc huy bo.") != std::string::npos, "ThietBiIMEIMenu cap nhat choice 0 phai thong bao huy bo");
+    }
+
+    // Test 6: InputHelper EOF safety
+    {
+        std::istringstream emptyInput("");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(emptyInput.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        std::string phone = InputHelper::getPhoneNumber("Nhap sdt: ", false);
+        TEST_ASSERT(phone.empty(), "getPhoneNumber tren EOF phai return chuoi rong ma khong loop vo han");
+
+        bool confirm = InputHelper::getConfirm("Xac nhan?");
+        TEST_ASSERT(!confirm, "getConfirm tren EOF phai return false ma khong loop vo han");
+    }
+
+    // Restore cout & cin
+    std::cin.rdbuf(origCin);
+    std::cout.rdbuf(origCout);
+
+    std::remove(HD_TEST_FILE.c_str());
+    std::remove(IMEI_TEST_FILE.c_str());
+}
+
 int main() {
     std::cout << "========================================================\n"
               << "       KTLT AUTOMATED TEST SUITE (VERIFICATION GATE)    \n"
@@ -289,9 +515,12 @@ int main() {
     testDate();
     testBirthDateAndAgeValidation();
     testPhoneNumberValidation();
+    testNormalizedUtils();
     testIMEILuhn();
     testHopDong();
     testRepository();
+    testDisplayHelper();
+    testMenuControllers();
 
     std::cout << "========================================================\n";
     std::cout << "Ket qua kiem thu: "

@@ -53,6 +53,7 @@ void HopDongMenu::themHopDong() {
     std::string maHD;
     while (true) {
         maHD = InputHelper::getString("Nhap Ma hop dong (VD: HD0010): ", false);
+        if (std::cin.eof()) return;
         if (repo.findById(maHD) != nullptr) {
             std::cout << "  [!] Ma hop dong '" << maHD << "' da ton tai! Vui long nhap ma khac.\n";
             continue;
@@ -68,6 +69,7 @@ void HopDongMenu::themHopDong() {
     Date ngayHH;
     while (true) {
         ngayHH = InputHelper::getDate("Nhap Ngay het han (DD/MM/YYYY): ");
+        if (std::cin.eof()) return;
         if (ngayHH < ngayDK) {
             std::cout << "  [!] Ngay het han khong duoc nho hon ngay dang ky (" << ngayDK.toString() << ")!\n";
             continue;
@@ -76,15 +78,15 @@ void HopDongMenu::themHopDong() {
     }
 
     std::cout << "Chon Loai hop dong:\n"
-              << "  [" << TYPE_CHOICE_PREPAID << "] Tra truoc (Prepaid)\n"
-              << "  [" << TYPE_CHOICE_POSTPAID << "] Tra sau (Postpaid)\n";
+              << "  [" << TYPE_CHOICE_PREPAID << "] Tra truoc \n"
+              << "  [" << TYPE_CHOICE_POSTPAID << "] Tra sau \n";
     int loaiChoice = InputHelper::getInt("Lua chon [1-2]: ", TYPE_CHOICE_PREPAID, TYPE_CHOICE_POSTPAID);
     std::string loaiHD = (loaiChoice == TYPE_CHOICE_PREPAID) ? HopDongConstants::TYPE_PREPAID : HopDongConstants::TYPE_POSTPAID;
 
     double gia = InputHelper::getDouble("Nhap Gia tri goi cuoc (VND): ", 0.0);
 
-    HopDong hd(maHD, maKH, sdt, maGC, ngayDK, ngayHH, loaiHD, HopDongConstants::STATUS_ACTIVE, gia);
     try {
+        HopDong hd(maHD, maKH, sdt, maGC, ngayDK, ngayHH, loaiHD, HopDongConstants::STATUS_ACTIVE, gia);
         repo.add(hd);
         std::cout << "[THANH CONG] Da them hop dong " << maHD << " vao he thong!\n";
     } catch (const AppException& e) {
@@ -97,7 +99,7 @@ void HopDongMenu::xemDanhSach() {
     std::cout << "\n>>> DANH SACH HOP DONG DANG KY <<<\n";
     const auto& list = repo.getAll();
     if (list.empty()) {
-        std::cout << "Danh sach hop dong hien dang trong!\n";
+        std::cout << "[THONG BAO] Danh sach hop dong hien dang trong!\n";
         InputHelper::pause();
         return;
     }
@@ -112,7 +114,7 @@ void HopDongMenu::xemDanhSach() {
 
 void HopDongMenu::timKiemHopDong() {
     std::cout << "\n>>> TIM KIEM HOP DONG <<<\n"
-              << "  [" << SEARCH_BY_ID << "] Tim theo Ma hop dong (chinh xac)\n"
+              << "  [" << SEARCH_BY_ID << "] Tim theo Ma hop dong\n"
               << "  [" << SEARCH_BY_PHONE << "] Tim theo So dien thoai\n"
               << "  [" << SEARCH_BY_CUSTOMER << "] Tim theo Ma khach hang\n"
               << "  [0] Quay lai\n";
@@ -203,34 +205,40 @@ void HopDongMenu::capNhatHopDong() {
               << "  [" << UPDATE_CANCEL << "] Huy bo thao tac\n";
     int choice = InputHelper::getInt("Nhap lua chon [0-3]: ", UPDATE_CANCEL, UPDATE_STATUS);
 
-    if (choice == UPDATE_PACKAGE) {
-        std::string maGoiMoi = InputHelper::getString("Nhap Ma goi cuoc moi: ", false);
-        double giaMoi = InputHelper::getDouble("Nhap Gia tri goi moi (VND): ", 0.0);
-        hd->setMaGoiCuoc(maGoiMoi);
-        hd->setGiaTriGoi(giaMoi);
-        repo.update(id, *hd);
-        std::cout << "[THANH CONG] Da cap nhat goi cuoc moi cho hop dong " << id << "!\n";
-    } else if (choice == UPDATE_EXPIRY) {
-        Date ngayHHMoi = InputHelper::getDate("Nhap Ngay het han moi (DD/MM/YYYY): ");
-        try {
+    if (choice == UPDATE_CANCEL) {
+        std::cout << "[DA HUY] Thao tac cap nhat da duoc huy bo.\n";
+        InputHelper::pause();
+        return;
+    }
+
+    try {
+        if (choice == UPDATE_PACKAGE) {
+            std::string maGoiMoi = InputHelper::getString("Nhap Ma goi cuoc moi: ", false);
+            double giaMoi = InputHelper::getDouble("Nhap Gia tri goi moi (VND): ", 0.0);
+            hd->setMaGoiCuoc(maGoiMoi);
+            hd->setGiaTriGoi(giaMoi);
+            repo.update(id, *hd);
+            std::cout << "[THANH CONG] Da cap nhat goi cuoc moi cho hop dong " << id << "!\n";
+        } else if (choice == UPDATE_EXPIRY) {
+            Date ngayHHMoi = InputHelper::getDate("Nhap Ngay het han moi (DD/MM/YYYY): ");
             hd->giaHan(ngayHHMoi);
             repo.update(id, *hd);
             std::cout << "[THANH CONG] Da gia han hop dong " << id << " den ngay " << ngayHHMoi.toString() << "!\n";
-        } catch (const AppException& e) {
-            std::cout << "[LOI] " << e.what() << "\n";
-        }
-    } else if (choice == UPDATE_STATUS) {
-        std::cout << "Chon trang thai moi:\n"
-                  << "  [" << STATUS_CHOICE_ACTIVE << "] " << HopDongConstants::STATUS_ACTIVE << "\n"
-                  << "  [" << STATUS_CHOICE_SUSPENDED << "] " << HopDongConstants::STATUS_SUSPENDED << "\n"
-                  << "  [" << STATUS_CHOICE_TERMINATED << "] " << HopDongConstants::STATUS_TERMINATED << "\n";
-        int sChoice = InputHelper::getInt("Nhap lua chon [1-3]: ", STATUS_CHOICE_ACTIVE, STATUS_CHOICE_TERMINATED);
-        if (sChoice == STATUS_CHOICE_ACTIVE) hd->kichHoatLai();
-        else if (sChoice == STATUS_CHOICE_SUSPENDED) hd->tamDung();
-        else if (sChoice == STATUS_CHOICE_TERMINATED) hd->chamDut();
+        } else if (choice == UPDATE_STATUS) {
+            std::cout << "Chon trang thai moi:\n"
+                      << "  [" << STATUS_CHOICE_ACTIVE << "] " << HopDongConstants::STATUS_ACTIVE << "\n"
+                      << "  [" << STATUS_CHOICE_SUSPENDED << "] " << HopDongConstants::STATUS_SUSPENDED << "\n"
+                      << "  [" << STATUS_CHOICE_TERMINATED << "] " << HopDongConstants::STATUS_TERMINATED << "\n";
+            int sChoice = InputHelper::getInt("Nhap lua chon [1-3]: ", STATUS_CHOICE_ACTIVE, STATUS_CHOICE_TERMINATED);
+            if (sChoice == STATUS_CHOICE_ACTIVE) hd->kichHoatLai();
+            else if (sChoice == STATUS_CHOICE_SUSPENDED) hd->tamDung();
+            else if (sChoice == STATUS_CHOICE_TERMINATED) hd->chamDut();
 
-        repo.update(id, *hd);
-        std::cout << "[THANH CONG] Da cap nhat trang thai thanh: " << hd->getTrangThai() << "!\n";
+            repo.update(id, *hd);
+            std::cout << "[THANH CONG] Da cap nhat trang thai thanh: " << hd->getTrangThai() << "!\n";
+        }
+    } catch (const AppException& e) {
+        std::cout << "[LOI] " << e.what() << "\n";
     }
     InputHelper::pause();
 }

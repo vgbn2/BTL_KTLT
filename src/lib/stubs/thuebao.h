@@ -1,5 +1,5 @@
 // thuebao.h — Khách hàng & SIM – Số thuê bao
-// Người thực hiện: Trương Quốc Khánh (B24DCVT201)
+// Người thực hiện: Nguyễn Tất Thắng (B24DCVT331)
 //
 // Chức năng:
 //   - Thu thập, lưu trữ và cập nhật giấy tờ định danh (CCCD/CMND/ĐKKD), hình ảnh chính chủ của người dùng

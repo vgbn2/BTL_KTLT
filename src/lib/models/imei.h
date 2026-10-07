@@ -58,7 +58,7 @@ public:
     void setMaIMEI(const std::string& imei);
     void setTenThietBi(const std::string& ten) { tenThietBi = ten; }
     void setHangSanXuat(const std::string& hang) { hangSanXuat = hang; }
-    void setSoDienThoai(const std::string& sdt) { soDienThoai = sdt; }
+    void setSoDienThoai(const std::string& sdt) { ganSIM(sdt); }
     void setNgayKichHoat(const Date& d) { ngayKichHoat = d; }
     void setTrangThai(const std::string& tThai);
     void setTramBTSGanNhat(const std::string& bts) { tramBTSGanNhat = bts; }

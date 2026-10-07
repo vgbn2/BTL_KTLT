@@ -1,7 +1,8 @@
 #include "imei.h"
 #include "Exceptions.h"
 #include "fileio.h"
-#include "InputHelper.h"
+#include "Normalized.h"
+#include "DisplayHelper.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -35,7 +36,7 @@ ThietBiIMEI::ThietBiIMEI(const std::string& imei,
     if (!validateLuhn(imei)) {
         throw InvalidLuhnException(imei);
     }
-    if (!soDienThoai.empty() && soDienThoai != UNASSIGNED_PHONE && !InputHelper::isValidPhoneNumber(soDienThoai, true)) {
+    if (!soDienThoai.empty() && soDienThoai != UNASSIGNED_PHONE && !Normalized::isValidPhoneNumber(soDienThoai, true)) {
         throw InvalidPhoneNumberException(soDienThoai);
     }
     if (!trangThai.empty() && trangThai != STATUS_ACTIVE && trangThai != STATUS_LOCKED && trangThai != STATUS_SUSPENDED) {
@@ -99,7 +100,7 @@ void ThietBiIMEI::setTrangThai(const std::string& tThai) {
 }
 
 void ThietBiIMEI::ganSIM(const std::string& sdt) {
-    if (!sdt.empty() && sdt != UNASSIGNED_PHONE && !InputHelper::isValidPhoneNumber(sdt, true)) {
+    if (!sdt.empty() && sdt != UNASSIGNED_PHONE && !Normalized::isValidPhoneNumber(sdt, true)) {
         throw InvalidPhoneNumberException(sdt);
     }
     soDienThoai = sdt.empty() ? UNASSIGNED_PHONE : sdt;
@@ -114,55 +115,29 @@ void ThietBiIMEI::capNhatBTS(const std::string& bts) {
 }
 
 void ThietBiIMEI::displayHeader() const {
-    std::cout << "+"
-              << std::string(COL_WIDTH_IMEI, '-') << "+"
-              << std::string(COL_WIDTH_NAME, '-') << "+"
-              << std::string(COL_WIDTH_BRAND, '-') << "+"
-              << std::string(COL_WIDTH_PHONE, '-') << "+"
-              << std::string(COL_WIDTH_DATE, '-') << "+"
-              << std::string(COL_WIDTH_STATUS, '-') << "+"
-              << std::string(COL_WIDTH_BTS, '-') << "+\n";
-
-    std::cout << "|"
-              << std::left << std::setw(COL_WIDTH_IMEI) << " Ma IMEI" << "|"
-              << std::left << std::setw(COL_WIDTH_NAME) << " Ten Thiet Bi" << "|"
-              << std::left << std::setw(COL_WIDTH_BRAND) << " Hang SX" << "|"
-              << std::left << std::setw(COL_WIDTH_PHONE) << " So Dien Thoai" << "|"
-              << std::left << std::setw(COL_WIDTH_DATE) << " Ngay Kich Hoat" << "|"
-              << std::left << std::setw(COL_WIDTH_STATUS) << " Trang Thai" << "|"
-              << std::left << std::setw(COL_WIDTH_BTS) << " Tram BTS Gan" << "|\n";
-
-    std::cout << "+"
-              << std::string(COL_WIDTH_IMEI, '-') << "+"
-              << std::string(COL_WIDTH_NAME, '-') << "+"
-              << std::string(COL_WIDTH_BRAND, '-') << "+"
-              << std::string(COL_WIDTH_PHONE, '-') << "+"
-              << std::string(COL_WIDTH_DATE, '-') << "+"
-              << std::string(COL_WIDTH_STATUS, '-') << "+"
-              << std::string(COL_WIDTH_BTS, '-') << "+\n";
+    DisplayHelper::printHeader(
+        {"Ma IMEI", "Ten Thiet Bi", "Hang SX", "So Dien Thoai", "Ngay Kich Hoat", "Trang Thai", "Tram BTS Gan"},
+        {COL_WIDTH_IMEI, COL_WIDTH_NAME, COL_WIDTH_BRAND, COL_WIDTH_PHONE, COL_WIDTH_DATE, COL_WIDTH_STATUS, COL_WIDTH_BTS}
+    );
 }
 
 void ThietBiIMEI::displayRow() const {
-    std::cout << "|"
-              << " " << std::left << std::setw(COL_WIDTH_IMEI - 1) << id << "|"
-              << " " << std::left << std::setw(COL_WIDTH_NAME - 1) << tenThietBi << "|"
-              << " " << std::left << std::setw(COL_WIDTH_BRAND - 1) << hangSanXuat << "|"
-              << " " << std::left << std::setw(COL_WIDTH_PHONE - 1) << soDienThoai << "|"
-              << " " << std::left << std::setw(COL_WIDTH_DATE - 1) << ngayKichHoat.toString() << "|"
-              << " " << std::left << std::setw(COL_WIDTH_STATUS - 1) << trangThai << "|"
-              << " " << std::left << std::setw(COL_WIDTH_BTS - 1) << tramBTSGanNhat << "|\n";
+    DisplayHelper::printRow(
+        {id, tenThietBi, hangSanXuat, soDienThoai, ngayKichHoat.toString(), trangThai, tramBTSGanNhat},
+        {COL_WIDTH_IMEI, COL_WIDTH_NAME, COL_WIDTH_BRAND, COL_WIDTH_PHONE, COL_WIDTH_DATE, COL_WIDTH_STATUS, COL_WIDTH_BTS}
+    );
 }
 
 void ThietBiIMEI::displayDetail() const {
-    std::cout << "  --------------------------------------------------\n"
-              << "  Ma IMEI        : " << id << "\n"
-              << "  Ten thiet bi   : " << tenThietBi << "\n"
-              << "  Hang san xuat  : " << hangSanXuat << "\n"
-              << "  So dien thoai  : " << soDienThoai << "\n"
-              << "  Ngay kich hoat : " << ngayKichHoat.toString() << "\n"
-              << "  Trang thai     : " << trangThai << "\n"
-              << "  Tram BTS gan   : " << tramBTSGanNhat << "\n"
-              << "  --------------------------------------------------\n";
+    DisplayHelper::printCard({
+        {"Ma IMEI", id},
+        {"Ten thiet bi", tenThietBi},
+        {"Hang san xuat", hangSanXuat},
+        {"So dien thoai", soDienThoai},
+        {"Ngay kich hoat", ngayKichHoat.toString()},
+        {"Trang thai", trangThai},
+        {"Tram BTS gan", tramBTSGanNhat}
+    });
 }
 
 std::string ThietBiIMEI::toFileString() const {

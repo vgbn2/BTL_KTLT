@@ -1,31 +1,30 @@
 #include "Normalized.h"
 #include <sstream>
 #include <cctype>
-#include <iomanip>
 
-namespace Normalized{
-    std::string trim(const std::string& str){
-        size_t first=str.find_first_not_of(" \t\r\n");
-        if(first == std::string::npos)return"";
-        size_t last=str.find_last_not_of("\t\r\n");
-        if(last == std:: string::npos)return"";
+namespace Normalized {
+    std::string trim(const std::string& str) {
+        size_t first = str.find_first_not_of(" \t\r\n");
+        if (first == std::string::npos) return "";
+        size_t last = str.find_last_not_of(" \t\r\n");
+        if (last == std::string::npos) return "";
         return str.substr(first, last - first + 1);
     }
-    std::string CollapseSpace(const std::string& str){
+
+    std::string CollapseSpace(const std::string& str) {
         std::string trimmed = trim(str);
         std::string result;
-        bool inSpace=false;
-        for(char c : trimmed){
-                if(std::isspace(static_cast<unsigned char>(c))){
-                    if(!inSpace){
-                        result+=' ';
-                        inSpace=true;
-                    }
+        bool inSpace = false;
+        for (char c : trimmed) {
+            if (std::isspace(static_cast<unsigned char>(c))) {
+                if (!inSpace) {
+                    result += ' ';
+                    inSpace = true;
                 }
-                else{
-                    result+=c;
-                    inSpace=false;
-                }
+            } else {
+                result += c;
+                inSpace = false;
+            }
         }
         return result;
     }
@@ -41,22 +40,23 @@ namespace Normalized{
         return CollapseSpace(result);
     }
 
-    std::string toLower(const std::string& str){
-         std::string result = str;
-    for (char& c : result) {
-        c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    std::string toLower(const std::string& str) {
+        std::string result = str;
+        for (char& c : result) {
+            c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        }
+        return result;
     }
-    return result;
 
+    std::string toUpper(const std::string& str) {
+        std::string result = str;
+        for (char& c : result) {
+            c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+        }
+        return result;
     }
-    std::string toUpper(const std::string& str){
-        std::string result=str;
-    for(char& c: result){
-        c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
-    }
-    return result;
-    }
-    std::string NormalizedName(const std::string& rawName){
+
+    std::string NormalizedName(const std::string& rawName) {
         std::string cleaned = removeSymbols(rawName);
         if (cleaned.empty()) return "";
         std::istringstream iss(cleaned);
@@ -68,25 +68,26 @@ namespace Normalized{
         }
         return result;
     }
-    std::string NormalizedId(const std::string& RawId){
-         std::string cleaned = toUpper(trim(RawId));
-    if (cleaned.empty()) return "";
 
-    std::string digits;
-    for (char c : cleaned) {
-        if (std::isdigit(static_cast<unsigned char>(c))) {
-            digits += c;
+    bool isValidPhoneNumber(const std::string& phone, bool allowUnassigned) {
+        if (allowUnassigned && (phone.empty() || phone == "ChuaGan")) {
+            return true;
         }
+        if (phone.length() != 10) {
+            return false;
+        }
+        if (phone[0] != '0') {
+            return false;
+        }
+        char second = phone[1];
+        if (second != '3' && second != '5' && second != '7' && second != '8' && second != '9') {
+            return false;
+        }
+        for (char c : phone) {
+            if (!std::isdigit(static_cast<unsigned char>(c))) {
+                return false;
+            }
+        }
+        return true;
     }
-    if (digits.empty()) return cleaned;
-
-    // Pads digits to 4 chars (e.g. 1 -> 0001)
-    std::ostringstream oss;
-    oss << prefix << std::setw(4) << std::setfill('0') << digits;
-    return oss.str();
-    }
-    std::string NormalizedGoiCuoc(const std::string& str){}
-    std::string NormalizedProvinceCode(const std::string& str){}
-
-
 }
