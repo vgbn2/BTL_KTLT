@@ -1,6 +1,6 @@
-# C++ Syntax Guide for C Programmers (`docs/Overview/syntax.md`)
+# C++11 Engineering Patterns & Architecture Rationale (`docs/Overview/syntax.md`)
 
-This guide explains modern C++ language features, keywords, and idioms used across `src/lib/` for students familiar with introductory C.
+This document outlines the core C++11 idioms, architectural patterns, type safety mechanisms, and OOP designs applied across `src/lib/`, serving as an engineering reference and oral defense guide for the 3rd-year Mobile Subscriber Management System (PTIT, 2026–2027).
 
 ---
 
@@ -48,14 +48,14 @@ HopDong::HopDong(...)
 ---
 
 ### 2. The `explicit` Keyword
-**Where used:** `Date.h`, `Entity.h`, `Repository.h`, `HopDongMenu.h`
+**Where used:** `Date.h`, `Entity.h`, `DataStore.h`, `HopDongMenu.h`
 
 ```cpp
 // Date.h
 explicit Date(const std::string& dateStr);
 
-// Repository.h
-explicit Repository(const std::string& path);
+// DataStore.h
+explicit DataStore(const std::string& path);
 ```
 
 * **What it means:** Prevents single-argument constructors from performing **implicit type conversions** behind your back.
@@ -87,10 +87,10 @@ bool isFuture(const Date& relativeTo) const;
 ---
 
 ### 4. Range-Based `for` Loops
-**Where used:** `Repository.h`, `InputHelper.cpp`, `imei.cpp`
+**Where used:** `DataStore.h`, `InputHelper.cpp`, `imei.cpp`
 
 ```cpp
-// Repository.h
+// DataStore.h
 for (const auto& item : items) {
     outFile << item.toFileString() << "\n";
 }
@@ -167,11 +167,11 @@ bool fromFileString(const std::string& line) override;
 ---
 
 ### 8. Templates (Generic Programming)
-**Where used:** `Repository.h`
+**Where used:** `DataStore.h`
 
 ```cpp
 template <typename T>
-class Repository {
+class DataStore {
 private:
     std::string filePath;
     std::vector<T> items;
@@ -183,9 +183,9 @@ public:
 
 * **What it means:** `T` is a **placeholder type**.
 * **How it works:**
-  - `Repository<HopDong>` $\rightarrow$ Compiler generates a class where `T` is replaced by `HopDong`.
-  - `Repository<ThietBiIMEI>` $\rightarrow$ Compiler generates a class where `T` is replaced by `ThietBiIMEI`.
-* **Plain C equivalent:** In C, you would have to use unsafe `void*` casts or duplicate code into `HopDongRepository` and `IMEIRepository`.
+  - `DataStore<HopDong>` $\rightarrow$ Compiler generates a class where `T` is replaced by `HopDong`.
+  - `DataStore<ThietBiIMEI>` $\rightarrow$ Compiler generates a class where `T` is replaced by `ThietBiIMEI`.
+* **Plain C equivalent:** In C, you would have to use unsafe `void*` casts or duplicate code into `HopDongStore` and `IMEIStore`.
 
 ---
 
@@ -264,16 +264,16 @@ std::cout << std::fixed << std::setprecision(0) << giaTriGoi << " VND";
 ---
 
 ### 13. Lambdas and `std::function`
-**Where used:** `Repository.h` (`filter`, `sort`), `HopDongMenu.cpp`, `ThietBiIMEIMenu.cpp`
+**Where used:** `DataStore.h` (`filter`, `sort`), `HopDongMenu.cpp`, `ThietBiIMEIMenu.cpp`
 
 ```cpp
 // Searching for contracts with price > 100,000 using a Lambda:
-auto results = repo.filter([](const HopDong& hd) {
+auto results = store.filter([](const HopDong& hd) {
     return hd.getGiaTriGoi() > 100000;
 });
 
 // Sorting contracts by price descending:
-repo.sort([](const HopDong& a, const HopDong& b) {
+store.sort([](const HopDong& a, const HopDong& b) {
     return a.getGiaTriGoi() > b.getGiaTriGoi();
 });
 ```

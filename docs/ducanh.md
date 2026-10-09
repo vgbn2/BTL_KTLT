@@ -1,6 +1,6 @@
 # TÀI LIỆU HƯỚNG DẪN KỸ THUẬT PHÂN HỆ
 ## SINH VIÊN THỰC HIỆN: TRẦN ĐỨC ANH — MSSV: B24DCVT021
-### LỚP: D24CQVT01-B | KHOA VIỄN THÔNG 1 — PTIT
+### LỚP: D24CQVT01-B | KHOA VIỄN THÔNG 1 — PTIT (SINH VIÊN NĂM THỨ 3, NĂM HỌC 2026–2027)
 ### ĐỀ TÀI: QUẢN LÝ THUÊ BAO DI ĐỘNG | PHÂN HỆ: HỢP ĐỒNG (UC01) & THIẾT BỊ IMEI (UC02)
 
 ---
@@ -89,7 +89,7 @@ Trong mã nguồn, hàm `ThietBiIMEI::validateLuhn(const std::string& imei)` cà
 * `fromFileString(line)`: Tách chuỗi theo dấu `|` và khôi phục dữ liệu vào các biến thành viên.
 * `displayHeader()`, `displayRow()`, `displayDetail()`: Định dạng in bảng đẹp mắt bằng `<iomanip>`.
 
-### 4.2 Lớp `Repository<T>`
+### 4.2 Lớp `DataStore<T>`
 * Quản lý `std::vector<T>` trong bộ nhớ RAM.
 * `loadFromFile()`: Đọc dữ liệu từ file đĩa vào RAM khi khởi động.
 * `saveToFile()`: Ghi an toàn thông qua tệp `.tmp` rồi đổi tên (Atomic Write) tránh hỏng dữ liệu khi mất điện.
@@ -116,7 +116,7 @@ Trong mã nguồn, hàm `ThietBiIMEI::validateLuhn(const std::string& imei)` cà
 * **Tách rời mô hình khỏi phân hệ nhập liệu (Decoupling Architecture):**
   - Các lớp thực thể cốt lõi (`HopDong`, `ThietBiIMEI`) thuộc tầng Domain Layer hoàn toàn không phụ thuộc vào `InputHelper`.
   - Mọi thao tác kiểm tra tính toàn vẹn của số thuê bao khi tạo hợp đồng (`HopDong::HopDong`), cập nhật số thuê bao (`HopDong::setSoDienThoai`), hoặc gán SIM vào thiết bị (`ThietBiIMEI::ganSIM`) đều gọi trực tiếp `Normalized::isValidPhoneNumber`.
-  - Nhờ đó, các thực thể dữ liệu có thể vận hành độc lập, dễ dàng kiểm thử tự động (`test_runner.cpp`), nạp từ tệp tin qua `Repository<T>`, và không bị gắn chặt vào bất kỳ môi trường console cụ thể nào.
+  - Nhờ đó, các thực thể dữ liệu có thể vận hành độc lập, dễ dàng kiểm thử tự động (`test_runner.cpp`), nạp từ tệp tin qua `DataStore<T>`, và không bị gắn chặt vào bất kỳ môi trường console cụ thể nào.
 
 ---
 
@@ -130,7 +130,7 @@ Dự án áp dụng quy ước ngôn ngữ phân tầng rõ ràng:
 2. **Tên phương thức hạ tầng & thuật toán (Tiếng Anh):**
    * `getId()`, `setId()`, `isExpired()`, `validateLuhn()`, `isBlacklisted()`, `setBlacklist()`.
    * `toFileString()`, `fromFileString()`, `loadFromFile()`, `saveToFile()`.
-   * Tuân thủ quy chuẩn thiết kế C++ OOP, Repository pattern và thuật toán quốc tế 3GPP.
+   * Tuân thủ quy chuẩn thiết kế C++ OOP, DataStore pattern và thuật toán quốc tế 3GPP.
 3. **Tên hàm điều hướng giao diện (Tiếng Việt):**
    * `themHopDong()`, `xemDanhSach()`, `timKiemHopDong()`, `sapXepDanhSach()`, `capNhatHopDong()`, `xoaHopDong()`, `ganSIM()`, `goSIM()`, `capNhatBTS()`.
    * Phản ánh trực quan quy trình nghiệp vụ viễn thông tại các điểm giao dịch trong nước.
@@ -146,7 +146,7 @@ Dự án áp dụng quy ước ngôn ngữ phân tầng rõ ràng:
 | **Foundation / Shared** | `Normalized.h`, `Normalized.cpp` | `Normalized` | Sanitization & Validation Family | `trim`, `CollapseSpace`, `removeSymbols`, `NormalizedName`, `isValidPhoneNumber`, `toUpper` | Chuẩn hóa chuỗi họ tên, cắt khoảng trắng thừa, thẩm định định dạng số điện thoại viễn thông |
 | **Foundation / Shared** | `Exceptions.h` | Global | Domain Error Handling | `ValidationException`, `NotFoundException`, `DuplicateException` | Xử lý lỗi theo mô hình ngoại lệ tường minh (C++ Exception) |
 | **Presentation / Input** | `InputHelper.h`, `InputHelper.cpp` | `InputHelper` | Console Input Family | `clearBuffer`, `getString`, `getInt`, `getDouble`, `getDate`, `getBirthDate`, `getPhoneNumber`, `getConfirm`, `pause` | Trích xuất và kiểm soát nhập liệu an toàn từ bàn phím Console, chống trôi dòng `cin` |
-| **Data Access Layer** | `Repository.h` | `Repository<T>` | Generic In-Memory CRUD | `add`, `update`, `remove`, `findById`, `filter`, `sort`, `saveToFile`, `loadFromFile` | Quản lý tập thực thể, tìm kiếm qua Lambda, ghi file an toàn (Atomic Write) |
+| **Data Access Layer** | `DataStore.h` | `DataStore<T>` | Generic In-Memory CRUD | `add`, `update`, `remove`, `findById`, `filter`, `sort`, `saveToFile`, `loadFromFile` | Quản lý tập thực thể, tìm kiếm qua Lambda, ghi file an toàn (Atomic Write) |
 | **Data Access Layer** | `BTSRegister.h`, `BTSRegister.cpp` | `BTSRegister` | Hardware Registry | `loadBTSData`, `isValidBTS`, `getBTSInfo`, `suggestNearestBTS` | Quản lý danh mục trạm phát sóng di động Việt Nam |
 | **Domain Models** | `Entity.h` | `Entity` | Abstract Base Contract | `getId`, `setId`, `toFileString`, `fromFileString`, `display...` | Giao diện đa hình cho mọi thực thể nghiệp vụ |
 | **Domain Models** | `hopdong.h`, `hopdong.cpp` | `HopDong` | Invariants & Lifecycle Mutators | `isExpired`, `giaHan`, `chamDut`, `tamDung`, `kichHoatLai` | Quản lý vòng đời hợp đồng cung cấp dịch vụ viễn thông |
@@ -173,7 +173,7 @@ Dự án áp dụng quy ước ngôn ngữ phân tầng rõ ràng:
 
 ### Câu 3: Làm thế nào để đảm bảo tính an toàn dữ liệu (Atomic Persistence) khi ghi dữ liệu ra file?
 * **Trả lời:**
-  - Trong lớp `Repository<T>`, phương thức `saveToFile(filename)` không ghi đè trực tiếp lên tệp dữ liệu chính mà ghi ra một tệp tạm thời `filename + ".tmp"`.
+  - Trong lớp `DataStore<T>`, phương thức `saveToFile(filename)` không ghi đè trực tiếp lên tệp dữ liệu chính mà ghi ra một tệp tạm thời `filename + ".tmp"`.
   - Chỉ khi toàn bộ dữ liệu được ghi thành công và không phát sinh lỗi I/O, hệ thống mới tiến hành xóa tệp cũ và đổi tên tệp `.tmp` thành tệp chính thức (`std::rename`).
   - Cơ chế này (Atomic Write) bảo vệ cơ sở dữ liệu không bị hỏng (corrupted) khi chương trình bị tắt đột ngột hoặc xảy ra sự cố mất điện giữa chừng.
 
@@ -186,4 +186,4 @@ Dự án áp dụng quy ước ngôn ngữ phân tầng rõ ràng:
 ### Câu 5: Tại sao cần tách rời `HopDong` và `ThietBiIMEI` khỏi `InputHelper`, và phân định vai trò giữa `Normalized::isValidPhoneNumber` với `InputHelper` thế nào?
 * **Trả lời:**
   - **Phân định ranh giới:** `InputHelper` thuộc Console Input Family (tầng giao diện người dùng), phụ trách việc đọc dòng từ `std::cin`, xử lý lỗi bộ đệm và lặp lại nhắc lệnh. Ngược lại, `Normalized::isValidPhoneNumber` thuộc Sanitization & Validation Family, là hàm thuần túy (pure function) xác thực định dạng và đầu số viễn thông Việt Nam độc lập với môi trường dòng lệnh.
-  - **Tách rời kiến trúc (Decoupling):** Các lớp mô hình nghiệp vụ (`HopDong`, `ThietBiIMEI`) là thực thể dữ liệu cốt lõi (Domain Layer). Việc loại bỏ hoàn toàn sự phụ thuộc vào `InputHelper` giúp mô hình dữ liệu giữ nguyên tính đóng gói, dễ dàng kiểm thử tự động (`test_runner.cpp`), nạp từ tệp tin (`Repository::loadFromFile`), và không bị ràng buộc vào giao diện dòng lệnh.
+  - **Tách rời kiến trúc (Decoupling):** Các lớp mô hình nghiệp vụ (`HopDong`, `ThietBiIMEI`) là thực thể dữ liệu cốt lõi (Domain Layer). Việc loại bỏ hoàn toàn sự phụ thuộc vào `InputHelper` giúp mô hình dữ liệu giữ nguyên tính đóng gói, dễ dàng kiểm thử tự động (`test_runner.cpp`), nạp từ tệp tin (`DataStore::loadFromFile`), và không bị ràng buộc vào giao diện dòng lệnh.

@@ -48,13 +48,13 @@ flowchart TD
         direction TB
         subgraph StorageHD ["Phan He Hop Dong"]
             direction TB
-            RepoHD["Repository&lt;HopDong&gt;"]
+            RepoHD["DataStore&lt;HopDong&gt;"]
             DiskHD[("data/hopdong.txt")]
             RepoHD -->|Ghi .tmp -> Rename| DiskHD
         end
         subgraph StorageIMEI ["Phan He Thiet Bi IMEI"]
             direction TB
-            RepoIMEI["Repository&lt;ThietBiIMEI&gt;"]
+            RepoIMEI["DataStore&lt;ThietBiIMEI&gt;"]
             DiskIMEI[("data/imei.txt")]
             RepoIMEI -->|Ghi .tmp -> Rename| DiskIMEI
         end
@@ -78,7 +78,7 @@ sequenceDiagram
     participant Input as InputHelper
     participant DateMod as Date
     participant HD as HopDong
-    participant Repo as Repository<HopDong>
+    participant Repo as DataStore<HopDong>
     participant File as Disk
 
     User->>Menu: Chọn 1 Thêm mới hợp đồng
@@ -126,7 +126,7 @@ sequenceDiagram
     participant Menu as ThietBiIMEIMenu
     participant Input as InputHelper
     participant IMEI as ThietBiIMEI
-    participant Repo as Repository<ThietBiIMEI>
+    participant Repo as DataStore<ThietBiIMEI>
     participant File as Disk
 
     User->>Menu: Chọn 1 Ghi nhận thiết bị IMEI mới
@@ -168,7 +168,7 @@ Quy trình đảm bảo cơ sở dữ liệu file phẳng không bao giờ bị 
 ```mermaid
 sequenceDiagram
     autonumber
-    participant App as Ứng dụng / Repository
+    participant App as Ứng dụng / DataStore
     participant TmpFile as Tệp tạm
     participant LiveFile as Tệp chính
 

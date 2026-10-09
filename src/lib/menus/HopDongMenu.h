@@ -1,7 +1,7 @@
 #ifndef HOPDONGMENU_H
 #define HOPDONGMENU_H
 
-#include "Repository.h"
+#include "DataStore.h"
 #include "hopdong.h"
 
 namespace HopDongMenuChoices {
@@ -35,7 +35,7 @@ namespace HopDongMenuChoices {
 
 class HopDongMenu {
 private:
-    Repository<HopDong>& repo;
+    DataStore<HopDong>& store;
 
     void themHopDong();
     void xemDanhSach();
@@ -45,7 +45,7 @@ private:
     void xoaHopDong();
 
 public:
-    explicit HopDongMenu(Repository<HopDong>& r) : repo(r) {}
+    explicit HopDongMenu(DataStore<HopDong>& s) : store(s) {}
     void showMenu();
 };
 

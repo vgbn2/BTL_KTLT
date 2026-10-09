@@ -1,5 +1,5 @@
-#ifndef REPOSITORY_H
-#define REPOSITORY_H
+#ifndef DATASTORE_H
+#define DATASTORE_H
 
 #include <vector>
 #include <string>
@@ -10,18 +10,18 @@
 #include "fileio.h"
 #include "Exceptions.h"
 
-namespace RepositoryConstants {
+namespace DataStoreConstants {
     const std::string TEMP_FILE_EXTENSION = ".tmp";
 }
 
 template <typename T>
-class Repository {
+class DataStore {
 private:
     std::string filePath;
     std::vector<T> items;
 
 public:
-    explicit Repository(const std::string& path) : filePath(path) {}
+    explicit DataStore(const std::string& path) : filePath(path) {}
 
     const std::string& getFilePath() const { return filePath; }
     size_t size() const { return items.size(); }
@@ -41,13 +41,10 @@ public:
         std::string line;
         while (std::getline(inFile, line)) {
             std::string trimmedLine = FileIO::trim(line);
-            if (trimmedLine.empty() || trimmedLine[0] == FileConstants::COMMENT_PREFIX) {
-                continue;
-            }
+            if (trimmedLine.empty() || trimmedLine[0] == FileConstants::COMMENT_PREFIX) continue;
             T item;
-            if (item.fromFileString(trimmedLine)) {
-                items.push_back(item);
-            }
+            if (!item.fromFileString(trimmedLine)) continue;
+            items.push_back(item);
         }
         inFile.close();
         return true;
@@ -55,7 +52,7 @@ public:
 
     bool saveToFile() const {
         FileIO::ensureDirectoryExists(filePath);
-        std::string tempPath = filePath + RepositoryConstants::TEMP_FILE_EXTENSION;
+        std::string tempPath = filePath + DataStoreConstants::TEMP_FILE_EXTENSION;
         std::ofstream outFile(tempPath);
         if (!outFile.is_open()) {
             throw FileIOException("Khong the mo tep tin tam de ghi: " + tempPath);
@@ -139,4 +136,4 @@ public:
     }
 };
 
-#endif // REPOSITORY_H
+#endif // DATASTORE_H

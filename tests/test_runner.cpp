@@ -6,7 +6,7 @@
 #include "Date.h"
 #include "hopdong.h"
 #include "imei.h"
-#include "Repository.h"
+#include "DataStore.h"
 #include "Exceptions.h"
 #include "InputHelper.h"
 #include "Normalized.h"
@@ -304,11 +304,11 @@ void testHopDong() {
     TEST_ASSERT(dHd.getGiaTriGoi() == 100000.0, "Deserialized HopDong giaTri phai khop");
 }
 
-void testRepository() {
-    std::cout << "[RUN] Kiem thu Repository<T> CRUD va atomic persistence...\n";
+void testDataStore() {
+    std::cout << "[RUN] Kiem thu DataStore<T> CRUD va atomic persistence...\n";
 
     const std::string TEST_FILE = "data/test_repo.txt";
-    Repository<HopDong> repo(TEST_FILE);
+    DataStore<HopDong> repo(TEST_FILE);
     repo.clear();
 
     HopDong hd1("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 150000.0);
@@ -316,7 +316,7 @@ void testRepository() {
 
     TEST_ASSERT(repo.add(hd1), "Them hd1 phai thanh cong");
     TEST_ASSERT(repo.add(hd2), "Them hd2 phai thanh cong");
-    TEST_ASSERT(repo.size() == 2, "Repo phai co 2 phan tu");
+    TEST_ASSERT(repo.size() == 2, "DataStore phai co 2 phan tu");
 
     bool threwDuplicate = false;
     try {
@@ -343,10 +343,10 @@ void testRepository() {
     TEST_ASSERT(repo.size() == 1, "Sau khi xoa size phai la 1");
     TEST_ASSERT(repo.findById("HD0001") == nullptr, "HD0001 khong con ton tai");
 
-    Repository<HopDong> reloadedRepo(TEST_FILE);
+    DataStore<HopDong> reloadedRepo(TEST_FILE);
     reloadedRepo.loadFromFile();
-    TEST_ASSERT(reloadedRepo.size() == 1, "Reloaded repo phai co dung 1 ban ghi da luu");
-    TEST_ASSERT(reloadedRepo.findById("HD0002") != nullptr, "Reloaded repo phai chua HD0002");
+    TEST_ASSERT(reloadedRepo.size() == 1, "Reloaded store phai co dung 1 ban ghi da luu");
+    TEST_ASSERT(reloadedRepo.findById("HD0002") != nullptr, "Reloaded store phai chua HD0002");
 
     std::remove(TEST_FILE.c_str());
 }
@@ -402,12 +402,12 @@ void testMenuControllers() {
     const std::string HD_TEST_FILE = "data/test_hd_menu.txt";
     const std::string IMEI_TEST_FILE = "data/test_imei_menu.txt";
 
-    Repository<HopDong> hdRepo(HD_TEST_FILE);
+    DataStore<HopDong> hdRepo(HD_TEST_FILE);
     hdRepo.clear();
     HopDong sampleHd("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 150000.0);
     hdRepo.add(sampleHd);
 
-    Repository<ThietBiIMEI> imeiRepo(IMEI_TEST_FILE);
+    DataStore<ThietBiIMEI> imeiRepo(IMEI_TEST_FILE);
     imeiRepo.clear();
     ThietBiIMEI sampleImei("860123456789014", "iPhone 15", "Apple", "0981234567", Date(15, 1, 2024), "HoatDong", "BTS-HN-001");
     imeiRepo.add(sampleImei);
@@ -518,7 +518,7 @@ int main() {
     testNormalizedUtils();
     testIMEILuhn();
     testHopDong();
-    testRepository();
+    testDataStore();
     testDisplayHelper();
     testMenuControllers();
 

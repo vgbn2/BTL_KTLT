@@ -1,7 +1,7 @@
 #ifndef THIETBIIMEIMENU_H
 #define THIETBIIMEIMENU_H
 
-#include "Repository.h"
+#include "DataStore.h"
 #include "imei.h"
 
 namespace IMEIMenuChoices {
@@ -26,7 +26,7 @@ namespace IMEIMenuChoices {
 
 class ThietBiIMEIMenu {
 private:
-    Repository<ThietBiIMEI>& repo;
+    DataStore<ThietBiIMEI>& store;
 
     void themThietBi();
     void xemDanhSach();
@@ -36,7 +36,7 @@ private:
     void xoaThietBi();
 
 public:
-    explicit ThietBiIMEIMenu(Repository<ThietBiIMEI>& r) : repo(r) {}
+    explicit ThietBiIMEIMenu(DataStore<ThietBiIMEI>& s) : store(s) {}
     void showMenu();
 };
 

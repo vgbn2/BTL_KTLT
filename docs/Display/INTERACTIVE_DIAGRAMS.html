@@ -261,13 +261,13 @@ flowchart TD
         direction TB
         subgraph StorageHD ["Phan He Hop Dong"]
             direction TB
-            RepoHD["Repository&lt;HopDong&gt;"]:::storage
+            RepoHD["DataStore&lt;HopDong&gt;"]:::storage
             DiskHD[("data/hopdong.txt")]:::file
             RepoHD -->|Ghi .tmp -> Rename| DiskHD
         end
         subgraph StorageIMEI ["Phan He Thiet Bi IMEI"]
             direction TB
-            RepoIMEI["Repository&lt;ThietBiIMEI&gt;"]:::storage
+            RepoIMEI["DataStore&lt;ThietBiIMEI&gt;"]:::storage
             DiskIMEI[("data/imei.txt")]:::file
             RepoIMEI -->|Ghi .tmp -> Rename| DiskIMEI
         end
@@ -288,7 +288,7 @@ sequenceDiagram
     participant Input as InputHelper
     participant DateMod as Date
     participant HD as HopDong
-    participant Repo as Repository&lt;HopDong&gt;
+    participant Repo as DataStore&lt;HopDong&gt;
     participant File as Disk (data/hopdong.txt)
 
     User->>Menu: Chon [1] Them moi hop dong
@@ -333,7 +333,7 @@ sequenceDiagram
     participant Menu as ThietBiIMEIMenu
     participant Input as InputHelper
     participant IMEI as ThietBiIMEI
-    participant Repo as Repository&lt;ThietBiIMEI&gt;
+    participant Repo as DataStore&lt;ThietBiIMEI&gt;
     participant File as Disk
 
     User->>Menu: Chon 1 Ghi nhan thiet bi IMEI moi
@@ -366,7 +366,7 @@ sequenceDiagram
         <div class="mermaid">
 sequenceDiagram
     autonumber
-    participant App as Ung dung / Repository
+    participant App as Ung dung / DataStore
     participant TmpFile as Tep tam
     participant LiveFile as Tep chinh
 
@@ -440,8 +440,8 @@ flowchart TD
 
     subgraph StorageLayer ["4. TANG LUU TRU FILE NGUYEN TU"]
         direction TB
-        RepoOps["Repository&lt;T&gt;::add() | update() | remove()<br/>Repository&lt;T&gt;::findById() | filter() | sort()"]:::storage
-        RepoSync["Repository&lt;T&gt;::saveToFile() & loadFromFile()<br/><small>(Atomic .tmp -> std::rename replace)</small>"]:::storage
+        RepoOps["DataStore&lt;T&gt;::add() | update() | remove()<br/>DataStore&lt;T&gt;::findById() | filter() | sort()"]:::storage
+        RepoSync["DataStore&lt;T&gt;::saveToFile() & loadFromFile()<br/><small>(Atomic .tmp -> std::rename replace)</small>"]:::storage
         DataFilesGroup[("data/hopdong.txt<br/>data/imei.txt")]:::file
         RepoOps --> RepoSync --> DataFilesGroup
     end
@@ -460,8 +460,8 @@ flowchart TD
 sequenceDiagram
     autonumber
     participant Main as main()
-    participant RepoHD as Repository&lt;HopDong&gt;
-    participant RepoIMEI as Repository&lt;ThietBiIMEI&gt;
+    participant RepoHD as DataStore&lt;HopDong&gt;
+    participant RepoIMEI as DataStore&lt;ThietBiIMEI&gt;
     participant FileIO as FileIO
     participant HD as HopDong
     participant DateMod as Date
@@ -497,7 +497,7 @@ sequenceDiagram
     participant Menu as HopDongMenu::themHopDong
     participant Input as InputHelper
     participant DateMod as Date
-    participant Repo as Repository&lt;HopDong&gt;
+    participant Repo as DataStore&lt;HopDong&gt;
     participant Model as HopDong::HopDong
 
     User->>Menu: Chon 1 Them hop dong
@@ -523,7 +523,7 @@ sequenceDiagram
     participant Menu as ThietBiIMEIMenu::themThietBi
     participant Input as InputHelper
     participant IMEIMod as ThietBiIMEI
-    participant Repo as Repository&lt;ThietBiIMEI&gt;
+    participant Repo as DataStore&lt;ThietBiIMEI&gt;
 
     User->>Menu: Chon 1 Them thiet bi moi
     Menu->>Input: getString("Nhap Ma IMEI")
@@ -545,7 +545,7 @@ sequenceDiagram
 sequenceDiagram
     autonumber
     participant Menu as HopDongMenu
-    participant Repo as Repository&lt;HopDong&gt;
+    participant Repo as DataStore&lt;HopDong&gt;
     participant StdSort as std::sort
 
     Menu->>Repo: filter

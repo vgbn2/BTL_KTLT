@@ -18,7 +18,7 @@ src/lib/
 │   ├── Normalized.h / .cpp    # Sanitization & Validation Engine (Phone & String Cleaning)
 │   ├── InputHelper.h / .cpp   # Safe Console Input Extraction (Console Input Family)
 │   ├── DisplayHelper.h        # Unified Terminal Table & Detail Card Layout Engine
-│   └── Repository.h           # Generic In-Memory Collection & Flat-File Persistence Engine
+│   └── DataStore.h            # Generic In-Memory Collection & Flat-File Persistence Engine
 │
 ├── models/                    # Tier 2: Domain Entities & Business Logic
 │   ├── hopdong.h / .cpp       # Subscription Contract Management (UC01: Pricing, Validity, Lifecycle)
@@ -37,22 +37,22 @@ src/lib/
 
 ---
 
-## 2. Reverse-Engineering & Defense Constraints
+## 2. Software Architecture & Telecom Engineering Principles
 
-To ensure that the codebase is transparent, straightforward to trace in a debugger (GDB/LLDB), easy to disassemble/decompile (Ghidra/IDA Pro), and easily explainable during an academic oral defense, the following implementation constraints are enforced across all modules in `src/lib/`:
+Designed for a 3rd-year Telecommunications Engineering curriculum (PTIT, 2026–2027), the system enforces rigorous software engineering standards, strict adherence to international telecom protocols, low architectural coupling, and maximum clarity for oral defense and codebase maintainability:
 
-### 2.1. Standard Library & Primitives First
-- **No external frameworks or dependencies:** Only standard C++11 headers (`<iostream>`, `<string>`, `<vector>`, `<sstream>`, `<iomanip>`, `<ctime>`, `<algorithm>`, `<fstream>`, `<stdexcept>`, `<cstdio>`) are used.
-- **Direct primitive operations:** Arithmetic calculations, digit extractions (`/ 10`, `% 10`), and character range validations (`c >= '0' && c <= '9'`) are prioritized over opaque regex libraries.
+### 2.1. Standard Library & Deterministic Execution
+- **Zero external third-party dependencies:** Implemented exclusively in standard C++11 (`<iostream>`, `<string>`, `<vector>`, `<sstream>`, `<iomanip>`, `<ctime>`, `<algorithm>`, `<fstream>`, `<stdexcept>`, `<cstdio>`), ensuring native cross-platform build stability across Linux, Windows, and macOS without dependency hell.
+- **Direct algorithmic validation:** Telecom domain algorithms (such as the 3GPP TS 22.016 Luhn Mod-10 checksum) and validation routines operate directly on fundamental types with deterministic $O(N)$ complexity and zero opaque regex overhead.
 
-### 2.2. Linear Control Flow & Minimal Abstraction Depth
-- **Shallow inheritance hierarchy:** Exactly 1 level of inheritance (`Entity` $\rightarrow$ `HopDong`, `ThietBiIMEI`). No virtual inheritance, no multiple inheritance, and no diamond patterns.
-- **Predictable memory layout:** All entity attributes are contiguous standard data members with explicit getters/setters.
-- **No template metaprogramming:** Generic programming is strictly limited to the straightforward container wrapper `Repository<T>`, avoiding SFINAE, expression templates, or type traits that obfuscate symbol tables.
+### 2.2. Domain Invariants & Separation of Concerns (SoC)
+- **Layered 4-tier decoupling:** Presentation Menu Controllers $\rightarrow$ Domain Models $\rightarrow$ Core Foundations $\rightarrow$ Storage / Integration Stubs. Domain entities (`HopDong`, `ThietBiIMEI`) encapsulate business invariants and are completely decoupled from terminal console I/O (`InputHelper`).
+- **Clean polymorphic design:** Single-level polymorphic inheritance (`Entity` $\rightarrow$ `HopDong`, `ThietBiIMEI`) enforcing pure virtual serialization contracts (`toFileString`, `fromFileString`) and table presentation layouts without deep, brittle inheritance hierarchies.
+- **Fail-Safe Exception Hierarchy:** Standardized domain error propagation derived from `std::runtime_error` (`ValidationException`, `InvalidDateException`, `InvalidPhoneNumberException`, `InvalidLuhnException`, `DuplicateIdException`, `NotFoundException`).
 
-### 2.3. Deterministic Storage & Parsing
-- **Plaintext pipe-delimited records (`|`):** Data files in `data/*.txt` use simple text lines.
-- **Transparent stream tokenization:** Parsing is performed via `std::istringstream` and `std::getline(stream, token, '|')` without binary packing or proprietary codecs.
+### 2.3. Reliable Atomic Storage & Protocol Adherence
+- **Atomic persistence staging:** Generic in-memory store `DataStore<T>` stages disk persistence through temporary `.tmp` files and atomic filesystem rename (`std::rename`), ensuring zero database file corruption upon abnormal termination or power loss.
+- **3GPP compliance & EIR lifecycle:** Full compliance with 3GPP TS 22.016 / 23.003 specifications for 15-digit TAC+SNR+CD hardware validation and EIR Blacklist state transitions.
 
 ---
 
@@ -261,11 +261,11 @@ public:
 
 ---
 
-### `Repository.h` — Generic In-Memory & File Persistence Store
-- **Header:** `src/lib/shared/Repository.h`
+### `DataStore.h` — Generic In-Memory & File Persistence Store
+- **Header:** `src/lib/shared/DataStore.h`
 - **Purpose:** Provides generic CRUD operations, linear searching, predicate filtering, lambda sorting, and atomic file saving (write temp file + rename) for any entity derived from `Entity`.
 
-#### Key Template Methods (`Repository<T>`)
+#### Key Template Methods (`DataStore<T>`)
 - `bool loadFromFile()`: Reads all non-comment lines from disk and deserializes into `std::vector<T>`.
 - `bool saveToFile() const`: Atomically writes records to `filePath.tmp` and renames to `filePath`.
 - `bool add(const T& item)`: Inserts new record; throws `DuplicateIdException` if ID already exists.
@@ -444,8 +444,8 @@ These header and stub files define integration contracts for the remaining group
 | `Normalized::isValidPhoneNumber` | `shared/Normalized.cpp` | `const std::string& phone` | `bool` | $O(1)$ | Very Easy (Prefix & length check) |
 | `InputHelper::isValidPhoneNumber` | `shared/InputHelper.cpp` | `const std::string& phone` | `bool` | $O(1)$ | Very Easy (Delegates to Normalized) |
 | `ThietBiIMEI::validateLuhn` | `models/imei.cpp` | `const std::string& imeiStr` | `bool` | $O(1)$ | Easy (15-step Mod-10 loop) |
-| `Repository::loadFromFile` | `shared/Repository.h` | None | `bool` | $O(N)$ | Easy (File stream line reader) |
-| `Repository::saveToFile` | `shared/Repository.h` | None | `bool` | $O(N)$ | Easy (Temp file + rename) |
-| `Repository::findById` | `shared/Repository.h` | `const std::string& id` | `T*` | $O(N)$ | Very Easy (Linear loop) |
-| `Repository::filter` | `shared/Repository.h` | `std::function<bool(const T&)>`| `vector<T>` | $O(N)$ | Easy (Predicate iteration) |
-| `Repository::sort` | `shared/Repository.h` | `Comparator` | `void` | $O(N \log N)$ | Standard (`std::sort`) |
+| `DataStore::loadFromFile` | `shared/DataStore.h` | None | `bool` | $O(N)$ | Easy (File stream line reader) |
+| `DataStore::saveToFile` | `shared/DataStore.h` | None | `bool` | $O(N)$ | Easy (Temp file + rename) |
+| `DataStore::findById` | `shared/DataStore.h` | `const std::string& id` | `T*` | $O(N)$ | Very Easy (Linear loop) |
+| `DataStore::filter` | `shared/DataStore.h` | `std::function<bool(const T&)>`| `vector<T>` | $O(N)$ | Easy (Predicate iteration) |
+| `DataStore::sort` | `shared/DataStore.h` | `Comparator` | `void` | $O(N \log N)$ | Standard (`std::sort`) |

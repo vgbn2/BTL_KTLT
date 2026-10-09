@@ -10,7 +10,7 @@
 
 ## 1. Tổng Quan Kiến Trúc Gọi Hàm
 
-Tài liệu này mô tả chi tiết luồng gọi hàm từ cấp độ điều khiển chương trình (`main`), qua các menu tương tác (`HopDongMenu`, `ThietBiIMEIMenu`), đến các hàm tiện ích nhập liệu dòng lệnh (`InputHelper`), bộ tiện ích chuẩn hóa & xác thực (`Normalized`), động cơ hiển thị ASCII (`DisplayHelper`), động cơ lịch (`Date`), các lớp thực thể nghiệp vụ (`HopDong`, `ThietBiIMEI`), và tầng lưu trữ tệp tin nguyên tử (`Repository<T>`, `FileIO`).
+Tài liệu này mô tả chi tiết luồng gọi hàm từ cấp độ điều khiển chương trình (`main`), qua các menu tương tác (`HopDongMenu`, `ThietBiIMEIMenu`), đến các hàm tiện ích nhập liệu dòng lệnh (`InputHelper`), bộ tiện ích chuẩn hóa & xác thực (`Normalized`), động cơ hiển thị ASCII (`DisplayHelper`), động cơ lịch (`Date`), các lớp thực thể nghiệp vụ (`HopDong`, `ThietBiIMEI`), và tầng lưu trữ tệp tin nguyên tử (`DataStore<T>`, `FileIO`).
 
 ```mermaid
 flowchart TD
@@ -54,8 +54,8 @@ flowchart TD
 
     subgraph StorageLayer ["4. TANG LUU TRU FILE NGUYEN TU"]
         direction TB
-        RepoOps["Repository&lt;T&gt;::add | update | remove<br/>Repository&lt;T&gt;::findById | filter | sort"]
-        RepoSync["Repository&lt;T&gt;::saveToFile & loadFromFile<br/><small>Ghi file .tmp -> doi ten nguyen tu</small>"]
+        RepoOps["DataStore&lt;T&gt;::add | update | remove<br/>DataStore&lt;T&gt;::findById | filter | sort"]
+        RepoSync["DataStore&lt;T&gt;::saveToFile & loadFromFile<br/><small>Ghi file .tmp -> doi ten nguyen tu</small>"]
         DataFilesGroup[("data/hopdong.txt<br/>data/imei.txt")]
         RepoOps --> RepoSync --> DataFilesGroup
     end
@@ -78,7 +78,7 @@ flowchart TD
   - Các lớp mô hình nghiệp vụ (`HopDong`, `ThietBiIMEI`) thuộc tầng Domain Layer **tuyệt đối không phụ thuộc vào `InputHelper`**.
   - Khi cần thẩm định tính hợp lệ của số điện thoại, mô hình gọi trực tiếp `Normalized::isValidPhoneNumber`.
   - Khi cần hiển thị dữ liệu bảng hoặc thẻ chi tiết, mô hình ủy nhiệm cho `DisplayHelper`.
-  - Sự tách rời này đảm bảo các lớp mô hình có thể nạp từ file qua `Repository<T>`, chạy hàng loạt test tự động trong `test_runner.cpp`, hoặc mở rộng giao diện đồ họa/API sau này mà không bị kéo theo mã nguồn console.
+  - Sự tách rời này đảm bảo các lớp mô hình có thể nạp từ file qua `DataStore<T>`, chạy hàng loạt test tự động trong `test_runner.cpp`, hoặc mở rộng giao diện đồ họa/API sau này mà không bị kéo theo mã nguồn console.
 
 ---
 
@@ -89,8 +89,8 @@ flowchart TD
 sequenceDiagram
     autonumber
     participant Main as main
-    participant RepoHD as Repository<HopDong>
-    participant RepoIMEI as Repository<ThietBiIMEI>
+    participant RepoHD as DataStore<HopDong>
+    participant RepoIMEI as DataStore<ThietBiIMEI>
     participant FileIO as FileIO
     participant HD as HopDong
     participant DateMod as Date
@@ -139,7 +139,7 @@ sequenceDiagram
     participant Input as InputHelper
     participant Norm as Normalized
     participant DateMod as Date
-    participant Repo as Repository<HopDong>
+    participant Repo as DataStore<HopDong>
     participant Model as HopDong::HopDong
     participant Disk as File System
 
@@ -222,7 +222,7 @@ sequenceDiagram
     participant Input as InputHelper
     participant Norm as Normalized
     participant IMEIMod as ThietBiIMEI
-    participant Repo as Repository<ThietBiIMEI>
+    participant Repo as DataStore<ThietBiIMEI>
 
     User->>Menu: Chọn 1 Thêm thiết bị mới
     activate Menu
@@ -286,7 +286,7 @@ sequenceDiagram
     autonumber
     participant Menu as HopDongMenu::timKiemHopDong()
     participant Input as InputHelper
-    participant Repo as Repository<HopDong>
+    participant Repo as DataStore<HopDong>
     participant HD as HopDong
 
     Menu->>Input: getInt("Lua chon tra cuu", 0, 3)
@@ -322,7 +322,7 @@ sequenceDiagram
     autonumber
     participant Menu as HopDongMenu::sapXepDanhSach()
     participant Input as InputHelper
-    participant Repo as Repository<HopDong>
+    participant Repo as DataStore<HopDong>
     participant StdSort as std::sort
 
     Menu->>Input: getInt("Lua chon sap xep", 0, 2)
@@ -346,9 +346,9 @@ sequenceDiagram
 | **`InvalidLuhnException`** | `ThietBiIMEI::ThietBiIMEI`<br/>`ThietBiIMEI::setMaIMEI` | Chuỗi IMEI không thỏa mãn thuật toán Luhn Mod-10 hoặc không đủ 15 chữ số. | `ThietBiIMEIMenu::themThietBi` | In thông báo lỗi, ngăn không cho khởi tạo thực thể lỗi và yêu cầu nhập lại. |
 | **`InvalidDateException`** | `Date::parse`<br/>`Date::setDay/Month/Year`<br/>`HopDong::HopDong`<br/>`HopDong::giaHan` | Ngày không hợp lệ hoặc ngày hết hạn nhỏ hơn ngày đăng ký. | `InputHelper::getDate`<br/>`HopDongMenu::capNhatHopDong` | In thông báo chi tiết của lỗi và duy trì vòng lặp nhập liệu an toàn. |
 | **`InvalidPhoneNumberException`** | `HopDong::HopDong`<br/>`HopDong::setSoDienThoai`<br/>`ThietBiIMEI::ThietBiIMEI` | Số điện thoại không đủ 10 chữ số hoặc sai đầu số nhà mạng Việt Nam. | `HopDongMenu::capNhatHopDong`<br/>`ThietBiIMEIMenu::capNhatThietBi` | Bắt tại tầng Menu, in cảnh báo và hủy bỏ thao tác gán SIM sai. |
-| **`DuplicateIdException`** | `Repository<T>::add` | Mã định danh đã tồn tại trong danh sách RAM của Repository. | `HopDongMenu::themHopDong`<br/>`ThietBiIMEIMenu::themThietBi` | Tầng menu kiểm tra trước qua `findById`; nếu lọt ngoại lệ sẽ in thông báo mã trùng. |
-| **`NotFoundException`** | `Repository<T>::update`<br/>`Repository<T>::remove` | Không tìm thấy phần tử có mã cần sửa hoặc xóa. | `HopDongMenu::capNhatHopDong`<br/>`HopDongMenu::xoaHopDong` | In thông báo không tìm thấy mã. |
-| **`FileIOException`** | `Repository<T>::saveToFile` | Không thể mở file tạm để ghi hoặc thao tác đổi tên thất bại. | `main` | Bắt ở mức ứng dụng cao nhất, bảo vệ dữ liệu gốc không bị ghi đè khi lỗi ổ đĩa. |
+| **`DuplicateIdException`** | `DataStore<T>::add` | Mã định danh đã tồn tại trong danh sách RAM của DataStore. | `HopDongMenu::themHopDong`<br/>`ThietBiIMEIMenu::themThietBi` | Tầng menu kiểm tra trước qua `findById`; nếu lọt ngoại lệ sẽ in thông báo mã trùng. |
+| **`NotFoundException`** | `DataStore<T>::update`<br/>`DataStore<T>::remove` | Không tìm thấy phần tử có mã cần sửa hoặc xóa. | `HopDongMenu::capNhatHopDong`<br/>`HopDongMenu::xoaHopDong` | In thông báo không tìm thấy mã. |
+| **`FileIOException`** | `DataStore<T>::saveToFile` | Không thể mở file tạm để ghi hoặc thao tác đổi tên thất bại. | `main` | Bắt ở mức ứng dụng cao nhất, bảo vệ dữ liệu gốc không bị ghi đè khi lỗi ổ đĩa. |
 
 ---
 
@@ -391,7 +391,7 @@ namespace DisplayHelper {
 }
 ```
 
-### 7.4 Lớp `Repository<T>` — Generic In-Memory CRUD & Flat-File Store (`src/lib/shared/Repository.h`)
+### 7.4 Lớp `DataStore<T>` — Generic In-Memory CRUD & Flat-File Store (`src/lib/shared/DataStore.h`)
 ```cpp
 bool loadFromFile();
 bool saveToFile() const;

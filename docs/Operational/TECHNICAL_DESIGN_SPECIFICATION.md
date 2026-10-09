@@ -15,7 +15,7 @@ src/lib/
 │   ├── Normalized.h / .cpp    # Sanitization & Validation Engine (Phone & String Cleaning)
 │   ├── InputHelper.h / .cpp   # Safe Console Input Extraction (Console Input Family)
 │   ├── DisplayHelper.h        # Unified Terminal Table & Detail Card Layout Engine
-│   └── Repository.h           # Generic In-Memory Collection & Flat-File Persistence Engine
+│   └── DataStore.h            # Generic In-Memory Collection & Flat-File Persistence Engine
 │
 ├── models/                    # Tier 2: Domain Entities & Business Logic
 │   ├── hopdong.h / .cpp       # Subscription Contract Management (UC01: Pricing, Validity, Lifecycle)
@@ -126,7 +126,7 @@ src/lib/
   ```
 * **Toán tử & So sánh:** Nạp chồng các toán tử so sánh `operator<`, `operator==`, `operator<=` để phục vụ sắp xếp và xác thực logic `ngayHetHan >= ngayDangKy`.
 
-### 3.5 Lớp Generic Database Engine `Repository<T>` (`src/lib/shared/Repository.h`)
+### 3.5 Lớp Generic Database Engine `DataStore<T>` (`src/lib/shared/DataStore.h`)
 * **Thiết kế:** Template class quản lý danh sách bộ nhớ `std::vector<T>` liên kết với tệp văn bản đĩa cứng `data/*.txt`.
 * **Phương thức chính:**
   - `bool loadFromFile()`: Đọc từng dòng tệp tin, phân tách bằng `|`, tạo đối tượng và nạp vào vector.
@@ -182,6 +182,6 @@ Hệ thống áp dụng chiến lược phân tách ngôn ngữ có chủ đích
 | Thành Phần | Ngôn Ngữ Áp Dụng | Ví Dụ Minh Họa | Lý Do Kiến Trúc |
 | :--- | :--- | :--- | :--- |
 | **Tên tệp tin thực thể & dữ liệu** | **Tiếng Việt không dấu** (`lowercase` / `PascalCase`) | `hopdong.h/cpp`, `imei.h/cpp`<br>`data/hopdong.txt`, `data/imei.txt`<br>`HopDongMenu`, `ThietBiIMEIMenu` | Khớp 1:1 với đề bài BTL KTLT của Học viện PTIT và phân công giữa 5 thành viên trong nhóm. |
-| **Tên phương thức hạ tầng & thuật toán** | **Tiếng Anh chuẩn mực** (`camelCase`) | `getId()`, `isExpired()`<br>`validateLuhn()`, `isBlacklisted()`<br>`toFileString()`, `fromFileString()`<br>`loadFromFile()`, `saveToFile()`<br>`displayHeader()`, `displayRow()` | Tuân thủ chuẩn mực lập trình C++ OOP quốc tế, giao diện Repository pattern và các thuật toán tiêu chuẩn (3GPP Luhn). |
+| **Tên phương thức hạ tầng & thuật toán** | **Tiếng Anh chuẩn mực** (`camelCase`) | `getId()`, `isExpired()`<br>`validateLuhn()`, `isBlacklisted()`<br>`toFileString()`, `fromFileString()`<br>`loadFromFile()`, `saveToFile()`<br>`displayHeader()`, `displayRow()` | Tuân thủ chuẩn mực lập trình C++ OOP quốc tế, giao diện DataStore pattern và các thuật toán tiêu chuẩn (3GPP Luhn). |
 | **Hàm điều hướng giao diện & Menu** | **Tiếng Việt ngữ cảnh** (`camelCase`) | `themHopDong()`, `xemDanhSach()`<br>`timKiemHopDong()`, `sapXepDanhSach()`<br>`giaHan()`, `chamDut()`, `ganSIM()` | Giúp giảng viên và thành viên nhóm theo dõi trực quan đúng với quy trình nghiệp vụ viễn thông tại Việt Nam. |
 

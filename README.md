@@ -1,12 +1,12 @@
 # HỆ THỐNG QUẢN LÝ THUÊ BAO DI ĐỘNG (MOBILE SUBSCRIBER MANAGEMENT SYSTEM)
 ## HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG (PTIT)
-### HỌC PHẦN: KỸ THUẬT LẬP TRÌNH (KTLT) — ĐỀ TÀI 1
+### HỌC PHẦN: KỸ THUẬT LẬP TRÌNH (KTLT) — SINH VIÊN NĂM THỨ 3 (NĂM HỌC 2026–2027)
 
 ---
 
 ## 1. Danh Sách Thành Viên & Phân Công Nhiệm Vụ (Team Assignments)
 
-Dự án được xây dựng bởi nhóm 5 sinh viên Khoa Viễn thông 1 — Học viện PTIT. Hệ thống mô phỏng toàn diện kiến trúc quản lý dịch vụ viễn thông di động (BSS/OSS) từ định danh khách hàng, hợp đồng dịch vụ, thiết bị đầu cuối cho đến nạp tiền và thanh toán cước:
+Dự án được xây dựng bởi nhóm 5 sinh viên Lớp D24CQVT01-B, Khoa Viễn thông 1 — Học viện PTIT (Khóa tuyển sinh 2024, Năm học 2026–2027). Hệ thống mô phỏng toàn diện kiến trúc quản lý dịch vụ viễn thông di động (BSS/OSS) từ định danh khách hàng, hợp đồng dịch vụ, thiết bị đầu cuối cho đến nạp tiền và thanh toán cước:
 
 | STT | Họ và Tên | MSSV | Lớp | Phân Hệ Phụ Trách | Tệp Nguồn Đảm Nhiệm | Trạng Thái Phân Hệ |
 | :---: | :--- | :---: | :---: | :--- | :--- | :---: |
@@ -69,7 +69,7 @@ src/
 └── lib/
     ├── shared/                      # Tầng 1: Hạ tầng nền tảng & Dùng chung
     │   ├── Entity.h                 # Lớp cơ sở trừu tượng (Interface đa hình)
-    │   ├── Repository.h             # Quản lý tập thực thể bộ nhớ & Ghi tệp nguyên tử (.tmp)
+    │   ├── DataStore.h              # Quản lý tập thực thể bộ nhớ & Ghi tệp nguyên tử (.tmp)
     │   ├── Date.h / Date.cpp        # Bộ máy xử lý lịch Gregory, năm nhuận, kiểm tra độ tuổi
     │   ├── Normalized.h / .cpp      # Bộ chuẩn hóa chuỗi & Kiểm tra SĐT di động Việt Nam (03x..09x)
     │   ├── InputHelper.h / .cpp     # Nhập liệu an toàn từ cin, chống tràn bộ đệm & EOF
@@ -123,18 +123,18 @@ make test
 
 | Mã Use Case | Tên Chức Năng | Tệp Điều Khiển | Phương Thức Xử Lý Nghiệp Vụ | Thành Viên Phụ Trách |
 | :---: | :--- | :--- | :--- | :---: |
-| **UC01.1** | Thêm hợp đồng dịch vụ mới | `HopDongMenu.cpp` | `HopDong::HopDong()`, `Repository::add()` | **Trần Đức Anh** |
+| **UC01.1** | Thêm hợp đồng dịch vụ mới | `HopDongMenu.cpp` | `HopDong::HopDong()`, `DataStore::add()` | **Trần Đức Anh** |
 | **UC01.2** | Xem danh sách hợp đồng | `HopDongMenu.cpp` | `HopDong::displayHeader()`, `displayRow()` | **Trần Đức Anh** |
-| **UC01.3** | Tìm kiếm hợp đồng đa tiêu chí | `HopDongMenu.cpp` | `Repository::findById()`, `filter()` | **Trần Đức Anh** |
-| **UC01.4** | Sắp xếp danh sách hợp đồng | `HopDongMenu.cpp` | `Repository::sort()` (Lambda comparator) | **Trần Đức Anh** |
+| **UC01.3** | Tìm kiếm hợp đồng đa tiêu chí | `HopDongMenu.cpp` | `DataStore::findById()`, `filter()` | **Trần Đức Anh** |
+| **UC01.4** | Sắp xếp danh sách hợp đồng | `HopDongMenu.cpp` | `DataStore::sort()` (Lambda comparator) | **Trần Đức Anh** |
 | **UC01.5** | Cập nhật & Gia hạn hợp đồng | `HopDongMenu.cpp` | `HopDong::giaHan()`, `tamDung()`, `kichHoatLai()` | **Trần Đức Anh** |
-| **UC01.6** | Xóa / Thanh lý hợp đồng | `HopDongMenu.cpp` | `HopDong::chamDut()`, `Repository::remove()` | **Trần Đức Anh** |
-| **UC02.1** | Thêm thiết bị & Luhn Checksum | `ThietBiIMEIMenu.cpp` | `ThietBiIMEI::validateLuhn()`, `Repository::add()` | **Trần Đức Anh** |
+| **UC01.6** | Xóa / Thanh lý hợp đồng | `HopDongMenu.cpp` | `HopDong::chamDut()`, `DataStore::remove()` | **Trần Đức Anh** |
+| **UC02.1** | Thêm thiết bị & Luhn Checksum | `ThietBiIMEIMenu.cpp` | `ThietBiIMEI::validateLuhn()`, `DataStore::add()` | **Trần Đức Anh** |
 | **UC02.2** | Xem danh sách thiết bị | `ThietBiIMEIMenu.cpp` | `ThietBiIMEI::displayHeader()`, `displayRow()` | **Trần Đức Anh** |
-| **UC02.3** | Tra cứu thiết bị theo IMEI/SĐT/BTS | `ThietBiIMEIMenu.cpp` | `Repository::findById()`, `filter()` | **Trần Đức Anh** |
+| **UC02.3** | Tra cứu thiết bị theo IMEI/SĐT/BTS | `ThietBiIMEIMenu.cpp` | `DataStore::findById()`, `filter()` | **Trần Đức Anh** |
 | **UC02.4** | Quản lý danh sách đen EIR (Khóa máy) | `ThietBiIMEIMenu.cpp` | `ThietBiIMEI::isBlacklisted()`, `setBlacklist()` | **Trần Đức Anh** |
 | **UC02.5** | Cập nhật thiết bị (Gán SIM/Trạm BTS) | `ThietBiIMEIMenu.cpp` | `ThietBiIMEI::ganSIM()`, `goSIM()`, `capNhatBTS()` | **Trần Đức Anh** |
-| **UC02.6** | Xóa thiết bị khỏi hệ thống | `ThietBiIMEIMenu.cpp` | `Repository::remove()` | **Trần Đức Anh** |
+| **UC02.6** | Xóa thiết bị khỏi hệ thống | `ThietBiIMEIMenu.cpp` | `DataStore::remove()` | **Trần Đức Anh** |
 
 ---
 

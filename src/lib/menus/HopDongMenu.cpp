@@ -54,7 +54,7 @@ void HopDongMenu::themHopDong() {
     while (true) {
         maHD = InputHelper::getString("Nhap Ma hop dong (VD: HD0010): ", false);
         if (std::cin.eof()) return;
-        if (repo.findById(maHD) != nullptr) {
+        if (store.findById(maHD) != nullptr) {
             std::cout << "  [!] Ma hop dong '" << maHD << "' da ton tai! Vui long nhap ma khac.\n";
             continue;
         }
@@ -87,7 +87,7 @@ void HopDongMenu::themHopDong() {
 
     try {
         HopDong hd(maHD, maKH, sdt, maGC, ngayDK, ngayHH, loaiHD, HopDongConstants::STATUS_ACTIVE, gia);
-        repo.add(hd);
+        store.add(hd);
         std::cout << "[THANH CONG] Da them hop dong " << maHD << " vao he thong!\n";
     } catch (const AppException& e) {
         std::cout << "[LOI] " << e.what() << "\n";
@@ -97,7 +97,7 @@ void HopDongMenu::themHopDong() {
 
 void HopDongMenu::xemDanhSach() {
     std::cout << "\n>>> DANH SACH HOP DONG DANG KY <<<\n";
-    const auto& list = repo.getAll();
+    const auto& list = store.getAll();
     if (list.empty()) {
         std::cout << "[THONG BAO] Danh sach hop dong hien dang trong!\n";
         InputHelper::pause();
@@ -123,7 +123,7 @@ void HopDongMenu::timKiemHopDong() {
 
     if (choice == SEARCH_BY_ID) {
         std::string id = InputHelper::getString("Nhap Ma hop dong can tim: ", false);
-        HopDong* hd = repo.findById(id);
+        HopDong* hd = store.findById(id);
         if (hd == nullptr) {
             std::cout << "[THONG BAO] Khong tim thay hop dong nao co ma: " << id << "\n";
         } else {
@@ -133,7 +133,7 @@ void HopDongMenu::timKiemHopDong() {
         }
     } else if (choice == SEARCH_BY_PHONE) {
         std::string sdt = InputHelper::getString("Nhap So dien thoai can tim: ", false);
-        auto results = repo.filter([&sdt](const HopDong& hd) {
+        auto results = store.filter([&sdt](const HopDong& hd) {
             return hd.getSoDienThoai() == sdt;
         });
         if (results.empty()) {
@@ -147,7 +147,7 @@ void HopDongMenu::timKiemHopDong() {
         }
     } else if (choice == SEARCH_BY_CUSTOMER) {
         std::string kh = InputHelper::getString("Nhap Ma khach hang: ", false);
-        auto results = repo.filter([&kh](const HopDong& hd) {
+        auto results = store.filter([&kh](const HopDong& hd) {
             return hd.getMaKhachHang() == kh;
         });
         if (results.empty()) {
@@ -172,12 +172,12 @@ void HopDongMenu::sapXepDanhSach() {
     if (choice == 0) return;
 
     if (choice == SORT_BY_DATE_DESC) {
-        repo.sort([](const HopDong& a, const HopDong& b) {
+        store.sort([](const HopDong& a, const HopDong& b) {
             return b.getNgayDangKy() < a.getNgayDangKy();
         });
         std::cout << "[THANH CONG] Da sap xep danh sach theo ngay dang ky giam dan!\n";
     } else if (choice == SORT_BY_PRICE_DESC) {
-        repo.sort([](const HopDong& a, const HopDong& b) {
+        store.sort([](const HopDong& a, const HopDong& b) {
             return a.getGiaTriGoi() > b.getGiaTriGoi();
         });
         std::cout << "[THANH CONG] Da sap xep danh sach theo gia tri goi cuoc giam dan!\n";
@@ -188,7 +188,7 @@ void HopDongMenu::sapXepDanhSach() {
 void HopDongMenu::capNhatHopDong() {
     std::cout << "\n>>> CAP NHAT THONG TIN HOP DONG <<<\n";
     std::string id = InputHelper::getString("Nhap Ma hop dong can cap nhat: ", false);
-    HopDong* hd = repo.findById(id);
+    HopDong* hd = store.findById(id);
     if (hd == nullptr) {
         std::cout << "[LOI] Khong tim thay hop dong co ma: " << id << "\n";
         InputHelper::pause();
@@ -217,12 +217,12 @@ void HopDongMenu::capNhatHopDong() {
             double giaMoi = InputHelper::getDouble("Nhap Gia tri goi moi (VND): ", 0.0);
             hd->setMaGoiCuoc(maGoiMoi);
             hd->setGiaTriGoi(giaMoi);
-            repo.update(id, *hd);
+            store.update(id, *hd);
             std::cout << "[THANH CONG] Da cap nhat goi cuoc moi cho hop dong " << id << "!\n";
         } else if (choice == UPDATE_EXPIRY) {
             Date ngayHHMoi = InputHelper::getDate("Nhap Ngay het han moi (DD/MM/YYYY): ");
             hd->giaHan(ngayHHMoi);
-            repo.update(id, *hd);
+            store.update(id, *hd);
             std::cout << "[THANH CONG] Da gia han hop dong " << id << " den ngay " << ngayHHMoi.toString() << "!\n";
         } else if (choice == UPDATE_STATUS) {
             std::cout << "Chon trang thai moi:\n"
@@ -234,7 +234,7 @@ void HopDongMenu::capNhatHopDong() {
             else if (sChoice == STATUS_CHOICE_SUSPENDED) hd->tamDung();
             else if (sChoice == STATUS_CHOICE_TERMINATED) hd->chamDut();
 
-            repo.update(id, *hd);
+            store.update(id, *hd);
             std::cout << "[THANH CONG] Da cap nhat trang thai thanh: " << hd->getTrangThai() << "!\n";
         }
     } catch (const AppException& e) {
@@ -246,7 +246,7 @@ void HopDongMenu::capNhatHopDong() {
 void HopDongMenu::xoaHopDong() {
     std::cout << "\n>>> XOA / THANH LY HOP DONG <<<\n";
     std::string id = InputHelper::getString("Nhap Ma hop dong can xoa: ", false);
-    HopDong* hd = repo.findById(id);
+    HopDong* hd = store.findById(id);
     if (hd == nullptr) {
         std::cout << "[LOI] Khong tim thay hop dong co ma: " << id << "\n";
         InputHelper::pause();
@@ -259,7 +259,7 @@ void HopDongMenu::xoaHopDong() {
     bool confirm = InputHelper::getConfirm("Ban co chac chan muon xoa hop dong nay khoi he thong?");
     if (confirm) {
         try {
-            repo.remove(id);
+            store.remove(id);
             std::cout << "[THANH CONG] Da xoa hop dong " << id << " khoi he thong va cap nhat file!\n";
         } catch (const AppException& e) {
             std::cout << "[LOI] " << e.what() << "\n";

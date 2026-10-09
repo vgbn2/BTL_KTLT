@@ -130,29 +130,29 @@
 
 ### 3.1 Phân Hệ Hợp Đồng (`HopDong` - UC01)
 
-| Mã Use Case | Tên Chức Năng | Hàm Điều Khiển (Controller / Menu) | Phương Thức Thực Thể (Domain Model) | Phương Thức Lưu Trữ (Repository) |
+| Mã Use Case | Tên Chức Năng | Hàm Điều Khiển (Controller / Menu) | Phương Thức Thực Thể (Domain Model) | Phương Thức Lưu Trữ (DataStore) |
 | :--- | :--- | :--- | :--- | :--- |
-| **UC01.1** | Thêm hợp đồng mới | `HopDongMenu::themHopDong()` | `HopDong::HopDong(...)`, `HopDong::toFileString()` | `Repository<HopDong>::add()`, `saveToFile()` |
-| **UC01.2** | Xem danh sách hợp đồng | `HopDongMenu::xemDanhSach()` | `HopDong::displayHeader()`, `HopDong::displayRow()` | `Repository<HopDong>::getAll()` |
-| **UC01.3** | Tìm kiếm hợp đồng | `HopDongMenu::timKiemHopDong()` | `HopDong::getId()`, `getSoDienThoai()`, `getMaKhachHang()` | `Repository<HopDong>::findById()`, `filter()` |
-| **UC01.4** | Sắp xếp hợp đồng | `HopDongMenu::sapXepDanhSach()` | `HopDong::getNgayDangKy()`, `getGiaTriGoi()` | `Repository<HopDong>::sort()` (Lambda comparator) |
-| **UC01.5** | Cập nhật & Gia hạn | `HopDongMenu::capNhatHopDong()` | `HopDong::giaHan()`, `tamDung()`, `kichHoatLai()`, `chamDut()` | `Repository<HopDong>::update()`, `saveToFile()` |
-| **UC01.6** | Xóa hợp đồng | `HopDongMenu::xoaHopDong()` | `HopDong::chamDut()` | `Repository<HopDong>::remove()`, `saveToFile()` |
+| **UC01.1** | Thêm hợp đồng mới | `HopDongMenu::themHopDong()` | `HopDong::HopDong(...)`, `HopDong::toFileString()` | `DataStore<HopDong>::add()`, `saveToFile()` |
+| **UC01.2** | Xem danh sách hợp đồng | `HopDongMenu::xemDanhSach()` | `HopDong::displayHeader()`, `HopDong::displayRow()` | `DataStore<HopDong>::getAll()` |
+| **UC01.3** | Tìm kiếm hợp đồng | `HopDongMenu::timKiemHopDong()` | `HopDong::getId()`, `getSoDienThoai()`, `getMaKhachHang()` | `DataStore<HopDong>::findById()`, `filter()` |
+| **UC01.4** | Sắp xếp hợp đồng | `HopDongMenu::sapXepDanhSach()` | `HopDong::getNgayDangKy()`, `getGiaTriGoi()` | `DataStore<HopDong>::sort()` (Lambda comparator) |
+| **UC01.5** | Cập nhật & Gia hạn | `HopDongMenu::capNhatHopDong()` | `HopDong::giaHan()`, `tamDung()`, `kichHoatLai()`, `chamDut()` | `DataStore<HopDong>::update()`, `saveToFile()` |
+| **UC01.6** | Xóa hợp đồng | `HopDongMenu::xoaHopDong()` | `HopDong::chamDut()` | `DataStore<HopDong>::remove()`, `saveToFile()` |
 
 ### 3.2 Phân Hệ Thiết Bị & IMEI (`ThietBiIMEI` - UC02)
 
-| Mã Use Case | Tên Chức Năng | Hàm Điều Khiển (Controller / Menu) | Phương Thức Thực Thể (Domain Model) | Phương Thức Lưu Trữ (Repository) |
+| Mã Use Case | Tên Chức Năng | Hàm Điều Khiển (Controller / Menu) | Phương Thức Thực Thể (Domain Model) | Phương Thức Lưu Trữ (DataStore) |
 | :--- | :--- | :--- | :--- | :--- |
-| **UC02.1** | Thêm thiết bị & Kiểm tra Luhn | `ThietBiIMEIMenu::themThietBi()` | `ThietBiIMEI::validateLuhn()`, `ThietBiIMEI(...)` | `Repository<ThietBiIMEI>::add()`, `saveToFile()` |
-| **UC02.2** | Xem danh sách thiết bị | `ThietBiIMEIMenu::xemDanhSach()` | `ThietBiIMEI::displayHeader()`, `ThietBiIMEI::displayRow()` | `Repository<ThietBiIMEI>::getAll()` |
-| **UC02.3** | Tra cứu thiết bị | `ThietBiIMEIMenu::timKiemThietBi()` | `ThietBiIMEI::getMaIMEI()`, `getSoDienThoai()`, `getHangSanXuat()` | `Repository<ThietBiIMEI>::findById()`, `filter()` |
-| **UC02.4** | Quản lý danh sách đen EIR | `ThietBiIMEIMenu::danhSachKhoaMang()` | `ThietBiIMEI::isBlacklisted()`, `setBlacklist()` | `Repository<ThietBiIMEI>::filter()` |
-| **UC02.5** | Cập nhật thiết bị & Gán SIM | `ThietBiIMEIMenu::capNhatThietBi()` | `ThietBiIMEI::ganSIM()`, `goSIM()`, `capNhatBTS()`, `setBlacklist()` | `Repository<ThietBiIMEI>::update()`, `saveToFile()` |
-| **UC02.6** | Xóa thiết bị | `ThietBiIMEIMenu::xoaThietBi()` | — | `Repository<ThietBiIMEI>::remove()`, `saveToFile()` |
+| **UC02.1** | Thêm thiết bị & Kiểm tra Luhn | `ThietBiIMEIMenu::themThietBi()` | `ThietBiIMEI::validateLuhn()`, `ThietBiIMEI(...)` | `DataStore<ThietBiIMEI>::add()`, `saveToFile()` |
+| **UC02.2** | Xem danh sách thiết bị | `ThietBiIMEIMenu::xemDanhSach()` | `ThietBiIMEI::displayHeader()`, `ThietBiIMEI::displayRow()` | `DataStore<ThietBiIMEI>::getAll()` |
+| **UC02.3** | Tra cứu thiết bị | `ThietBiIMEIMenu::timKiemThietBi()` | `ThietBiIMEI::getMaIMEI()`, `getSoDienThoai()`, `getHangSanXuat()` | `DataStore<ThietBiIMEI>::findById()`, `filter()` |
+| **UC02.4** | Quản lý danh sách đen EIR | `ThietBiIMEIMenu::danhSachKhoaMang()` | `ThietBiIMEI::isBlacklisted()`, `setBlacklist()` | `DataStore<ThietBiIMEI>::filter()` |
+| **UC02.5** | Cập nhật thiết bị & Gán SIM | `ThietBiIMEIMenu::capNhatThietBi()` | `ThietBiIMEI::ganSIM()`, `goSIM()`, `capNhatBTS()`, `setBlacklist()` | `DataStore<ThietBiIMEI>::update()`, `saveToFile()` |
+| **UC02.6** | Xóa thiết bị | `ThietBiIMEIMenu::xoaThietBi()` | — | `DataStore<ThietBiIMEI>::remove()`, `saveToFile()` |
 
 ### 3.3 Phân Tầng Hạ Tầng & Hàm Bổ Trợ (Cross-Cutting Concerns)
 
-Các hàm trong các phân hệ dùng chung (`Normalized`, `DisplayHelper`, `Date`, `InputHelper`, `Repository`) không phải là các Use Case độc lập của người dùng cuối, mà đóng vai trò là **các khối xây dựng nền tảng (Supporting Foundation Blocks)** phục vụ trực tiếp cho các Use Case nghiệp vụ:
+Các hàm trong các phân hệ dùng chung (`Normalized`, `DisplayHelper`, `Date`, `InputHelper`, `DataStore`) không phải là các Use Case độc lập của người dùng cuối, mà đóng vai trò là **các khối xây dựng nền tảng (Supporting Foundation Blocks)** phục vụ trực tiếp cho các Use Case nghiệp vụ:
 
 | Tệp / Không Gian Tên | Hàm Cụ Thể | Phục Vụ Use Case Nào? | Lý Do Tồn Tại & Mục Đích Kỹ Thuật |
 | :--- | :--- | :--- | :--- |
@@ -161,5 +161,5 @@ Các hàm trong các phân hệ dùng chung (`Normalized`, `DisplayHelper`, `Dat
 | `Date` | `isLeapYear()`, `daysInMonth()`, `isValid()` | **UC01.1, UC01.5, UC02.1** | Bảo vệ bất biến lịch Gregory, xử lý chính xác ngày 29/02 năm nhuận trong chu kỳ hợp đồng. |
 | `DisplayHelper` | `printBorder()`, `printHeader()`, `printRow()`, `printCard()` | **UC01.2, UC01.3, UC02.2, UC02.3, UC02.4** | Chuẩn hóa bảng kẻ viền ASCII và phiếu in chi tiết cho toàn bộ các chức năng hiển thị danh sách. |
 | `InputHelper` | `getString()`, `getInt()`, `getDate()`, `getConfirm()`, `pause()` | **Mọi Use Case Tương Tác** | Bắt lỗi luồng `cin`, chống tràn bộ đệm, chống vòng lặp vô tận khi gặp EOF hoặc dữ liệu nhập sai. |
-| `Repository<T>` | `add()`, `update()`, `remove()`, `findById()`, `filter()`, `sort()`, `saveToFile()` | **Mọi Use Case Dữ Liệu** | Quản lý bộ nhớ RAM tập trung, tìm kiếm qua Lambda, và ghi tệp nguyên tử (Atomic Write qua file `.tmp`). |
+| `DataStore<T>` | `add()`, `update()`, `remove()`, `findById()`, `filter()`, `sort()`, `saveToFile()` | **Mọi Use Case Dữ Liệu** | Quản lý bộ nhớ RAM tập trung, tìm kiếm qua Lambda, và ghi tệp nguyên tử (Atomic Write qua file `.tmp`). |
 

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "lib/shared/fileio.h"
-#include "lib/shared/Repository.h"
+#include "lib/shared/DataStore.h"
 #include "lib/models/hopdong.h"
 #include "lib/models/imei.h"
 #include "lib/menus/HopDongMenu.h"
@@ -18,18 +18,18 @@ namespace MainMenuChoices {
 }
 
 int main() {
-    Repository<HopDong> hopDongRepo(FilePaths::HOPDONG_DATA);
-    Repository<ThietBiIMEI> imeiRepo(FilePaths::IMEI_DATA);
+    DataStore<HopDong> hopDongStore(FilePaths::HOPDONG_DATA);
+    DataStore<ThietBiIMEI> imeiStore(FilePaths::IMEI_DATA);
 
     try {
-        hopDongRepo.loadFromFile();
-        imeiRepo.loadFromFile();
+        hopDongStore.loadFromFile();
+        imeiStore.loadFromFile();
     } catch (const std::exception& e) {
         std::cerr << "[CANH BAO] Loi khi tai du lieu ban dau: " << e.what() << "\n";
     }
 
-    HopDongMenu hopDongMenu(hopDongRepo);
-    ThietBiIMEIMenu imeiMenu(imeiRepo);
+    HopDongMenu hopDongMenu(hopDongStore);
+    ThietBiIMEIMenu imeiMenu(imeiStore);
 
     while (true) {
         std::cout << "\n====================================================================\n"
@@ -51,8 +51,8 @@ int main() {
         if (choice == MainMenuChoices::MENU_EXIT) {
             // ponytail: simple sync on exit, fileio handles atomicity via tmp file
             try {
-                hopDongRepo.saveToFile();
-                imeiRepo.saveToFile();
+                hopDongStore.saveToFile();
+                imeiStore.saveToFile();
                 std::cout << "\n[Luu du lieu] Da dong bo du lieu.\n";
             } catch (const std::exception& e) {
                 std::cerr << "\n[CANH BAO] Khong the luu du lieu khi thoat: " << e.what() << "\n";
