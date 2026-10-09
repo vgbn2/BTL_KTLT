@@ -49,7 +49,7 @@ public:
         inFile.close();
         return true;
     }
-
+    //luu vao file
     bool saveToFile() const {
         FileIO::ensureDirectoryExists(filePath);
         std::string tempPath = filePath + DataStoreConstants::TEMP_FILE_EXTENSION;
