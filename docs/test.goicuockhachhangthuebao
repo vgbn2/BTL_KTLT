@@ -1,0 +1,20 @@
+int main() {
+    GoiCuoc gc1("M50", "Mobi50", 50000, 5, 100);
+    GoiCuoc gc2("VD140", VinaData140, 140000, 30, 300); 
+    GoiCuoc gc_Vina("VD140", "Vina140", 140000, 30, 300);
+
+    
+    KhachHang kh1("KH001", "Nguyễn Văn A", "012345678901", "0901234567");
+
+    
+    ThueBao tb1("0901234567", "Trả trước", kh1);
+
+    
+    tb1.dangKyGoiCuoc(gc1);
+    tb1.dangKyGoiCuoc(gc_Vina);
+
+    
+    tb1.hienThi();
+
+    return 0;
+}
