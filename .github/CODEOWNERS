@@ -1,0 +1,9 @@
+# Repository-level README — requires maintainer approval on any PR
+/Readme.md @vgbn2
+/README.md @vgbn2
+
+# All documentation — prevents auto-merge from silently overwriting teammates' docs
+/docs/ @vgbn2
+
+# Member profiles — each member's own README is theirs; maintainer arbitrates conflicts
+/members/ @vgbn2

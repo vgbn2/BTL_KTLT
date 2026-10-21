@@ -1,0 +1,1039 @@
+# BTS_ID|MCC|MNC|LAC|CELL_ID|PROVINCE_CODE|DISTRICT|WARD|FULL_ADDRESS|LATITUDE|LONGITUDE|RADIO_TECH|CARRIER|HEIGHT_M|AZIMUTH_DEG
+BTS-BD-001|452|02|19102|2510201|BD|Thu Dau Mot|Phu Cuong|So 13 Duong Binh Duong, Phuong Phu Cuong, Quan/Huyen Thu Dau Mot, Binh Duong|10.965900|106.640400|5G NR|VinaPhone (VNPT)|31|45
+BTS-BD-002|452|01|19102|2510202|BD|Thu Dau Mot|Phu Cuong|So 26 Duong Yersin, Phuong Phu Cuong, Quan/Huyen Thu Dau Mot, Binh Duong|10.975400|106.652900|LTE|MobiFone|32|90
+BTS-BD-003|452|04|19102|2510203|BD|Thu Dau Mot|Phu Cuong|So 39 Duong Cach Mang Thang 8, Phuong Phu Cuong, Quan/Huyen Thu Dau Mot, Binh Duong|10.984900|106.665400|5G NR|Viettel|33|135
+BTS-BD-004|452|02|19102|2510204|BD|Thu Dau Mot|Phu Cuong|So 52 Duong Pham Ngoc Thach, Phuong Phu Cuong, Quan/Huyen Thu Dau Mot, Binh Duong|10.994400|106.662900|LTE|VinaPhone (VNPT)|34|180
+BTS-BD-005|452|01|19102|2510205|BD|Thu Dau Mot|Phu Cuong|So 65 Duong Le Hong Phong, Phuong Phu Cuong, Quan/Huyen Thu Dau Mot, Binh Duong|11.003900|106.675400|5G NR|MobiFone|35|225
+BTS-BD-006|452|04|19102|2510206|BD|Thu Dau Mot|Hiep Thanh|So 18 Duong Binh Duong, Phuong Hiep Thanh, Quan/Huyen Thu Dau Mot, Binh Duong|10.973400|106.647900|LTE|Viettel|36|270
+BTS-BD-007|452|02|19102|2510207|BD|Thu Dau Mot|Hiep Thanh|So 31 Duong Yersin, Phuong Hiep Thanh, Quan/Huyen Thu Dau Mot, Binh Duong|10.982900|106.645400|5G NR|VinaPhone (VNPT)|37|315
+BTS-BD-008|452|01|19102|2510208|BD|Thu Dau Mot|Hiep Thanh|So 44 Duong Cach Mang Thang 8, Phuong Hiep Thanh, Quan/Huyen Thu Dau Mot, Binh Duong|10.992400|106.657900|LTE|MobiFone|38|0
+BTS-BD-009|452|04|19102|2510209|BD|Thu Dau Mot|Hiep Thanh|So 57 Duong Pham Ngoc Thach, Phuong Hiep Thanh, Quan/Huyen Thu Dau Mot, Binh Duong|11.001900|106.670400|5G NR|Viettel|39|45
+BTS-BD-010|452|02|19102|2510210|BD|Thu Dau Mot|Hiep Thanh|So 70 Duong Le Hong Phong, Phuong Hiep Thanh, Quan/Huyen Thu Dau Mot, Binh Duong|10.996400|106.667900|LTE|VinaPhone (VNPT)|40|90
+BTS-BD-011|452|01|19102|2510211|BD|Thu Dau Mot|Phu Hoa|So 23 Duong Binh Duong, Phuong Phu Hoa, Quan/Huyen Thu Dau Mot, Binh Duong|10.965900|106.640400|5G NR|MobiFone|41|135
+BTS-BD-012|452|04|19102|2510212|BD|Thu Dau Mot|Phu Hoa|So 36 Duong Yersin, Phuong Phu Hoa, Quan/Huyen Thu Dau Mot, Binh Duong|10.975400|106.652900|LTE|Viettel|42|180
+BTS-BD-013|452|02|19102|2510213|BD|Thu Dau Mot|Phu Hoa|So 49 Duong Cach Mang Thang 8, Phuong Phu Hoa, Quan/Huyen Thu Dau Mot, Binh Duong|10.984900|106.665400|5G NR|VinaPhone (VNPT)|43|225
+BTS-BD-014|452|01|19102|2510214|BD|Thu Dau Mot|Phu Hoa|So 62 Duong Pham Ngoc Thach, Phuong Phu Hoa, Quan/Huyen Thu Dau Mot, Binh Duong|10.994400|106.662900|LTE|MobiFone|44|270
+BTS-BD-015|452|04|19102|2510215|BD|Thu Dau Mot|Phu Hoa|So 75 Duong Le Hong Phong, Phuong Phu Hoa, Quan/Huyen Thu Dau Mot, Binh Duong|11.003900|106.675400|5G NR|Viettel|45|315
+BTS-BD-016|452|02|19102|2510216|BD|Thu Dau Mot|Dinh Hoa|So 28 Duong Binh Duong, Phuong Dinh Hoa, Quan/Huyen Thu Dau Mot, Binh Duong|10.973400|106.647900|LTE|VinaPhone (VNPT)|46|0
+BTS-BD-017|452|01|19102|2510217|BD|Thu Dau Mot|Dinh Hoa|So 41 Duong Yersin, Phuong Dinh Hoa, Quan/Huyen Thu Dau Mot, Binh Duong|10.982900|106.645400|5G NR|MobiFone|47|45
+BTS-BD-018|452|04|19102|2510218|BD|Thu Dau Mot|Dinh Hoa|So 54 Duong Cach Mang Thang 8, Phuong Dinh Hoa, Quan/Huyen Thu Dau Mot, Binh Duong|10.992400|106.657900|LTE|Viettel|48|90
+BTS-BD-019|452|02|19102|2510219|BD|Thu Dau Mot|Dinh Hoa|So 67 Duong Pham Ngoc Thach, Phuong Dinh Hoa, Quan/Huyen Thu Dau Mot, Binh Duong|11.001900|106.670400|5G NR|VinaPhone (VNPT)|49|135
+BTS-BD-020|452|01|19102|2510220|BD|Thu Dau Mot|Dinh Hoa|So 80 Duong Le Hong Phong, Phuong Dinh Hoa, Quan/Huyen Thu Dau Mot, Binh Duong|10.996400|106.667900|LTE|MobiFone|50|180
+BTS-BD-021|452|04|19102|2510221|BD|Di An|Di An|So 33 Duong DT743, Phuong Di An, Quan/Huyen Di An, Binh Duong|10.965900|106.640400|5G NR|Viettel|51|225
+BTS-BD-022|452|02|19102|2510222|BD|Di An|Di An|So 46 Duong Nguyen An Ninh, Phuong Di An, Quan/Huyen Di An, Binh Duong|10.975400|106.652900|LTE|VinaPhone (VNPT)|52|270
+BTS-BD-023|452|01|19102|2510223|BD|Di An|Di An|So 59 Duong Quoc Lo 1K, Phuong Di An, Quan/Huyen Di An, Binh Duong|10.984900|106.665400|5G NR|MobiFone|53|315
+BTS-BD-024|452|04|19102|2510224|BD|Di An|Di An|So 72 Duong Ly Thuong Kiet, Phuong Di An, Quan/Huyen Di An, Binh Duong|10.994400|106.662900|LTE|Viettel|54|0
+BTS-BD-025|452|02|19102|2510225|BD|Di An|An Binh|So 37 Duong DT743, Phuong An Binh, Quan/Huyen Di An, Binh Duong|10.971900|106.643400|5G NR|VinaPhone (VNPT)|30|45
+BTS-BD-026|452|01|19102|2510226|BD|Di An|An Binh|So 50 Duong Nguyen An Ninh, Phuong An Binh, Quan/Huyen Di An, Binh Duong|10.981400|106.655900|LTE|MobiFone|31|90
+BTS-BD-027|452|04|19102|2510227|BD|Di An|An Binh|So 63 Duong Quoc Lo 1K, Phuong An Binh, Quan/Huyen Di An, Binh Duong|10.990900|106.653400|5G NR|Viettel|32|135
+BTS-BD-028|452|02|19102|2510228|BD|Di An|An Binh|So 76 Duong Ly Thuong Kiet, Phuong An Binh, Quan/Huyen Di An, Binh Duong|11.000400|106.665900|LTE|VinaPhone (VNPT)|33|180
+BTS-BD-029|452|01|19102|2510229|BD|Di An|Tan Dong Hiep|So 41 Duong DT743, Phuong Tan Dong Hiep, Quan/Huyen Di An, Binh Duong|10.977900|106.646400|5G NR|MobiFone|34|225
+BTS-BD-030|452|04|19102|2510230|BD|Di An|Tan Dong Hiep|So 54 Duong Nguyen An Ninh, Phuong Tan Dong Hiep, Quan/Huyen Di An, Binh Duong|10.972400|106.643900|LTE|Viettel|35|270
+BTS-BD-031|452|02|19102|2510231|BD|Di An|Tan Dong Hiep|So 67 Duong Quoc Lo 1K, Phuong Tan Dong Hiep, Quan/Huyen Di An, Binh Duong|10.981900|106.656400|5G NR|VinaPhone (VNPT)|36|315
+BTS-BD-032|452|01|19102|2510232|BD|Di An|Tan Dong Hiep|So 80 Duong Ly Thuong Kiet, Phuong Tan Dong Hiep, Quan/Huyen Di An, Binh Duong|10.991400|106.668900|LTE|MobiFone|37|0
+BTS-BD-033|452|04|19102|2510233|BD|Di An|Dong Hoa|So 45 Duong DT743, Phuong Dong Hoa, Quan/Huyen Di An, Binh Duong|10.968900|106.649400|5G NR|Viettel|38|45
+BTS-BD-034|452|02|19102|2510234|BD|Di An|Dong Hoa|So 58 Duong Nguyen An Ninh, Phuong Dong Hoa, Quan/Huyen Di An, Binh Duong|10.978400|106.646900|LTE|VinaPhone (VNPT)|39|90
+BTS-BD-035|452|01|19102|2510235|BD|Di An|Dong Hoa|So 71 Duong Quoc Lo 1K, Phuong Dong Hoa, Quan/Huyen Di An, Binh Duong|10.987900|106.659400|5G NR|MobiFone|40|135
+BTS-BD-036|452|04|19102|2510236|BD|Di An|Dong Hoa|So 84 Duong Ly Thuong Kiet, Phuong Dong Hoa, Quan/Huyen Di An, Binh Duong|10.997400|106.671900|LTE|Viettel|41|180
+BTS-BD-037|452|02|19102|2510237|BD|Thuan An|Lai Thieu|So 49 Duong Quoc Lo 13, Phuong Lai Thieu, Quan/Huyen Thuan An, Binh Duong|10.974900|106.637400|5G NR|VinaPhone (VNPT)|42|225
+BTS-BD-038|452|01|19102|2510238|BD|Thuan An|Lai Thieu|So 62 Duong DT743, Phuong Lai Thieu, Quan/Huyen Thuan An, Binh Duong|10.984400|106.649900|LTE|MobiFone|43|270
+BTS-BD-039|452|04|19102|2510239|BD|Thuan An|Lai Thieu|So 75 Duong Nguyen Trai, Phuong Lai Thieu, Quan/Huyen Thuan An, Binh Duong|10.993900|106.662400|5G NR|Viettel|44|315
+BTS-BD-040|452|02|19102|2510240|BD|Thuan An|Lai Thieu|So 88 Duong Phan Dinh Phung, Phuong Lai Thieu, Quan/Huyen Thuan An, Binh Duong|10.988400|106.659900|LTE|VinaPhone (VNPT)|45|0
+BTS-BD-041|452|01|19102|2510241|BD|Thuan An|An Phu|So 53 Duong Quoc Lo 13, Phuong An Phu, Quan/Huyen Thuan An, Binh Duong|10.965900|106.640400|5G NR|MobiFone|46|45
+BTS-BD-042|452|04|19102|2510242|BD|Thuan An|An Phu|So 66 Duong DT743, Phuong An Phu, Quan/Huyen Thuan An, Binh Duong|10.975400|106.652900|LTE|Viettel|47|90
+BTS-BD-043|452|02|19102|2510243|BD|Thuan An|An Phu|So 79 Duong Nguyen Trai, Phuong An Phu, Quan/Huyen Thuan An, Binh Duong|10.984900|106.665400|5G NR|VinaPhone (VNPT)|48|135
+BTS-BD-044|452|01|19102|2510244|BD|Thuan An|An Phu|So 92 Duong Phan Dinh Phung, Phuong An Phu, Quan/Huyen Thuan An, Binh Duong|10.994400|106.662900|LTE|MobiFone|49|180
+BTS-BD-045|452|04|19102|2510245|BD|Thuan An|Thuan Giao|So 57 Duong Quoc Lo 13, Phuong Thuan Giao, Quan/Huyen Thuan An, Binh Duong|10.971900|106.643400|5G NR|Viettel|50|225
+BTS-BD-046|452|02|19102|2510246|BD|Thuan An|Thuan Giao|So 70 Duong DT743, Phuong Thuan Giao, Quan/Huyen Thuan An, Binh Duong|10.981400|106.655900|LTE|VinaPhone (VNPT)|51|270
+BTS-BD-047|452|01|19102|2510247|BD|Thuan An|Thuan Giao|So 83 Duong Nguyen Trai, Phuong Thuan Giao, Quan/Huyen Thuan An, Binh Duong|10.990900|106.653400|5G NR|MobiFone|52|315
+BTS-BD-048|452|04|19102|2510248|BD|Thuan An|Thuan Giao|So 96 Duong Phan Dinh Phung, Phuong Thuan Giao, Quan/Huyen Thuan An, Binh Duong|11.000400|106.665900|LTE|Viettel|53|0
+BTS-BD-049|452|02|19102|2510249|BD|Thuan An|Binh Chuan|So 61 Duong Quoc Lo 13, Phuong Binh Chuan, Quan/Huyen Thuan An, Binh Duong|10.977900|106.646400|5G NR|VinaPhone (VNPT)|54|45
+BTS-BD-050|452|01|19102|2510250|BD|Thuan An|Binh Chuan|So 24 Duong DT743, Phuong Binh Chuan, Quan/Huyen Thuan An, Binh Duong|10.972400|106.643900|LTE|MobiFone|30|90
+BTS-BD-051|452|04|19102|2510251|BD|Thuan An|Binh Chuan|So 37 Duong Nguyen Trai, Phuong Binh Chuan, Quan/Huyen Thuan An, Binh Duong|10.981900|106.656400|5G NR|Viettel|31|135
+BTS-BD-052|452|02|19102|2510252|BD|Thuan An|Binh Chuan|So 50 Duong Phan Dinh Phung, Phuong Binh Chuan, Quan/Huyen Thuan An, Binh Duong|10.991400|106.668900|LTE|VinaPhone (VNPT)|32|180
+BTS-BN-001|452|02|23001|2500101|BN|TP Bac Ninh|Ninh Xa|So 13 Duong Tran Hung Dao, Phuong Ninh Xa, Quan/Huyen TP Bac Ninh, Bac Ninh|21.171600|106.064800|5G NR|VinaPhone (VNPT)|31|45
+BTS-BN-002|452|01|23001|2500102|BN|TP Bac Ninh|Ninh Xa|So 26 Duong Nguyen Gia Thieu, Phuong Ninh Xa, Quan/Huyen TP Bac Ninh, Bac Ninh|21.181100|106.077300|LTE|MobiFone|32|90
+BTS-BN-003|452|04|23001|2500103|BN|TP Bac Ninh|Ninh Xa|So 39 Duong Ngo Gia Tu, Phuong Ninh Xa, Quan/Huyen TP Bac Ninh, Bac Ninh|21.190600|106.089800|5G NR|Viettel|33|135
+BTS-BN-004|452|02|23001|2500104|BN|TP Bac Ninh|Ninh Xa|So 52 Duong Ly Thai To, Phuong Ninh Xa, Quan/Huyen TP Bac Ninh, Bac Ninh|21.200100|106.087300|LTE|VinaPhone (VNPT)|34|180
+BTS-BN-005|452|01|23001|2500105|BN|TP Bac Ninh|Ninh Xa|So 65 Duong Hai Ba Trung, Phuong Ninh Xa, Quan/Huyen TP Bac Ninh, Bac Ninh|21.209600|106.099800|5G NR|MobiFone|35|225
+BTS-BN-006|452|04|23001|2500106|BN|TP Bac Ninh|Tien An|So 18 Duong Tran Hung Dao, Phuong Tien An, Quan/Huyen TP Bac Ninh, Bac Ninh|21.179100|106.072300|LTE|Viettel|36|270
+BTS-BN-007|452|02|23001|2500107|BN|TP Bac Ninh|Tien An|So 31 Duong Nguyen Gia Thieu, Phuong Tien An, Quan/Huyen TP Bac Ninh, Bac Ninh|21.188600|106.069800|5G NR|VinaPhone (VNPT)|37|315
+BTS-BN-008|452|01|23001|2500108|BN|TP Bac Ninh|Tien An|So 44 Duong Ngo Gia Tu, Phuong Tien An, Quan/Huyen TP Bac Ninh, Bac Ninh|21.198100|106.082300|LTE|MobiFone|38|0
+BTS-BN-009|452|04|23001|2500109|BN|TP Bac Ninh|Tien An|So 57 Duong Ly Thai To, Phuong Tien An, Quan/Huyen TP Bac Ninh, Bac Ninh|21.207600|106.094800|5G NR|Viettel|39|45
+BTS-BN-010|452|02|23001|2500110|BN|TP Bac Ninh|Tien An|So 70 Duong Hai Ba Trung, Phuong Tien An, Quan/Huyen TP Bac Ninh, Bac Ninh|21.202100|106.092300|LTE|VinaPhone (VNPT)|40|90
+BTS-BN-011|452|01|23001|2500111|BN|TP Bac Ninh|Ve An|So 23 Duong Tran Hung Dao, Phuong Ve An, Quan/Huyen TP Bac Ninh, Bac Ninh|21.171600|106.064800|5G NR|MobiFone|41|135
+BTS-BN-012|452|04|23001|2500112|BN|TP Bac Ninh|Ve An|So 36 Duong Nguyen Gia Thieu, Phuong Ve An, Quan/Huyen TP Bac Ninh, Bac Ninh|21.181100|106.077300|LTE|Viettel|42|180
+BTS-BN-013|452|02|23001|2500113|BN|TP Bac Ninh|Ve An|So 49 Duong Ngo Gia Tu, Phuong Ve An, Quan/Huyen TP Bac Ninh, Bac Ninh|21.190600|106.089800|5G NR|VinaPhone (VNPT)|43|225
+BTS-BN-014|452|01|23001|2500114|BN|TP Bac Ninh|Ve An|So 62 Duong Ly Thai To, Phuong Ve An, Quan/Huyen TP Bac Ninh, Bac Ninh|21.200100|106.087300|LTE|MobiFone|44|270
+BTS-BN-015|452|04|23001|2500115|BN|TP Bac Ninh|Ve An|So 75 Duong Hai Ba Trung, Phuong Ve An, Quan/Huyen TP Bac Ninh, Bac Ninh|21.209600|106.099800|5G NR|Viettel|45|315
+BTS-BN-016|452|02|23001|2500116|BN|TP Bac Ninh|Thi Cau|So 28 Duong Tran Hung Dao, Phuong Thi Cau, Quan/Huyen TP Bac Ninh, Bac Ninh|21.179100|106.072300|LTE|VinaPhone (VNPT)|46|0
+BTS-BN-017|452|01|23001|2500117|BN|TP Bac Ninh|Thi Cau|So 41 Duong Nguyen Gia Thieu, Phuong Thi Cau, Quan/Huyen TP Bac Ninh, Bac Ninh|21.188600|106.069800|5G NR|MobiFone|47|45
+BTS-BN-018|452|04|23001|2500118|BN|TP Bac Ninh|Thi Cau|So 54 Duong Ngo Gia Tu, Phuong Thi Cau, Quan/Huyen TP Bac Ninh, Bac Ninh|21.198100|106.082300|LTE|Viettel|48|90
+BTS-BN-019|452|02|23001|2500119|BN|TP Bac Ninh|Thi Cau|So 67 Duong Ly Thai To, Phuong Thi Cau, Quan/Huyen TP Bac Ninh, Bac Ninh|21.207600|106.094800|5G NR|VinaPhone (VNPT)|49|135
+BTS-BN-020|452|01|23001|2500120|BN|TP Bac Ninh|Thi Cau|So 80 Duong Hai Ba Trung, Phuong Thi Cau, Quan/Huyen TP Bac Ninh, Bac Ninh|21.202100|106.092300|LTE|MobiFone|50|180
+BTS-BN-021|452|04|23001|2500121|BN|TP Bac Ninh|Dai Phuc|So 33 Duong Tran Hung Dao, Phuong Dai Phuc, Quan/Huyen TP Bac Ninh, Bac Ninh|21.171600|106.064800|5G NR|Viettel|51|225
+BTS-BN-022|452|02|23001|2500122|BN|TP Bac Ninh|Dai Phuc|So 46 Duong Nguyen Gia Thieu, Phuong Dai Phuc, Quan/Huyen TP Bac Ninh, Bac Ninh|21.181100|106.077300|LTE|VinaPhone (VNPT)|52|270
+BTS-BN-023|452|01|23001|2500123|BN|TP Bac Ninh|Dai Phuc|So 59 Duong Ngo Gia Tu, Phuong Dai Phuc, Quan/Huyen TP Bac Ninh, Bac Ninh|21.190600|106.089800|5G NR|MobiFone|53|315
+BTS-BN-024|452|04|23001|2500124|BN|TP Bac Ninh|Dai Phuc|So 72 Duong Ly Thai To, Phuong Dai Phuc, Quan/Huyen TP Bac Ninh, Bac Ninh|21.200100|106.087300|LTE|Viettel|54|0
+BTS-BN-025|452|02|23001|2500125|BN|TP Bac Ninh|Dai Phuc|So 85 Duong Hai Ba Trung, Phuong Dai Phuc, Quan/Huyen TP Bac Ninh, Bac Ninh|21.209600|106.099800|5G NR|VinaPhone (VNPT)|30|45
+BTS-BN-026|452|01|23001|2500126|BN|Tu Son|Dong Ngan|So 38 Duong Tran Phu, Phuong Dong Ngan, Quan/Huyen Tu Son, Bac Ninh|21.179100|106.072300|LTE|MobiFone|31|90
+BTS-BN-027|452|04|23001|2500127|BN|Tu Son|Dong Ngan|So 51 Duong Ly Loi, Phuong Dong Ngan, Quan/Huyen Tu Son, Bac Ninh|21.188600|106.069800|5G NR|Viettel|32|135
+BTS-BN-028|452|02|23001|2500128|BN|Tu Son|Dong Ngan|So 64 Duong Le Quang Dao, Phuong Dong Ngan, Quan/Huyen Tu Son, Bac Ninh|21.198100|106.082300|LTE|VinaPhone (VNPT)|33|180
+BTS-BN-029|452|01|23001|2500129|BN|Tu Son|Dinh Bang|So 41 Duong Tran Phu, Phuong Dinh Bang, Quan/Huyen Tu Son, Bac Ninh|21.183600|106.070800|5G NR|MobiFone|34|225
+BTS-BN-030|452|04|23001|2500130|BN|Tu Son|Dinh Bang|So 54 Duong Ly Loi, Phuong Dinh Bang, Quan/Huyen Tu Son, Bac Ninh|21.178100|106.068300|LTE|Viettel|35|270
+BTS-BN-031|452|02|23001|2500131|BN|Tu Son|Dinh Bang|So 67 Duong Le Quang Dao, Phuong Dinh Bang, Quan/Huyen Tu Son, Bac Ninh|21.187600|106.080800|5G NR|VinaPhone (VNPT)|36|315
+BTS-BN-032|452|01|23001|2500132|BN|Tu Son|Trang Ha|So 44 Duong Tran Phu, Phuong Trang Ha, Quan/Huyen Tu Son, Bac Ninh|21.173100|106.069300|LTE|MobiFone|37|0
+BTS-BN-033|452|04|23001|2500133|BN|Tu Son|Trang Ha|So 57 Duong Ly Loi, Phuong Trang Ha, Quan/Huyen Tu Son, Bac Ninh|21.182600|106.081800|5G NR|Viettel|38|45
+BTS-BN-034|452|02|23001|2500134|BN|Tu Son|Trang Ha|So 70 Duong Le Quang Dao, Phuong Trang Ha, Quan/Huyen Tu Son, Bac Ninh|21.192100|106.079300|LTE|VinaPhone (VNPT)|39|90
+BTS-BN-035|452|01|23001|2500135|BN|Tu Son|Tan Hong|So 47 Duong Tran Phu, Phuong Tan Hong, Quan/Huyen Tu Son, Bac Ninh|21.177600|106.067800|5G NR|MobiFone|40|135
+BTS-BN-036|452|04|23001|2500136|BN|Tu Son|Tan Hong|So 60 Duong Ly Loi, Phuong Tan Hong, Quan/Huyen Tu Son, Bac Ninh|21.187100|106.080300|LTE|Viettel|41|180
+BTS-BN-037|452|02|23001|2500137|BN|Tu Son|Tan Hong|So 73 Duong Le Quang Dao, Phuong Tan Hong, Quan/Huyen Tu Son, Bac Ninh|21.196600|106.077800|5G NR|VinaPhone (VNPT)|42|225
+BTS-CT-001|452|02|45001|2500101|CT|Ninh Kieu|Tan An|So 13 Duong 30 Thang 4, Phuong Tan An, Quan/Huyen Ninh Kieu, Can Tho|10.030700|105.735400|5G NR|VinaPhone (VNPT)|31|45
+BTS-CT-002|452|01|45001|2500102|CT|Ninh Kieu|Tan An|So 26 Duong 3 Thang 2, Phuong Tan An, Quan/Huyen Ninh Kieu, Can Tho|10.040200|105.747900|LTE|MobiFone|32|90
+BTS-CT-003|452|04|45001|2500103|CT|Ninh Kieu|Tan An|So 39 Duong Nguyen Trai, Phuong Tan An, Quan/Huyen Ninh Kieu, Can Tho|10.049700|105.760400|5G NR|Viettel|33|135
+BTS-CT-004|452|02|45001|2500104|CT|Ninh Kieu|Tan An|So 52 Duong Dai Lo Hoa Binh, Phuong Tan An, Quan/Huyen Ninh Kieu, Can Tho|10.059200|105.757900|LTE|VinaPhone (VNPT)|34|180
+BTS-CT-005|452|01|45001|2500105|CT|Ninh Kieu|Tan An|So 65 Duong Tran Hung Dao, Phuong Tan An, Quan/Huyen Ninh Kieu, Can Tho|10.068700|105.770400|5G NR|MobiFone|35|225
+BTS-CT-006|452|04|45001|2500106|CT|Ninh Kieu|An Cu|So 18 Duong 30 Thang 4, Phuong An Cu, Quan/Huyen Ninh Kieu, Can Tho|10.038200|105.742900|LTE|Viettel|36|270
+BTS-CT-007|452|02|45001|2500107|CT|Ninh Kieu|An Cu|So 31 Duong 3 Thang 2, Phuong An Cu, Quan/Huyen Ninh Kieu, Can Tho|10.047700|105.740400|5G NR|VinaPhone (VNPT)|37|315
+BTS-CT-008|452|01|45001|2500108|CT|Ninh Kieu|An Cu|So 44 Duong Nguyen Trai, Phuong An Cu, Quan/Huyen Ninh Kieu, Can Tho|10.057200|105.752900|LTE|MobiFone|38|0
+BTS-CT-009|452|04|45001|2500109|CT|Ninh Kieu|An Cu|So 57 Duong Dai Lo Hoa Binh, Phuong An Cu, Quan/Huyen Ninh Kieu, Can Tho|10.066700|105.765400|5G NR|Viettel|39|45
+BTS-CT-010|452|02|45001|2500110|CT|Ninh Kieu|An Cu|So 70 Duong Tran Hung Dao, Phuong An Cu, Quan/Huyen Ninh Kieu, Can Tho|10.061200|105.762900|LTE|VinaPhone (VNPT)|40|90
+BTS-CT-011|452|01|45001|2500111|CT|Ninh Kieu|An Nghiep|So 23 Duong 30 Thang 4, Phuong An Nghiep, Quan/Huyen Ninh Kieu, Can Tho|10.030700|105.735400|5G NR|MobiFone|41|135
+BTS-CT-012|452|04|45001|2500112|CT|Ninh Kieu|An Nghiep|So 36 Duong 3 Thang 2, Phuong An Nghiep, Quan/Huyen Ninh Kieu, Can Tho|10.040200|105.747900|LTE|Viettel|42|180
+BTS-CT-013|452|02|45001|2500113|CT|Ninh Kieu|An Nghiep|So 49 Duong Nguyen Trai, Phuong An Nghiep, Quan/Huyen Ninh Kieu, Can Tho|10.049700|105.760400|5G NR|VinaPhone (VNPT)|43|225
+BTS-CT-014|452|01|45001|2500114|CT|Ninh Kieu|An Nghiep|So 62 Duong Dai Lo Hoa Binh, Phuong An Nghiep, Quan/Huyen Ninh Kieu, Can Tho|10.059200|105.757900|LTE|MobiFone|44|270
+BTS-CT-015|452|04|45001|2500115|CT|Ninh Kieu|An Nghiep|So 75 Duong Tran Hung Dao, Phuong An Nghiep, Quan/Huyen Ninh Kieu, Can Tho|10.068700|105.770400|5G NR|Viettel|45|315
+BTS-CT-016|452|02|45001|2500116|CT|Ninh Kieu|Xuan Khanh|So 28 Duong 30 Thang 4, Phuong Xuan Khanh, Quan/Huyen Ninh Kieu, Can Tho|10.038200|105.742900|LTE|VinaPhone (VNPT)|46|0
+BTS-CT-017|452|01|45001|2500117|CT|Ninh Kieu|Xuan Khanh|So 41 Duong 3 Thang 2, Phuong Xuan Khanh, Quan/Huyen Ninh Kieu, Can Tho|10.047700|105.740400|5G NR|MobiFone|47|45
+BTS-CT-018|452|04|45001|2500118|CT|Ninh Kieu|Xuan Khanh|So 54 Duong Nguyen Trai, Phuong Xuan Khanh, Quan/Huyen Ninh Kieu, Can Tho|10.057200|105.752900|LTE|Viettel|48|90
+BTS-CT-019|452|02|45001|2500119|CT|Ninh Kieu|Xuan Khanh|So 67 Duong Dai Lo Hoa Binh, Phuong Xuan Khanh, Quan/Huyen Ninh Kieu, Can Tho|10.066700|105.765400|5G NR|VinaPhone (VNPT)|49|135
+BTS-CT-020|452|01|45001|2500120|CT|Ninh Kieu|Xuan Khanh|So 80 Duong Tran Hung Dao, Phuong Xuan Khanh, Quan/Huyen Ninh Kieu, Can Tho|10.061200|105.762900|LTE|MobiFone|50|180
+BTS-CT-021|452|04|45001|2500121|CT|Ninh Kieu|Hung Loi|So 33 Duong 30 Thang 4, Phuong Hung Loi, Quan/Huyen Ninh Kieu, Can Tho|10.030700|105.735400|5G NR|Viettel|51|225
+BTS-CT-022|452|02|45001|2500122|CT|Ninh Kieu|Hung Loi|So 46 Duong 3 Thang 2, Phuong Hung Loi, Quan/Huyen Ninh Kieu, Can Tho|10.040200|105.747900|LTE|VinaPhone (VNPT)|52|270
+BTS-CT-023|452|01|45001|2500123|CT|Ninh Kieu|Hung Loi|So 59 Duong Nguyen Trai, Phuong Hung Loi, Quan/Huyen Ninh Kieu, Can Tho|10.049700|105.760400|5G NR|MobiFone|53|315
+BTS-CT-024|452|04|45001|2500124|CT|Ninh Kieu|Hung Loi|So 72 Duong Dai Lo Hoa Binh, Phuong Hung Loi, Quan/Huyen Ninh Kieu, Can Tho|10.059200|105.757900|LTE|Viettel|54|0
+BTS-CT-025|452|02|45001|2500125|CT|Ninh Kieu|Hung Loi|So 85 Duong Tran Hung Dao, Phuong Hung Loi, Quan/Huyen Ninh Kieu, Can Tho|10.068700|105.770400|5G NR|VinaPhone (VNPT)|30|45
+BTS-CT-026|452|01|45001|2500126|CT|Binh Thuy|Binh Thuy|So 38 Duong Le Hong Phong, Phuong Binh Thuy, Quan/Huyen Binh Thuy, Can Tho|10.038200|105.742900|LTE|MobiFone|31|90
+BTS-CT-027|452|04|45001|2500127|CT|Binh Thuy|Binh Thuy|So 51 Duong Bui Huu Nghia, Phuong Binh Thuy, Quan/Huyen Binh Thuy, Can Tho|10.047700|105.740400|5G NR|Viettel|32|135
+BTS-CT-028|452|02|45001|2500128|CT|Binh Thuy|Binh Thuy|So 64 Duong Vo Van Kiet, Phuong Binh Thuy, Quan/Huyen Binh Thuy, Can Tho|10.057200|105.752900|LTE|VinaPhone (VNPT)|33|180
+BTS-CT-029|452|01|45001|2500129|CT|Binh Thuy|Binh Thuy|So 77 Duong Nguyen Chi Thanh, Phuong Binh Thuy, Quan/Huyen Binh Thuy, Can Tho|10.066700|105.765400|5G NR|MobiFone|34|225
+BTS-CT-030|452|04|45001|2500130|CT|Binh Thuy|An Thoi|So 42 Duong Le Hong Phong, Phuong An Thoi, Quan/Huyen Binh Thuy, Can Tho|10.029200|105.730900|LTE|Viettel|35|270
+BTS-CT-031|452|02|45001|2500131|CT|Binh Thuy|An Thoi|So 55 Duong Bui Huu Nghia, Phuong An Thoi, Quan/Huyen Binh Thuy, Can Tho|10.038700|105.743400|5G NR|VinaPhone (VNPT)|36|315
+BTS-CT-032|452|01|45001|2500132|CT|Binh Thuy|An Thoi|So 68 Duong Vo Van Kiet, Phuong An Thoi, Quan/Huyen Binh Thuy, Can Tho|10.048200|105.755900|LTE|MobiFone|37|0
+BTS-CT-033|452|04|45001|2500133|CT|Binh Thuy|An Thoi|So 81 Duong Nguyen Chi Thanh, Phuong An Thoi, Quan/Huyen Binh Thuy, Can Tho|10.057700|105.768400|5G NR|Viettel|38|45
+BTS-CT-034|452|02|45001|2500134|CT|Binh Thuy|Tra An|So 46 Duong Le Hong Phong, Phuong Tra An, Quan/Huyen Binh Thuy, Can Tho|10.035200|105.733900|LTE|VinaPhone (VNPT)|39|90
+BTS-CT-035|452|01|45001|2500135|CT|Binh Thuy|Tra An|So 59 Duong Bui Huu Nghia, Phuong Tra An, Quan/Huyen Binh Thuy, Can Tho|10.044700|105.746400|5G NR|MobiFone|40|135
+BTS-CT-036|452|04|45001|2500136|CT|Binh Thuy|Tra An|So 72 Duong Vo Van Kiet, Phuong Tra An, Quan/Huyen Binh Thuy, Can Tho|10.054200|105.758900|LTE|Viettel|41|180
+BTS-CT-037|452|02|45001|2500137|CT|Binh Thuy|Tra An|So 85 Duong Nguyen Chi Thanh, Phuong Tra An, Quan/Huyen Binh Thuy, Can Tho|10.063700|105.756400|5G NR|VinaPhone (VNPT)|42|225
+BTS-CT-038|452|01|45001|2500138|CT|Binh Thuy|Long Hoa|So 50 Duong Le Hong Phong, Phuong Long Hoa, Quan/Huyen Binh Thuy, Can Tho|10.041200|105.736900|LTE|MobiFone|43|270
+BTS-CT-039|452|04|45001|2500139|CT|Binh Thuy|Long Hoa|So 63 Duong Bui Huu Nghia, Phuong Long Hoa, Quan/Huyen Binh Thuy, Can Tho|10.050700|105.749400|5G NR|Viettel|44|315
+BTS-CT-040|452|02|45001|2500140|CT|Binh Thuy|Long Hoa|So 76 Duong Vo Van Kiet, Phuong Long Hoa, Quan/Huyen Binh Thuy, Can Tho|10.045200|105.746900|LTE|VinaPhone (VNPT)|45|0
+BTS-CT-041|452|01|45001|2500141|CT|Binh Thuy|Long Hoa|So 89 Duong Nguyen Chi Thanh, Phuong Long Hoa, Quan/Huyen Binh Thuy, Can Tho|10.054700|105.759400|5G NR|MobiFone|46|45
+BTS-CT-042|452|04|45001|2500142|CT|Cai Rang|Le Binh|So 54 Duong Pham Hung, Phuong Le Binh, Quan/Huyen Cai Rang, Can Tho|10.032200|105.739900|LTE|Viettel|47|90
+BTS-CT-043|452|02|45001|2500143|CT|Cai Rang|Le Binh|So 67 Duong Vo Nguyen Giap, Phuong Le Binh, Quan/Huyen Cai Rang, Can Tho|10.041700|105.752400|5G NR|VinaPhone (VNPT)|48|135
+BTS-CT-044|452|01|45001|2500144|CT|Cai Rang|Le Binh|So 80 Duong Tran Hung Dao, Phuong Le Binh, Quan/Huyen Cai Rang, Can Tho|10.051200|105.749900|LTE|MobiFone|49|180
+BTS-CT-045|452|04|45001|2500145|CT|Cai Rang|Le Binh|So 93 Duong Quang Trung, Phuong Le Binh, Quan/Huyen Cai Rang, Can Tho|10.060700|105.762400|5G NR|Viettel|50|225
+BTS-CT-046|452|02|45001|2500146|CT|Cai Rang|Hung Phu|So 58 Duong Pham Hung, Phuong Hung Phu, Quan/Huyen Cai Rang, Can Tho|10.038200|105.742900|LTE|VinaPhone (VNPT)|51|270
+BTS-CT-047|452|01|45001|2500147|CT|Cai Rang|Hung Phu|So 71 Duong Vo Nguyen Giap, Phuong Hung Phu, Quan/Huyen Cai Rang, Can Tho|10.047700|105.740400|5G NR|MobiFone|52|315
+BTS-CT-048|452|04|45001|2500148|CT|Cai Rang|Hung Phu|So 84 Duong Tran Hung Dao, Phuong Hung Phu, Quan/Huyen Cai Rang, Can Tho|10.057200|105.752900|LTE|Viettel|53|0
+BTS-CT-049|452|02|45001|2500149|CT|Cai Rang|Hung Phu|So 97 Duong Quang Trung, Phuong Hung Phu, Quan/Huyen Cai Rang, Can Tho|10.066700|105.765400|5G NR|VinaPhone (VNPT)|54|45
+BTS-CT-050|452|01|45001|2500150|CT|Cai Rang|Hung Thanh|So 12 Duong Pham Hung, Phuong Hung Thanh, Quan/Huyen Cai Rang, Can Tho|10.029200|105.730900|LTE|MobiFone|30|90
+BTS-CT-051|452|04|45001|2500151|CT|Cai Rang|Hung Thanh|So 25 Duong Vo Nguyen Giap, Phuong Hung Thanh, Quan/Huyen Cai Rang, Can Tho|10.038700|105.743400|5G NR|Viettel|31|135
+BTS-CT-052|452|02|45001|2500152|CT|Cai Rang|Hung Thanh|So 38 Duong Tran Hung Dao, Phuong Hung Thanh, Quan/Huyen Cai Rang, Can Tho|10.048200|105.755900|LTE|VinaPhone (VNPT)|32|180
+BTS-CT-053|452|01|45001|2500153|CT|Cai Rang|Hung Thanh|So 51 Duong Quang Trung, Phuong Hung Thanh, Quan/Huyen Cai Rang, Can Tho|10.057700|105.768400|5G NR|MobiFone|33|225
+BTS-CT-054|452|04|45001|2500154|CT|Cai Rang|Ba Lang|So 16 Duong Pham Hung, Phuong Ba Lang, Quan/Huyen Cai Rang, Can Tho|10.035200|105.733900|LTE|Viettel|34|270
+BTS-CT-055|452|02|45001|2500155|CT|Cai Rang|Ba Lang|So 29 Duong Vo Nguyen Giap, Phuong Ba Lang, Quan/Huyen Cai Rang, Can Tho|10.044700|105.746400|5G NR|VinaPhone (VNPT)|35|315
+BTS-CT-056|452|01|45001|2500156|CT|Cai Rang|Ba Lang|So 42 Duong Tran Hung Dao, Phuong Ba Lang, Quan/Huyen Cai Rang, Can Tho|10.054200|105.758900|LTE|MobiFone|36|0
+BTS-CT-057|452|04|45001|2500157|CT|Cai Rang|Ba Lang|So 55 Duong Quang Trung, Phuong Ba Lang, Quan/Huyen Cai Rang, Can Tho|10.063700|105.756400|5G NR|Viettel|37|45
+BTS-DN-001|452|02|32105|2510501|DN|Hai Chau|Thach Thang|So 13 Duong Bach Dang, Phuong Thach Thang, Quan/Huyen Hai Chau, Da Nang|16.053300|108.209300|5G NR|VinaPhone (VNPT)|31|45
+BTS-DN-002|452|01|32105|2510502|DN|Hai Chau|Thach Thang|So 26 Duong Tran Phu, Phuong Thach Thang, Quan/Huyen Hai Chau, Da Nang|16.062800|108.221800|LTE|MobiFone|32|90
+BTS-DN-003|452|04|32105|2510503|DN|Hai Chau|Thach Thang|So 39 Duong Le Duan, Phuong Thach Thang, Quan/Huyen Hai Chau, Da Nang|16.072300|108.234300|5G NR|Viettel|33|135
+BTS-DN-004|452|02|32105|2510504|DN|Hai Chau|Thach Thang|So 52 Duong Nguyen Van Linh, Phuong Thach Thang, Quan/Huyen Hai Chau, Da Nang|16.081800|108.231800|LTE|VinaPhone (VNPT)|34|180
+BTS-DN-005|452|01|32105|2510505|DN|Hai Chau|Thach Thang|So 65 Duong 3 Thang 2, Phuong Thach Thang, Quan/Huyen Hai Chau, Da Nang|16.091300|108.244300|5G NR|MobiFone|35|225
+BTS-DN-006|452|04|32105|2510506|DN|Hai Chau|Hai Chau 1|So 18 Duong Bach Dang, Phuong Hai Chau 1, Quan/Huyen Hai Chau, Da Nang|16.060800|108.216800|LTE|Viettel|36|270
+BTS-DN-007|452|02|32105|2510507|DN|Hai Chau|Hai Chau 1|So 31 Duong Tran Phu, Phuong Hai Chau 1, Quan/Huyen Hai Chau, Da Nang|16.070300|108.214300|5G NR|VinaPhone (VNPT)|37|315
+BTS-DN-008|452|01|32105|2510508|DN|Hai Chau|Hai Chau 1|So 44 Duong Le Duan, Phuong Hai Chau 1, Quan/Huyen Hai Chau, Da Nang|16.079800|108.226800|LTE|MobiFone|38|0
+BTS-DN-009|452|04|32105|2510509|DN|Hai Chau|Hai Chau 1|So 57 Duong Nguyen Van Linh, Phuong Hai Chau 1, Quan/Huyen Hai Chau, Da Nang|16.089300|108.239300|5G NR|Viettel|39|45
+BTS-DN-010|452|02|32105|2510510|DN|Hai Chau|Hai Chau 1|So 70 Duong 3 Thang 2, Phuong Hai Chau 1, Quan/Huyen Hai Chau, Da Nang|16.083800|108.236800|LTE|VinaPhone (VNPT)|40|90
+BTS-DN-011|452|01|32105|2510511|DN|Hai Chau|Hai Chau 2|So 23 Duong Bach Dang, Phuong Hai Chau 2, Quan/Huyen Hai Chau, Da Nang|16.053300|108.209300|5G NR|MobiFone|41|135
+BTS-DN-012|452|04|32105|2510512|DN|Hai Chau|Hai Chau 2|So 36 Duong Tran Phu, Phuong Hai Chau 2, Quan/Huyen Hai Chau, Da Nang|16.062800|108.221800|LTE|Viettel|42|180
+BTS-DN-013|452|02|32105|2510513|DN|Hai Chau|Hai Chau 2|So 49 Duong Le Duan, Phuong Hai Chau 2, Quan/Huyen Hai Chau, Da Nang|16.072300|108.234300|5G NR|VinaPhone (VNPT)|43|225
+BTS-DN-014|452|01|32105|2510514|DN|Hai Chau|Hai Chau 2|So 62 Duong Nguyen Van Linh, Phuong Hai Chau 2, Quan/Huyen Hai Chau, Da Nang|16.081800|108.231800|LTE|MobiFone|44|270
+BTS-DN-015|452|04|32105|2510515|DN|Hai Chau|Hai Chau 2|So 75 Duong 3 Thang 2, Phuong Hai Chau 2, Quan/Huyen Hai Chau, Da Nang|16.091300|108.244300|5G NR|Viettel|45|315
+BTS-DN-016|452|02|32105|2510516|DN|Hai Chau|Phuoc Ninh|So 28 Duong Bach Dang, Phuong Phuoc Ninh, Quan/Huyen Hai Chau, Da Nang|16.060800|108.216800|LTE|VinaPhone (VNPT)|46|0
+BTS-DN-017|452|01|32105|2510517|DN|Hai Chau|Phuoc Ninh|So 41 Duong Tran Phu, Phuong Phuoc Ninh, Quan/Huyen Hai Chau, Da Nang|16.070300|108.214300|5G NR|MobiFone|47|45
+BTS-DN-018|452|04|32105|2510518|DN|Hai Chau|Phuoc Ninh|So 54 Duong Le Duan, Phuong Phuoc Ninh, Quan/Huyen Hai Chau, Da Nang|16.079800|108.226800|LTE|Viettel|48|90
+BTS-DN-019|452|02|32105|2510519|DN|Hai Chau|Phuoc Ninh|So 67 Duong Nguyen Van Linh, Phuong Phuoc Ninh, Quan/Huyen Hai Chau, Da Nang|16.089300|108.239300|5G NR|VinaPhone (VNPT)|49|135
+BTS-DN-020|452|01|32105|2510520|DN|Hai Chau|Phuoc Ninh|So 80 Duong 3 Thang 2, Phuong Phuoc Ninh, Quan/Huyen Hai Chau, Da Nang|16.083800|108.236800|LTE|MobiFone|50|180
+BTS-DN-021|452|04|32105|2510521|DN|Hai Chau|Binh Thuan|So 33 Duong Bach Dang, Phuong Binh Thuan, Quan/Huyen Hai Chau, Da Nang|16.053300|108.209300|5G NR|Viettel|51|225
+BTS-DN-022|452|02|32105|2510522|DN|Hai Chau|Binh Thuan|So 46 Duong Tran Phu, Phuong Binh Thuan, Quan/Huyen Hai Chau, Da Nang|16.062800|108.221800|LTE|VinaPhone (VNPT)|52|270
+BTS-DN-023|452|01|32105|2510523|DN|Hai Chau|Binh Thuan|So 59 Duong Le Duan, Phuong Binh Thuan, Quan/Huyen Hai Chau, Da Nang|16.072300|108.234300|5G NR|MobiFone|53|315
+BTS-DN-024|452|04|32105|2510524|DN|Hai Chau|Binh Thuan|So 72 Duong Nguyen Van Linh, Phuong Binh Thuan, Quan/Huyen Hai Chau, Da Nang|16.081800|108.231800|LTE|Viettel|54|0
+BTS-DN-025|452|02|32105|2510525|DN|Hai Chau|Binh Thuan|So 85 Duong 3 Thang 2, Phuong Binh Thuan, Quan/Huyen Hai Chau, Da Nang|16.091300|108.244300|5G NR|VinaPhone (VNPT)|30|45
+BTS-DN-026|452|01|32105|2510526|DN|Thanh Khe|Tam Thuan|So 38 Duong Dien Bien Phu, Phuong Tam Thuan, Quan/Huyen Thanh Khe, Da Nang|16.060800|108.216800|LTE|MobiFone|31|90
+BTS-DN-027|452|04|32105|2510527|DN|Thanh Khe|Tam Thuan|So 51 Duong Nguyen Tat Thanh, Phuong Tam Thuan, Quan/Huyen Thanh Khe, Da Nang|16.070300|108.214300|5G NR|Viettel|32|135
+BTS-DN-028|452|02|32105|2510528|DN|Thanh Khe|Tam Thuan|So 64 Duong Tran Cao Van, Phuong Tam Thuan, Quan/Huyen Thanh Khe, Da Nang|16.079800|108.226800|LTE|VinaPhone (VNPT)|33|180
+BTS-DN-029|452|01|32105|2510529|DN|Thanh Khe|Tam Thuan|So 77 Duong Hung Vuong, Phuong Tam Thuan, Quan/Huyen Thanh Khe, Da Nang|16.089300|108.239300|5G NR|MobiFone|34|225
+BTS-DN-030|452|04|32105|2510530|DN|Thanh Khe|Tam Thuan|So 90 Duong Ha Huy Tap, Phuong Tam Thuan, Quan/Huyen Thanh Khe, Da Nang|16.083800|108.236800|LTE|Viettel|35|270
+BTS-DN-031|452|02|32105|2510531|DN|Thanh Khe|Xuan Ha|So 43 Duong Dien Bien Phu, Phuong Xuan Ha, Quan/Huyen Thanh Khe, Da Nang|16.053300|108.209300|5G NR|VinaPhone (VNPT)|36|315
+BTS-DN-032|452|01|32105|2510532|DN|Thanh Khe|Xuan Ha|So 56 Duong Nguyen Tat Thanh, Phuong Xuan Ha, Quan/Huyen Thanh Khe, Da Nang|16.062800|108.221800|LTE|MobiFone|37|0
+BTS-DN-033|452|04|32105|2510533|DN|Thanh Khe|Xuan Ha|So 69 Duong Tran Cao Van, Phuong Xuan Ha, Quan/Huyen Thanh Khe, Da Nang|16.072300|108.234300|5G NR|Viettel|38|45
+BTS-DN-034|452|02|32105|2510534|DN|Thanh Khe|Xuan Ha|So 82 Duong Hung Vuong, Phuong Xuan Ha, Quan/Huyen Thanh Khe, Da Nang|16.081800|108.231800|LTE|VinaPhone (VNPT)|39|90
+BTS-DN-035|452|01|32105|2510535|DN|Thanh Khe|Xuan Ha|So 95 Duong Ha Huy Tap, Phuong Xuan Ha, Quan/Huyen Thanh Khe, Da Nang|16.091300|108.244300|5G NR|MobiFone|40|135
+BTS-DN-036|452|04|32105|2510536|DN|Thanh Khe|Tan Chinh|So 48 Duong Dien Bien Phu, Phuong Tan Chinh, Quan/Huyen Thanh Khe, Da Nang|16.060800|108.216800|LTE|Viettel|41|180
+BTS-DN-037|452|02|32105|2510537|DN|Thanh Khe|Tan Chinh|So 61 Duong Nguyen Tat Thanh, Phuong Tan Chinh, Quan/Huyen Thanh Khe, Da Nang|16.070300|108.214300|5G NR|VinaPhone (VNPT)|42|225
+BTS-DN-038|452|01|32105|2510538|DN|Thanh Khe|Tan Chinh|So 74 Duong Tran Cao Van, Phuong Tan Chinh, Quan/Huyen Thanh Khe, Da Nang|16.079800|108.226800|LTE|MobiFone|43|270
+BTS-DN-039|452|04|32105|2510539|DN|Thanh Khe|Tan Chinh|So 87 Duong Hung Vuong, Phuong Tan Chinh, Quan/Huyen Thanh Khe, Da Nang|16.089300|108.239300|5G NR|Viettel|44|315
+BTS-DN-040|452|02|32105|2510540|DN|Thanh Khe|Tan Chinh|So 100 Duong Ha Huy Tap, Phuong Tan Chinh, Quan/Huyen Thanh Khe, Da Nang|16.083800|108.236800|LTE|VinaPhone (VNPT)|45|0
+BTS-DN-041|452|01|32105|2510541|DN|Thanh Khe|Chinh Gian|So 53 Duong Dien Bien Phu, Phuong Chinh Gian, Quan/Huyen Thanh Khe, Da Nang|16.053300|108.209300|5G NR|MobiFone|46|45
+BTS-DN-042|452|04|32105|2510542|DN|Thanh Khe|Chinh Gian|So 66 Duong Nguyen Tat Thanh, Phuong Chinh Gian, Quan/Huyen Thanh Khe, Da Nang|16.062800|108.221800|LTE|Viettel|47|90
+BTS-DN-043|452|02|32105|2510543|DN|Thanh Khe|Chinh Gian|So 79 Duong Tran Cao Van, Phuong Chinh Gian, Quan/Huyen Thanh Khe, Da Nang|16.072300|108.234300|5G NR|VinaPhone (VNPT)|48|135
+BTS-DN-044|452|01|32105|2510544|DN|Thanh Khe|Chinh Gian|So 92 Duong Hung Vuong, Phuong Chinh Gian, Quan/Huyen Thanh Khe, Da Nang|16.081800|108.231800|LTE|MobiFone|49|180
+BTS-DN-045|452|04|32105|2510545|DN|Thanh Khe|Chinh Gian|So 105 Duong Ha Huy Tap, Phuong Chinh Gian, Quan/Huyen Thanh Khe, Da Nang|16.091300|108.244300|5G NR|Viettel|50|225
+BTS-DN-046|452|02|32105|2510546|DN|Thanh Khe|Vinh Trung|So 58 Duong Dien Bien Phu, Phuong Vinh Trung, Quan/Huyen Thanh Khe, Da Nang|16.060800|108.216800|LTE|VinaPhone (VNPT)|51|270
+BTS-DN-047|452|01|32105|2510547|DN|Thanh Khe|Vinh Trung|So 71 Duong Nguyen Tat Thanh, Phuong Vinh Trung, Quan/Huyen Thanh Khe, Da Nang|16.070300|108.214300|5G NR|MobiFone|52|315
+BTS-DN-048|452|04|32105|2510548|DN|Thanh Khe|Vinh Trung|So 84 Duong Tran Cao Van, Phuong Vinh Trung, Quan/Huyen Thanh Khe, Da Nang|16.079800|108.226800|LTE|Viettel|53|0
+BTS-DN-049|452|02|32105|2510549|DN|Thanh Khe|Vinh Trung|So 97 Duong Hung Vuong, Phuong Vinh Trung, Quan/Huyen Thanh Khe, Da Nang|16.089300|108.239300|5G NR|VinaPhone (VNPT)|54|45
+BTS-DN-050|452|01|32105|2510550|DN|Thanh Khe|Vinh Trung|So 60 Duong Ha Huy Tap, Phuong Vinh Trung, Quan/Huyen Thanh Khe, Da Nang|16.083800|108.236800|LTE|MobiFone|30|90
+BTS-DN-051|452|04|32105|2510551|DN|Son Tra|An Hai Bac|So 13 Duong Vo Nguyen Giap, Phuong An Hai Bac, Quan/Huyen Son Tra, Da Nang|16.053300|108.209300|5G NR|Viettel|31|135
+BTS-DN-052|452|02|32105|2510552|DN|Son Tra|An Hai Bac|So 26 Duong Pham Van Dong, Phuong An Hai Bac, Quan/Huyen Son Tra, Da Nang|16.062800|108.221800|LTE|VinaPhone (VNPT)|32|180
+BTS-DN-053|452|01|32105|2510553|DN|Son Tra|An Hai Bac|So 39 Duong Ngo Quyen, Phuong An Hai Bac, Quan/Huyen Son Tra, Da Nang|16.072300|108.234300|5G NR|MobiFone|33|225
+BTS-DN-054|452|04|32105|2510554|DN|Son Tra|An Hai Bac|So 52 Duong Tran Hung Dao, Phuong An Hai Bac, Quan/Huyen Son Tra, Da Nang|16.081800|108.231800|LTE|Viettel|34|270
+BTS-DN-055|452|02|32105|2510555|DN|Son Tra|An Hai Bac|So 65 Duong Hoang Sa, Phuong An Hai Bac, Quan/Huyen Son Tra, Da Nang|16.091300|108.244300|5G NR|VinaPhone (VNPT)|35|315
+BTS-DN-056|452|01|32105|2510556|DN|Son Tra|An Hai Tay|So 18 Duong Vo Nguyen Giap, Phuong An Hai Tay, Quan/Huyen Son Tra, Da Nang|16.060800|108.216800|LTE|MobiFone|36|0
+BTS-DN-057|452|04|32105|2510557|DN|Son Tra|An Hai Tay|So 31 Duong Pham Van Dong, Phuong An Hai Tay, Quan/Huyen Son Tra, Da Nang|16.070300|108.214300|5G NR|Viettel|37|45
+BTS-DN-058|452|02|32105|2510558|DN|Son Tra|An Hai Tay|So 44 Duong Ngo Quyen, Phuong An Hai Tay, Quan/Huyen Son Tra, Da Nang|16.079800|108.226800|LTE|VinaPhone (VNPT)|38|90
+BTS-DN-059|452|01|32105|2510559|DN|Son Tra|An Hai Tay|So 57 Duong Tran Hung Dao, Phuong An Hai Tay, Quan/Huyen Son Tra, Da Nang|16.089300|108.239300|5G NR|MobiFone|39|135
+BTS-DN-060|452|04|32105|2510560|DN|Son Tra|An Hai Tay|So 70 Duong Hoang Sa, Phuong An Hai Tay, Quan/Huyen Son Tra, Da Nang|16.083800|108.236800|LTE|Viettel|40|180
+BTS-DN-061|452|02|32105|2510561|DN|Son Tra|Phuoc My|So 23 Duong Vo Nguyen Giap, Phuong Phuoc My, Quan/Huyen Son Tra, Da Nang|16.053300|108.209300|5G NR|VinaPhone (VNPT)|41|225
+BTS-DN-062|452|01|32105|2510562|DN|Son Tra|Phuoc My|So 36 Duong Pham Van Dong, Phuong Phuoc My, Quan/Huyen Son Tra, Da Nang|16.062800|108.221800|LTE|MobiFone|42|270
+BTS-DN-063|452|04|32105|2510563|DN|Son Tra|Phuoc My|So 49 Duong Ngo Quyen, Phuong Phuoc My, Quan/Huyen Son Tra, Da Nang|16.072300|108.234300|5G NR|Viettel|43|315
+BTS-DN-064|452|02|32105|2510564|DN|Son Tra|Phuoc My|So 62 Duong Tran Hung Dao, Phuong Phuoc My, Quan/Huyen Son Tra, Da Nang|16.081800|108.231800|LTE|VinaPhone (VNPT)|44|0
+BTS-DN-065|452|01|32105|2510565|DN|Son Tra|Phuoc My|So 75 Duong Hoang Sa, Phuong Phuoc My, Quan/Huyen Son Tra, Da Nang|16.091300|108.244300|5G NR|MobiFone|45|45
+BTS-DN-066|452|04|32105|2510566|DN|Son Tra|Tho Quang|So 28 Duong Vo Nguyen Giap, Phuong Tho Quang, Quan/Huyen Son Tra, Da Nang|16.060800|108.216800|LTE|Viettel|46|90
+BTS-DN-067|452|02|32105|2510567|DN|Son Tra|Tho Quang|So 41 Duong Pham Van Dong, Phuong Tho Quang, Quan/Huyen Son Tra, Da Nang|16.070300|108.214300|5G NR|VinaPhone (VNPT)|47|135
+BTS-DN-068|452|01|32105|2510568|DN|Son Tra|Tho Quang|So 54 Duong Ngo Quyen, Phuong Tho Quang, Quan/Huyen Son Tra, Da Nang|16.079800|108.226800|LTE|MobiFone|48|180
+BTS-DN-069|452|04|32105|2510569|DN|Son Tra|Tho Quang|So 67 Duong Tran Hung Dao, Phuong Tho Quang, Quan/Huyen Son Tra, Da Nang|16.089300|108.239300|5G NR|Viettel|49|225
+BTS-DN-070|452|02|32105|2510570|DN|Son Tra|Tho Quang|So 80 Duong Hoang Sa, Phuong Tho Quang, Quan/Huyen Son Tra, Da Nang|16.083800|108.236800|LTE|VinaPhone (VNPT)|50|270
+BTS-DN-071|452|01|32105|2510571|DN|Son Tra|Nai Hien Dong|So 33 Duong Vo Nguyen Giap, Phuong Nai Hien Dong, Quan/Huyen Son Tra, Da Nang|16.053300|108.209300|5G NR|MobiFone|51|315
+BTS-DN-072|452|04|32105|2510572|DN|Son Tra|Nai Hien Dong|So 46 Duong Pham Van Dong, Phuong Nai Hien Dong, Quan/Huyen Son Tra, Da Nang|16.062800|108.221800|LTE|Viettel|52|0
+BTS-DN-073|452|02|32105|2510573|DN|Son Tra|Nai Hien Dong|So 59 Duong Ngo Quyen, Phuong Nai Hien Dong, Quan/Huyen Son Tra, Da Nang|16.072300|108.234300|5G NR|VinaPhone (VNPT)|53|45
+BTS-DN-074|452|01|32105|2510574|DN|Son Tra|Nai Hien Dong|So 72 Duong Tran Hung Dao, Phuong Nai Hien Dong, Quan/Huyen Son Tra, Da Nang|16.081800|108.231800|LTE|MobiFone|54|90
+BTS-DN-075|452|04|32105|2510575|DN|Son Tra|Nai Hien Dong|So 85 Duong Hoang Sa, Phuong Nai Hien Dong, Quan/Huyen Son Tra, Da Nang|16.091300|108.244300|5G NR|Viettel|30|135
+BTS-DN-076|452|02|32105|2510576|DN|Ngu Hanh Son|My An|So 38 Duong Le Van Hien, Phuong My An, Quan/Huyen Ngu Hanh Son, Da Nang|16.060800|108.216800|LTE|VinaPhone (VNPT)|31|180
+BTS-DN-077|452|01|32105|2510577|DN|Ngu Hanh Son|My An|So 51 Duong Truong Sa, Phuong My An, Quan/Huyen Ngu Hanh Son, Da Nang|16.070300|108.214300|5G NR|MobiFone|32|225
+BTS-DN-078|452|04|32105|2510578|DN|Ngu Hanh Son|My An|So 64 Duong Vo Nguyen Giap, Phuong My An, Quan/Huyen Ngu Hanh Son, Da Nang|16.079800|108.226800|LTE|Viettel|33|270
+BTS-DN-079|452|02|32105|2510579|DN|Ngu Hanh Son|My An|So 77 Duong Nam Ky Khoi Nghia, Phuong My An, Quan/Huyen Ngu Hanh Son, Da Nang|16.089300|108.239300|5G NR|VinaPhone (VNPT)|34|315
+BTS-DN-080|452|01|32105|2510580|DN|Ngu Hanh Son|My An|So 90 Duong Minh Mang, Phuong My An, Quan/Huyen Ngu Hanh Son, Da Nang|16.083800|108.236800|LTE|MobiFone|35|0
+BTS-DN-081|452|04|32105|2510581|DN|Ngu Hanh Son|Khue My|So 43 Duong Le Van Hien, Phuong Khue My, Quan/Huyen Ngu Hanh Son, Da Nang|16.053300|108.209300|5G NR|Viettel|36|45
+BTS-DN-082|452|02|32105|2510582|DN|Ngu Hanh Son|Khue My|So 56 Duong Truong Sa, Phuong Khue My, Quan/Huyen Ngu Hanh Son, Da Nang|16.062800|108.221800|LTE|VinaPhone (VNPT)|37|90
+BTS-DN-083|452|01|32105|2510583|DN|Ngu Hanh Son|Khue My|So 69 Duong Vo Nguyen Giap, Phuong Khue My, Quan/Huyen Ngu Hanh Son, Da Nang|16.072300|108.234300|5G NR|MobiFone|38|135
+BTS-DN-084|452|04|32105|2510584|DN|Ngu Hanh Son|Khue My|So 82 Duong Nam Ky Khoi Nghia, Phuong Khue My, Quan/Huyen Ngu Hanh Son, Da Nang|16.081800|108.231800|LTE|Viettel|39|180
+BTS-DN-085|452|02|32105|2510585|DN|Ngu Hanh Son|Khue My|So 95 Duong Minh Mang, Phuong Khue My, Quan/Huyen Ngu Hanh Son, Da Nang|16.091300|108.244300|5G NR|VinaPhone (VNPT)|40|225
+BTS-DN-086|452|01|32105|2510586|DN|Ngu Hanh Son|Hoa Quy|So 48 Duong Le Van Hien, Phuong Hoa Quy, Quan/Huyen Ngu Hanh Son, Da Nang|16.060800|108.216800|LTE|MobiFone|41|270
+BTS-DN-087|452|04|32105|2510587|DN|Ngu Hanh Son|Hoa Quy|So 61 Duong Truong Sa, Phuong Hoa Quy, Quan/Huyen Ngu Hanh Son, Da Nang|16.070300|108.214300|5G NR|Viettel|42|315
+BTS-DN-088|452|02|32105|2510588|DN|Ngu Hanh Son|Hoa Quy|So 74 Duong Vo Nguyen Giap, Phuong Hoa Quy, Quan/Huyen Ngu Hanh Son, Da Nang|16.079800|108.226800|LTE|VinaPhone (VNPT)|43|0
+BTS-DN-089|452|01|32105|2510589|DN|Ngu Hanh Son|Hoa Quy|So 87 Duong Nam Ky Khoi Nghia, Phuong Hoa Quy, Quan/Huyen Ngu Hanh Son, Da Nang|16.089300|108.239300|5G NR|MobiFone|44|45
+BTS-DN-090|452|04|32105|2510590|DN|Ngu Hanh Son|Hoa Quy|So 100 Duong Minh Mang, Phuong Hoa Quy, Quan/Huyen Ngu Hanh Son, Da Nang|16.083800|108.236800|LTE|Viettel|45|90
+BTS-DN-091|452|02|32105|2510591|DN|Ngu Hanh Son|Hoa Hai|So 53 Duong Le Van Hien, Phuong Hoa Hai, Quan/Huyen Ngu Hanh Son, Da Nang|16.053300|108.209300|5G NR|VinaPhone (VNPT)|46|135
+BTS-DN-092|452|01|32105|2510592|DN|Ngu Hanh Son|Hoa Hai|So 66 Duong Truong Sa, Phuong Hoa Hai, Quan/Huyen Ngu Hanh Son, Da Nang|16.062800|108.221800|LTE|MobiFone|47|180
+BTS-DN-093|452|04|32105|2510593|DN|Ngu Hanh Son|Hoa Hai|So 79 Duong Vo Nguyen Giap, Phuong Hoa Hai, Quan/Huyen Ngu Hanh Son, Da Nang|16.072300|108.234300|5G NR|Viettel|48|225
+BTS-DN-094|452|02|32105|2510594|DN|Ngu Hanh Son|Hoa Hai|So 92 Duong Nam Ky Khoi Nghia, Phuong Hoa Hai, Quan/Huyen Ngu Hanh Son, Da Nang|16.081800|108.231800|LTE|VinaPhone (VNPT)|49|270
+BTS-DN-095|452|01|32105|2510595|DN|Ngu Hanh Son|Hoa Hai|So 105 Duong Minh Mang, Phuong Hoa Hai, Quan/Huyen Ngu Hanh Son, Da Nang|16.091300|108.244300|5G NR|MobiFone|50|315
+BTS-DNA-001|452|02|19503|2550301|DNA|Bien Hoa|Quyet Thang|So 13 Duong Pham Van Thuan, Phuong Quyet Thang, Quan/Huyen Bien Hoa, Dong Nai|10.942900|106.831200|5G NR|VinaPhone (VNPT)|31|45
+BTS-DNA-002|452|01|19503|2550302|DNA|Bien Hoa|Quyet Thang|So 26 Duong Nguyen Ai Quoc, Phuong Quyet Thang, Quan/Huyen Bien Hoa, Dong Nai|10.952400|106.843700|LTE|MobiFone|32|90
+BTS-DNA-003|452|04|19503|2550303|DNA|Bien Hoa|Quyet Thang|So 39 Duong Dong Khoi, Phuong Quyet Thang, Quan/Huyen Bien Hoa, Dong Nai|10.961900|106.856200|5G NR|Viettel|33|135
+BTS-DNA-004|452|02|19503|2550304|DNA|Bien Hoa|Quyet Thang|So 52 Duong 30 Thang 4, Phuong Quyet Thang, Quan/Huyen Bien Hoa, Dong Nai|10.971400|106.853700|LTE|VinaPhone (VNPT)|34|180
+BTS-DNA-005|452|01|19503|2550305|DNA|Bien Hoa|Quyet Thang|So 65 Duong Vo Thi Sau, Phuong Quyet Thang, Quan/Huyen Bien Hoa, Dong Nai|10.980900|106.866200|5G NR|MobiFone|35|225
+BTS-DNA-006|452|04|19503|2550306|DNA|Bien Hoa|Thong Nhat|So 18 Duong Pham Van Thuan, Phuong Thong Nhat, Quan/Huyen Bien Hoa, Dong Nai|10.950400|106.838700|LTE|Viettel|36|270
+BTS-DNA-007|452|02|19503|2550307|DNA|Bien Hoa|Thong Nhat|So 31 Duong Nguyen Ai Quoc, Phuong Thong Nhat, Quan/Huyen Bien Hoa, Dong Nai|10.959900|106.836200|5G NR|VinaPhone (VNPT)|37|315
+BTS-DNA-008|452|01|19503|2550308|DNA|Bien Hoa|Thong Nhat|So 44 Duong Dong Khoi, Phuong Thong Nhat, Quan/Huyen Bien Hoa, Dong Nai|10.969400|106.848700|LTE|MobiFone|38|0
+BTS-DNA-009|452|04|19503|2550309|DNA|Bien Hoa|Thong Nhat|So 57 Duong 30 Thang 4, Phuong Thong Nhat, Quan/Huyen Bien Hoa, Dong Nai|10.978900|106.861200|5G NR|Viettel|39|45
+BTS-DNA-010|452|02|19503|2550310|DNA|Bien Hoa|Thong Nhat|So 70 Duong Vo Thi Sau, Phuong Thong Nhat, Quan/Huyen Bien Hoa, Dong Nai|10.973400|106.858700|LTE|VinaPhone (VNPT)|40|90
+BTS-DNA-011|452|01|19503|2550311|DNA|Bien Hoa|Trung Dung|So 23 Duong Pham Van Thuan, Phuong Trung Dung, Quan/Huyen Bien Hoa, Dong Nai|10.942900|106.831200|5G NR|MobiFone|41|135
+BTS-DNA-012|452|04|19503|2550312|DNA|Bien Hoa|Trung Dung|So 36 Duong Nguyen Ai Quoc, Phuong Trung Dung, Quan/Huyen Bien Hoa, Dong Nai|10.952400|106.843700|LTE|Viettel|42|180
+BTS-DNA-013|452|02|19503|2550313|DNA|Bien Hoa|Trung Dung|So 49 Duong Dong Khoi, Phuong Trung Dung, Quan/Huyen Bien Hoa, Dong Nai|10.961900|106.856200|5G NR|VinaPhone (VNPT)|43|225
+BTS-DNA-014|452|01|19503|2550314|DNA|Bien Hoa|Trung Dung|So 62 Duong 30 Thang 4, Phuong Trung Dung, Quan/Huyen Bien Hoa, Dong Nai|10.971400|106.853700|LTE|MobiFone|44|270
+BTS-DNA-015|452|04|19503|2550315|DNA|Bien Hoa|Trung Dung|So 75 Duong Vo Thi Sau, Phuong Trung Dung, Quan/Huyen Bien Hoa, Dong Nai|10.980900|106.866200|5G NR|Viettel|45|315
+BTS-DNA-016|452|02|19503|2550316|DNA|Bien Hoa|Tan Phong|So 28 Duong Pham Van Thuan, Phuong Tan Phong, Quan/Huyen Bien Hoa, Dong Nai|10.950400|106.838700|LTE|VinaPhone (VNPT)|46|0
+BTS-DNA-017|452|01|19503|2550317|DNA|Bien Hoa|Tan Phong|So 41 Duong Nguyen Ai Quoc, Phuong Tan Phong, Quan/Huyen Bien Hoa, Dong Nai|10.959900|106.836200|5G NR|MobiFone|47|45
+BTS-DNA-018|452|04|19503|2550318|DNA|Bien Hoa|Tan Phong|So 54 Duong Dong Khoi, Phuong Tan Phong, Quan/Huyen Bien Hoa, Dong Nai|10.969400|106.848700|LTE|Viettel|48|90
+BTS-DNA-019|452|02|19503|2550319|DNA|Bien Hoa|Tan Phong|So 67 Duong 30 Thang 4, Phuong Tan Phong, Quan/Huyen Bien Hoa, Dong Nai|10.978900|106.861200|5G NR|VinaPhone (VNPT)|49|135
+BTS-DNA-020|452|01|19503|2550320|DNA|Bien Hoa|Tan Phong|So 80 Duong Vo Thi Sau, Phuong Tan Phong, Quan/Huyen Bien Hoa, Dong Nai|10.973400|106.858700|LTE|MobiFone|50|180
+BTS-DNA-021|452|04|19503|2550321|DNA|Bien Hoa|Tam Hiep|So 33 Duong Pham Van Thuan, Phuong Tam Hiep, Quan/Huyen Bien Hoa, Dong Nai|10.942900|106.831200|5G NR|Viettel|51|225
+BTS-DNA-022|452|02|19503|2550322|DNA|Bien Hoa|Tam Hiep|So 46 Duong Nguyen Ai Quoc, Phuong Tam Hiep, Quan/Huyen Bien Hoa, Dong Nai|10.952400|106.843700|LTE|VinaPhone (VNPT)|52|270
+BTS-DNA-023|452|01|19503|2550323|DNA|Bien Hoa|Tam Hiep|So 59 Duong Dong Khoi, Phuong Tam Hiep, Quan/Huyen Bien Hoa, Dong Nai|10.961900|106.856200|5G NR|MobiFone|53|315
+BTS-DNA-024|452|04|19503|2550324|DNA|Bien Hoa|Tam Hiep|So 72 Duong 30 Thang 4, Phuong Tam Hiep, Quan/Huyen Bien Hoa, Dong Nai|10.971400|106.853700|LTE|Viettel|54|0
+BTS-DNA-025|452|02|19503|2550325|DNA|Bien Hoa|Tam Hiep|So 85 Duong Vo Thi Sau, Phuong Tam Hiep, Quan/Huyen Bien Hoa, Dong Nai|10.980900|106.866200|5G NR|VinaPhone (VNPT)|30|45
+BTS-DNA-026|452|01|19503|2550326|DNA|Long Thanh|Thi tran Long Thanh|So 38 Duong Quoc Lo 51, Phuong Thi tran Long Thanh, Quan/Huyen Long Thanh, Dong Nai|10.950400|106.838700|LTE|MobiFone|31|90
+BTS-DNA-027|452|04|19503|2550327|DNA|Long Thanh|Thi tran Long Thanh|So 51 Duong Le Duan, Phuong Thi tran Long Thanh, Quan/Huyen Long Thanh, Dong Nai|10.959900|106.836200|5G NR|Viettel|32|135
+BTS-DNA-028|452|02|19503|2550328|DNA|Long Thanh|Thi tran Long Thanh|So 64 Duong Ton Duc Thang, Phuong Thi tran Long Thanh, Quan/Huyen Long Thanh, Dong Nai|10.969400|106.848700|LTE|VinaPhone (VNPT)|33|180
+BTS-DNA-029|452|01|19503|2550329|DNA|Long Thanh|Xa An Phuoc|So 41 Duong Quoc Lo 51, Phuong Xa An Phuoc, Quan/Huyen Long Thanh, Dong Nai|10.954900|106.837200|5G NR|MobiFone|34|225
+BTS-DNA-030|452|04|19503|2550330|DNA|Long Thanh|Xa An Phuoc|So 54 Duong Le Duan, Phuong Xa An Phuoc, Quan/Huyen Long Thanh, Dong Nai|10.949400|106.834700|LTE|Viettel|35|270
+BTS-DNA-031|452|02|19503|2550331|DNA|Long Thanh|Xa An Phuoc|So 67 Duong Ton Duc Thang, Phuong Xa An Phuoc, Quan/Huyen Long Thanh, Dong Nai|10.958900|106.847200|5G NR|VinaPhone (VNPT)|36|315
+BTS-DNA-032|452|01|19503|2550332|DNA|Long Thanh|Xa Long Duc|So 44 Duong Quoc Lo 51, Phuong Xa Long Duc, Quan/Huyen Long Thanh, Dong Nai|10.944400|106.835700|LTE|MobiFone|37|0
+BTS-DNA-033|452|04|19503|2550333|DNA|Long Thanh|Xa Long Duc|So 57 Duong Le Duan, Phuong Xa Long Duc, Quan/Huyen Long Thanh, Dong Nai|10.953900|106.848200|5G NR|Viettel|38|45
+BTS-DNA-034|452|02|19503|2550334|DNA|Long Thanh|Xa Long Duc|So 70 Duong Ton Duc Thang, Phuong Xa Long Duc, Quan/Huyen Long Thanh, Dong Nai|10.963400|106.845700|LTE|VinaPhone (VNPT)|39|90
+BTS-HCM-001|452|02|18402|2540201|HCM|Quan 1|Ben Nghe|So 13 Duong Nguyen Hue, Phuong Ben Nghe, Quan/Huyen Quan 1, TP Ho Chi Minh|10.762400|106.689300|5G NR|VinaPhone (VNPT)|31|45
+BTS-HCM-002|452|01|18402|2540202|HCM|Quan 1|Ben Nghe|So 26 Duong Le Loi, Phuong Ben Nghe, Quan/Huyen Quan 1, TP Ho Chi Minh|10.771900|106.701800|LTE|MobiFone|32|90
+BTS-HCM-003|452|04|18402|2540203|HCM|Quan 1|Ben Nghe|So 39 Duong Dong Khoi, Phuong Ben Nghe, Quan/Huyen Quan 1, TP Ho Chi Minh|10.781400|106.714300|5G NR|Viettel|33|135
+BTS-HCM-004|452|02|18402|2540204|HCM|Quan 1|Ben Nghe|So 52 Duong Hai Ba Trung, Phuong Ben Nghe, Quan/Huyen Quan 1, TP Ho Chi Minh|10.790900|106.711800|LTE|VinaPhone (VNPT)|34|180
+BTS-HCM-005|452|01|18402|2540205|HCM|Quan 1|Ben Nghe|So 65 Duong Tran Hung Dao, Phuong Ben Nghe, Quan/Huyen Quan 1, TP Ho Chi Minh|10.800400|106.724300|5G NR|MobiFone|35|225
+BTS-HCM-006|452|04|18402|2540206|HCM|Quan 1|Ben Thanh|So 18 Duong Nguyen Hue, Phuong Ben Thanh, Quan/Huyen Quan 1, TP Ho Chi Minh|10.769900|106.696800|LTE|Viettel|36|270
+BTS-HCM-007|452|02|18402|2540207|HCM|Quan 1|Ben Thanh|So 31 Duong Le Loi, Phuong Ben Thanh, Quan/Huyen Quan 1, TP Ho Chi Minh|10.779400|106.694300|5G NR|VinaPhone (VNPT)|37|315
+BTS-HCM-008|452|01|18402|2540208|HCM|Quan 1|Ben Thanh|So 44 Duong Dong Khoi, Phuong Ben Thanh, Quan/Huyen Quan 1, TP Ho Chi Minh|10.788900|106.706800|LTE|MobiFone|38|0
+BTS-HCM-009|452|04|18402|2540209|HCM|Quan 1|Ben Thanh|So 57 Duong Hai Ba Trung, Phuong Ben Thanh, Quan/Huyen Quan 1, TP Ho Chi Minh|10.798400|106.719300|5G NR|Viettel|39|45
+BTS-HCM-010|452|02|18402|2540210|HCM|Quan 1|Ben Thanh|So 70 Duong Tran Hung Dao, Phuong Ben Thanh, Quan/Huyen Quan 1, TP Ho Chi Minh|10.792900|106.716800|LTE|VinaPhone (VNPT)|40|90
+BTS-HCM-011|452|01|18402|2540211|HCM|Quan 1|Da Kao|So 23 Duong Nguyen Hue, Phuong Da Kao, Quan/Huyen Quan 1, TP Ho Chi Minh|10.762400|106.689300|5G NR|MobiFone|41|135
+BTS-HCM-012|452|04|18402|2540212|HCM|Quan 1|Da Kao|So 36 Duong Le Loi, Phuong Da Kao, Quan/Huyen Quan 1, TP Ho Chi Minh|10.771900|106.701800|LTE|Viettel|42|180
+BTS-HCM-013|452|02|18402|2540213|HCM|Quan 1|Da Kao|So 49 Duong Dong Khoi, Phuong Da Kao, Quan/Huyen Quan 1, TP Ho Chi Minh|10.781400|106.714300|5G NR|VinaPhone (VNPT)|43|225
+BTS-HCM-014|452|01|18402|2540214|HCM|Quan 1|Da Kao|So 62 Duong Hai Ba Trung, Phuong Da Kao, Quan/Huyen Quan 1, TP Ho Chi Minh|10.790900|106.711800|LTE|MobiFone|44|270
+BTS-HCM-015|452|04|18402|2540215|HCM|Quan 1|Da Kao|So 75 Duong Tran Hung Dao, Phuong Da Kao, Quan/Huyen Quan 1, TP Ho Chi Minh|10.800400|106.724300|5G NR|Viettel|45|315
+BTS-HCM-016|452|02|18402|2540216|HCM|Quan 1|Pham Ngu Lao|So 28 Duong Nguyen Hue, Phuong Pham Ngu Lao, Quan/Huyen Quan 1, TP Ho Chi Minh|10.769900|106.696800|LTE|VinaPhone (VNPT)|46|0
+BTS-HCM-017|452|01|18402|2540217|HCM|Quan 1|Pham Ngu Lao|So 41 Duong Le Loi, Phuong Pham Ngu Lao, Quan/Huyen Quan 1, TP Ho Chi Minh|10.779400|106.694300|5G NR|MobiFone|47|45
+BTS-HCM-018|452|04|18402|2540218|HCM|Quan 1|Pham Ngu Lao|So 54 Duong Dong Khoi, Phuong Pham Ngu Lao, Quan/Huyen Quan 1, TP Ho Chi Minh|10.788900|106.706800|LTE|Viettel|48|90
+BTS-HCM-019|452|02|18402|2540219|HCM|Quan 1|Pham Ngu Lao|So 67 Duong Hai Ba Trung, Phuong Pham Ngu Lao, Quan/Huyen Quan 1, TP Ho Chi Minh|10.798400|106.719300|5G NR|VinaPhone (VNPT)|49|135
+BTS-HCM-020|452|01|18402|2540220|HCM|Quan 1|Pham Ngu Lao|So 80 Duong Tran Hung Dao, Phuong Pham Ngu Lao, Quan/Huyen Quan 1, TP Ho Chi Minh|10.792900|106.716800|LTE|MobiFone|50|180
+BTS-HCM-021|452|04|18402|2540221|HCM|Quan 1|Tan Dinh|So 33 Duong Nguyen Hue, Phuong Tan Dinh, Quan/Huyen Quan 1, TP Ho Chi Minh|10.762400|106.689300|5G NR|Viettel|51|225
+BTS-HCM-022|452|02|18402|2540222|HCM|Quan 1|Tan Dinh|So 46 Duong Le Loi, Phuong Tan Dinh, Quan/Huyen Quan 1, TP Ho Chi Minh|10.771900|106.701800|LTE|VinaPhone (VNPT)|52|270
+BTS-HCM-023|452|01|18402|2540223|HCM|Quan 1|Tan Dinh|So 59 Duong Dong Khoi, Phuong Tan Dinh, Quan/Huyen Quan 1, TP Ho Chi Minh|10.781400|106.714300|5G NR|MobiFone|53|315
+BTS-HCM-024|452|04|18402|2540224|HCM|Quan 1|Tan Dinh|So 72 Duong Hai Ba Trung, Phuong Tan Dinh, Quan/Huyen Quan 1, TP Ho Chi Minh|10.790900|106.711800|LTE|Viettel|54|0
+BTS-HCM-025|452|02|18402|2540225|HCM|Quan 1|Tan Dinh|So 85 Duong Tran Hung Dao, Phuong Tan Dinh, Quan/Huyen Quan 1, TP Ho Chi Minh|10.800400|106.724300|5G NR|VinaPhone (VNPT)|30|45
+BTS-HCM-026|452|01|18402|2540226|HCM|Quan 3|Vo Thi Sau|So 38 Duong Nam Ky Khoi Nghia, Phuong Vo Thi Sau, Quan/Huyen Quan 3, TP Ho Chi Minh|10.769900|106.696800|LTE|MobiFone|31|90
+BTS-HCM-027|452|04|18402|2540227|HCM|Quan 3|Vo Thi Sau|So 51 Duong Nguyen Dinh Chieu, Phuong Vo Thi Sau, Quan/Huyen Quan 3, TP Ho Chi Minh|10.779400|106.694300|5G NR|Viettel|32|135
+BTS-HCM-028|452|02|18402|2540228|HCM|Quan 3|Vo Thi Sau|So 64 Duong Pasteur, Phuong Vo Thi Sau, Quan/Huyen Quan 3, TP Ho Chi Minh|10.788900|106.706800|LTE|VinaPhone (VNPT)|33|180
+BTS-HCM-029|452|01|18402|2540229|HCM|Quan 3|Vo Thi Sau|So 77 Duong Vo Van Tan, Phuong Vo Thi Sau, Quan/Huyen Quan 3, TP Ho Chi Minh|10.798400|106.719300|5G NR|MobiFone|34|225
+BTS-HCM-030|452|04|18402|2540230|HCM|Quan 3|Vo Thi Sau|So 90 Duong Cach Mang Thang 8, Phuong Vo Thi Sau, Quan/Huyen Quan 3, TP Ho Chi Minh|10.792900|106.716800|LTE|Viettel|35|270
+BTS-HCM-031|452|02|18402|2540231|HCM|Quan 3|Phuong 1|So 43 Duong Nam Ky Khoi Nghia, Phuong Phuong 1, Quan/Huyen Quan 3, TP Ho Chi Minh|10.762400|106.689300|5G NR|VinaPhone (VNPT)|36|315
+BTS-HCM-032|452|01|18402|2540232|HCM|Quan 3|Phuong 1|So 56 Duong Nguyen Dinh Chieu, Phuong Phuong 1, Quan/Huyen Quan 3, TP Ho Chi Minh|10.771900|106.701800|LTE|MobiFone|37|0
+BTS-HCM-033|452|04|18402|2540233|HCM|Quan 3|Phuong 1|So 69 Duong Pasteur, Phuong Phuong 1, Quan/Huyen Quan 3, TP Ho Chi Minh|10.781400|106.714300|5G NR|Viettel|38|45
+BTS-HCM-034|452|02|18402|2540234|HCM|Quan 3|Phuong 1|So 82 Duong Vo Van Tan, Phuong Phuong 1, Quan/Huyen Quan 3, TP Ho Chi Minh|10.790900|106.711800|LTE|VinaPhone (VNPT)|39|90
+BTS-HCM-035|452|01|18402|2540235|HCM|Quan 3|Phuong 1|So 95 Duong Cach Mang Thang 8, Phuong Phuong 1, Quan/Huyen Quan 3, TP Ho Chi Minh|10.800400|106.724300|5G NR|MobiFone|40|135
+BTS-HCM-036|452|04|18402|2540236|HCM|Quan 3|Phuong 4|So 48 Duong Nam Ky Khoi Nghia, Phuong Phuong 4, Quan/Huyen Quan 3, TP Ho Chi Minh|10.769900|106.696800|LTE|Viettel|41|180
+BTS-HCM-037|452|02|18402|2540237|HCM|Quan 3|Phuong 4|So 61 Duong Nguyen Dinh Chieu, Phuong Phuong 4, Quan/Huyen Quan 3, TP Ho Chi Minh|10.779400|106.694300|5G NR|VinaPhone (VNPT)|42|225
+BTS-HCM-038|452|01|18402|2540238|HCM|Quan 3|Phuong 4|So 74 Duong Pasteur, Phuong Phuong 4, Quan/Huyen Quan 3, TP Ho Chi Minh|10.788900|106.706800|LTE|MobiFone|43|270
+BTS-HCM-039|452|04|18402|2540239|HCM|Quan 3|Phuong 4|So 87 Duong Vo Van Tan, Phuong Phuong 4, Quan/Huyen Quan 3, TP Ho Chi Minh|10.798400|106.719300|5G NR|Viettel|44|315
+BTS-HCM-040|452|02|18402|2540240|HCM|Quan 3|Phuong 4|So 100 Duong Cach Mang Thang 8, Phuong Phuong 4, Quan/Huyen Quan 3, TP Ho Chi Minh|10.792900|106.716800|LTE|VinaPhone (VNPT)|45|0
+BTS-HCM-041|452|01|18402|2540241|HCM|Quan 3|Phuong 9|So 53 Duong Nam Ky Khoi Nghia, Phuong Phuong 9, Quan/Huyen Quan 3, TP Ho Chi Minh|10.762400|106.689300|5G NR|MobiFone|46|45
+BTS-HCM-042|452|04|18402|2540242|HCM|Quan 3|Phuong 9|So 66 Duong Nguyen Dinh Chieu, Phuong Phuong 9, Quan/Huyen Quan 3, TP Ho Chi Minh|10.771900|106.701800|LTE|Viettel|47|90
+BTS-HCM-043|452|02|18402|2540243|HCM|Quan 3|Phuong 9|So 79 Duong Pasteur, Phuong Phuong 9, Quan/Huyen Quan 3, TP Ho Chi Minh|10.781400|106.714300|5G NR|VinaPhone (VNPT)|48|135
+BTS-HCM-044|452|01|18402|2540244|HCM|Quan 3|Phuong 9|So 92 Duong Vo Van Tan, Phuong Phuong 9, Quan/Huyen Quan 3, TP Ho Chi Minh|10.790900|106.711800|LTE|MobiFone|49|180
+BTS-HCM-045|452|04|18402|2540245|HCM|Quan 3|Phuong 9|So 105 Duong Cach Mang Thang 8, Phuong Phuong 9, Quan/Huyen Quan 3, TP Ho Chi Minh|10.800400|106.724300|5G NR|Viettel|50|225
+BTS-HCM-046|452|02|18402|2540246|HCM|Quan 3|Phuong 14|So 58 Duong Nam Ky Khoi Nghia, Phuong Phuong 14, Quan/Huyen Quan 3, TP Ho Chi Minh|10.769900|106.696800|LTE|VinaPhone (VNPT)|51|270
+BTS-HCM-047|452|01|18402|2540247|HCM|Quan 3|Phuong 14|So 71 Duong Nguyen Dinh Chieu, Phuong Phuong 14, Quan/Huyen Quan 3, TP Ho Chi Minh|10.779400|106.694300|5G NR|MobiFone|52|315
+BTS-HCM-048|452|04|18402|2540248|HCM|Quan 3|Phuong 14|So 84 Duong Pasteur, Phuong Phuong 14, Quan/Huyen Quan 3, TP Ho Chi Minh|10.788900|106.706800|LTE|Viettel|53|0
+BTS-HCM-049|452|02|18402|2540249|HCM|Quan 3|Phuong 14|So 97 Duong Vo Van Tan, Phuong Phuong 14, Quan/Huyen Quan 3, TP Ho Chi Minh|10.798400|106.719300|5G NR|VinaPhone (VNPT)|54|45
+BTS-HCM-050|452|01|18402|2540250|HCM|Quan 3|Phuong 14|So 60 Duong Cach Mang Thang 8, Phuong Phuong 14, Quan/Huyen Quan 3, TP Ho Chi Minh|10.792900|106.716800|LTE|MobiFone|30|90
+BTS-HCM-051|452|04|18402|2540251|HCM|Quan 5|Phuong 1|So 13 Duong Tran Hung Dao, Phuong Phuong 1, Quan/Huyen Quan 5, TP Ho Chi Minh|10.762400|106.689300|5G NR|Viettel|31|135
+BTS-HCM-052|452|02|18402|2540252|HCM|Quan 5|Phuong 1|So 26 Duong An Duong Vuong, Phuong Phuong 1, Quan/Huyen Quan 5, TP Ho Chi Minh|10.771900|106.701800|LTE|VinaPhone (VNPT)|32|180
+BTS-HCM-053|452|01|18402|2540253|HCM|Quan 5|Phuong 1|So 39 Duong Nguyen Trai, Phuong Phuong 1, Quan/Huyen Quan 5, TP Ho Chi Minh|10.781400|106.714300|5G NR|MobiFone|33|225
+BTS-HCM-054|452|04|18402|2540254|HCM|Quan 5|Phuong 1|So 52 Duong Hong Bang, Phuong Phuong 1, Quan/Huyen Quan 5, TP Ho Chi Minh|10.790900|106.711800|LTE|Viettel|34|270
+BTS-HCM-055|452|02|18402|2540255|HCM|Quan 5|Phuong 1|So 65 Duong Nguyen Tri Phuong, Phuong Phuong 1, Quan/Huyen Quan 5, TP Ho Chi Minh|10.800400|106.724300|5G NR|VinaPhone (VNPT)|35|315
+BTS-HCM-056|452|01|18402|2540256|HCM|Quan 5|Phuong 5|So 18 Duong Tran Hung Dao, Phuong Phuong 5, Quan/Huyen Quan 5, TP Ho Chi Minh|10.769900|106.696800|LTE|MobiFone|36|0
+BTS-HCM-057|452|04|18402|2540257|HCM|Quan 5|Phuong 5|So 31 Duong An Duong Vuong, Phuong Phuong 5, Quan/Huyen Quan 5, TP Ho Chi Minh|10.779400|106.694300|5G NR|Viettel|37|45
+BTS-HCM-058|452|02|18402|2540258|HCM|Quan 5|Phuong 5|So 44 Duong Nguyen Trai, Phuong Phuong 5, Quan/Huyen Quan 5, TP Ho Chi Minh|10.788900|106.706800|LTE|VinaPhone (VNPT)|38|90
+BTS-HCM-059|452|01|18402|2540259|HCM|Quan 5|Phuong 5|So 57 Duong Hong Bang, Phuong Phuong 5, Quan/Huyen Quan 5, TP Ho Chi Minh|10.798400|106.719300|5G NR|MobiFone|39|135
+BTS-HCM-060|452|04|18402|2540260|HCM|Quan 5|Phuong 5|So 70 Duong Nguyen Tri Phuong, Phuong Phuong 5, Quan/Huyen Quan 5, TP Ho Chi Minh|10.792900|106.716800|LTE|Viettel|40|180
+BTS-HCM-061|452|02|18402|2540261|HCM|Quan 5|Phuong 8|So 23 Duong Tran Hung Dao, Phuong Phuong 8, Quan/Huyen Quan 5, TP Ho Chi Minh|10.762400|106.689300|5G NR|VinaPhone (VNPT)|41|225
+BTS-HCM-062|452|01|18402|2540262|HCM|Quan 5|Phuong 8|So 36 Duong An Duong Vuong, Phuong Phuong 8, Quan/Huyen Quan 5, TP Ho Chi Minh|10.771900|106.701800|LTE|MobiFone|42|270
+BTS-HCM-063|452|04|18402|2540263|HCM|Quan 5|Phuong 8|So 49 Duong Nguyen Trai, Phuong Phuong 8, Quan/Huyen Quan 5, TP Ho Chi Minh|10.781400|106.714300|5G NR|Viettel|43|315
+BTS-HCM-064|452|02|18402|2540264|HCM|Quan 5|Phuong 8|So 62 Duong Hong Bang, Phuong Phuong 8, Quan/Huyen Quan 5, TP Ho Chi Minh|10.790900|106.711800|LTE|VinaPhone (VNPT)|44|0
+BTS-HCM-065|452|01|18402|2540265|HCM|Quan 5|Phuong 8|So 75 Duong Nguyen Tri Phuong, Phuong Phuong 8, Quan/Huyen Quan 5, TP Ho Chi Minh|10.800400|106.724300|5G NR|MobiFone|45|45
+BTS-HCM-066|452|04|18402|2540266|HCM|Quan 5|Phuong 11|So 28 Duong Tran Hung Dao, Phuong Phuong 11, Quan/Huyen Quan 5, TP Ho Chi Minh|10.769900|106.696800|LTE|Viettel|46|90
+BTS-HCM-067|452|02|18402|2540267|HCM|Quan 5|Phuong 11|So 41 Duong An Duong Vuong, Phuong Phuong 11, Quan/Huyen Quan 5, TP Ho Chi Minh|10.779400|106.694300|5G NR|VinaPhone (VNPT)|47|135
+BTS-HCM-068|452|01|18402|2540268|HCM|Quan 5|Phuong 11|So 54 Duong Nguyen Trai, Phuong Phuong 11, Quan/Huyen Quan 5, TP Ho Chi Minh|10.788900|106.706800|LTE|MobiFone|48|180
+BTS-HCM-069|452|04|18402|2540269|HCM|Quan 5|Phuong 11|So 67 Duong Hong Bang, Phuong Phuong 11, Quan/Huyen Quan 5, TP Ho Chi Minh|10.798400|106.719300|5G NR|Viettel|49|225
+BTS-HCM-070|452|02|18402|2540270|HCM|Quan 5|Phuong 11|So 80 Duong Nguyen Tri Phuong, Phuong Phuong 11, Quan/Huyen Quan 5, TP Ho Chi Minh|10.792900|106.716800|LTE|VinaPhone (VNPT)|50|270
+BTS-HCM-071|452|01|18402|2540271|HCM|Quan 5|Phuong 14|So 33 Duong Tran Hung Dao, Phuong Phuong 14, Quan/Huyen Quan 5, TP Ho Chi Minh|10.762400|106.689300|5G NR|MobiFone|51|315
+BTS-HCM-072|452|04|18402|2540272|HCM|Quan 5|Phuong 14|So 46 Duong An Duong Vuong, Phuong Phuong 14, Quan/Huyen Quan 5, TP Ho Chi Minh|10.771900|106.701800|LTE|Viettel|52|0
+BTS-HCM-073|452|02|18402|2540273|HCM|Quan 5|Phuong 14|So 59 Duong Nguyen Trai, Phuong Phuong 14, Quan/Huyen Quan 5, TP Ho Chi Minh|10.781400|106.714300|5G NR|VinaPhone (VNPT)|53|45
+BTS-HCM-074|452|01|18402|2540274|HCM|Quan 5|Phuong 14|So 72 Duong Hong Bang, Phuong Phuong 14, Quan/Huyen Quan 5, TP Ho Chi Minh|10.790900|106.711800|LTE|MobiFone|54|90
+BTS-HCM-075|452|04|18402|2540275|HCM|Quan 5|Phuong 14|So 85 Duong Nguyen Tri Phuong, Phuong Phuong 14, Quan/Huyen Quan 5, TP Ho Chi Minh|10.800400|106.724300|5G NR|Viettel|30|135
+BTS-HCM-076|452|02|18402|2540276|HCM|Quan 7|Tan Phong|So 38 Duong Nguyen Van Linh, Phuong Tan Phong, Quan/Huyen Quan 7, TP Ho Chi Minh|10.769900|106.696800|LTE|VinaPhone (VNPT)|31|180
+BTS-HCM-077|452|01|18402|2540277|HCM|Quan 7|Tan Phong|So 51 Duong Nguyen Thi Thap, Phuong Tan Phong, Quan/Huyen Quan 7, TP Ho Chi Minh|10.779400|106.694300|5G NR|MobiFone|32|225
+BTS-HCM-078|452|04|18402|2540278|HCM|Quan 7|Tan Phong|So 64 Duong Huynh Tan Phat, Phuong Tan Phong, Quan/Huyen Quan 7, TP Ho Chi Minh|10.788900|106.706800|LTE|Viettel|33|270
+BTS-HCM-079|452|02|18402|2540279|HCM|Quan 7|Tan Phong|So 77 Duong Nguyen Huu Tho, Phuong Tan Phong, Quan/Huyen Quan 7, TP Ho Chi Minh|10.798400|106.719300|5G NR|VinaPhone (VNPT)|34|315
+BTS-HCM-080|452|01|18402|2540280|HCM|Quan 7|Tan Phong|So 90 Duong Le Van Luong, Phuong Tan Phong, Quan/Huyen Quan 7, TP Ho Chi Minh|10.792900|106.716800|LTE|MobiFone|35|0
+BTS-HCM-081|452|04|18402|2540281|HCM|Quan 7|Tan Phu|So 43 Duong Nguyen Van Linh, Phuong Tan Phu, Quan/Huyen Quan 7, TP Ho Chi Minh|10.762400|106.689300|5G NR|Viettel|36|45
+BTS-HCM-082|452|02|18402|2540282|HCM|Quan 7|Tan Phu|So 56 Duong Nguyen Thi Thap, Phuong Tan Phu, Quan/Huyen Quan 7, TP Ho Chi Minh|10.771900|106.701800|LTE|VinaPhone (VNPT)|37|90
+BTS-HCM-083|452|01|18402|2540283|HCM|Quan 7|Tan Phu|So 69 Duong Huynh Tan Phat, Phuong Tan Phu, Quan/Huyen Quan 7, TP Ho Chi Minh|10.781400|106.714300|5G NR|MobiFone|38|135
+BTS-HCM-084|452|04|18402|2540284|HCM|Quan 7|Tan Phu|So 82 Duong Nguyen Huu Tho, Phuong Tan Phu, Quan/Huyen Quan 7, TP Ho Chi Minh|10.790900|106.711800|LTE|Viettel|39|180
+BTS-HCM-085|452|02|18402|2540285|HCM|Quan 7|Tan Phu|So 95 Duong Le Van Luong, Phuong Tan Phu, Quan/Huyen Quan 7, TP Ho Chi Minh|10.800400|106.724300|5G NR|VinaPhone (VNPT)|40|225
+BTS-HCM-086|452|01|18402|2540286|HCM|Quan 7|Tan Quy|So 48 Duong Nguyen Van Linh, Phuong Tan Quy, Quan/Huyen Quan 7, TP Ho Chi Minh|10.769900|106.696800|LTE|MobiFone|41|270
+BTS-HCM-087|452|04|18402|2540287|HCM|Quan 7|Tan Quy|So 61 Duong Nguyen Thi Thap, Phuong Tan Quy, Quan/Huyen Quan 7, TP Ho Chi Minh|10.779400|106.694300|5G NR|Viettel|42|315
+BTS-HCM-088|452|02|18402|2540288|HCM|Quan 7|Tan Quy|So 74 Duong Huynh Tan Phat, Phuong Tan Quy, Quan/Huyen Quan 7, TP Ho Chi Minh|10.788900|106.706800|LTE|VinaPhone (VNPT)|43|0
+BTS-HCM-089|452|01|18402|2540289|HCM|Quan 7|Tan Quy|So 87 Duong Nguyen Huu Tho, Phuong Tan Quy, Quan/Huyen Quan 7, TP Ho Chi Minh|10.798400|106.719300|5G NR|MobiFone|44|45
+BTS-HCM-090|452|04|18402|2540290|HCM|Quan 7|Tan Quy|So 100 Duong Le Van Luong, Phuong Tan Quy, Quan/Huyen Quan 7, TP Ho Chi Minh|10.792900|106.716800|LTE|Viettel|45|90
+BTS-HCM-091|452|02|18402|2540291|HCM|Quan 7|Phu Thuan|So 53 Duong Nguyen Van Linh, Phuong Phu Thuan, Quan/Huyen Quan 7, TP Ho Chi Minh|10.762400|106.689300|5G NR|VinaPhone (VNPT)|46|135
+BTS-HCM-092|452|01|18402|2540292|HCM|Quan 7|Phu Thuan|So 66 Duong Nguyen Thi Thap, Phuong Phu Thuan, Quan/Huyen Quan 7, TP Ho Chi Minh|10.771900|106.701800|LTE|MobiFone|47|180
+BTS-HCM-093|452|04|18402|2540293|HCM|Quan 7|Phu Thuan|So 79 Duong Huynh Tan Phat, Phuong Phu Thuan, Quan/Huyen Quan 7, TP Ho Chi Minh|10.781400|106.714300|5G NR|Viettel|48|225
+BTS-HCM-094|452|02|18402|2540294|HCM|Quan 7|Phu Thuan|So 92 Duong Nguyen Huu Tho, Phuong Phu Thuan, Quan/Huyen Quan 7, TP Ho Chi Minh|10.790900|106.711800|LTE|VinaPhone (VNPT)|49|270
+BTS-HCM-095|452|01|18402|2540295|HCM|Quan 7|Phu Thuan|So 105 Duong Le Van Luong, Phuong Phu Thuan, Quan/Huyen Quan 7, TP Ho Chi Minh|10.800400|106.724300|5G NR|MobiFone|50|315
+BTS-HCM-096|452|04|18402|2540296|HCM|Quan 7|Binh Thuan|So 58 Duong Nguyen Van Linh, Phuong Binh Thuan, Quan/Huyen Quan 7, TP Ho Chi Minh|10.769900|106.696800|LTE|Viettel|51|0
+BTS-HCM-097|452|02|18402|2540297|HCM|Quan 7|Binh Thuan|So 71 Duong Nguyen Thi Thap, Phuong Binh Thuan, Quan/Huyen Quan 7, TP Ho Chi Minh|10.779400|106.694300|5G NR|VinaPhone (VNPT)|52|45
+BTS-HCM-098|452|01|18402|2540298|HCM|Quan 7|Binh Thuan|So 84 Duong Huynh Tan Phat, Phuong Binh Thuan, Quan/Huyen Quan 7, TP Ho Chi Minh|10.788900|106.706800|LTE|MobiFone|53|90
+BTS-HCM-099|452|04|18402|2540299|HCM|Quan 7|Binh Thuan|So 97 Duong Nguyen Huu Tho, Phuong Binh Thuan, Quan/Huyen Quan 7, TP Ho Chi Minh|10.798400|106.719300|5G NR|Viettel|54|135
+BTS-HCM-100|452|02|18402|2540300|HCM|Quan 7|Binh Thuan|So 60 Duong Le Van Luong, Phuong Binh Thuan, Quan/Huyen Quan 7, TP Ho Chi Minh|10.792900|106.716800|LTE|VinaPhone (VNPT)|30|180
+BTS-HCM-101|452|01|18402|2540301|HCM|Binh Thanh|Phuong 1|So 13 Duong Dien Bien Phu, Phuong Phuong 1, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.762400|106.689300|5G NR|MobiFone|31|225
+BTS-HCM-102|452|04|18402|2540302|HCM|Binh Thanh|Phuong 1|So 26 Duong Xo Viet Nghe Tinh, Phuong Phuong 1, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.771900|106.701800|LTE|Viettel|32|270
+BTS-HCM-103|452|02|18402|2540303|HCM|Binh Thanh|Phuong 1|So 39 Duong Bach Dang, Phuong Phuong 1, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.781400|106.714300|5G NR|VinaPhone (VNPT)|33|315
+BTS-HCM-104|452|01|18402|2540304|HCM|Binh Thanh|Phuong 1|So 52 Duong Phan Dang Luu, Phuong Phuong 1, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.790900|106.711800|LTE|MobiFone|34|0
+BTS-HCM-105|452|04|18402|2540305|HCM|Binh Thanh|Phuong 1|So 65 Duong Bui Dinh Tuy, Phuong Phuong 1, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.800400|106.724300|5G NR|Viettel|35|45
+BTS-HCM-106|452|02|18402|2540306|HCM|Binh Thanh|Phuong 12|So 18 Duong Dien Bien Phu, Phuong Phuong 12, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.769900|106.696800|LTE|VinaPhone (VNPT)|36|90
+BTS-HCM-107|452|01|18402|2540307|HCM|Binh Thanh|Phuong 12|So 31 Duong Xo Viet Nghe Tinh, Phuong Phuong 12, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.779400|106.694300|5G NR|MobiFone|37|135
+BTS-HCM-108|452|04|18402|2540308|HCM|Binh Thanh|Phuong 12|So 44 Duong Bach Dang, Phuong Phuong 12, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.788900|106.706800|LTE|Viettel|38|180
+BTS-HCM-109|452|02|18402|2540309|HCM|Binh Thanh|Phuong 12|So 57 Duong Phan Dang Luu, Phuong Phuong 12, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.798400|106.719300|5G NR|VinaPhone (VNPT)|39|225
+BTS-HCM-110|452|01|18402|2540310|HCM|Binh Thanh|Phuong 12|So 70 Duong Bui Dinh Tuy, Phuong Phuong 12, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.792900|106.716800|LTE|MobiFone|40|270
+BTS-HCM-111|452|04|18402|2540311|HCM|Binh Thanh|Phuong 19|So 23 Duong Dien Bien Phu, Phuong Phuong 19, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.762400|106.689300|5G NR|Viettel|41|315
+BTS-HCM-112|452|02|18402|2540312|HCM|Binh Thanh|Phuong 19|So 36 Duong Xo Viet Nghe Tinh, Phuong Phuong 19, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.771900|106.701800|LTE|VinaPhone (VNPT)|42|0
+BTS-HCM-113|452|01|18402|2540313|HCM|Binh Thanh|Phuong 19|So 49 Duong Bach Dang, Phuong Phuong 19, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.781400|106.714300|5G NR|MobiFone|43|45
+BTS-HCM-114|452|04|18402|2540314|HCM|Binh Thanh|Phuong 19|So 62 Duong Phan Dang Luu, Phuong Phuong 19, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.790900|106.711800|LTE|Viettel|44|90
+BTS-HCM-115|452|02|18402|2540315|HCM|Binh Thanh|Phuong 19|So 75 Duong Bui Dinh Tuy, Phuong Phuong 19, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.800400|106.724300|5G NR|VinaPhone (VNPT)|45|135
+BTS-HCM-116|452|01|18402|2540316|HCM|Binh Thanh|Phuong 25|So 28 Duong Dien Bien Phu, Phuong Phuong 25, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.769900|106.696800|LTE|MobiFone|46|180
+BTS-HCM-117|452|04|18402|2540317|HCM|Binh Thanh|Phuong 25|So 41 Duong Xo Viet Nghe Tinh, Phuong Phuong 25, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.779400|106.694300|5G NR|Viettel|47|225
+BTS-HCM-118|452|02|18402|2540318|HCM|Binh Thanh|Phuong 25|So 54 Duong Bach Dang, Phuong Phuong 25, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.788900|106.706800|LTE|VinaPhone (VNPT)|48|270
+BTS-HCM-119|452|01|18402|2540319|HCM|Binh Thanh|Phuong 25|So 67 Duong Phan Dang Luu, Phuong Phuong 25, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.798400|106.719300|5G NR|MobiFone|49|315
+BTS-HCM-120|452|04|18402|2540320|HCM|Binh Thanh|Phuong 25|So 80 Duong Bui Dinh Tuy, Phuong Phuong 25, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.792900|106.716800|LTE|Viettel|50|0
+BTS-HCM-121|452|02|18402|2540321|HCM|Binh Thanh|Phuong 26|So 33 Duong Dien Bien Phu, Phuong Phuong 26, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.762400|106.689300|5G NR|VinaPhone (VNPT)|51|45
+BTS-HCM-122|452|01|18402|2540322|HCM|Binh Thanh|Phuong 26|So 46 Duong Xo Viet Nghe Tinh, Phuong Phuong 26, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.771900|106.701800|LTE|MobiFone|52|90
+BTS-HCM-123|452|04|18402|2540323|HCM|Binh Thanh|Phuong 26|So 59 Duong Bach Dang, Phuong Phuong 26, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.781400|106.714300|5G NR|Viettel|53|135
+BTS-HCM-124|452|02|18402|2540324|HCM|Binh Thanh|Phuong 26|So 72 Duong Phan Dang Luu, Phuong Phuong 26, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.790900|106.711800|LTE|VinaPhone (VNPT)|54|180
+BTS-HCM-125|452|01|18402|2540325|HCM|Binh Thanh|Phuong 26|So 85 Duong Bui Dinh Tuy, Phuong Phuong 26, Quan/Huyen Binh Thanh, TP Ho Chi Minh|10.800400|106.724300|5G NR|MobiFone|30|225
+BTS-HCM-126|452|04|18402|2540326|HCM|Tan Binh|Phuong 2|So 38 Duong Truong Son, Phuong Phuong 2, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.769900|106.696800|LTE|Viettel|31|270
+BTS-HCM-127|452|02|18402|2540327|HCM|Tan Binh|Phuong 2|So 51 Duong Cong Hoa, Phuong Phuong 2, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.779400|106.694300|5G NR|VinaPhone (VNPT)|32|315
+BTS-HCM-128|452|01|18402|2540328|HCM|Tan Binh|Phuong 2|So 64 Duong Hoang Van Thu, Phuong Phuong 2, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.788900|106.706800|LTE|MobiFone|33|0
+BTS-HCM-129|452|04|18402|2540329|HCM|Tan Binh|Phuong 2|So 77 Duong Le Van Sy, Phuong Phuong 2, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.798400|106.719300|5G NR|Viettel|34|45
+BTS-HCM-130|452|02|18402|2540330|HCM|Tan Binh|Phuong 2|So 90 Duong Truong Chinh, Phuong Phuong 2, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.792900|106.716800|LTE|VinaPhone (VNPT)|35|90
+BTS-HCM-131|452|01|18402|2540331|HCM|Tan Binh|Phuong 4|So 43 Duong Truong Son, Phuong Phuong 4, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.762400|106.689300|5G NR|MobiFone|36|135
+BTS-HCM-132|452|04|18402|2540332|HCM|Tan Binh|Phuong 4|So 56 Duong Cong Hoa, Phuong Phuong 4, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.771900|106.701800|LTE|Viettel|37|180
+BTS-HCM-133|452|02|18402|2540333|HCM|Tan Binh|Phuong 4|So 69 Duong Hoang Van Thu, Phuong Phuong 4, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.781400|106.714300|5G NR|VinaPhone (VNPT)|38|225
+BTS-HCM-134|452|01|18402|2540334|HCM|Tan Binh|Phuong 4|So 82 Duong Le Van Sy, Phuong Phuong 4, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.790900|106.711800|LTE|MobiFone|39|270
+BTS-HCM-135|452|04|18402|2540335|HCM|Tan Binh|Phuong 4|So 95 Duong Truong Chinh, Phuong Phuong 4, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.800400|106.724300|5G NR|Viettel|40|315
+BTS-HCM-136|452|02|18402|2540336|HCM|Tan Binh|Phuong 12|So 48 Duong Truong Son, Phuong Phuong 12, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.769900|106.696800|LTE|VinaPhone (VNPT)|41|0
+BTS-HCM-137|452|01|18402|2540337|HCM|Tan Binh|Phuong 12|So 61 Duong Cong Hoa, Phuong Phuong 12, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.779400|106.694300|5G NR|MobiFone|42|45
+BTS-HCM-138|452|04|18402|2540338|HCM|Tan Binh|Phuong 12|So 74 Duong Hoang Van Thu, Phuong Phuong 12, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.788900|106.706800|LTE|Viettel|43|90
+BTS-HCM-139|452|02|18402|2540339|HCM|Tan Binh|Phuong 12|So 87 Duong Le Van Sy, Phuong Phuong 12, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.798400|106.719300|5G NR|VinaPhone (VNPT)|44|135
+BTS-HCM-140|452|01|18402|2540340|HCM|Tan Binh|Phuong 12|So 100 Duong Truong Chinh, Phuong Phuong 12, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.792900|106.716800|LTE|MobiFone|45|180
+BTS-HCM-141|452|04|18402|2540341|HCM|Tan Binh|Phuong 13|So 53 Duong Truong Son, Phuong Phuong 13, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.762400|106.689300|5G NR|Viettel|46|225
+BTS-HCM-142|452|02|18402|2540342|HCM|Tan Binh|Phuong 13|So 66 Duong Cong Hoa, Phuong Phuong 13, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.771900|106.701800|LTE|VinaPhone (VNPT)|47|270
+BTS-HCM-143|452|01|18402|2540343|HCM|Tan Binh|Phuong 13|So 79 Duong Hoang Van Thu, Phuong Phuong 13, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.781400|106.714300|5G NR|MobiFone|48|315
+BTS-HCM-144|452|04|18402|2540344|HCM|Tan Binh|Phuong 13|So 92 Duong Le Van Sy, Phuong Phuong 13, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.790900|106.711800|LTE|Viettel|49|0
+BTS-HCM-145|452|02|18402|2540345|HCM|Tan Binh|Phuong 13|So 105 Duong Truong Chinh, Phuong Phuong 13, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.800400|106.724300|5G NR|VinaPhone (VNPT)|50|45
+BTS-HCM-146|452|01|18402|2540346|HCM|Tan Binh|Phuong 15|So 58 Duong Truong Son, Phuong Phuong 15, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.769900|106.696800|LTE|MobiFone|51|90
+BTS-HCM-147|452|04|18402|2540347|HCM|Tan Binh|Phuong 15|So 71 Duong Cong Hoa, Phuong Phuong 15, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.779400|106.694300|5G NR|Viettel|52|135
+BTS-HCM-148|452|02|18402|2540348|HCM|Tan Binh|Phuong 15|So 84 Duong Hoang Van Thu, Phuong Phuong 15, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.788900|106.706800|LTE|VinaPhone (VNPT)|53|180
+BTS-HCM-149|452|01|18402|2540349|HCM|Tan Binh|Phuong 15|So 97 Duong Le Van Sy, Phuong Phuong 15, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.798400|106.719300|5G NR|MobiFone|54|225
+BTS-HCM-150|452|04|18402|2540350|HCM|Tan Binh|Phuong 15|So 60 Duong Truong Chinh, Phuong Phuong 15, Quan/Huyen Tan Binh, TP Ho Chi Minh|10.792900|106.716800|LTE|Viettel|30|270
+BTS-HCM-151|452|02|18402|2540351|HCM|Thu Duc|Linh Trung|So 13 Duong Vo Van Ngan, Phuong Linh Trung, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.762400|106.689300|5G NR|VinaPhone (VNPT)|31|315
+BTS-HCM-152|452|01|18402|2540352|HCM|Thu Duc|Linh Trung|So 26 Duong Kha Van Can, Phuong Linh Trung, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.771900|106.701800|LTE|MobiFone|32|0
+BTS-HCM-153|452|04|18402|2540353|HCM|Thu Duc|Linh Trung|So 39 Duong Xa Lo Ha Noi, Phuong Linh Trung, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.781400|106.714300|5G NR|Viettel|33|45
+BTS-HCM-154|452|02|18402|2540354|HCM|Thu Duc|Linh Trung|So 52 Duong Mai Chi Tho, Phuong Linh Trung, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.790900|106.711800|LTE|VinaPhone (VNPT)|34|90
+BTS-HCM-155|452|01|18402|2540355|HCM|Thu Duc|Linh Trung|So 65 Duong Nguyen Duy Trinh, Phuong Linh Trung, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.800400|106.724300|5G NR|MobiFone|35|135
+BTS-HCM-156|452|04|18402|2540356|HCM|Thu Duc|Linh Chieu|So 18 Duong Vo Van Ngan, Phuong Linh Chieu, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.769900|106.696800|LTE|Viettel|36|180
+BTS-HCM-157|452|02|18402|2540357|HCM|Thu Duc|Linh Chieu|So 31 Duong Kha Van Can, Phuong Linh Chieu, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.779400|106.694300|5G NR|VinaPhone (VNPT)|37|225
+BTS-HCM-158|452|01|18402|2540358|HCM|Thu Duc|Linh Chieu|So 44 Duong Xa Lo Ha Noi, Phuong Linh Chieu, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.788900|106.706800|LTE|MobiFone|38|270
+BTS-HCM-159|452|04|18402|2540359|HCM|Thu Duc|Linh Chieu|So 57 Duong Mai Chi Tho, Phuong Linh Chieu, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.798400|106.719300|5G NR|Viettel|39|315
+BTS-HCM-160|452|02|18402|2540360|HCM|Thu Duc|Linh Chieu|So 70 Duong Nguyen Duy Trinh, Phuong Linh Chieu, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.792900|106.716800|LTE|VinaPhone (VNPT)|40|0
+BTS-HCM-161|452|01|18402|2540361|HCM|Thu Duc|Hiep Binh Chanh|So 23 Duong Vo Van Ngan, Phuong Hiep Binh Chanh, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.762400|106.689300|5G NR|MobiFone|41|45
+BTS-HCM-162|452|04|18402|2540362|HCM|Thu Duc|Hiep Binh Chanh|So 36 Duong Kha Van Can, Phuong Hiep Binh Chanh, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.771900|106.701800|LTE|Viettel|42|90
+BTS-HCM-163|452|02|18402|2540363|HCM|Thu Duc|Hiep Binh Chanh|So 49 Duong Xa Lo Ha Noi, Phuong Hiep Binh Chanh, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.781400|106.714300|5G NR|VinaPhone (VNPT)|43|135
+BTS-HCM-164|452|01|18402|2540364|HCM|Thu Duc|Hiep Binh Chanh|So 62 Duong Mai Chi Tho, Phuong Hiep Binh Chanh, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.790900|106.711800|LTE|MobiFone|44|180
+BTS-HCM-165|452|04|18402|2540365|HCM|Thu Duc|Hiep Binh Chanh|So 75 Duong Nguyen Duy Trinh, Phuong Hiep Binh Chanh, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.800400|106.724300|5G NR|Viettel|45|225
+BTS-HCM-166|452|02|18402|2540366|HCM|Thu Duc|Thao Dien|So 28 Duong Vo Van Ngan, Phuong Thao Dien, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.769900|106.696800|LTE|VinaPhone (VNPT)|46|270
+BTS-HCM-167|452|01|18402|2540367|HCM|Thu Duc|Thao Dien|So 41 Duong Kha Van Can, Phuong Thao Dien, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.779400|106.694300|5G NR|MobiFone|47|315
+BTS-HCM-168|452|04|18402|2540368|HCM|Thu Duc|Thao Dien|So 54 Duong Xa Lo Ha Noi, Phuong Thao Dien, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.788900|106.706800|LTE|Viettel|48|0
+BTS-HCM-169|452|02|18402|2540369|HCM|Thu Duc|Thao Dien|So 67 Duong Mai Chi Tho, Phuong Thao Dien, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.798400|106.719300|5G NR|VinaPhone (VNPT)|49|45
+BTS-HCM-170|452|01|18402|2540370|HCM|Thu Duc|Thao Dien|So 80 Duong Nguyen Duy Trinh, Phuong Thao Dien, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.792900|106.716800|LTE|MobiFone|50|90
+BTS-HCM-171|452|04|18402|2540371|HCM|Thu Duc|An Phu|So 33 Duong Vo Van Ngan, Phuong An Phu, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.762400|106.689300|5G NR|Viettel|51|135
+BTS-HCM-172|452|02|18402|2540372|HCM|Thu Duc|An Phu|So 46 Duong Kha Van Can, Phuong An Phu, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.771900|106.701800|LTE|VinaPhone (VNPT)|52|180
+BTS-HCM-173|452|01|18402|2540373|HCM|Thu Duc|An Phu|So 59 Duong Xa Lo Ha Noi, Phuong An Phu, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.781400|106.714300|5G NR|MobiFone|53|225
+BTS-HCM-174|452|04|18402|2540374|HCM|Thu Duc|An Phu|So 72 Duong Mai Chi Tho, Phuong An Phu, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.790900|106.711800|LTE|Viettel|54|270
+BTS-HCM-175|452|02|18402|2540375|HCM|Thu Duc|An Phu|So 85 Duong Nguyen Duy Trinh, Phuong An Phu, Quan/Huyen Thu Duc, TP Ho Chi Minh|10.800400|106.724300|5G NR|VinaPhone (VNPT)|30|315
+BTS-HN-001|452|02|24708|2570801|HN|Ba Dinh|Kim Ma|So 13 Duong Lieu Giai, Phuong Kim Ma, Quan/Huyen Ba Dinh, Ha Noi|21.014000|105.842700|5G NR|VinaPhone (VNPT)|31|45
+BTS-HN-002|452|01|24708|2570802|HN|Ba Dinh|Kim Ma|So 26 Duong Doi Can, Phuong Kim Ma, Quan/Huyen Ba Dinh, Ha Noi|21.023500|105.855200|LTE|MobiFone|32|90
+BTS-HN-003|452|04|24708|2570803|HN|Ba Dinh|Kim Ma|So 39 Duong Kim Ma, Phuong Kim Ma, Quan/Huyen Ba Dinh, Ha Noi|21.033000|105.867700|5G NR|Viettel|33|135
+BTS-HN-004|452|02|24708|2570804|HN|Ba Dinh|Kim Ma|So 52 Duong Giang Vo, Phuong Kim Ma, Quan/Huyen Ba Dinh, Ha Noi|21.042500|105.865200|LTE|VinaPhone (VNPT)|34|180
+BTS-HN-005|452|01|24708|2570805|HN|Ba Dinh|Kim Ma|So 65 Duong Ngoc Khanh, Phuong Kim Ma, Quan/Huyen Ba Dinh, Ha Noi|21.052000|105.877700|5G NR|MobiFone|35|225
+BTS-HN-006|452|04|24708|2570806|HN|Ba Dinh|Lieu Giai|So 18 Duong Lieu Giai, Phuong Lieu Giai, Quan/Huyen Ba Dinh, Ha Noi|21.021500|105.850200|LTE|Viettel|36|270
+BTS-HN-007|452|02|24708|2570807|HN|Ba Dinh|Lieu Giai|So 31 Duong Doi Can, Phuong Lieu Giai, Quan/Huyen Ba Dinh, Ha Noi|21.031000|105.847700|5G NR|VinaPhone (VNPT)|37|315
+BTS-HN-008|452|01|24708|2570808|HN|Ba Dinh|Lieu Giai|So 44 Duong Kim Ma, Phuong Lieu Giai, Quan/Huyen Ba Dinh, Ha Noi|21.040500|105.860200|LTE|MobiFone|38|0
+BTS-HN-009|452|04|24708|2570809|HN|Ba Dinh|Lieu Giai|So 57 Duong Giang Vo, Phuong Lieu Giai, Quan/Huyen Ba Dinh, Ha Noi|21.050000|105.872700|5G NR|Viettel|39|45
+BTS-HN-010|452|02|24708|2570810|HN|Ba Dinh|Lieu Giai|So 70 Duong Ngoc Khanh, Phuong Lieu Giai, Quan/Huyen Ba Dinh, Ha Noi|21.044500|105.870200|LTE|VinaPhone (VNPT)|40|90
+BTS-HN-011|452|01|24708|2570811|HN|Ba Dinh|Doi Can|So 23 Duong Lieu Giai, Phuong Doi Can, Quan/Huyen Ba Dinh, Ha Noi|21.014000|105.842700|5G NR|MobiFone|41|135
+BTS-HN-012|452|04|24708|2570812|HN|Ba Dinh|Doi Can|So 36 Duong Doi Can, Phuong Doi Can, Quan/Huyen Ba Dinh, Ha Noi|21.023500|105.855200|LTE|Viettel|42|180
+BTS-HN-013|452|02|24708|2570813|HN|Ba Dinh|Doi Can|So 49 Duong Kim Ma, Phuong Doi Can, Quan/Huyen Ba Dinh, Ha Noi|21.033000|105.867700|5G NR|VinaPhone (VNPT)|43|225
+BTS-HN-014|452|01|24708|2570814|HN|Ba Dinh|Doi Can|So 62 Duong Giang Vo, Phuong Doi Can, Quan/Huyen Ba Dinh, Ha Noi|21.042500|105.865200|LTE|MobiFone|44|270
+BTS-HN-015|452|04|24708|2570815|HN|Ba Dinh|Doi Can|So 75 Duong Ngoc Khanh, Phuong Doi Can, Quan/Huyen Ba Dinh, Ha Noi|21.052000|105.877700|5G NR|Viettel|45|315
+BTS-HN-016|452|02|24708|2570816|HN|Ba Dinh|Cong Vi|So 28 Duong Lieu Giai, Phuong Cong Vi, Quan/Huyen Ba Dinh, Ha Noi|21.021500|105.850200|LTE|VinaPhone (VNPT)|46|0
+BTS-HN-017|452|01|24708|2570817|HN|Ba Dinh|Cong Vi|So 41 Duong Doi Can, Phuong Cong Vi, Quan/Huyen Ba Dinh, Ha Noi|21.031000|105.847700|5G NR|MobiFone|47|45
+BTS-HN-018|452|04|24708|2570818|HN|Ba Dinh|Cong Vi|So 54 Duong Kim Ma, Phuong Cong Vi, Quan/Huyen Ba Dinh, Ha Noi|21.040500|105.860200|LTE|Viettel|48|90
+BTS-HN-019|452|02|24708|2570819|HN|Ba Dinh|Cong Vi|So 67 Duong Giang Vo, Phuong Cong Vi, Quan/Huyen Ba Dinh, Ha Noi|21.050000|105.872700|5G NR|VinaPhone (VNPT)|49|135
+BTS-HN-020|452|01|24708|2570820|HN|Ba Dinh|Cong Vi|So 80 Duong Ngoc Khanh, Phuong Cong Vi, Quan/Huyen Ba Dinh, Ha Noi|21.044500|105.870200|LTE|MobiFone|50|180
+BTS-HN-021|452|04|24708|2570821|HN|Ba Dinh|Giang Vo|So 33 Duong Lieu Giai, Phuong Giang Vo, Quan/Huyen Ba Dinh, Ha Noi|21.014000|105.842700|5G NR|Viettel|51|225
+BTS-HN-022|452|02|24708|2570822|HN|Ba Dinh|Giang Vo|So 46 Duong Doi Can, Phuong Giang Vo, Quan/Huyen Ba Dinh, Ha Noi|21.023500|105.855200|LTE|VinaPhone (VNPT)|52|270
+BTS-HN-023|452|01|24708|2570823|HN|Ba Dinh|Giang Vo|So 59 Duong Kim Ma, Phuong Giang Vo, Quan/Huyen Ba Dinh, Ha Noi|21.033000|105.867700|5G NR|MobiFone|53|315
+BTS-HN-024|452|04|24708|2570824|HN|Ba Dinh|Giang Vo|So 72 Duong Giang Vo, Phuong Giang Vo, Quan/Huyen Ba Dinh, Ha Noi|21.042500|105.865200|LTE|Viettel|54|0
+BTS-HN-025|452|02|24708|2570825|HN|Ba Dinh|Giang Vo|So 85 Duong Ngoc Khanh, Phuong Giang Vo, Quan/Huyen Ba Dinh, Ha Noi|21.052000|105.877700|5G NR|VinaPhone (VNPT)|30|45
+BTS-HN-026|452|01|24708|2570826|HN|Hoan Kiem|Hang Bac|So 38 Duong Dinh Tien Hoang, Phuong Hang Bac, Quan/Huyen Hoan Kiem, Ha Noi|21.021500|105.850200|LTE|MobiFone|31|90
+BTS-HN-027|452|04|24708|2570827|HN|Hoan Kiem|Hang Bac|So 51 Duong Trang Tien, Phuong Hang Bac, Quan/Huyen Hoan Kiem, Ha Noi|21.031000|105.847700|5G NR|Viettel|32|135
+BTS-HN-028|452|02|24708|2570828|HN|Hoan Kiem|Hang Bac|So 64 Duong Hang Bai, Phuong Hang Bac, Quan/Huyen Hoan Kiem, Ha Noi|21.040500|105.860200|LTE|VinaPhone (VNPT)|33|180
+BTS-HN-029|452|01|24708|2570829|HN|Hoan Kiem|Hang Bac|So 77 Duong Ly Thuong Kiet, Phuong Hang Bac, Quan/Huyen Hoan Kiem, Ha Noi|21.050000|105.872700|5G NR|MobiFone|34|225
+BTS-HN-030|452|04|24708|2570830|HN|Hoan Kiem|Hang Bac|So 90 Duong Tran Hung Dao, Phuong Hang Bac, Quan/Huyen Hoan Kiem, Ha Noi|21.044500|105.870200|LTE|Viettel|35|270
+BTS-HN-031|452|02|24708|2570831|HN|Hoan Kiem|Hang Dao|So 43 Duong Dinh Tien Hoang, Phuong Hang Dao, Quan/Huyen Hoan Kiem, Ha Noi|21.014000|105.842700|5G NR|VinaPhone (VNPT)|36|315
+BTS-HN-032|452|01|24708|2570832|HN|Hoan Kiem|Hang Dao|So 56 Duong Trang Tien, Phuong Hang Dao, Quan/Huyen Hoan Kiem, Ha Noi|21.023500|105.855200|LTE|MobiFone|37|0
+BTS-HN-033|452|04|24708|2570833|HN|Hoan Kiem|Hang Dao|So 69 Duong Hang Bai, Phuong Hang Dao, Quan/Huyen Hoan Kiem, Ha Noi|21.033000|105.867700|5G NR|Viettel|38|45
+BTS-HN-034|452|02|24708|2570834|HN|Hoan Kiem|Hang Dao|So 82 Duong Ly Thuong Kiet, Phuong Hang Dao, Quan/Huyen Hoan Kiem, Ha Noi|21.042500|105.865200|LTE|VinaPhone (VNPT)|39|90
+BTS-HN-035|452|01|24708|2570835|HN|Hoan Kiem|Hang Dao|So 95 Duong Tran Hung Dao, Phuong Hang Dao, Quan/Huyen Hoan Kiem, Ha Noi|21.052000|105.877700|5G NR|MobiFone|40|135
+BTS-HN-036|452|04|24708|2570836|HN|Hoan Kiem|Trang Tien|So 48 Duong Dinh Tien Hoang, Phuong Trang Tien, Quan/Huyen Hoan Kiem, Ha Noi|21.021500|105.850200|LTE|Viettel|41|180
+BTS-HN-037|452|02|24708|2570837|HN|Hoan Kiem|Trang Tien|So 61 Duong Trang Tien, Phuong Trang Tien, Quan/Huyen Hoan Kiem, Ha Noi|21.031000|105.847700|5G NR|VinaPhone (VNPT)|42|225
+BTS-HN-038|452|01|24708|2570838|HN|Hoan Kiem|Trang Tien|So 74 Duong Hang Bai, Phuong Trang Tien, Quan/Huyen Hoan Kiem, Ha Noi|21.040500|105.860200|LTE|MobiFone|43|270
+BTS-HN-039|452|04|24708|2570839|HN|Hoan Kiem|Trang Tien|So 87 Duong Ly Thuong Kiet, Phuong Trang Tien, Quan/Huyen Hoan Kiem, Ha Noi|21.050000|105.872700|5G NR|Viettel|44|315
+BTS-HN-040|452|02|24708|2570840|HN|Hoan Kiem|Trang Tien|So 100 Duong Tran Hung Dao, Phuong Trang Tien, Quan/Huyen Hoan Kiem, Ha Noi|21.044500|105.870200|LTE|VinaPhone (VNPT)|45|0
+BTS-HN-041|452|01|24708|2570841|HN|Hoan Kiem|Cua Nam|So 53 Duong Dinh Tien Hoang, Phuong Cua Nam, Quan/Huyen Hoan Kiem, Ha Noi|21.014000|105.842700|5G NR|MobiFone|46|45
+BTS-HN-042|452|04|24708|2570842|HN|Hoan Kiem|Cua Nam|So 66 Duong Trang Tien, Phuong Cua Nam, Quan/Huyen Hoan Kiem, Ha Noi|21.023500|105.855200|LTE|Viettel|47|90
+BTS-HN-043|452|02|24708|2570843|HN|Hoan Kiem|Cua Nam|So 79 Duong Hang Bai, Phuong Cua Nam, Quan/Huyen Hoan Kiem, Ha Noi|21.033000|105.867700|5G NR|VinaPhone (VNPT)|48|135
+BTS-HN-044|452|01|24708|2570844|HN|Hoan Kiem|Cua Nam|So 92 Duong Ly Thuong Kiet, Phuong Cua Nam, Quan/Huyen Hoan Kiem, Ha Noi|21.042500|105.865200|LTE|MobiFone|49|180
+BTS-HN-045|452|04|24708|2570845|HN|Hoan Kiem|Cua Nam|So 105 Duong Tran Hung Dao, Phuong Cua Nam, Quan/Huyen Hoan Kiem, Ha Noi|21.052000|105.877700|5G NR|Viettel|50|225
+BTS-HN-046|452|02|24708|2570846|HN|Hoan Kiem|Ly Thai To|So 58 Duong Dinh Tien Hoang, Phuong Ly Thai To, Quan/Huyen Hoan Kiem, Ha Noi|21.021500|105.850200|LTE|VinaPhone (VNPT)|51|270
+BTS-HN-047|452|01|24708|2570847|HN|Hoan Kiem|Ly Thai To|So 71 Duong Trang Tien, Phuong Ly Thai To, Quan/Huyen Hoan Kiem, Ha Noi|21.031000|105.847700|5G NR|MobiFone|52|315
+BTS-HN-048|452|04|24708|2570848|HN|Hoan Kiem|Ly Thai To|So 84 Duong Hang Bai, Phuong Ly Thai To, Quan/Huyen Hoan Kiem, Ha Noi|21.040500|105.860200|LTE|Viettel|53|0
+BTS-HN-049|452|02|24708|2570849|HN|Hoan Kiem|Ly Thai To|So 97 Duong Ly Thuong Kiet, Phuong Ly Thai To, Quan/Huyen Hoan Kiem, Ha Noi|21.050000|105.872700|5G NR|VinaPhone (VNPT)|54|45
+BTS-HN-050|452|01|24708|2570850|HN|Hoan Kiem|Ly Thai To|So 60 Duong Tran Hung Dao, Phuong Ly Thai To, Quan/Huyen Hoan Kiem, Ha Noi|21.044500|105.870200|LTE|MobiFone|30|90
+BTS-HN-051|452|04|24708|2570851|HN|Cau Giay|Dich Vong|So 13 Duong Cau Giay, Phuong Dich Vong, Quan/Huyen Cau Giay, Ha Noi|21.014000|105.842700|5G NR|Viettel|31|135
+BTS-HN-052|452|02|24708|2570852|HN|Cau Giay|Dich Vong|So 26 Duong Duy Tan, Phuong Dich Vong, Quan/Huyen Cau Giay, Ha Noi|21.023500|105.855200|LTE|VinaPhone (VNPT)|32|180
+BTS-HN-053|452|01|24708|2570853|HN|Cau Giay|Dich Vong|So 39 Duong Tran Thai Tong, Phuong Dich Vong, Quan/Huyen Cau Giay, Ha Noi|21.033000|105.867700|5G NR|MobiFone|33|225
+BTS-HN-054|452|04|24708|2570854|HN|Cau Giay|Dich Vong|So 52 Duong Xuan Thuy, Phuong Dich Vong, Quan/Huyen Cau Giay, Ha Noi|21.042500|105.865200|LTE|Viettel|34|270
+BTS-HN-055|452|02|24708|2570855|HN|Cau Giay|Dich Vong|So 65 Duong Pham Van Dong, Phuong Dich Vong, Quan/Huyen Cau Giay, Ha Noi|21.052000|105.877700|5G NR|VinaPhone (VNPT)|35|315
+BTS-HN-056|452|01|24708|2570856|HN|Cau Giay|Dich Vong Hau|So 18 Duong Cau Giay, Phuong Dich Vong Hau, Quan/Huyen Cau Giay, Ha Noi|21.021500|105.850200|LTE|MobiFone|36|0
+BTS-HN-057|452|04|24708|2570857|HN|Cau Giay|Dich Vong Hau|So 31 Duong Duy Tan, Phuong Dich Vong Hau, Quan/Huyen Cau Giay, Ha Noi|21.031000|105.847700|5G NR|Viettel|37|45
+BTS-HN-058|452|02|24708|2570858|HN|Cau Giay|Dich Vong Hau|So 44 Duong Tran Thai Tong, Phuong Dich Vong Hau, Quan/Huyen Cau Giay, Ha Noi|21.040500|105.860200|LTE|VinaPhone (VNPT)|38|90
+BTS-HN-059|452|01|24708|2570859|HN|Cau Giay|Dich Vong Hau|So 57 Duong Xuan Thuy, Phuong Dich Vong Hau, Quan/Huyen Cau Giay, Ha Noi|21.050000|105.872700|5G NR|MobiFone|39|135
+BTS-HN-060|452|04|24708|2570860|HN|Cau Giay|Dich Vong Hau|So 70 Duong Pham Van Dong, Phuong Dich Vong Hau, Quan/Huyen Cau Giay, Ha Noi|21.044500|105.870200|LTE|Viettel|40|180
+BTS-HN-061|452|02|24708|2570861|HN|Cau Giay|Mai Dich|So 23 Duong Cau Giay, Phuong Mai Dich, Quan/Huyen Cau Giay, Ha Noi|21.014000|105.842700|5G NR|VinaPhone (VNPT)|41|225
+BTS-HN-062|452|01|24708|2570862|HN|Cau Giay|Mai Dich|So 36 Duong Duy Tan, Phuong Mai Dich, Quan/Huyen Cau Giay, Ha Noi|21.023500|105.855200|LTE|MobiFone|42|270
+BTS-HN-063|452|04|24708|2570863|HN|Cau Giay|Mai Dich|So 49 Duong Tran Thai Tong, Phuong Mai Dich, Quan/Huyen Cau Giay, Ha Noi|21.033000|105.867700|5G NR|Viettel|43|315
+BTS-HN-064|452|02|24708|2570864|HN|Cau Giay|Mai Dich|So 62 Duong Xuan Thuy, Phuong Mai Dich, Quan/Huyen Cau Giay, Ha Noi|21.042500|105.865200|LTE|VinaPhone (VNPT)|44|0
+BTS-HN-065|452|01|24708|2570865|HN|Cau Giay|Mai Dich|So 75 Duong Pham Van Dong, Phuong Mai Dich, Quan/Huyen Cau Giay, Ha Noi|21.052000|105.877700|5G NR|MobiFone|45|45
+BTS-HN-066|452|04|24708|2570866|HN|Cau Giay|Nghia Tan|So 28 Duong Cau Giay, Phuong Nghia Tan, Quan/Huyen Cau Giay, Ha Noi|21.021500|105.850200|LTE|Viettel|46|90
+BTS-HN-067|452|02|24708|2570867|HN|Cau Giay|Nghia Tan|So 41 Duong Duy Tan, Phuong Nghia Tan, Quan/Huyen Cau Giay, Ha Noi|21.031000|105.847700|5G NR|VinaPhone (VNPT)|47|135
+BTS-HN-068|452|01|24708|2570868|HN|Cau Giay|Nghia Tan|So 54 Duong Tran Thai Tong, Phuong Nghia Tan, Quan/Huyen Cau Giay, Ha Noi|21.040500|105.860200|LTE|MobiFone|48|180
+BTS-HN-069|452|04|24708|2570869|HN|Cau Giay|Nghia Tan|So 67 Duong Xuan Thuy, Phuong Nghia Tan, Quan/Huyen Cau Giay, Ha Noi|21.050000|105.872700|5G NR|Viettel|49|225
+BTS-HN-070|452|02|24708|2570870|HN|Cau Giay|Nghia Tan|So 80 Duong Pham Van Dong, Phuong Nghia Tan, Quan/Huyen Cau Giay, Ha Noi|21.044500|105.870200|LTE|VinaPhone (VNPT)|50|270
+BTS-HN-071|452|01|24708|2570871|HN|Cau Giay|Yen Hoa|So 33 Duong Cau Giay, Phuong Yen Hoa, Quan/Huyen Cau Giay, Ha Noi|21.014000|105.842700|5G NR|MobiFone|51|315
+BTS-HN-072|452|04|24708|2570872|HN|Cau Giay|Yen Hoa|So 46 Duong Duy Tan, Phuong Yen Hoa, Quan/Huyen Cau Giay, Ha Noi|21.023500|105.855200|LTE|Viettel|52|0
+BTS-HN-073|452|02|24708|2570873|HN|Cau Giay|Yen Hoa|So 59 Duong Tran Thai Tong, Phuong Yen Hoa, Quan/Huyen Cau Giay, Ha Noi|21.033000|105.867700|5G NR|VinaPhone (VNPT)|53|45
+BTS-HN-074|452|01|24708|2570874|HN|Cau Giay|Yen Hoa|So 72 Duong Xuan Thuy, Phuong Yen Hoa, Quan/Huyen Cau Giay, Ha Noi|21.042500|105.865200|LTE|MobiFone|54|90
+BTS-HN-075|452|04|24708|2570875|HN|Cau Giay|Yen Hoa|So 85 Duong Pham Van Dong, Phuong Yen Hoa, Quan/Huyen Cau Giay, Ha Noi|21.052000|105.877700|5G NR|Viettel|30|135
+BTS-HN-076|452|02|24708|2570876|HN|Dong Da|Cat Linh|So 38 Duong Huynh Thuc Khang, Phuong Cat Linh, Quan/Huyen Dong Da, Ha Noi|21.021500|105.850200|LTE|VinaPhone (VNPT)|31|180
+BTS-HN-077|452|01|24708|2570877|HN|Dong Da|Cat Linh|So 51 Duong Thai Ha, Phuong Cat Linh, Quan/Huyen Dong Da, Ha Noi|21.031000|105.847700|5G NR|MobiFone|32|225
+BTS-HN-078|452|04|24708|2570878|HN|Dong Da|Cat Linh|So 64 Duong Chua Boc, Phuong Cat Linh, Quan/Huyen Dong Da, Ha Noi|21.040500|105.860200|LTE|Viettel|33|270
+BTS-HN-079|452|02|24708|2570879|HN|Dong Da|Cat Linh|So 77 Duong Nguyen Luong Bang, Phuong Cat Linh, Quan/Huyen Dong Da, Ha Noi|21.050000|105.872700|5G NR|VinaPhone (VNPT)|34|315
+BTS-HN-080|452|01|24708|2570880|HN|Dong Da|Cat Linh|So 90 Duong Ton Duc Thang, Phuong Cat Linh, Quan/Huyen Dong Da, Ha Noi|21.044500|105.870200|LTE|MobiFone|35|0
+BTS-HN-081|452|04|24708|2570881|HN|Dong Da|Lang Ha|So 43 Duong Huynh Thuc Khang, Phuong Lang Ha, Quan/Huyen Dong Da, Ha Noi|21.014000|105.842700|5G NR|Viettel|36|45
+BTS-HN-082|452|02|24708|2570882|HN|Dong Da|Lang Ha|So 56 Duong Thai Ha, Phuong Lang Ha, Quan/Huyen Dong Da, Ha Noi|21.023500|105.855200|LTE|VinaPhone (VNPT)|37|90
+BTS-HN-083|452|01|24708|2570883|HN|Dong Da|Lang Ha|So 69 Duong Chua Boc, Phuong Lang Ha, Quan/Huyen Dong Da, Ha Noi|21.033000|105.867700|5G NR|MobiFone|38|135
+BTS-HN-084|452|04|24708|2570884|HN|Dong Da|Lang Ha|So 82 Duong Nguyen Luong Bang, Phuong Lang Ha, Quan/Huyen Dong Da, Ha Noi|21.042500|105.865200|LTE|Viettel|39|180
+BTS-HN-085|452|02|24708|2570885|HN|Dong Da|Lang Ha|So 95 Duong Ton Duc Thang, Phuong Lang Ha, Quan/Huyen Dong Da, Ha Noi|21.052000|105.877700|5G NR|VinaPhone (VNPT)|40|225
+BTS-HN-086|452|01|24708|2570886|HN|Dong Da|Trung Liet|So 48 Duong Huynh Thuc Khang, Phuong Trung Liet, Quan/Huyen Dong Da, Ha Noi|21.021500|105.850200|LTE|MobiFone|41|270
+BTS-HN-087|452|04|24708|2570887|HN|Dong Da|Trung Liet|So 61 Duong Thai Ha, Phuong Trung Liet, Quan/Huyen Dong Da, Ha Noi|21.031000|105.847700|5G NR|Viettel|42|315
+BTS-HN-088|452|02|24708|2570888|HN|Dong Da|Trung Liet|So 74 Duong Chua Boc, Phuong Trung Liet, Quan/Huyen Dong Da, Ha Noi|21.040500|105.860200|LTE|VinaPhone (VNPT)|43|0
+BTS-HN-089|452|01|24708|2570889|HN|Dong Da|Trung Liet|So 87 Duong Nguyen Luong Bang, Phuong Trung Liet, Quan/Huyen Dong Da, Ha Noi|21.050000|105.872700|5G NR|MobiFone|44|45
+BTS-HN-090|452|04|24708|2570890|HN|Dong Da|Trung Liet|So 100 Duong Ton Duc Thang, Phuong Trung Liet, Quan/Huyen Dong Da, Ha Noi|21.044500|105.870200|LTE|Viettel|45|90
+BTS-HN-091|452|02|24708|2570891|HN|Dong Da|Van Mieu|So 53 Duong Huynh Thuc Khang, Phuong Van Mieu, Quan/Huyen Dong Da, Ha Noi|21.014000|105.842700|5G NR|VinaPhone (VNPT)|46|135
+BTS-HN-092|452|01|24708|2570892|HN|Dong Da|Van Mieu|So 66 Duong Thai Ha, Phuong Van Mieu, Quan/Huyen Dong Da, Ha Noi|21.023500|105.855200|LTE|MobiFone|47|180
+BTS-HN-093|452|04|24708|2570893|HN|Dong Da|Van Mieu|So 79 Duong Chua Boc, Phuong Van Mieu, Quan/Huyen Dong Da, Ha Noi|21.033000|105.867700|5G NR|Viettel|48|225
+BTS-HN-094|452|02|24708|2570894|HN|Dong Da|Van Mieu|So 92 Duong Nguyen Luong Bang, Phuong Van Mieu, Quan/Huyen Dong Da, Ha Noi|21.042500|105.865200|LTE|VinaPhone (VNPT)|49|270
+BTS-HN-095|452|01|24708|2570895|HN|Dong Da|Van Mieu|So 105 Duong Ton Duc Thang, Phuong Van Mieu, Quan/Huyen Dong Da, Ha Noi|21.052000|105.877700|5G NR|MobiFone|50|315
+BTS-HN-096|452|04|24708|2570896|HN|Dong Da|Kham Thien|So 58 Duong Huynh Thuc Khang, Phuong Kham Thien, Quan/Huyen Dong Da, Ha Noi|21.021500|105.850200|LTE|Viettel|51|0
+BTS-HN-097|452|02|24708|2570897|HN|Dong Da|Kham Thien|So 71 Duong Thai Ha, Phuong Kham Thien, Quan/Huyen Dong Da, Ha Noi|21.031000|105.847700|5G NR|VinaPhone (VNPT)|52|45
+BTS-HN-098|452|01|24708|2570898|HN|Dong Da|Kham Thien|So 84 Duong Chua Boc, Phuong Kham Thien, Quan/Huyen Dong Da, Ha Noi|21.040500|105.860200|LTE|MobiFone|53|90
+BTS-HN-099|452|04|24708|2570899|HN|Dong Da|Kham Thien|So 97 Duong Nguyen Luong Bang, Phuong Kham Thien, Quan/Huyen Dong Da, Ha Noi|21.050000|105.872700|5G NR|Viettel|54|135
+BTS-HN-100|452|02|24708|2570900|HN|Dong Da|Kham Thien|So 60 Duong Ton Duc Thang, Phuong Kham Thien, Quan/Huyen Dong Da, Ha Noi|21.044500|105.870200|LTE|VinaPhone (VNPT)|30|180
+BTS-HN-101|452|01|24708|2570901|HN|Hai Ba Trung|Bach Khoa|So 13 Duong Dai Co Viet, Phuong Bach Khoa, Quan/Huyen Hai Ba Trung, Ha Noi|21.014000|105.842700|5G NR|MobiFone|31|225
+BTS-HN-102|452|04|24708|2570902|HN|Hai Ba Trung|Bach Khoa|So 26 Duong Tran Dai Nghia, Phuong Bach Khoa, Quan/Huyen Hai Ba Trung, Ha Noi|21.023500|105.855200|LTE|Viettel|32|270
+BTS-HN-103|452|02|24708|2570903|HN|Hai Ba Trung|Bach Khoa|So 39 Duong Pho Hue, Phuong Bach Khoa, Quan/Huyen Hai Ba Trung, Ha Noi|21.033000|105.867700|5G NR|VinaPhone (VNPT)|33|315
+BTS-HN-104|452|01|24708|2570904|HN|Hai Ba Trung|Bach Khoa|So 52 Duong Ba Trieu, Phuong Bach Khoa, Quan/Huyen Hai Ba Trung, Ha Noi|21.042500|105.865200|LTE|MobiFone|34|0
+BTS-HN-105|452|04|24708|2570905|HN|Hai Ba Trung|Bach Khoa|So 65 Duong Minh Khai, Phuong Bach Khoa, Quan/Huyen Hai Ba Trung, Ha Noi|21.052000|105.877700|5G NR|Viettel|35|45
+BTS-HN-106|452|02|24708|2570906|HN|Hai Ba Trung|Dong Tam|So 18 Duong Dai Co Viet, Phuong Dong Tam, Quan/Huyen Hai Ba Trung, Ha Noi|21.021500|105.850200|LTE|VinaPhone (VNPT)|36|90
+BTS-HN-107|452|01|24708|2570907|HN|Hai Ba Trung|Dong Tam|So 31 Duong Tran Dai Nghia, Phuong Dong Tam, Quan/Huyen Hai Ba Trung, Ha Noi|21.031000|105.847700|5G NR|MobiFone|37|135
+BTS-HN-108|452|04|24708|2570908|HN|Hai Ba Trung|Dong Tam|So 44 Duong Pho Hue, Phuong Dong Tam, Quan/Huyen Hai Ba Trung, Ha Noi|21.040500|105.860200|LTE|Viettel|38|180
+BTS-HN-109|452|02|24708|2570909|HN|Hai Ba Trung|Dong Tam|So 57 Duong Ba Trieu, Phuong Dong Tam, Quan/Huyen Hai Ba Trung, Ha Noi|21.050000|105.872700|5G NR|VinaPhone (VNPT)|39|225
+BTS-HN-110|452|01|24708|2570910|HN|Hai Ba Trung|Dong Tam|So 70 Duong Minh Khai, Phuong Dong Tam, Quan/Huyen Hai Ba Trung, Ha Noi|21.044500|105.870200|LTE|MobiFone|40|270
+BTS-HN-111|452|04|24708|2570911|HN|Hai Ba Trung|Le Dai Hanh|So 23 Duong Dai Co Viet, Phuong Le Dai Hanh, Quan/Huyen Hai Ba Trung, Ha Noi|21.014000|105.842700|5G NR|Viettel|41|315
+BTS-HN-112|452|02|24708|2570912|HN|Hai Ba Trung|Le Dai Hanh|So 36 Duong Tran Dai Nghia, Phuong Le Dai Hanh, Quan/Huyen Hai Ba Trung, Ha Noi|21.023500|105.855200|LTE|VinaPhone (VNPT)|42|0
+BTS-HN-113|452|01|24708|2570913|HN|Hai Ba Trung|Le Dai Hanh|So 49 Duong Pho Hue, Phuong Le Dai Hanh, Quan/Huyen Hai Ba Trung, Ha Noi|21.033000|105.867700|5G NR|MobiFone|43|45
+BTS-HN-114|452|04|24708|2570914|HN|Hai Ba Trung|Le Dai Hanh|So 62 Duong Ba Trieu, Phuong Le Dai Hanh, Quan/Huyen Hai Ba Trung, Ha Noi|21.042500|105.865200|LTE|Viettel|44|90
+BTS-HN-115|452|02|24708|2570915|HN|Hai Ba Trung|Le Dai Hanh|So 75 Duong Minh Khai, Phuong Le Dai Hanh, Quan/Huyen Hai Ba Trung, Ha Noi|21.052000|105.877700|5G NR|VinaPhone (VNPT)|45|135
+BTS-HN-116|452|01|24708|2570916|HN|Hai Ba Trung|Minh Khai|So 28 Duong Dai Co Viet, Phuong Minh Khai, Quan/Huyen Hai Ba Trung, Ha Noi|21.021500|105.850200|LTE|MobiFone|46|180
+BTS-HN-117|452|04|24708|2570917|HN|Hai Ba Trung|Minh Khai|So 41 Duong Tran Dai Nghia, Phuong Minh Khai, Quan/Huyen Hai Ba Trung, Ha Noi|21.031000|105.847700|5G NR|Viettel|47|225
+BTS-HN-118|452|02|24708|2570918|HN|Hai Ba Trung|Minh Khai|So 54 Duong Pho Hue, Phuong Minh Khai, Quan/Huyen Hai Ba Trung, Ha Noi|21.040500|105.860200|LTE|VinaPhone (VNPT)|48|270
+BTS-HN-119|452|01|24708|2570919|HN|Hai Ba Trung|Minh Khai|So 67 Duong Ba Trieu, Phuong Minh Khai, Quan/Huyen Hai Ba Trung, Ha Noi|21.050000|105.872700|5G NR|MobiFone|49|315
+BTS-HN-120|452|04|24708|2570920|HN|Hai Ba Trung|Minh Khai|So 80 Duong Minh Khai, Phuong Minh Khai, Quan/Huyen Hai Ba Trung, Ha Noi|21.044500|105.870200|LTE|Viettel|50|0
+BTS-HN-121|452|02|24708|2570921|HN|Hai Ba Trung|Pho Hue|So 33 Duong Dai Co Viet, Phuong Pho Hue, Quan/Huyen Hai Ba Trung, Ha Noi|21.014000|105.842700|5G NR|VinaPhone (VNPT)|51|45
+BTS-HN-122|452|01|24708|2570922|HN|Hai Ba Trung|Pho Hue|So 46 Duong Tran Dai Nghia, Phuong Pho Hue, Quan/Huyen Hai Ba Trung, Ha Noi|21.023500|105.855200|LTE|MobiFone|52|90
+BTS-HN-123|452|04|24708|2570923|HN|Hai Ba Trung|Pho Hue|So 59 Duong Pho Hue, Phuong Pho Hue, Quan/Huyen Hai Ba Trung, Ha Noi|21.033000|105.867700|5G NR|Viettel|53|135
+BTS-HN-124|452|02|24708|2570924|HN|Hai Ba Trung|Pho Hue|So 72 Duong Ba Trieu, Phuong Pho Hue, Quan/Huyen Hai Ba Trung, Ha Noi|21.042500|105.865200|LTE|VinaPhone (VNPT)|54|180
+BTS-HN-125|452|01|24708|2570925|HN|Hai Ba Trung|Pho Hue|So 85 Duong Minh Khai, Phuong Pho Hue, Quan/Huyen Hai Ba Trung, Ha Noi|21.052000|105.877700|5G NR|MobiFone|30|225
+BTS-HN-126|452|04|24708|2570926|HN|Ha Dong|Quang Trung|So 38 Duong Tran Phu, Phuong Quang Trung, Quan/Huyen Ha Dong, Ha Noi|21.021500|105.850200|LTE|Viettel|31|270
+BTS-HN-127|452|02|24708|2570927|HN|Ha Dong|Quang Trung|So 51 Duong Quang Trung, Phuong Quang Trung, Quan/Huyen Ha Dong, Ha Noi|21.031000|105.847700|5G NR|VinaPhone (VNPT)|32|315
+BTS-HN-128|452|01|24708|2570928|HN|Ha Dong|Quang Trung|So 64 Duong Le Trong Tan, Phuong Quang Trung, Quan/Huyen Ha Dong, Ha Noi|21.040500|105.860200|LTE|MobiFone|33|0
+BTS-HN-129|452|04|24708|2570929|HN|Ha Dong|Quang Trung|So 77 Duong To Hieu, Phuong Quang Trung, Quan/Huyen Ha Dong, Ha Noi|21.050000|105.872700|5G NR|Viettel|34|45
+BTS-HN-130|452|02|24708|2570930|HN|Ha Dong|Quang Trung|So 90 Duong Van Phuc, Phuong Quang Trung, Quan/Huyen Ha Dong, Ha Noi|21.044500|105.870200|LTE|VinaPhone (VNPT)|35|90
+BTS-HN-131|452|01|24708|2570931|HN|Ha Dong|Mo Lao|So 43 Duong Tran Phu, Phuong Mo Lao, Quan/Huyen Ha Dong, Ha Noi|21.014000|105.842700|5G NR|MobiFone|36|135
+BTS-HN-132|452|04|24708|2570932|HN|Ha Dong|Mo Lao|So 56 Duong Quang Trung, Phuong Mo Lao, Quan/Huyen Ha Dong, Ha Noi|21.023500|105.855200|LTE|Viettel|37|180
+BTS-HN-133|452|02|24708|2570933|HN|Ha Dong|Mo Lao|So 69 Duong Le Trong Tan, Phuong Mo Lao, Quan/Huyen Ha Dong, Ha Noi|21.033000|105.867700|5G NR|VinaPhone (VNPT)|38|225
+BTS-HN-134|452|01|24708|2570934|HN|Ha Dong|Mo Lao|So 82 Duong To Hieu, Phuong Mo Lao, Quan/Huyen Ha Dong, Ha Noi|21.042500|105.865200|LTE|MobiFone|39|270
+BTS-HN-135|452|04|24708|2570935|HN|Ha Dong|Mo Lao|So 95 Duong Van Phuc, Phuong Mo Lao, Quan/Huyen Ha Dong, Ha Noi|21.052000|105.877700|5G NR|Viettel|40|315
+BTS-HN-136|452|02|24708|2570936|HN|Ha Dong|Van Quan|So 48 Duong Tran Phu, Phuong Van Quan, Quan/Huyen Ha Dong, Ha Noi|21.021500|105.850200|LTE|VinaPhone (VNPT)|41|0
+BTS-HN-137|452|01|24708|2570937|HN|Ha Dong|Van Quan|So 61 Duong Quang Trung, Phuong Van Quan, Quan/Huyen Ha Dong, Ha Noi|21.031000|105.847700|5G NR|MobiFone|42|45
+BTS-HN-138|452|04|24708|2570938|HN|Ha Dong|Van Quan|So 74 Duong Le Trong Tan, Phuong Van Quan, Quan/Huyen Ha Dong, Ha Noi|21.040500|105.860200|LTE|Viettel|43|90
+BTS-HN-139|452|02|24708|2570939|HN|Ha Dong|Van Quan|So 87 Duong To Hieu, Phuong Van Quan, Quan/Huyen Ha Dong, Ha Noi|21.050000|105.872700|5G NR|VinaPhone (VNPT)|44|135
+BTS-HN-140|452|01|24708|2570940|HN|Ha Dong|Van Quan|So 100 Duong Van Phuc, Phuong Van Quan, Quan/Huyen Ha Dong, Ha Noi|21.044500|105.870200|LTE|MobiFone|45|180
+BTS-HN-141|452|04|24708|2570941|HN|Ha Dong|Yen Nghia|So 53 Duong Tran Phu, Phuong Yen Nghia, Quan/Huyen Ha Dong, Ha Noi|21.014000|105.842700|5G NR|Viettel|46|225
+BTS-HN-142|452|02|24708|2570942|HN|Ha Dong|Yen Nghia|So 66 Duong Quang Trung, Phuong Yen Nghia, Quan/Huyen Ha Dong, Ha Noi|21.023500|105.855200|LTE|VinaPhone (VNPT)|47|270
+BTS-HN-143|452|01|24708|2570943|HN|Ha Dong|Yen Nghia|So 79 Duong Le Trong Tan, Phuong Yen Nghia, Quan/Huyen Ha Dong, Ha Noi|21.033000|105.867700|5G NR|MobiFone|48|315
+BTS-HN-144|452|04|24708|2570944|HN|Ha Dong|Yen Nghia|So 92 Duong To Hieu, Phuong Yen Nghia, Quan/Huyen Ha Dong, Ha Noi|21.042500|105.865200|LTE|Viettel|49|0
+BTS-HN-145|452|02|24708|2570945|HN|Ha Dong|Yen Nghia|So 105 Duong Van Phuc, Phuong Yen Nghia, Quan/Huyen Ha Dong, Ha Noi|21.052000|105.877700|5G NR|VinaPhone (VNPT)|50|45
+BTS-HN-146|452|01|24708|2570946|HN|Ha Dong|Ha Cau|So 58 Duong Tran Phu, Phuong Ha Cau, Quan/Huyen Ha Dong, Ha Noi|21.021500|105.850200|LTE|MobiFone|51|90
+BTS-HN-147|452|04|24708|2570947|HN|Ha Dong|Ha Cau|So 71 Duong Quang Trung, Phuong Ha Cau, Quan/Huyen Ha Dong, Ha Noi|21.031000|105.847700|5G NR|Viettel|52|135
+BTS-HN-148|452|02|24708|2570948|HN|Ha Dong|Ha Cau|So 84 Duong Le Trong Tan, Phuong Ha Cau, Quan/Huyen Ha Dong, Ha Noi|21.040500|105.860200|LTE|VinaPhone (VNPT)|53|180
+BTS-HN-149|452|01|24708|2570949|HN|Ha Dong|Ha Cau|So 97 Duong To Hieu, Phuong Ha Cau, Quan/Huyen Ha Dong, Ha Noi|21.050000|105.872700|5G NR|MobiFone|54|225
+BTS-HN-150|452|04|24708|2570950|HN|Ha Dong|Ha Cau|So 60 Duong Van Phuc, Phuong Ha Cau, Quan/Huyen Ha Dong, Ha Noi|21.044500|105.870200|LTE|Viettel|30|270
+BTS-HN-151|452|02|24708|2570951|HN|Nam Tu Liem|My Dinh 1|So 13 Duong Pham Hung, Phuong My Dinh 1, Quan/Huyen Nam Tu Liem, Ha Noi|21.014000|105.842700|5G NR|VinaPhone (VNPT)|31|315
+BTS-HN-152|452|01|24708|2570952|HN|Nam Tu Liem|My Dinh 1|So 26 Duong Le Duc Tho, Phuong My Dinh 1, Quan/Huyen Nam Tu Liem, Ha Noi|21.023500|105.855200|LTE|MobiFone|32|0
+BTS-HN-153|452|04|24708|2570953|HN|Nam Tu Liem|My Dinh 1|So 39 Duong Me Tri, Phuong My Dinh 1, Quan/Huyen Nam Tu Liem, Ha Noi|21.033000|105.867700|5G NR|Viettel|33|45
+BTS-HN-154|452|02|24708|2570954|HN|Nam Tu Liem|My Dinh 1|So 52 Duong Nguyen Hoang, Phuong My Dinh 1, Quan/Huyen Nam Tu Liem, Ha Noi|21.042500|105.865200|LTE|VinaPhone (VNPT)|34|90
+BTS-HN-155|452|01|24708|2570955|HN|Nam Tu Liem|My Dinh 1|So 65 Duong Ham Nghi, Phuong My Dinh 1, Quan/Huyen Nam Tu Liem, Ha Noi|21.052000|105.877700|5G NR|MobiFone|35|135
+BTS-HN-156|452|04|24708|2570956|HN|Nam Tu Liem|My Dinh 2|So 18 Duong Pham Hung, Phuong My Dinh 2, Quan/Huyen Nam Tu Liem, Ha Noi|21.021500|105.850200|LTE|Viettel|36|180
+BTS-HN-157|452|02|24708|2570957|HN|Nam Tu Liem|My Dinh 2|So 31 Duong Le Duc Tho, Phuong My Dinh 2, Quan/Huyen Nam Tu Liem, Ha Noi|21.031000|105.847700|5G NR|VinaPhone (VNPT)|37|225
+BTS-HN-158|452|01|24708|2570958|HN|Nam Tu Liem|My Dinh 2|So 44 Duong Me Tri, Phuong My Dinh 2, Quan/Huyen Nam Tu Liem, Ha Noi|21.040500|105.860200|LTE|MobiFone|38|270
+BTS-HN-159|452|04|24708|2570959|HN|Nam Tu Liem|My Dinh 2|So 57 Duong Nguyen Hoang, Phuong My Dinh 2, Quan/Huyen Nam Tu Liem, Ha Noi|21.050000|105.872700|5G NR|Viettel|39|315
+BTS-HN-160|452|02|24708|2570960|HN|Nam Tu Liem|My Dinh 2|So 70 Duong Ham Nghi, Phuong My Dinh 2, Quan/Huyen Nam Tu Liem, Ha Noi|21.044500|105.870200|LTE|VinaPhone (VNPT)|40|0
+BTS-HN-161|452|01|24708|2570961|HN|Nam Tu Liem|Me Tri|So 23 Duong Pham Hung, Phuong Me Tri, Quan/Huyen Nam Tu Liem, Ha Noi|21.014000|105.842700|5G NR|MobiFone|41|45
+BTS-HN-162|452|04|24708|2570962|HN|Nam Tu Liem|Me Tri|So 36 Duong Le Duc Tho, Phuong Me Tri, Quan/Huyen Nam Tu Liem, Ha Noi|21.023500|105.855200|LTE|Viettel|42|90
+BTS-HN-163|452|02|24708|2570963|HN|Nam Tu Liem|Me Tri|So 49 Duong Me Tri, Phuong Me Tri, Quan/Huyen Nam Tu Liem, Ha Noi|21.033000|105.867700|5G NR|VinaPhone (VNPT)|43|135
+BTS-HN-164|452|01|24708|2570964|HN|Nam Tu Liem|Me Tri|So 62 Duong Nguyen Hoang, Phuong Me Tri, Quan/Huyen Nam Tu Liem, Ha Noi|21.042500|105.865200|LTE|MobiFone|44|180
+BTS-HN-165|452|04|24708|2570965|HN|Nam Tu Liem|Me Tri|So 75 Duong Ham Nghi, Phuong Me Tri, Quan/Huyen Nam Tu Liem, Ha Noi|21.052000|105.877700|5G NR|Viettel|45|225
+BTS-HN-166|452|02|24708|2570966|HN|Nam Tu Liem|Trung Van|So 28 Duong Pham Hung, Phuong Trung Van, Quan/Huyen Nam Tu Liem, Ha Noi|21.021500|105.850200|LTE|VinaPhone (VNPT)|46|270
+BTS-HN-167|452|01|24708|2570967|HN|Nam Tu Liem|Trung Van|So 41 Duong Le Duc Tho, Phuong Trung Van, Quan/Huyen Nam Tu Liem, Ha Noi|21.031000|105.847700|5G NR|MobiFone|47|315
+BTS-HN-168|452|04|24708|2570968|HN|Nam Tu Liem|Trung Van|So 54 Duong Me Tri, Phuong Trung Van, Quan/Huyen Nam Tu Liem, Ha Noi|21.040500|105.860200|LTE|Viettel|48|0
+BTS-HN-169|452|02|24708|2570969|HN|Nam Tu Liem|Trung Van|So 67 Duong Nguyen Hoang, Phuong Trung Van, Quan/Huyen Nam Tu Liem, Ha Noi|21.050000|105.872700|5G NR|VinaPhone (VNPT)|49|45
+BTS-HN-170|452|01|24708|2570970|HN|Nam Tu Liem|Trung Van|So 80 Duong Ham Nghi, Phuong Trung Van, Quan/Huyen Nam Tu Liem, Ha Noi|21.044500|105.870200|LTE|MobiFone|50|90
+BTS-HN-171|452|04|24708|2570971|HN|Nam Tu Liem|Tay Mo|So 33 Duong Pham Hung, Phuong Tay Mo, Quan/Huyen Nam Tu Liem, Ha Noi|21.014000|105.842700|5G NR|Viettel|51|135
+BTS-HN-172|452|02|24708|2570972|HN|Nam Tu Liem|Tay Mo|So 46 Duong Le Duc Tho, Phuong Tay Mo, Quan/Huyen Nam Tu Liem, Ha Noi|21.023500|105.855200|LTE|VinaPhone (VNPT)|52|180
+BTS-HN-173|452|01|24708|2570973|HN|Nam Tu Liem|Tay Mo|So 59 Duong Me Tri, Phuong Tay Mo, Quan/Huyen Nam Tu Liem, Ha Noi|21.033000|105.867700|5G NR|MobiFone|53|225
+BTS-HN-174|452|04|24708|2570974|HN|Nam Tu Liem|Tay Mo|So 72 Duong Nguyen Hoang, Phuong Tay Mo, Quan/Huyen Nam Tu Liem, Ha Noi|21.042500|105.865200|LTE|Viettel|54|270
+BTS-HN-175|452|02|24708|2570975|HN|Nam Tu Liem|Tay Mo|So 85 Duong Ham Nghi, Phuong Tay Mo, Quan/Huyen Nam Tu Liem, Ha Noi|21.052000|105.877700|5G NR|VinaPhone (VNPT)|30|315
+BTS-HN-176|452|01|24708|2570976|HN|Tay Ho|Buoi|So 38 Duong Lac Long Quan, Phuong Buoi, Quan/Huyen Tay Ho, Ha Noi|21.021500|105.850200|LTE|MobiFone|31|0
+BTS-HN-177|452|04|24708|2570977|HN|Tay Ho|Buoi|So 51 Duong Thuy Khue, Phuong Buoi, Quan/Huyen Tay Ho, Ha Noi|21.031000|105.847700|5G NR|Viettel|32|45
+BTS-HN-178|452|02|24708|2570978|HN|Tay Ho|Buoi|So 64 Duong Hoang Hoa Tham, Phuong Buoi, Quan/Huyen Tay Ho, Ha Noi|21.040500|105.860200|LTE|VinaPhone (VNPT)|33|90
+BTS-HN-179|452|01|24708|2570979|HN|Tay Ho|Buoi|So 77 Duong Vo Chi Cong, Phuong Buoi, Quan/Huyen Tay Ho, Ha Noi|21.050000|105.872700|5G NR|MobiFone|34|135
+BTS-HN-180|452|04|24708|2570980|HN|Tay Ho|Buoi|So 90 Duong Au Co, Phuong Buoi, Quan/Huyen Tay Ho, Ha Noi|21.044500|105.870200|LTE|Viettel|35|180
+BTS-HN-181|452|02|24708|2570981|HN|Tay Ho|Thuy Khue|So 43 Duong Lac Long Quan, Phuong Thuy Khue, Quan/Huyen Tay Ho, Ha Noi|21.014000|105.842700|5G NR|VinaPhone (VNPT)|36|225
+BTS-HN-182|452|01|24708|2570982|HN|Tay Ho|Thuy Khue|So 56 Duong Thuy Khue, Phuong Thuy Khue, Quan/Huyen Tay Ho, Ha Noi|21.023500|105.855200|LTE|MobiFone|37|270
+BTS-HN-183|452|04|24708|2570983|HN|Tay Ho|Thuy Khue|So 69 Duong Hoang Hoa Tham, Phuong Thuy Khue, Quan/Huyen Tay Ho, Ha Noi|21.033000|105.867700|5G NR|Viettel|38|315
+BTS-HN-184|452|02|24708|2570984|HN|Tay Ho|Thuy Khue|So 82 Duong Vo Chi Cong, Phuong Thuy Khue, Quan/Huyen Tay Ho, Ha Noi|21.042500|105.865200|LTE|VinaPhone (VNPT)|39|0
+BTS-HN-185|452|01|24708|2570985|HN|Tay Ho|Thuy Khue|So 95 Duong Au Co, Phuong Thuy Khue, Quan/Huyen Tay Ho, Ha Noi|21.052000|105.877700|5G NR|MobiFone|40|45
+BTS-HN-186|452|04|24708|2570986|HN|Tay Ho|Yen Phu|So 48 Duong Lac Long Quan, Phuong Yen Phu, Quan/Huyen Tay Ho, Ha Noi|21.021500|105.850200|LTE|Viettel|41|90
+BTS-HN-187|452|02|24708|2570987|HN|Tay Ho|Yen Phu|So 61 Duong Thuy Khue, Phuong Yen Phu, Quan/Huyen Tay Ho, Ha Noi|21.031000|105.847700|5G NR|VinaPhone (VNPT)|42|135
+BTS-HN-188|452|01|24708|2570988|HN|Tay Ho|Yen Phu|So 74 Duong Hoang Hoa Tham, Phuong Yen Phu, Quan/Huyen Tay Ho, Ha Noi|21.040500|105.860200|LTE|MobiFone|43|180
+BTS-HN-189|452|04|24708|2570989|HN|Tay Ho|Yen Phu|So 87 Duong Vo Chi Cong, Phuong Yen Phu, Quan/Huyen Tay Ho, Ha Noi|21.050000|105.872700|5G NR|Viettel|44|225
+BTS-HN-190|452|02|24708|2570990|HN|Tay Ho|Yen Phu|So 100 Duong Au Co, Phuong Yen Phu, Quan/Huyen Tay Ho, Ha Noi|21.044500|105.870200|LTE|VinaPhone (VNPT)|45|270
+BTS-HN-191|452|01|24708|2570991|HN|Tay Ho|Tu Lien|So 53 Duong Lac Long Quan, Phuong Tu Lien, Quan/Huyen Tay Ho, Ha Noi|21.014000|105.842700|5G NR|MobiFone|46|315
+BTS-HN-192|452|04|24708|2570992|HN|Tay Ho|Tu Lien|So 66 Duong Thuy Khue, Phuong Tu Lien, Quan/Huyen Tay Ho, Ha Noi|21.023500|105.855200|LTE|Viettel|47|0
+BTS-HN-193|452|02|24708|2570993|HN|Tay Ho|Tu Lien|So 79 Duong Hoang Hoa Tham, Phuong Tu Lien, Quan/Huyen Tay Ho, Ha Noi|21.033000|105.867700|5G NR|VinaPhone (VNPT)|48|45
+BTS-HN-194|452|01|24708|2570994|HN|Tay Ho|Tu Lien|So 92 Duong Vo Chi Cong, Phuong Tu Lien, Quan/Huyen Tay Ho, Ha Noi|21.042500|105.865200|LTE|MobiFone|49|90
+BTS-HN-195|452|04|24708|2570995|HN|Tay Ho|Tu Lien|So 105 Duong Au Co, Phuong Tu Lien, Quan/Huyen Tay Ho, Ha Noi|21.052000|105.877700|5G NR|Viettel|50|135
+BTS-HN-196|452|02|24708|2570996|HN|Tay Ho|Quang An|So 58 Duong Lac Long Quan, Phuong Quang An, Quan/Huyen Tay Ho, Ha Noi|21.021500|105.850200|LTE|VinaPhone (VNPT)|51|180
+BTS-HN-197|452|01|24708|2570997|HN|Tay Ho|Quang An|So 71 Duong Thuy Khue, Phuong Quang An, Quan/Huyen Tay Ho, Ha Noi|21.031000|105.847700|5G NR|MobiFone|52|225
+BTS-HN-198|452|04|24708|2570998|HN|Tay Ho|Quang An|So 84 Duong Hoang Hoa Tham, Phuong Quang An, Quan/Huyen Tay Ho, Ha Noi|21.040500|105.860200|LTE|Viettel|53|270
+BTS-HN-199|452|02|24708|2570999|HN|Tay Ho|Quang An|So 97 Duong Vo Chi Cong, Phuong Quang An, Quan/Huyen Tay Ho, Ha Noi|21.050000|105.872700|5G NR|VinaPhone (VNPT)|54|315
+BTS-HN-200|452|01|24708|2571000|HN|Tay Ho|Quang An|So 60 Duong Au Co, Phuong Quang An, Quan/Huyen Tay Ho, Ha Noi|21.044500|105.870200|LTE|MobiFone|30|0
+BTS-HP-001|452|02|12004|2500401|HP|Hong Bang|Minh Khai|So 13 Duong Dinh Tien Hoang, Phuong Minh Khai, Quan/Huyen Hong Bang, Hai Phong|20.830400|106.676600|5G NR|VinaPhone (VNPT)|31|45
+BTS-HP-002|452|01|12004|2500402|HP|Hong Bang|Minh Khai|So 26 Duong Hoang Van Thu, Phuong Minh Khai, Quan/Huyen Hong Bang, Hai Phong|20.839900|106.689100|LTE|MobiFone|32|90
+BTS-HP-003|452|04|12004|2500403|HP|Hong Bang|Minh Khai|So 39 Duong Nguyen Duc Canh, Phuong Minh Khai, Quan/Huyen Hong Bang, Hai Phong|20.849400|106.701600|5G NR|Viettel|33|135
+BTS-HP-004|452|02|12004|2500404|HP|Hong Bang|Minh Khai|So 52 Duong Bach Dang, Phuong Minh Khai, Quan/Huyen Hong Bang, Hai Phong|20.858900|106.699100|LTE|VinaPhone (VNPT)|34|180
+BTS-HP-005|452|01|12004|2500405|HP|Hong Bang|Minh Khai|So 65 Duong Hung Vuong, Phuong Minh Khai, Quan/Huyen Hong Bang, Hai Phong|20.868400|106.711600|5G NR|MobiFone|35|225
+BTS-HP-006|452|04|12004|2500406|HP|Hong Bang|Hoang Van Thu|So 18 Duong Dinh Tien Hoang, Phuong Hoang Van Thu, Quan/Huyen Hong Bang, Hai Phong|20.837900|106.684100|LTE|Viettel|36|270
+BTS-HP-007|452|02|12004|2500407|HP|Hong Bang|Hoang Van Thu|So 31 Duong Hoang Van Thu, Phuong Hoang Van Thu, Quan/Huyen Hong Bang, Hai Phong|20.847400|106.681600|5G NR|VinaPhone (VNPT)|37|315
+BTS-HP-008|452|01|12004|2500408|HP|Hong Bang|Hoang Van Thu|So 44 Duong Nguyen Duc Canh, Phuong Hoang Van Thu, Quan/Huyen Hong Bang, Hai Phong|20.856900|106.694100|LTE|MobiFone|38|0
+BTS-HP-009|452|04|12004|2500409|HP|Hong Bang|Hoang Van Thu|So 57 Duong Bach Dang, Phuong Hoang Van Thu, Quan/Huyen Hong Bang, Hai Phong|20.866400|106.706600|5G NR|Viettel|39|45
+BTS-HP-010|452|02|12004|2500410|HP|Hong Bang|Hoang Van Thu|So 70 Duong Hung Vuong, Phuong Hoang Van Thu, Quan/Huyen Hong Bang, Hai Phong|20.860900|106.704100|LTE|VinaPhone (VNPT)|40|90
+BTS-HP-011|452|01|12004|2500411|HP|Hong Bang|Quang Trung|So 23 Duong Dinh Tien Hoang, Phuong Quang Trung, Quan/Huyen Hong Bang, Hai Phong|20.830400|106.676600|5G NR|MobiFone|41|135
+BTS-HP-012|452|04|12004|2500412|HP|Hong Bang|Quang Trung|So 36 Duong Hoang Van Thu, Phuong Quang Trung, Quan/Huyen Hong Bang, Hai Phong|20.839900|106.689100|LTE|Viettel|42|180
+BTS-HP-013|452|02|12004|2500413|HP|Hong Bang|Quang Trung|So 49 Duong Nguyen Duc Canh, Phuong Quang Trung, Quan/Huyen Hong Bang, Hai Phong|20.849400|106.701600|5G NR|VinaPhone (VNPT)|43|225
+BTS-HP-014|452|01|12004|2500414|HP|Hong Bang|Quang Trung|So 62 Duong Bach Dang, Phuong Quang Trung, Quan/Huyen Hong Bang, Hai Phong|20.858900|106.699100|LTE|MobiFone|44|270
+BTS-HP-015|452|04|12004|2500415|HP|Hong Bang|Quang Trung|So 75 Duong Hung Vuong, Phuong Quang Trung, Quan/Huyen Hong Bang, Hai Phong|20.868400|106.711600|5G NR|Viettel|45|315
+BTS-HP-016|452|02|12004|2500416|HP|Hong Bang|Ha Ly|So 28 Duong Dinh Tien Hoang, Phuong Ha Ly, Quan/Huyen Hong Bang, Hai Phong|20.837900|106.684100|LTE|VinaPhone (VNPT)|46|0
+BTS-HP-017|452|01|12004|2500417|HP|Hong Bang|Ha Ly|So 41 Duong Hoang Van Thu, Phuong Ha Ly, Quan/Huyen Hong Bang, Hai Phong|20.847400|106.681600|5G NR|MobiFone|47|45
+BTS-HP-018|452|04|12004|2500418|HP|Hong Bang|Ha Ly|So 54 Duong Nguyen Duc Canh, Phuong Ha Ly, Quan/Huyen Hong Bang, Hai Phong|20.856900|106.694100|LTE|Viettel|48|90
+BTS-HP-019|452|02|12004|2500419|HP|Hong Bang|Ha Ly|So 67 Duong Bach Dang, Phuong Ha Ly, Quan/Huyen Hong Bang, Hai Phong|20.866400|106.706600|5G NR|VinaPhone (VNPT)|49|135
+BTS-HP-020|452|01|12004|2500420|HP|Hong Bang|Ha Ly|So 80 Duong Hung Vuong, Phuong Ha Ly, Quan/Huyen Hong Bang, Hai Phong|20.860900|106.704100|LTE|MobiFone|50|180
+BTS-HP-021|452|04|12004|2500421|HP|Hong Bang|So Dau|So 33 Duong Dinh Tien Hoang, Phuong So Dau, Quan/Huyen Hong Bang, Hai Phong|20.830400|106.676600|5G NR|Viettel|51|225
+BTS-HP-022|452|02|12004|2500422|HP|Hong Bang|So Dau|So 46 Duong Hoang Van Thu, Phuong So Dau, Quan/Huyen Hong Bang, Hai Phong|20.839900|106.689100|LTE|VinaPhone (VNPT)|52|270
+BTS-HP-023|452|01|12004|2500423|HP|Hong Bang|So Dau|So 59 Duong Nguyen Duc Canh, Phuong So Dau, Quan/Huyen Hong Bang, Hai Phong|20.849400|106.701600|5G NR|MobiFone|53|315
+BTS-HP-024|452|04|12004|2500424|HP|Hong Bang|So Dau|So 72 Duong Bach Dang, Phuong So Dau, Quan/Huyen Hong Bang, Hai Phong|20.858900|106.699100|LTE|Viettel|54|0
+BTS-HP-025|452|02|12004|2500425|HP|Hong Bang|So Dau|So 85 Duong Hung Vuong, Phuong So Dau, Quan/Huyen Hong Bang, Hai Phong|20.868400|106.711600|5G NR|VinaPhone (VNPT)|30|45
+BTS-HP-026|452|01|12004|2500426|HP|Ngo Quyen|May To|So 38 Duong Le Hong Phong, Phuong May To, Quan/Huyen Ngo Quyen, Hai Phong|20.837900|106.684100|LTE|MobiFone|31|90
+BTS-HP-027|452|04|12004|2500427|HP|Ngo Quyen|May To|So 51 Duong Da Nang, Phuong May To, Quan/Huyen Ngo Quyen, Hai Phong|20.847400|106.681600|5G NR|Viettel|32|135
+BTS-HP-028|452|02|12004|2500428|HP|Ngo Quyen|May To|So 64 Duong Tran Phu, Phuong May To, Quan/Huyen Ngo Quyen, Hai Phong|20.856900|106.694100|LTE|VinaPhone (VNPT)|33|180
+BTS-HP-029|452|01|12004|2500429|HP|Ngo Quyen|May To|So 77 Duong Vo Thi Sau, Phuong May To, Quan/Huyen Ngo Quyen, Hai Phong|20.866400|106.706600|5G NR|MobiFone|34|225
+BTS-HP-030|452|04|12004|2500430|HP|Ngo Quyen|May To|So 90 Duong Nguyen Binh Khiem, Phuong May To, Quan/Huyen Ngo Quyen, Hai Phong|20.860900|106.704100|LTE|Viettel|35|270
+BTS-HP-031|452|02|12004|2500431|HP|Ngo Quyen|May Chai|So 43 Duong Le Hong Phong, Phuong May Chai, Quan/Huyen Ngo Quyen, Hai Phong|20.830400|106.676600|5G NR|VinaPhone (VNPT)|36|315
+BTS-HP-032|452|01|12004|2500432|HP|Ngo Quyen|May Chai|So 56 Duong Da Nang, Phuong May Chai, Quan/Huyen Ngo Quyen, Hai Phong|20.839900|106.689100|LTE|MobiFone|37|0
+BTS-HP-033|452|04|12004|2500433|HP|Ngo Quyen|May Chai|So 69 Duong Tran Phu, Phuong May Chai, Quan/Huyen Ngo Quyen, Hai Phong|20.849400|106.701600|5G NR|Viettel|38|45
+BTS-HP-034|452|02|12004|2500434|HP|Ngo Quyen|May Chai|So 82 Duong Vo Thi Sau, Phuong May Chai, Quan/Huyen Ngo Quyen, Hai Phong|20.858900|106.699100|LTE|VinaPhone (VNPT)|39|90
+BTS-HP-035|452|01|12004|2500435|HP|Ngo Quyen|May Chai|So 95 Duong Nguyen Binh Khiem, Phuong May Chai, Quan/Huyen Ngo Quyen, Hai Phong|20.868400|106.711600|5G NR|MobiFone|40|135
+BTS-HP-036|452|04|12004|2500436|HP|Ngo Quyen|Cau Tre|So 48 Duong Le Hong Phong, Phuong Cau Tre, Quan/Huyen Ngo Quyen, Hai Phong|20.837900|106.684100|LTE|Viettel|41|180
+BTS-HP-037|452|02|12004|2500437|HP|Ngo Quyen|Cau Tre|So 61 Duong Da Nang, Phuong Cau Tre, Quan/Huyen Ngo Quyen, Hai Phong|20.847400|106.681600|5G NR|VinaPhone (VNPT)|42|225
+BTS-HP-038|452|01|12004|2500438|HP|Ngo Quyen|Cau Tre|So 74 Duong Tran Phu, Phuong Cau Tre, Quan/Huyen Ngo Quyen, Hai Phong|20.856900|106.694100|LTE|MobiFone|43|270
+BTS-HP-039|452|04|12004|2500439|HP|Ngo Quyen|Cau Tre|So 87 Duong Vo Thi Sau, Phuong Cau Tre, Quan/Huyen Ngo Quyen, Hai Phong|20.866400|106.706600|5G NR|Viettel|44|315
+BTS-HP-040|452|02|12004|2500440|HP|Ngo Quyen|Cau Tre|So 100 Duong Nguyen Binh Khiem, Phuong Cau Tre, Quan/Huyen Ngo Quyen, Hai Phong|20.860900|106.704100|LTE|VinaPhone (VNPT)|45|0
+BTS-HP-041|452|01|12004|2500441|HP|Ngo Quyen|Lac Vien|So 53 Duong Le Hong Phong, Phuong Lac Vien, Quan/Huyen Ngo Quyen, Hai Phong|20.830400|106.676600|5G NR|MobiFone|46|45
+BTS-HP-042|452|04|12004|2500442|HP|Ngo Quyen|Lac Vien|So 66 Duong Da Nang, Phuong Lac Vien, Quan/Huyen Ngo Quyen, Hai Phong|20.839900|106.689100|LTE|Viettel|47|90
+BTS-HP-043|452|02|12004|2500443|HP|Ngo Quyen|Lac Vien|So 79 Duong Tran Phu, Phuong Lac Vien, Quan/Huyen Ngo Quyen, Hai Phong|20.849400|106.701600|5G NR|VinaPhone (VNPT)|48|135
+BTS-HP-044|452|01|12004|2500444|HP|Ngo Quyen|Lac Vien|So 92 Duong Vo Thi Sau, Phuong Lac Vien, Quan/Huyen Ngo Quyen, Hai Phong|20.858900|106.699100|LTE|MobiFone|49|180
+BTS-HP-045|452|04|12004|2500445|HP|Ngo Quyen|Lac Vien|So 105 Duong Nguyen Binh Khiem, Phuong Lac Vien, Quan/Huyen Ngo Quyen, Hai Phong|20.868400|106.711600|5G NR|Viettel|50|225
+BTS-HP-046|452|02|12004|2500446|HP|Ngo Quyen|Dong Khe|So 58 Duong Le Hong Phong, Phuong Dong Khe, Quan/Huyen Ngo Quyen, Hai Phong|20.837900|106.684100|LTE|VinaPhone (VNPT)|51|270
+BTS-HP-047|452|01|12004|2500447|HP|Ngo Quyen|Dong Khe|So 71 Duong Da Nang, Phuong Dong Khe, Quan/Huyen Ngo Quyen, Hai Phong|20.847400|106.681600|5G NR|MobiFone|52|315
+BTS-HP-048|452|04|12004|2500448|HP|Ngo Quyen|Dong Khe|So 84 Duong Tran Phu, Phuong Dong Khe, Quan/Huyen Ngo Quyen, Hai Phong|20.856900|106.694100|LTE|Viettel|53|0
+BTS-HP-049|452|02|12004|2500449|HP|Ngo Quyen|Dong Khe|So 97 Duong Vo Thi Sau, Phuong Dong Khe, Quan/Huyen Ngo Quyen, Hai Phong|20.866400|106.706600|5G NR|VinaPhone (VNPT)|54|45
+BTS-HP-050|452|01|12004|2500450|HP|Ngo Quyen|Dong Khe|So 60 Duong Nguyen Binh Khiem, Phuong Dong Khe, Quan/Huyen Ngo Quyen, Hai Phong|20.860900|106.704100|LTE|MobiFone|30|90
+BTS-HP-051|452|04|12004|2500451|HP|Le Chan|An Bien|So 13 Duong To Hieu, Phuong An Bien, Quan/Huyen Le Chan, Hai Phong|20.830400|106.676600|5G NR|Viettel|31|135
+BTS-HP-052|452|02|12004|2500452|HP|Le Chan|An Bien|So 26 Duong Ton Duc Thang, Phuong An Bien, Quan/Huyen Le Chan, Hai Phong|20.839900|106.689100|LTE|VinaPhone (VNPT)|32|180
+BTS-HP-053|452|01|12004|2500453|HP|Le Chan|An Bien|So 39 Duong Nguyen Van Linh, Phuong An Bien, Quan/Huyen Le Chan, Hai Phong|20.849400|106.701600|5G NR|MobiFone|33|225
+BTS-HP-054|452|04|12004|2500454|HP|Le Chan|An Bien|So 52 Duong Hai Ba Trung, Phuong An Bien, Quan/Huyen Le Chan, Hai Phong|20.858900|106.699100|LTE|Viettel|34|270
+BTS-HP-055|452|02|12004|2500455|HP|Le Chan|An Bien|So 65 Duong Me Linh, Phuong An Bien, Quan/Huyen Le Chan, Hai Phong|20.868400|106.711600|5G NR|VinaPhone (VNPT)|35|315
+BTS-HP-056|452|01|12004|2500456|HP|Le Chan|Cat Dai|So 18 Duong To Hieu, Phuong Cat Dai, Quan/Huyen Le Chan, Hai Phong|20.837900|106.684100|LTE|MobiFone|36|0
+BTS-HP-057|452|04|12004|2500457|HP|Le Chan|Cat Dai|So 31 Duong Ton Duc Thang, Phuong Cat Dai, Quan/Huyen Le Chan, Hai Phong|20.847400|106.681600|5G NR|Viettel|37|45
+BTS-HP-058|452|02|12004|2500458|HP|Le Chan|Cat Dai|So 44 Duong Nguyen Van Linh, Phuong Cat Dai, Quan/Huyen Le Chan, Hai Phong|20.856900|106.694100|LTE|VinaPhone (VNPT)|38|90
+BTS-HP-059|452|01|12004|2500459|HP|Le Chan|Cat Dai|So 57 Duong Hai Ba Trung, Phuong Cat Dai, Quan/Huyen Le Chan, Hai Phong|20.866400|106.706600|5G NR|MobiFone|39|135
+BTS-HP-060|452|04|12004|2500460|HP|Le Chan|Cat Dai|So 70 Duong Me Linh, Phuong Cat Dai, Quan/Huyen Le Chan, Hai Phong|20.860900|106.704100|LTE|Viettel|40|180
+BTS-HP-061|452|02|12004|2500461|HP|Le Chan|Dong Hai|So 23 Duong To Hieu, Phuong Dong Hai, Quan/Huyen Le Chan, Hai Phong|20.830400|106.676600|5G NR|VinaPhone (VNPT)|41|225
+BTS-HP-062|452|01|12004|2500462|HP|Le Chan|Dong Hai|So 36 Duong Ton Duc Thang, Phuong Dong Hai, Quan/Huyen Le Chan, Hai Phong|20.839900|106.689100|LTE|MobiFone|42|270
+BTS-HP-063|452|04|12004|2500463|HP|Le Chan|Dong Hai|So 49 Duong Nguyen Van Linh, Phuong Dong Hai, Quan/Huyen Le Chan, Hai Phong|20.849400|106.701600|5G NR|Viettel|43|315
+BTS-HP-064|452|02|12004|2500464|HP|Le Chan|Dong Hai|So 62 Duong Hai Ba Trung, Phuong Dong Hai, Quan/Huyen Le Chan, Hai Phong|20.858900|106.699100|LTE|VinaPhone (VNPT)|44|0
+BTS-HP-065|452|01|12004|2500465|HP|Le Chan|Dong Hai|So 75 Duong Me Linh, Phuong Dong Hai, Quan/Huyen Le Chan, Hai Phong|20.868400|106.711600|5G NR|MobiFone|45|45
+BTS-HP-066|452|04|12004|2500466|HP|Le Chan|Niem Nghia|So 28 Duong To Hieu, Phuong Niem Nghia, Quan/Huyen Le Chan, Hai Phong|20.837900|106.684100|LTE|Viettel|46|90
+BTS-HP-067|452|02|12004|2500467|HP|Le Chan|Niem Nghia|So 41 Duong Ton Duc Thang, Phuong Niem Nghia, Quan/Huyen Le Chan, Hai Phong|20.847400|106.681600|5G NR|VinaPhone (VNPT)|47|135
+BTS-HP-068|452|01|12004|2500468|HP|Le Chan|Niem Nghia|So 54 Duong Nguyen Van Linh, Phuong Niem Nghia, Quan/Huyen Le Chan, Hai Phong|20.856900|106.694100|LTE|MobiFone|48|180
+BTS-HP-069|452|04|12004|2500469|HP|Le Chan|Niem Nghia|So 67 Duong Hai Ba Trung, Phuong Niem Nghia, Quan/Huyen Le Chan, Hai Phong|20.866400|106.706600|5G NR|Viettel|49|225
+BTS-HP-070|452|02|12004|2500470|HP|Le Chan|Niem Nghia|So 80 Duong Me Linh, Phuong Niem Nghia, Quan/Huyen Le Chan, Hai Phong|20.860900|106.704100|LTE|VinaPhone (VNPT)|50|270
+BTS-HP-071|452|01|12004|2500471|HP|Le Chan|Vinh Niem|So 33 Duong To Hieu, Phuong Vinh Niem, Quan/Huyen Le Chan, Hai Phong|20.830400|106.676600|5G NR|MobiFone|51|315
+BTS-HP-072|452|04|12004|2500472|HP|Le Chan|Vinh Niem|So 46 Duong Ton Duc Thang, Phuong Vinh Niem, Quan/Huyen Le Chan, Hai Phong|20.839900|106.689100|LTE|Viettel|52|0
+BTS-HP-073|452|02|12004|2500473|HP|Le Chan|Vinh Niem|So 59 Duong Nguyen Van Linh, Phuong Vinh Niem, Quan/Huyen Le Chan, Hai Phong|20.849400|106.701600|5G NR|VinaPhone (VNPT)|53|45
+BTS-HP-074|452|01|12004|2500474|HP|Le Chan|Vinh Niem|So 72 Duong Hai Ba Trung, Phuong Vinh Niem, Quan/Huyen Le Chan, Hai Phong|20.858900|106.699100|LTE|MobiFone|54|90
+BTS-HP-075|452|04|12004|2500475|HP|Le Chan|Vinh Niem|So 85 Duong Me Linh, Phuong Vinh Niem, Quan/Huyen Le Chan, Hai Phong|20.868400|106.711600|5G NR|Viettel|30|135
+BTS-HUE-001|452|02|31001|2500101|HUE|TP Hue|Phu Hoi|So 13 Duong Le Loi, Phuong Phu Hoi, Quan/Huyen TP Hue, Thua Thien Hue|16.449200|107.579400|5G NR|VinaPhone (VNPT)|31|45
+BTS-HUE-002|452|01|31001|2500102|HUE|TP Hue|Phu Hoi|So 26 Duong Hung Vuong, Phuong Phu Hoi, Quan/Huyen TP Hue, Thua Thien Hue|16.458700|107.591900|LTE|MobiFone|32|90
+BTS-HUE-003|452|04|31001|2500103|HUE|TP Hue|Phu Hoi|So 39 Duong Tran Hung Dao, Phuong Phu Hoi, Quan/Huyen TP Hue, Thua Thien Hue|16.468200|107.604400|5G NR|Viettel|33|135
+BTS-HUE-004|452|02|31001|2500104|HUE|TP Hue|Phu Hoi|So 52 Duong Nguyen Hue, Phuong Phu Hoi, Quan/Huyen TP Hue, Thua Thien Hue|16.477700|107.601900|LTE|VinaPhone (VNPT)|34|180
+BTS-HUE-005|452|01|31001|2500105|HUE|TP Hue|Phu Hoi|So 65 Duong Ha Noi, Phuong Phu Hoi, Quan/Huyen TP Hue, Thua Thien Hue|16.487200|107.614400|5G NR|MobiFone|35|225
+BTS-HUE-006|452|04|31001|2500106|HUE|TP Hue|Vinh Ninh|So 18 Duong Le Loi, Phuong Vinh Ninh, Quan/Huyen TP Hue, Thua Thien Hue|16.456700|107.586900|LTE|Viettel|36|270
+BTS-HUE-007|452|02|31001|2500107|HUE|TP Hue|Vinh Ninh|So 31 Duong Hung Vuong, Phuong Vinh Ninh, Quan/Huyen TP Hue, Thua Thien Hue|16.466200|107.584400|5G NR|VinaPhone (VNPT)|37|315
+BTS-HUE-008|452|01|31001|2500108|HUE|TP Hue|Vinh Ninh|So 44 Duong Tran Hung Dao, Phuong Vinh Ninh, Quan/Huyen TP Hue, Thua Thien Hue|16.475700|107.596900|LTE|MobiFone|38|0
+BTS-HUE-009|452|04|31001|2500109|HUE|TP Hue|Vinh Ninh|So 57 Duong Nguyen Hue, Phuong Vinh Ninh, Quan/Huyen TP Hue, Thua Thien Hue|16.485200|107.609400|5G NR|Viettel|39|45
+BTS-HUE-010|452|02|31001|2500110|HUE|TP Hue|Vinh Ninh|So 70 Duong Ha Noi, Phuong Vinh Ninh, Quan/Huyen TP Hue, Thua Thien Hue|16.479700|107.606900|LTE|VinaPhone (VNPT)|40|90
+BTS-HUE-011|452|01|31001|2500111|HUE|TP Hue|Thuan Thanh|So 23 Duong Le Loi, Phuong Thuan Thanh, Quan/Huyen TP Hue, Thua Thien Hue|16.449200|107.579400|5G NR|MobiFone|41|135
+BTS-HUE-012|452|04|31001|2500112|HUE|TP Hue|Thuan Thanh|So 36 Duong Hung Vuong, Phuong Thuan Thanh, Quan/Huyen TP Hue, Thua Thien Hue|16.458700|107.591900|LTE|Viettel|42|180
+BTS-HUE-013|452|02|31001|2500113|HUE|TP Hue|Thuan Thanh|So 49 Duong Tran Hung Dao, Phuong Thuan Thanh, Quan/Huyen TP Hue, Thua Thien Hue|16.468200|107.604400|5G NR|VinaPhone (VNPT)|43|225
+BTS-HUE-014|452|01|31001|2500114|HUE|TP Hue|Thuan Thanh|So 62 Duong Nguyen Hue, Phuong Thuan Thanh, Quan/Huyen TP Hue, Thua Thien Hue|16.477700|107.601900|LTE|MobiFone|44|270
+BTS-HUE-015|452|04|31001|2500115|HUE|TP Hue|Thuan Thanh|So 75 Duong Ha Noi, Phuong Thuan Thanh, Quan/Huyen TP Hue, Thua Thien Hue|16.487200|107.614400|5G NR|Viettel|45|315
+BTS-HUE-016|452|02|31001|2500116|HUE|TP Hue|Vy Da|So 28 Duong Le Loi, Phuong Vy Da, Quan/Huyen TP Hue, Thua Thien Hue|16.456700|107.586900|LTE|VinaPhone (VNPT)|46|0
+BTS-HUE-017|452|01|31001|2500117|HUE|TP Hue|Vy Da|So 41 Duong Hung Vuong, Phuong Vy Da, Quan/Huyen TP Hue, Thua Thien Hue|16.466200|107.584400|5G NR|MobiFone|47|45
+BTS-HUE-018|452|04|31001|2500118|HUE|TP Hue|Vy Da|So 54 Duong Tran Hung Dao, Phuong Vy Da, Quan/Huyen TP Hue, Thua Thien Hue|16.475700|107.596900|LTE|Viettel|48|90
+BTS-HUE-019|452|02|31001|2500119|HUE|TP Hue|Vy Da|So 67 Duong Nguyen Hue, Phuong Vy Da, Quan/Huyen TP Hue, Thua Thien Hue|16.485200|107.609400|5G NR|VinaPhone (VNPT)|49|135
+BTS-HUE-020|452|01|31001|2500120|HUE|TP Hue|Vy Da|So 80 Duong Ha Noi, Phuong Vy Da, Quan/Huyen TP Hue, Thua Thien Hue|16.479700|107.606900|LTE|MobiFone|50|180
+BTS-HUE-021|452|04|31001|2500121|HUE|TP Hue|Phu Nhuan|So 33 Duong Le Loi, Phuong Phu Nhuan, Quan/Huyen TP Hue, Thua Thien Hue|16.449200|107.579400|5G NR|Viettel|51|225
+BTS-HUE-022|452|02|31001|2500122|HUE|TP Hue|Phu Nhuan|So 46 Duong Hung Vuong, Phuong Phu Nhuan, Quan/Huyen TP Hue, Thua Thien Hue|16.458700|107.591900|LTE|VinaPhone (VNPT)|52|270
+BTS-HUE-023|452|01|31001|2500123|HUE|TP Hue|Phu Nhuan|So 59 Duong Tran Hung Dao, Phuong Phu Nhuan, Quan/Huyen TP Hue, Thua Thien Hue|16.468200|107.604400|5G NR|MobiFone|53|315
+BTS-HUE-024|452|04|31001|2500124|HUE|TP Hue|Phu Nhuan|So 72 Duong Nguyen Hue, Phuong Phu Nhuan, Quan/Huyen TP Hue, Thua Thien Hue|16.477700|107.601900|LTE|Viettel|54|0
+BTS-HUE-025|452|02|31001|2500125|HUE|TP Hue|Phu Nhuan|So 85 Duong Ha Noi, Phuong Phu Nhuan, Quan/Huyen TP Hue, Thua Thien Hue|16.487200|107.614400|5G NR|VinaPhone (VNPT)|30|45
+BTS-HUE-026|452|01|31001|2500126|HUE|Huong Thuy|Phu Bai|So 38 Duong Nguyen Tat Thanh, Phuong Phu Bai, Quan/Huyen Huong Thuy, Thua Thien Hue|16.456700|107.586900|LTE|MobiFone|31|90
+BTS-HUE-027|452|04|31001|2500127|HUE|Huong Thuy|Phu Bai|So 51 Duong Song Thao, Phuong Phu Bai, Quan/Huyen Huong Thuy, Thua Thien Hue|16.466200|107.584400|5G NR|Viettel|32|135
+BTS-HUE-028|452|02|31001|2500128|HUE|Huong Thuy|Phu Bai|So 64 Duong Dinh Tien Hoang, Phuong Phu Bai, Quan/Huyen Huong Thuy, Thua Thien Hue|16.475700|107.596900|LTE|VinaPhone (VNPT)|33|180
+BTS-HUE-029|452|01|31001|2500129|HUE|Huong Thuy|Thuy Duong|So 41 Duong Nguyen Tat Thanh, Phuong Thuy Duong, Quan/Huyen Huong Thuy, Thua Thien Hue|16.461200|107.585400|5G NR|MobiFone|34|225
+BTS-HUE-030|452|04|31001|2500130|HUE|Huong Thuy|Thuy Duong|So 54 Duong Song Thao, Phuong Thuy Duong, Quan/Huyen Huong Thuy, Thua Thien Hue|16.455700|107.582900|LTE|Viettel|35|270
+BTS-HUE-031|452|02|31001|2500131|HUE|Huong Thuy|Thuy Duong|So 67 Duong Dinh Tien Hoang, Phuong Thuy Duong, Quan/Huyen Huong Thuy, Thua Thien Hue|16.465200|107.595400|5G NR|VinaPhone (VNPT)|36|315
+BTS-HUE-032|452|01|31001|2500132|HUE|Huong Thuy|Thuy Chau|So 44 Duong Nguyen Tat Thanh, Phuong Thuy Chau, Quan/Huyen Huong Thuy, Thua Thien Hue|16.450700|107.583900|LTE|MobiFone|37|0
+BTS-HUE-033|452|04|31001|2500133|HUE|Huong Thuy|Thuy Chau|So 57 Duong Song Thao, Phuong Thuy Chau, Quan/Huyen Huong Thuy, Thua Thien Hue|16.460200|107.596400|5G NR|Viettel|38|45
+BTS-HUE-034|452|02|31001|2500134|HUE|Huong Thuy|Thuy Chau|So 70 Duong Dinh Tien Hoang, Phuong Thuy Chau, Quan/Huyen Huong Thuy, Thua Thien Hue|16.469700|107.593900|LTE|VinaPhone (VNPT)|39|90
+BTS-KH-001|452|02|35002|2500201|KH|Nha Trang|Loc Tho|So 13 Duong Tran Phu, Phuong Loc Tho, Quan/Huyen Nha Trang, Khanh Hoa|12.224300|109.185200|5G NR|VinaPhone (VNPT)|31|45
+BTS-KH-002|452|01|35002|2500202|KH|Nha Trang|Loc Tho|So 26 Duong Le Thanh Ton, Phuong Loc Tho, Quan/Huyen Nha Trang, Khanh Hoa|12.233800|109.197700|LTE|MobiFone|32|90
+BTS-KH-003|452|04|35002|2500203|KH|Nha Trang|Loc Tho|So 39 Duong Thai Nguyen, Phuong Loc Tho, Quan/Huyen Nha Trang, Khanh Hoa|12.243300|109.210200|5G NR|Viettel|33|135
+BTS-KH-004|452|02|35002|2500204|KH|Nha Trang|Loc Tho|So 52 Duong Nguyen Thi Minh Khai, Phuong Loc Tho, Quan/Huyen Nha Trang, Khanh Hoa|12.252800|109.207700|LTE|VinaPhone (VNPT)|34|180
+BTS-KH-005|452|01|35002|2500205|KH|Nha Trang|Loc Tho|So 65 Duong 23 Thang 10, Phuong Loc Tho, Quan/Huyen Nha Trang, Khanh Hoa|12.262300|109.220200|5G NR|MobiFone|35|225
+BTS-KH-006|452|04|35002|2500206|KH|Nha Trang|Phuong Sai|So 18 Duong Tran Phu, Phuong Phuong Sai, Quan/Huyen Nha Trang, Khanh Hoa|12.231800|109.192700|LTE|Viettel|36|270
+BTS-KH-007|452|02|35002|2500207|KH|Nha Trang|Phuong Sai|So 31 Duong Le Thanh Ton, Phuong Phuong Sai, Quan/Huyen Nha Trang, Khanh Hoa|12.241300|109.190200|5G NR|VinaPhone (VNPT)|37|315
+BTS-KH-008|452|01|35002|2500208|KH|Nha Trang|Phuong Sai|So 44 Duong Thai Nguyen, Phuong Phuong Sai, Quan/Huyen Nha Trang, Khanh Hoa|12.250800|109.202700|LTE|MobiFone|38|0
+BTS-KH-009|452|04|35002|2500209|KH|Nha Trang|Phuong Sai|So 57 Duong Nguyen Thi Minh Khai, Phuong Phuong Sai, Quan/Huyen Nha Trang, Khanh Hoa|12.260300|109.215200|5G NR|Viettel|39|45
+BTS-KH-010|452|02|35002|2500210|KH|Nha Trang|Phuong Sai|So 70 Duong 23 Thang 10, Phuong Phuong Sai, Quan/Huyen Nha Trang, Khanh Hoa|12.254800|109.212700|LTE|VinaPhone (VNPT)|40|90
+BTS-KH-011|452|01|35002|2500211|KH|Nha Trang|Van Thang|So 23 Duong Tran Phu, Phuong Van Thang, Quan/Huyen Nha Trang, Khanh Hoa|12.224300|109.185200|5G NR|MobiFone|41|135
+BTS-KH-012|452|04|35002|2500212|KH|Nha Trang|Van Thang|So 36 Duong Le Thanh Ton, Phuong Van Thang, Quan/Huyen Nha Trang, Khanh Hoa|12.233800|109.197700|LTE|Viettel|42|180
+BTS-KH-013|452|02|35002|2500213|KH|Nha Trang|Van Thang|So 49 Duong Thai Nguyen, Phuong Van Thang, Quan/Huyen Nha Trang, Khanh Hoa|12.243300|109.210200|5G NR|VinaPhone (VNPT)|43|225
+BTS-KH-014|452|01|35002|2500214|KH|Nha Trang|Van Thang|So 62 Duong Nguyen Thi Minh Khai, Phuong Van Thang, Quan/Huyen Nha Trang, Khanh Hoa|12.252800|109.207700|LTE|MobiFone|44|270
+BTS-KH-015|452|04|35002|2500215|KH|Nha Trang|Van Thang|So 75 Duong 23 Thang 10, Phuong Van Thang, Quan/Huyen Nha Trang, Khanh Hoa|12.262300|109.220200|5G NR|Viettel|45|315
+BTS-KH-016|452|02|35002|2500216|KH|Nha Trang|Xuong Huan|So 28 Duong Tran Phu, Phuong Xuong Huan, Quan/Huyen Nha Trang, Khanh Hoa|12.231800|109.192700|LTE|VinaPhone (VNPT)|46|0
+BTS-KH-017|452|01|35002|2500217|KH|Nha Trang|Xuong Huan|So 41 Duong Le Thanh Ton, Phuong Xuong Huan, Quan/Huyen Nha Trang, Khanh Hoa|12.241300|109.190200|5G NR|MobiFone|47|45
+BTS-KH-018|452|04|35002|2500218|KH|Nha Trang|Xuong Huan|So 54 Duong Thai Nguyen, Phuong Xuong Huan, Quan/Huyen Nha Trang, Khanh Hoa|12.250800|109.202700|LTE|Viettel|48|90
+BTS-KH-019|452|02|35002|2500219|KH|Nha Trang|Xuong Huan|So 67 Duong Nguyen Thi Minh Khai, Phuong Xuong Huan, Quan/Huyen Nha Trang, Khanh Hoa|12.260300|109.215200|5G NR|VinaPhone (VNPT)|49|135
+BTS-KH-020|452|01|35002|2500220|KH|Nha Trang|Xuong Huan|So 80 Duong 23 Thang 10, Phuong Xuong Huan, Quan/Huyen Nha Trang, Khanh Hoa|12.254800|109.212700|LTE|MobiFone|50|180
+BTS-KH-021|452|04|35002|2500221|KH|Nha Trang|Vinh Nguyen|So 33 Duong Tran Phu, Phuong Vinh Nguyen, Quan/Huyen Nha Trang, Khanh Hoa|12.224300|109.185200|5G NR|Viettel|51|225
+BTS-KH-022|452|02|35002|2500222|KH|Nha Trang|Vinh Nguyen|So 46 Duong Le Thanh Ton, Phuong Vinh Nguyen, Quan/Huyen Nha Trang, Khanh Hoa|12.233800|109.197700|LTE|VinaPhone (VNPT)|52|270
+BTS-KH-023|452|01|35002|2500223|KH|Nha Trang|Vinh Nguyen|So 59 Duong Thai Nguyen, Phuong Vinh Nguyen, Quan/Huyen Nha Trang, Khanh Hoa|12.243300|109.210200|5G NR|MobiFone|53|315
+BTS-KH-024|452|04|35002|2500224|KH|Nha Trang|Vinh Nguyen|So 72 Duong Nguyen Thi Minh Khai, Phuong Vinh Nguyen, Quan/Huyen Nha Trang, Khanh Hoa|12.252800|109.207700|LTE|Viettel|54|0
+BTS-KH-025|452|02|35002|2500225|KH|Nha Trang|Vinh Nguyen|So 85 Duong 23 Thang 10, Phuong Vinh Nguyen, Quan/Huyen Nha Trang, Khanh Hoa|12.262300|109.220200|5G NR|VinaPhone (VNPT)|30|45
+BTS-KH-026|452|01|35002|2500226|KH|Cam Ranh|Cam Linh|So 38 Duong Hung Vuong, Phuong Cam Linh, Quan/Huyen Cam Ranh, Khanh Hoa|12.231800|109.192700|LTE|MobiFone|31|90
+BTS-KH-027|452|04|35002|2500227|KH|Cam Ranh|Cam Linh|So 51 Duong Nguyen Trai, Phuong Cam Linh, Quan/Huyen Cam Ranh, Khanh Hoa|12.241300|109.190200|5G NR|Viettel|32|135
+BTS-KH-028|452|02|35002|2500228|KH|Cam Ranh|Cam Linh|So 64 Duong Pham Van Dong, Phuong Cam Linh, Quan/Huyen Cam Ranh, Khanh Hoa|12.250800|109.202700|LTE|VinaPhone (VNPT)|33|180
+BTS-KH-029|452|01|35002|2500229|KH|Cam Ranh|Cam Loc|So 41 Duong Hung Vuong, Phuong Cam Loc, Quan/Huyen Cam Ranh, Khanh Hoa|12.236300|109.191200|5G NR|MobiFone|34|225
+BTS-KH-030|452|04|35002|2500230|KH|Cam Ranh|Cam Loc|So 54 Duong Nguyen Trai, Phuong Cam Loc, Quan/Huyen Cam Ranh, Khanh Hoa|12.230800|109.188700|LTE|Viettel|35|270
+BTS-KH-031|452|02|35002|2500231|KH|Cam Ranh|Cam Loc|So 67 Duong Pham Van Dong, Phuong Cam Loc, Quan/Huyen Cam Ranh, Khanh Hoa|12.240300|109.201200|5G NR|VinaPhone (VNPT)|36|315
+BTS-KH-032|452|01|35002|2500232|KH|Cam Ranh|Cam Phu|So 44 Duong Hung Vuong, Phuong Cam Phu, Quan/Huyen Cam Ranh, Khanh Hoa|12.225800|109.189700|LTE|MobiFone|37|0
+BTS-KH-033|452|04|35002|2500233|KH|Cam Ranh|Cam Phu|So 57 Duong Nguyen Trai, Phuong Cam Phu, Quan/Huyen Cam Ranh, Khanh Hoa|12.235300|109.202200|5G NR|Viettel|38|45
+BTS-KH-034|452|02|35002|2500234|KH|Cam Ranh|Cam Phu|So 70 Duong Pham Van Dong, Phuong Cam Phu, Quan/Huyen Cam Ranh, Khanh Hoa|12.244800|109.199700|LTE|VinaPhone (VNPT)|39|90
+BTS-KH-035|452|01|35002|2500235|KH|Cam Ranh|Ba Ngoi|So 47 Duong Hung Vuong, Phuong Ba Ngoi, Quan/Huyen Cam Ranh, Khanh Hoa|12.230300|109.188200|5G NR|MobiFone|40|135
+BTS-KH-036|452|04|35002|2500236|KH|Cam Ranh|Ba Ngoi|So 60 Duong Nguyen Trai, Phuong Ba Ngoi, Quan/Huyen Cam Ranh, Khanh Hoa|12.239800|109.200700|LTE|Viettel|41|180
+BTS-KH-037|452|02|35002|2500237|KH|Cam Ranh|Ba Ngoi|So 73 Duong Pham Van Dong, Phuong Ba Ngoi, Quan/Huyen Cam Ranh, Khanh Hoa|12.249300|109.198200|5G NR|VinaPhone (VNPT)|42|225
+BTS-LD-001|452|02|38001|2500101|LD|Da Lat|Phuong 1|So 13 Duong Tran Phu, Phuong Phuong 1, Quan/Huyen Da Lat, Lam Dong|11.925900|108.446800|5G NR|VinaPhone (VNPT)|31|45
+BTS-LD-002|452|01|38001|2500102|LD|Da Lat|Phuong 1|So 26 Duong Phan Dinh Phung, Phuong Phuong 1, Quan/Huyen Da Lat, Lam Dong|11.935400|108.459300|LTE|MobiFone|32|90
+BTS-LD-003|452|04|38001|2500103|LD|Da Lat|Phuong 1|So 39 Duong Bui Thi Xuan, Phuong Phuong 1, Quan/Huyen Da Lat, Lam Dong|11.944900|108.471800|5G NR|Viettel|33|135
+BTS-LD-004|452|02|38001|2500104|LD|Da Lat|Phuong 1|So 52 Duong Nguyen Thi Minh Khai, Phuong Phuong 1, Quan/Huyen Da Lat, Lam Dong|11.954400|108.469300|LTE|VinaPhone (VNPT)|34|180
+BTS-LD-005|452|01|38001|2500105|LD|Da Lat|Phuong 1|So 65 Duong Hung Vuong, Phuong Phuong 1, Quan/Huyen Da Lat, Lam Dong|11.963900|108.481800|5G NR|MobiFone|35|225
+BTS-LD-006|452|04|38001|2500106|LD|Da Lat|Phuong 2|So 18 Duong Tran Phu, Phuong Phuong 2, Quan/Huyen Da Lat, Lam Dong|11.933400|108.454300|LTE|Viettel|36|270
+BTS-LD-007|452|02|38001|2500107|LD|Da Lat|Phuong 2|So 31 Duong Phan Dinh Phung, Phuong Phuong 2, Quan/Huyen Da Lat, Lam Dong|11.942900|108.451800|5G NR|VinaPhone (VNPT)|37|315
+BTS-LD-008|452|01|38001|2500108|LD|Da Lat|Phuong 2|So 44 Duong Bui Thi Xuan, Phuong Phuong 2, Quan/Huyen Da Lat, Lam Dong|11.952400|108.464300|LTE|MobiFone|38|0
+BTS-LD-009|452|04|38001|2500109|LD|Da Lat|Phuong 2|So 57 Duong Nguyen Thi Minh Khai, Phuong Phuong 2, Quan/Huyen Da Lat, Lam Dong|11.961900|108.476800|5G NR|Viettel|39|45
+BTS-LD-010|452|02|38001|2500110|LD|Da Lat|Phuong 2|So 70 Duong Hung Vuong, Phuong Phuong 2, Quan/Huyen Da Lat, Lam Dong|11.956400|108.474300|LTE|VinaPhone (VNPT)|40|90
+BTS-LD-011|452|01|38001|2500111|LD|Da Lat|Phuong 4|So 23 Duong Tran Phu, Phuong Phuong 4, Quan/Huyen Da Lat, Lam Dong|11.925900|108.446800|5G NR|MobiFone|41|135
+BTS-LD-012|452|04|38001|2500112|LD|Da Lat|Phuong 4|So 36 Duong Phan Dinh Phung, Phuong Phuong 4, Quan/Huyen Da Lat, Lam Dong|11.935400|108.459300|LTE|Viettel|42|180
+BTS-LD-013|452|02|38001|2500113|LD|Da Lat|Phuong 4|So 49 Duong Bui Thi Xuan, Phuong Phuong 4, Quan/Huyen Da Lat, Lam Dong|11.944900|108.471800|5G NR|VinaPhone (VNPT)|43|225
+BTS-LD-014|452|01|38001|2500114|LD|Da Lat|Phuong 4|So 62 Duong Nguyen Thi Minh Khai, Phuong Phuong 4, Quan/Huyen Da Lat, Lam Dong|11.954400|108.469300|LTE|MobiFone|44|270
+BTS-LD-015|452|04|38001|2500115|LD|Da Lat|Phuong 4|So 75 Duong Hung Vuong, Phuong Phuong 4, Quan/Huyen Da Lat, Lam Dong|11.963900|108.481800|5G NR|Viettel|45|315
+BTS-LD-016|452|02|38001|2500116|LD|Da Lat|Phuong 8|So 28 Duong Tran Phu, Phuong Phuong 8, Quan/Huyen Da Lat, Lam Dong|11.933400|108.454300|LTE|VinaPhone (VNPT)|46|0
+BTS-LD-017|452|01|38001|2500117|LD|Da Lat|Phuong 8|So 41 Duong Phan Dinh Phung, Phuong Phuong 8, Quan/Huyen Da Lat, Lam Dong|11.942900|108.451800|5G NR|MobiFone|47|45
+BTS-LD-018|452|04|38001|2500118|LD|Da Lat|Phuong 8|So 54 Duong Bui Thi Xuan, Phuong Phuong 8, Quan/Huyen Da Lat, Lam Dong|11.952400|108.464300|LTE|Viettel|48|90
+BTS-LD-019|452|02|38001|2500119|LD|Da Lat|Phuong 8|So 67 Duong Nguyen Thi Minh Khai, Phuong Phuong 8, Quan/Huyen Da Lat, Lam Dong|11.961900|108.476800|5G NR|VinaPhone (VNPT)|49|135
+BTS-LD-020|452|01|38001|2500120|LD|Da Lat|Phuong 8|So 80 Duong Hung Vuong, Phuong Phuong 8, Quan/Huyen Da Lat, Lam Dong|11.956400|108.474300|LTE|MobiFone|50|180
+BTS-LD-021|452|04|38001|2500121|LD|Da Lat|Phuong 10|So 33 Duong Tran Phu, Phuong Phuong 10, Quan/Huyen Da Lat, Lam Dong|11.925900|108.446800|5G NR|Viettel|51|225
+BTS-LD-022|452|02|38001|2500122|LD|Da Lat|Phuong 10|So 46 Duong Phan Dinh Phung, Phuong Phuong 10, Quan/Huyen Da Lat, Lam Dong|11.935400|108.459300|LTE|VinaPhone (VNPT)|52|270
+BTS-LD-023|452|01|38001|2500123|LD|Da Lat|Phuong 10|So 59 Duong Bui Thi Xuan, Phuong Phuong 10, Quan/Huyen Da Lat, Lam Dong|11.944900|108.471800|5G NR|MobiFone|53|315
+BTS-LD-024|452|04|38001|2500124|LD|Da Lat|Phuong 10|So 72 Duong Nguyen Thi Minh Khai, Phuong Phuong 10, Quan/Huyen Da Lat, Lam Dong|11.954400|108.469300|LTE|Viettel|54|0
+BTS-LD-025|452|02|38001|2500125|LD|Da Lat|Phuong 10|So 85 Duong Hung Vuong, Phuong Phuong 10, Quan/Huyen Da Lat, Lam Dong|11.963900|108.481800|5G NR|VinaPhone (VNPT)|30|45
+BTS-LD-026|452|01|38001|2500126|LD|Bao Loc|Phuong 1|So 38 Duong Tran Phu, Phuong Phuong 1, Quan/Huyen Bao Loc, Lam Dong|11.933400|108.454300|LTE|MobiFone|31|90
+BTS-LD-027|452|04|38001|2500127|LD|Bao Loc|Phuong 1|So 51 Duong Nguyen Cong Tru, Phuong Phuong 1, Quan/Huyen Bao Loc, Lam Dong|11.942900|108.451800|5G NR|Viettel|32|135
+BTS-LD-028|452|02|38001|2500128|LD|Bao Loc|Phuong 1|So 64 Duong Huynh Thuc Khang, Phuong Phuong 1, Quan/Huyen Bao Loc, Lam Dong|11.952400|108.464300|LTE|VinaPhone (VNPT)|33|180
+BTS-LD-029|452|01|38001|2500129|LD|Bao Loc|Phuong 2|So 41 Duong Tran Phu, Phuong Phuong 2, Quan/Huyen Bao Loc, Lam Dong|11.937900|108.452800|5G NR|MobiFone|34|225
+BTS-LD-030|452|04|38001|2500130|LD|Bao Loc|Phuong 2|So 54 Duong Nguyen Cong Tru, Phuong Phuong 2, Quan/Huyen Bao Loc, Lam Dong|11.932400|108.450300|LTE|Viettel|35|270
+BTS-LD-031|452|02|38001|2500131|LD|Bao Loc|Phuong 2|So 67 Duong Huynh Thuc Khang, Phuong Phuong 2, Quan/Huyen Bao Loc, Lam Dong|11.941900|108.462800|5G NR|VinaPhone (VNPT)|36|315
+BTS-LD-032|452|01|38001|2500132|LD|Bao Loc|Bao Nga|So 44 Duong Tran Phu, Phuong Bao Nga, Quan/Huyen Bao Loc, Lam Dong|11.927400|108.451300|LTE|MobiFone|37|0
+BTS-LD-033|452|04|38001|2500133|LD|Bao Loc|Bao Nga|So 57 Duong Nguyen Cong Tru, Phuong Bao Nga, Quan/Huyen Bao Loc, Lam Dong|11.936900|108.463800|5G NR|Viettel|38|45
+BTS-LD-034|452|02|38001|2500134|LD|Bao Loc|Bao Nga|So 70 Duong Huynh Thuc Khang, Phuong Bao Nga, Quan/Huyen Bao Loc, Lam Dong|11.946400|108.461300|LTE|VinaPhone (VNPT)|39|90
+BTS-LD-035|452|01|38001|2500135|LD|Bao Loc|Loc Tien|So 47 Duong Tran Phu, Phuong Loc Tien, Quan/Huyen Bao Loc, Lam Dong|11.931900|108.449800|5G NR|MobiFone|40|135
+BTS-LD-036|452|04|38001|2500136|LD|Bao Loc|Loc Tien|So 60 Duong Nguyen Cong Tru, Phuong Loc Tien, Quan/Huyen Bao Loc, Lam Dong|11.941400|108.462300|LTE|Viettel|41|180
+BTS-LD-037|452|02|38001|2500137|LD|Bao Loc|Loc Tien|So 73 Duong Huynh Thuc Khang, Phuong Loc Tien, Quan/Huyen Bao Loc, Lam Dong|11.950900|108.459800|5G NR|VinaPhone (VNPT)|42|225
+BTS-LS-001|452|02|21002|2500201|LS|TP Lang Son|Chi Lang|So 13 Duong Tran Dang Ninh, Phuong Chi Lang, Quan/Huyen TP Lang Son, Lang Son|21.838800|106.750200|5G NR|VinaPhone (VNPT)|31|45
+BTS-LS-002|452|01|21002|2500202|LS|TP Lang Son|Chi Lang|So 26 Duong Le Loi, Phuong Chi Lang, Quan/Huyen TP Lang Son, Lang Son|21.848300|106.762700|LTE|MobiFone|32|90
+BTS-LS-003|452|04|21002|2500203|LS|TP Lang Son|Chi Lang|So 39 Duong Ba Trieu, Phuong Chi Lang, Quan/Huyen TP Lang Son, Lang Son|21.857800|106.775200|5G NR|Viettel|33|135
+BTS-LS-004|452|02|21002|2500204|LS|TP Lang Son|Chi Lang|So 52 Duong Dinh Tien Hoang, Phuong Chi Lang, Quan/Huyen TP Lang Son, Lang Son|21.867300|106.772700|LTE|VinaPhone (VNPT)|34|180
+BTS-LS-005|452|01|21002|2500205|LS|TP Lang Son|Chi Lang|So 65 Duong Phai Ve, Phuong Chi Lang, Quan/Huyen TP Lang Son, Lang Son|21.876800|106.785200|5G NR|MobiFone|35|225
+BTS-LS-006|452|04|21002|2500206|LS|TP Lang Son|Dong Kinh|So 18 Duong Tran Dang Ninh, Phuong Dong Kinh, Quan/Huyen TP Lang Son, Lang Son|21.846300|106.757700|LTE|Viettel|36|270
+BTS-LS-007|452|02|21002|2500207|LS|TP Lang Son|Dong Kinh|So 31 Duong Le Loi, Phuong Dong Kinh, Quan/Huyen TP Lang Son, Lang Son|21.855800|106.755200|5G NR|VinaPhone (VNPT)|37|315
+BTS-LS-008|452|01|21002|2500208|LS|TP Lang Son|Dong Kinh|So 44 Duong Ba Trieu, Phuong Dong Kinh, Quan/Huyen TP Lang Son, Lang Son|21.865300|106.767700|LTE|MobiFone|38|0
+BTS-LS-009|452|04|21002|2500209|LS|TP Lang Son|Dong Kinh|So 57 Duong Dinh Tien Hoang, Phuong Dong Kinh, Quan/Huyen TP Lang Son, Lang Son|21.874800|106.780200|5G NR|Viettel|39|45
+BTS-LS-010|452|02|21002|2500210|LS|TP Lang Son|Dong Kinh|So 70 Duong Phai Ve, Phuong Dong Kinh, Quan/Huyen TP Lang Son, Lang Son|21.869300|106.777700|LTE|VinaPhone (VNPT)|40|90
+BTS-LS-011|452|01|21002|2500211|LS|TP Lang Son|Tam Thanh|So 23 Duong Tran Dang Ninh, Phuong Tam Thanh, Quan/Huyen TP Lang Son, Lang Son|21.838800|106.750200|5G NR|MobiFone|41|135
+BTS-LS-012|452|04|21002|2500212|LS|TP Lang Son|Tam Thanh|So 36 Duong Le Loi, Phuong Tam Thanh, Quan/Huyen TP Lang Son, Lang Son|21.848300|106.762700|LTE|Viettel|42|180
+BTS-LS-013|452|02|21002|2500213|LS|TP Lang Son|Tam Thanh|So 49 Duong Ba Trieu, Phuong Tam Thanh, Quan/Huyen TP Lang Son, Lang Son|21.857800|106.775200|5G NR|VinaPhone (VNPT)|43|225
+BTS-LS-014|452|01|21002|2500214|LS|TP Lang Son|Tam Thanh|So 62 Duong Dinh Tien Hoang, Phuong Tam Thanh, Quan/Huyen TP Lang Son, Lang Son|21.867300|106.772700|LTE|MobiFone|44|270
+BTS-LS-015|452|04|21002|2500215|LS|TP Lang Son|Tam Thanh|So 75 Duong Phai Ve, Phuong Tam Thanh, Quan/Huyen TP Lang Son, Lang Son|21.876800|106.785200|5G NR|Viettel|45|315
+BTS-LS-016|452|02|21002|2500216|LS|TP Lang Son|Vinh Trai|So 28 Duong Tran Dang Ninh, Phuong Vinh Trai, Quan/Huyen TP Lang Son, Lang Son|21.846300|106.757700|LTE|VinaPhone (VNPT)|46|0
+BTS-LS-017|452|01|21002|2500217|LS|TP Lang Son|Vinh Trai|So 41 Duong Le Loi, Phuong Vinh Trai, Quan/Huyen TP Lang Son, Lang Son|21.855800|106.755200|5G NR|MobiFone|47|45
+BTS-LS-018|452|04|21002|2500218|LS|TP Lang Son|Vinh Trai|So 54 Duong Ba Trieu, Phuong Vinh Trai, Quan/Huyen TP Lang Son, Lang Son|21.865300|106.767700|LTE|Viettel|48|90
+BTS-LS-019|452|02|21002|2500219|LS|TP Lang Son|Vinh Trai|So 67 Duong Dinh Tien Hoang, Phuong Vinh Trai, Quan/Huyen TP Lang Son, Lang Son|21.874800|106.780200|5G NR|VinaPhone (VNPT)|49|135
+BTS-LS-020|452|01|21002|2500220|LS|TP Lang Son|Vinh Trai|So 80 Duong Phai Ve, Phuong Vinh Trai, Quan/Huyen TP Lang Son, Lang Son|21.869300|106.777700|LTE|MobiFone|50|180
+BTS-LS-021|452|04|21002|2500221|LS|TP Lang Son|Hoang Van Thu|So 33 Duong Tran Dang Ninh, Phuong Hoang Van Thu, Quan/Huyen TP Lang Son, Lang Son|21.838800|106.750200|5G NR|Viettel|51|225
+BTS-LS-022|452|02|21002|2500222|LS|TP Lang Son|Hoang Van Thu|So 46 Duong Le Loi, Phuong Hoang Van Thu, Quan/Huyen TP Lang Son, Lang Son|21.848300|106.762700|LTE|VinaPhone (VNPT)|52|270
+BTS-LS-023|452|01|21002|2500223|LS|TP Lang Son|Hoang Van Thu|So 59 Duong Ba Trieu, Phuong Hoang Van Thu, Quan/Huyen TP Lang Son, Lang Son|21.857800|106.775200|5G NR|MobiFone|53|315
+BTS-LS-024|452|04|21002|2500224|LS|TP Lang Son|Hoang Van Thu|So 72 Duong Dinh Tien Hoang, Phuong Hoang Van Thu, Quan/Huyen TP Lang Son, Lang Son|21.867300|106.772700|LTE|Viettel|54|0
+BTS-LS-025|452|02|21002|2500225|LS|TP Lang Son|Hoang Van Thu|So 85 Duong Phai Ve, Phuong Hoang Van Thu, Quan/Huyen TP Lang Son, Lang Son|21.876800|106.785200|5G NR|VinaPhone (VNPT)|30|45
+BTS-LS-026|452|01|21002|2500226|LS|Cao Loc|Thi tran Dong Dang|So 38 Duong Quoc Lo 1A, Phuong Thi tran Dong Dang, Quan/Huyen Cao Loc, Lang Son|21.846300|106.757700|LTE|MobiFone|31|90
+BTS-LS-027|452|04|21002|2500227|LS|Cao Loc|Thi tran Dong Dang|So 51 Duong Tran Quoc Toan, Phuong Thi tran Dong Dang, Quan/Huyen Cao Loc, Lang Son|21.855800|106.755200|5G NR|Viettel|32|135
+BTS-LS-028|452|02|21002|2500228|LS|Cao Loc|Thi tran Dong Dang|So 64 Duong Duong Huu Nghi, Phuong Thi tran Dong Dang, Quan/Huyen Cao Loc, Lang Son|21.865300|106.767700|LTE|VinaPhone (VNPT)|33|180
+BTS-LS-029|452|01|21002|2500229|LS|Cao Loc|Thi tran Dong Dang|So 77 Duong Duong Van Vi, Phuong Thi tran Dong Dang, Quan/Huyen Cao Loc, Lang Son|21.874800|106.780200|5G NR|MobiFone|34|225
+BTS-LS-030|452|04|21002|2500230|LS|Cao Loc|Thi tran Cao Loc|So 42 Duong Quoc Lo 1A, Phuong Thi tran Cao Loc, Quan/Huyen Cao Loc, Lang Son|21.837300|106.745700|LTE|Viettel|35|270
+BTS-LS-031|452|02|21002|2500231|LS|Cao Loc|Thi tran Cao Loc|So 55 Duong Tran Quoc Toan, Phuong Thi tran Cao Loc, Quan/Huyen Cao Loc, Lang Son|21.846800|106.758200|5G NR|VinaPhone (VNPT)|36|315
+BTS-LS-032|452|01|21002|2500232|LS|Cao Loc|Thi tran Cao Loc|So 68 Duong Duong Huu Nghi, Phuong Thi tran Cao Loc, Quan/Huyen Cao Loc, Lang Son|21.856300|106.770700|LTE|MobiFone|37|0
+BTS-LS-033|452|04|21002|2500233|LS|Cao Loc|Thi tran Cao Loc|So 81 Duong Duong Van Vi, Phuong Thi tran Cao Loc, Quan/Huyen Cao Loc, Lang Son|21.865800|106.783200|5G NR|Viettel|38|45
+BTS-LS-034|452|02|21002|2500234|LS|Cao Loc|Xa Hop Thanh|So 46 Duong Quoc Lo 1A, Phuong Xa Hop Thanh, Quan/Huyen Cao Loc, Lang Son|21.843300|106.748700|LTE|VinaPhone (VNPT)|39|90
+BTS-LS-035|452|01|21002|2500235|LS|Cao Loc|Xa Hop Thanh|So 59 Duong Tran Quoc Toan, Phuong Xa Hop Thanh, Quan/Huyen Cao Loc, Lang Son|21.852800|106.761200|5G NR|MobiFone|40|135
+BTS-LS-036|452|04|21002|2500236|LS|Cao Loc|Xa Hop Thanh|So 72 Duong Duong Huu Nghi, Phuong Xa Hop Thanh, Quan/Huyen Cao Loc, Lang Son|21.862300|106.773700|LTE|Viettel|41|180
+BTS-LS-037|452|02|21002|2500237|LS|Cao Loc|Xa Hop Thanh|So 85 Duong Duong Van Vi, Phuong Xa Hop Thanh, Quan/Huyen Cao Loc, Lang Son|21.871800|106.771200|5G NR|VinaPhone (VNPT)|42|225
+BTS-LS-038|452|01|21002|2500238|LS|Huu Lung|Thi tran Huu Lung|So 50 Duong Quoc Lo 1A, Phuong Thi tran Huu Lung, Quan/Huyen Huu Lung, Lang Son|21.849300|106.751700|LTE|MobiFone|43|270
+BTS-LS-039|452|04|21002|2500239|LS|Huu Lung|Thi tran Huu Lung|So 63 Duong Duong 242, Phuong Thi tran Huu Lung, Quan/Huyen Huu Lung, Lang Son|21.858800|106.764200|5G NR|Viettel|44|315
+BTS-LS-040|452|02|21002|2500240|LS|Huu Lung|Thi tran Huu Lung|So 76 Duong Duong Chi Lang, Phuong Thi tran Huu Lung, Quan/Huyen Huu Lung, Lang Son|21.853300|106.761700|LTE|VinaPhone (VNPT)|45|0
+BTS-LS-041|452|01|21002|2500241|LS|Huu Lung|Xa Dong Tan|So 53 Duong Quoc Lo 1A, Phuong Xa Dong Tan, Quan/Huyen Huu Lung, Lang Son|21.838800|106.750200|5G NR|MobiFone|46|45
+BTS-LS-042|452|04|21002|2500242|LS|Huu Lung|Xa Dong Tan|So 66 Duong Duong 242, Phuong Xa Dong Tan, Quan/Huyen Huu Lung, Lang Son|21.848300|106.762700|LTE|Viettel|47|90
+BTS-LS-043|452|02|21002|2500243|LS|Huu Lung|Xa Dong Tan|So 79 Duong Duong Chi Lang, Phuong Xa Dong Tan, Quan/Huyen Huu Lung, Lang Son|21.857800|106.775200|5G NR|VinaPhone (VNPT)|48|135
+BTS-LS-044|452|01|21002|2500244|LS|Huu Lung|Xa Minh Son|So 56 Duong Quoc Lo 1A, Phuong Xa Minh Son, Quan/Huyen Huu Lung, Lang Son|21.843300|106.748700|LTE|MobiFone|49|180
+BTS-LS-045|452|04|21002|2500245|LS|Huu Lung|Xa Minh Son|So 69 Duong Duong 242, Phuong Xa Minh Son, Quan/Huyen Huu Lung, Lang Son|21.852800|106.761200|5G NR|Viettel|50|225
+BTS-LS-046|452|02|21002|2500246|LS|Huu Lung|Xa Minh Son|So 82 Duong Duong Chi Lang, Phuong Xa Minh Son, Quan/Huyen Huu Lung, Lang Son|21.862300|106.773700|LTE|VinaPhone (VNPT)|51|270
+BTS-NA-001|452|02|27001|2500101|NA|TP Vinh|Le Mao|So 13 Duong Quang Trung, Phuong Le Mao, Quan/Huyen TP Vinh, Nghe An|18.665100|105.669800|5G NR|VinaPhone (VNPT)|31|45
+BTS-NA-002|452|01|27001|2500102|NA|TP Vinh|Le Mao|So 26 Duong Tran Phu, Phuong Le Mao, Quan/Huyen TP Vinh, Nghe An|18.674600|105.682300|LTE|MobiFone|32|90
+BTS-NA-003|452|04|27001|2500103|NA|TP Vinh|Le Mao|So 39 Duong Le Duan, Phuong Le Mao, Quan/Huyen TP Vinh, Nghe An|18.684100|105.694800|5G NR|Viettel|33|135
+BTS-NA-004|452|02|27001|2500104|NA|TP Vinh|Le Mao|So 52 Duong Nguyen Thi Minh Khai, Phuong Le Mao, Quan/Huyen TP Vinh, Nghe An|18.693600|105.692300|LTE|VinaPhone (VNPT)|34|180
+BTS-NA-005|452|01|27001|2500105|NA|TP Vinh|Le Mao|So 65 Duong Nguyen Van Cu, Phuong Le Mao, Quan/Huyen TP Vinh, Nghe An|18.703100|105.704800|5G NR|MobiFone|35|225
+BTS-NA-006|452|04|27001|2500106|NA|TP Vinh|Quang Trung|So 18 Duong Quang Trung, Phuong Quang Trung, Quan/Huyen TP Vinh, Nghe An|18.672600|105.677300|LTE|Viettel|36|270
+BTS-NA-007|452|02|27001|2500107|NA|TP Vinh|Quang Trung|So 31 Duong Tran Phu, Phuong Quang Trung, Quan/Huyen TP Vinh, Nghe An|18.682100|105.674800|5G NR|VinaPhone (VNPT)|37|315
+BTS-NA-008|452|01|27001|2500108|NA|TP Vinh|Quang Trung|So 44 Duong Le Duan, Phuong Quang Trung, Quan/Huyen TP Vinh, Nghe An|18.691600|105.687300|LTE|MobiFone|38|0
+BTS-NA-009|452|04|27001|2500109|NA|TP Vinh|Quang Trung|So 57 Duong Nguyen Thi Minh Khai, Phuong Quang Trung, Quan/Huyen TP Vinh, Nghe An|18.701100|105.699800|5G NR|Viettel|39|45
+BTS-NA-010|452|02|27001|2500110|NA|TP Vinh|Quang Trung|So 70 Duong Nguyen Van Cu, Phuong Quang Trung, Quan/Huyen TP Vinh, Nghe An|18.695600|105.697300|LTE|VinaPhone (VNPT)|40|90
+BTS-NA-011|452|01|27001|2500111|NA|TP Vinh|Truong Thi|So 23 Duong Quang Trung, Phuong Truong Thi, Quan/Huyen TP Vinh, Nghe An|18.665100|105.669800|5G NR|MobiFone|41|135
+BTS-NA-012|452|04|27001|2500112|NA|TP Vinh|Truong Thi|So 36 Duong Tran Phu, Phuong Truong Thi, Quan/Huyen TP Vinh, Nghe An|18.674600|105.682300|LTE|Viettel|42|180
+BTS-NA-013|452|02|27001|2500113|NA|TP Vinh|Truong Thi|So 49 Duong Le Duan, Phuong Truong Thi, Quan/Huyen TP Vinh, Nghe An|18.684100|105.694800|5G NR|VinaPhone (VNPT)|43|225
+BTS-NA-014|452|01|27001|2500114|NA|TP Vinh|Truong Thi|So 62 Duong Nguyen Thi Minh Khai, Phuong Truong Thi, Quan/Huyen TP Vinh, Nghe An|18.693600|105.692300|LTE|MobiFone|44|270
+BTS-NA-015|452|04|27001|2500115|NA|TP Vinh|Truong Thi|So 75 Duong Nguyen Van Cu, Phuong Truong Thi, Quan/Huyen TP Vinh, Nghe An|18.703100|105.704800|5G NR|Viettel|45|315
+BTS-NA-016|452|02|27001|2500116|NA|TP Vinh|Ha Huy Tap|So 28 Duong Quang Trung, Phuong Ha Huy Tap, Quan/Huyen TP Vinh, Nghe An|18.672600|105.677300|LTE|VinaPhone (VNPT)|46|0
+BTS-NA-017|452|01|27001|2500117|NA|TP Vinh|Ha Huy Tap|So 41 Duong Tran Phu, Phuong Ha Huy Tap, Quan/Huyen TP Vinh, Nghe An|18.682100|105.674800|5G NR|MobiFone|47|45
+BTS-NA-018|452|04|27001|2500118|NA|TP Vinh|Ha Huy Tap|So 54 Duong Le Duan, Phuong Ha Huy Tap, Quan/Huyen TP Vinh, Nghe An|18.691600|105.687300|LTE|Viettel|48|90
+BTS-NA-019|452|02|27001|2500119|NA|TP Vinh|Ha Huy Tap|So 67 Duong Nguyen Thi Minh Khai, Phuong Ha Huy Tap, Quan/Huyen TP Vinh, Nghe An|18.701100|105.699800|5G NR|VinaPhone (VNPT)|49|135
+BTS-NA-020|452|01|27001|2500120|NA|TP Vinh|Ha Huy Tap|So 80 Duong Nguyen Van Cu, Phuong Ha Huy Tap, Quan/Huyen TP Vinh, Nghe An|18.695600|105.697300|LTE|MobiFone|50|180
+BTS-NA-021|452|04|27001|2500121|NA|TP Vinh|Hung Dung|So 33 Duong Quang Trung, Phuong Hung Dung, Quan/Huyen TP Vinh, Nghe An|18.665100|105.669800|5G NR|Viettel|51|225
+BTS-NA-022|452|02|27001|2500122|NA|TP Vinh|Hung Dung|So 46 Duong Tran Phu, Phuong Hung Dung, Quan/Huyen TP Vinh, Nghe An|18.674600|105.682300|LTE|VinaPhone (VNPT)|52|270
+BTS-NA-023|452|01|27001|2500123|NA|TP Vinh|Hung Dung|So 59 Duong Le Duan, Phuong Hung Dung, Quan/Huyen TP Vinh, Nghe An|18.684100|105.694800|5G NR|MobiFone|53|315
+BTS-NA-024|452|04|27001|2500124|NA|TP Vinh|Hung Dung|So 72 Duong Nguyen Thi Minh Khai, Phuong Hung Dung, Quan/Huyen TP Vinh, Nghe An|18.693600|105.692300|LTE|Viettel|54|0
+BTS-NA-025|452|02|27001|2500125|NA|TP Vinh|Hung Dung|So 85 Duong Nguyen Van Cu, Phuong Hung Dung, Quan/Huyen TP Vinh, Nghe An|18.703100|105.704800|5G NR|VinaPhone (VNPT)|30|45
+BTS-NA-026|452|01|27001|2500126|NA|Cua Lo|Nghi Huong|So 38 Duong Binh Minh, Phuong Nghi Huong, Quan/Huyen Cua Lo, Nghe An|18.672600|105.677300|LTE|MobiFone|31|90
+BTS-NA-027|452|04|27001|2500127|NA|Cua Lo|Nghi Huong|So 51 Duong Nguyen Sinh Cung, Phuong Nghi Huong, Quan/Huyen Cua Lo, Nghe An|18.682100|105.674800|5G NR|Viettel|32|135
+BTS-NA-028|452|02|27001|2500128|NA|Cua Lo|Nghi Huong|So 64 Duong Mai Thuc Loan, Phuong Nghi Huong, Quan/Huyen Cua Lo, Nghe An|18.691600|105.687300|LTE|VinaPhone (VNPT)|33|180
+BTS-NA-029|452|01|27001|2500129|NA|Cua Lo|Nghi Thu|So 41 Duong Binh Minh, Phuong Nghi Thu, Quan/Huyen Cua Lo, Nghe An|18.677100|105.675800|5G NR|MobiFone|34|225
+BTS-NA-030|452|04|27001|2500130|NA|Cua Lo|Nghi Thu|So 54 Duong Nguyen Sinh Cung, Phuong Nghi Thu, Quan/Huyen Cua Lo, Nghe An|18.671600|105.673300|LTE|Viettel|35|270
+BTS-NA-031|452|02|27001|2500131|NA|Cua Lo|Nghi Thu|So 67 Duong Mai Thuc Loan, Phuong Nghi Thu, Quan/Huyen Cua Lo, Nghe An|18.681100|105.685800|5G NR|VinaPhone (VNPT)|36|315
+BTS-NA-032|452|01|27001|2500132|NA|Cua Lo|Thu Thuy|So 44 Duong Binh Minh, Phuong Thu Thuy, Quan/Huyen Cua Lo, Nghe An|18.666600|105.674300|LTE|MobiFone|37|0
+BTS-NA-033|452|04|27001|2500133|NA|Cua Lo|Thu Thuy|So 57 Duong Nguyen Sinh Cung, Phuong Thu Thuy, Quan/Huyen Cua Lo, Nghe An|18.676100|105.686800|5G NR|Viettel|38|45
+BTS-NA-034|452|02|27001|2500134|NA|Cua Lo|Thu Thuy|So 70 Duong Mai Thuc Loan, Phuong Thu Thuy, Quan/Huyen Cua Lo, Nghe An|18.685600|105.684300|LTE|VinaPhone (VNPT)|39|90
+BTS-QN-001|452|02|22001|2500101|QN|Ha Long|Bach Dang|So 13 Duong Le Thanh Tong, Phuong Bach Dang, Quan/Huyen Ha Long, Quang Ninh|20.936000|107.061900|5G NR|VinaPhone (VNPT)|31|45
+BTS-QN-002|452|01|22001|2500102|QN|Ha Long|Bach Dang|So 26 Duong Tran Hung Dao, Phuong Bach Dang, Quan/Huyen Ha Long, Quang Ninh|20.945500|107.074400|LTE|MobiFone|32|90
+BTS-QN-003|452|04|22001|2500103|QN|Ha Long|Bach Dang|So 39 Duong Ha Long, Phuong Bach Dang, Quan/Huyen Ha Long, Quang Ninh|20.955000|107.086900|5G NR|Viettel|33|135
+BTS-QN-004|452|02|22001|2500104|QN|Ha Long|Bach Dang|So 52 Duong Hoang Quoc Viet, Phuong Bach Dang, Quan/Huyen Ha Long, Quang Ninh|20.964500|107.084400|LTE|VinaPhone (VNPT)|34|180
+BTS-QN-005|452|01|22001|2500105|QN|Ha Long|Bach Dang|So 65 Duong Nguyen Van Cu, Phuong Bach Dang, Quan/Huyen Ha Long, Quang Ninh|20.974000|107.096900|5G NR|MobiFone|35|225
+BTS-QN-006|452|04|22001|2500106|QN|Ha Long|Hong Gai|So 18 Duong Le Thanh Tong, Phuong Hong Gai, Quan/Huyen Ha Long, Quang Ninh|20.943500|107.069400|LTE|Viettel|36|270
+BTS-QN-007|452|02|22001|2500107|QN|Ha Long|Hong Gai|So 31 Duong Tran Hung Dao, Phuong Hong Gai, Quan/Huyen Ha Long, Quang Ninh|20.953000|107.066900|5G NR|VinaPhone (VNPT)|37|315
+BTS-QN-008|452|01|22001|2500108|QN|Ha Long|Hong Gai|So 44 Duong Ha Long, Phuong Hong Gai, Quan/Huyen Ha Long, Quang Ninh|20.962500|107.079400|LTE|MobiFone|38|0
+BTS-QN-009|452|04|22001|2500109|QN|Ha Long|Hong Gai|So 57 Duong Hoang Quoc Viet, Phuong Hong Gai, Quan/Huyen Ha Long, Quang Ninh|20.972000|107.091900|5G NR|Viettel|39|45
+BTS-QN-010|452|02|22001|2500110|QN|Ha Long|Hong Gai|So 70 Duong Nguyen Van Cu, Phuong Hong Gai, Quan/Huyen Ha Long, Quang Ninh|20.966500|107.089400|LTE|VinaPhone (VNPT)|40|90
+BTS-QN-011|452|01|22001|2500111|QN|Ha Long|Bai Chay|So 23 Duong Le Thanh Tong, Phuong Bai Chay, Quan/Huyen Ha Long, Quang Ninh|20.936000|107.061900|5G NR|MobiFone|41|135
+BTS-QN-012|452|04|22001|2500112|QN|Ha Long|Bai Chay|So 36 Duong Tran Hung Dao, Phuong Bai Chay, Quan/Huyen Ha Long, Quang Ninh|20.945500|107.074400|LTE|Viettel|42|180
+BTS-QN-013|452|02|22001|2500113|QN|Ha Long|Bai Chay|So 49 Duong Ha Long, Phuong Bai Chay, Quan/Huyen Ha Long, Quang Ninh|20.955000|107.086900|5G NR|VinaPhone (VNPT)|43|225
+BTS-QN-014|452|01|22001|2500114|QN|Ha Long|Bai Chay|So 62 Duong Hoang Quoc Viet, Phuong Bai Chay, Quan/Huyen Ha Long, Quang Ninh|20.964500|107.084400|LTE|MobiFone|44|270
+BTS-QN-015|452|04|22001|2500115|QN|Ha Long|Bai Chay|So 75 Duong Nguyen Van Cu, Phuong Bai Chay, Quan/Huyen Ha Long, Quang Ninh|20.974000|107.096900|5G NR|Viettel|45|315
+BTS-QN-016|452|02|22001|2500116|QN|Ha Long|Cao Thang|So 28 Duong Le Thanh Tong, Phuong Cao Thang, Quan/Huyen Ha Long, Quang Ninh|20.943500|107.069400|LTE|VinaPhone (VNPT)|46|0
+BTS-QN-017|452|01|22001|2500117|QN|Ha Long|Cao Thang|So 41 Duong Tran Hung Dao, Phuong Cao Thang, Quan/Huyen Ha Long, Quang Ninh|20.953000|107.066900|5G NR|MobiFone|47|45
+BTS-QN-018|452|04|22001|2500118|QN|Ha Long|Cao Thang|So 54 Duong Ha Long, Phuong Cao Thang, Quan/Huyen Ha Long, Quang Ninh|20.962500|107.079400|LTE|Viettel|48|90
+BTS-QN-019|452|02|22001|2500119|QN|Ha Long|Cao Thang|So 67 Duong Hoang Quoc Viet, Phuong Cao Thang, Quan/Huyen Ha Long, Quang Ninh|20.972000|107.091900|5G NR|VinaPhone (VNPT)|49|135
+BTS-QN-020|452|01|22001|2500120|QN|Ha Long|Cao Thang|So 80 Duong Nguyen Van Cu, Phuong Cao Thang, Quan/Huyen Ha Long, Quang Ninh|20.966500|107.089400|LTE|MobiFone|50|180
+BTS-QN-021|452|04|22001|2500121|QN|Ha Long|Ha Khanh|So 33 Duong Le Thanh Tong, Phuong Ha Khanh, Quan/Huyen Ha Long, Quang Ninh|20.936000|107.061900|5G NR|Viettel|51|225
+BTS-QN-022|452|02|22001|2500122|QN|Ha Long|Ha Khanh|So 46 Duong Tran Hung Dao, Phuong Ha Khanh, Quan/Huyen Ha Long, Quang Ninh|20.945500|107.074400|LTE|VinaPhone (VNPT)|52|270
+BTS-QN-023|452|01|22001|2500123|QN|Ha Long|Ha Khanh|So 59 Duong Ha Long, Phuong Ha Khanh, Quan/Huyen Ha Long, Quang Ninh|20.955000|107.086900|5G NR|MobiFone|53|315
+BTS-QN-024|452|04|22001|2500124|QN|Ha Long|Ha Khanh|So 72 Duong Hoang Quoc Viet, Phuong Ha Khanh, Quan/Huyen Ha Long, Quang Ninh|20.964500|107.084400|LTE|Viettel|54|0
+BTS-QN-025|452|02|22001|2500125|QN|Ha Long|Ha Khanh|So 85 Duong Nguyen Van Cu, Phuong Ha Khanh, Quan/Huyen Ha Long, Quang Ninh|20.974000|107.096900|5G NR|VinaPhone (VNPT)|30|45
+BTS-QN-026|452|01|22001|2500126|QN|Cam Pha|Cam Trung|So 38 Duong Tran Phu, Phuong Cam Trung, Quan/Huyen Cam Pha, Quang Ninh|20.943500|107.069400|LTE|MobiFone|31|90
+BTS-QN-027|452|04|22001|2500127|QN|Cam Pha|Cam Trung|So 51 Duong Ly Thuong Kiet, Phuong Cam Trung, Quan/Huyen Cam Pha, Quang Ninh|20.953000|107.066900|5G NR|Viettel|32|135
+BTS-QN-028|452|02|22001|2500128|QN|Cam Pha|Cam Trung|So 64 Duong To Hieu, Phuong Cam Trung, Quan/Huyen Cam Pha, Quang Ninh|20.962500|107.079400|LTE|VinaPhone (VNPT)|33|180
+BTS-QN-029|452|01|22001|2500129|QN|Cam Pha|Cam Trung|So 77 Duong Quoc Lo 18, Phuong Cam Trung, Quan/Huyen Cam Pha, Quang Ninh|20.972000|107.091900|5G NR|MobiFone|34|225
+BTS-QN-030|452|04|22001|2500130|QN|Cam Pha|Cam Thanh|So 42 Duong Tran Phu, Phuong Cam Thanh, Quan/Huyen Cam Pha, Quang Ninh|20.934500|107.057400|LTE|Viettel|35|270
+BTS-QN-031|452|02|22001|2500131|QN|Cam Pha|Cam Thanh|So 55 Duong Ly Thuong Kiet, Phuong Cam Thanh, Quan/Huyen Cam Pha, Quang Ninh|20.944000|107.069900|5G NR|VinaPhone (VNPT)|36|315
+BTS-QN-032|452|01|22001|2500132|QN|Cam Pha|Cam Thanh|So 68 Duong To Hieu, Phuong Cam Thanh, Quan/Huyen Cam Pha, Quang Ninh|20.953500|107.082400|LTE|MobiFone|37|0
+BTS-QN-033|452|04|22001|2500133|QN|Cam Pha|Cam Thanh|So 81 Duong Quoc Lo 18, Phuong Cam Thanh, Quan/Huyen Cam Pha, Quang Ninh|20.963000|107.094900|5G NR|Viettel|38|45
+BTS-QN-034|452|02|22001|2500134|QN|Cam Pha|Cam Tay|So 46 Duong Tran Phu, Phuong Cam Tay, Quan/Huyen Cam Pha, Quang Ninh|20.940500|107.060400|LTE|VinaPhone (VNPT)|39|90
+BTS-QN-035|452|01|22001|2500135|QN|Cam Pha|Cam Tay|So 59 Duong Ly Thuong Kiet, Phuong Cam Tay, Quan/Huyen Cam Pha, Quang Ninh|20.950000|107.072900|5G NR|MobiFone|40|135
+BTS-QN-036|452|04|22001|2500136|QN|Cam Pha|Cam Tay|So 72 Duong To Hieu, Phuong Cam Tay, Quan/Huyen Cam Pha, Quang Ninh|20.959500|107.085400|LTE|Viettel|41|180
+BTS-QN-037|452|02|22001|2500137|QN|Cam Pha|Cam Tay|So 85 Duong Quoc Lo 18, Phuong Cam Tay, Quan/Huyen Cam Pha, Quang Ninh|20.969000|107.082900|5G NR|VinaPhone (VNPT)|42|225
+BTS-QN-038|452|01|22001|2500138|QN|Cam Pha|Cua Ong|So 50 Duong Tran Phu, Phuong Cua Ong, Quan/Huyen Cam Pha, Quang Ninh|20.946500|107.063400|LTE|MobiFone|43|270
+BTS-QN-039|452|04|22001|2500139|QN|Cam Pha|Cua Ong|So 63 Duong Ly Thuong Kiet, Phuong Cua Ong, Quan/Huyen Cam Pha, Quang Ninh|20.956000|107.075900|5G NR|Viettel|44|315
+BTS-QN-040|452|02|22001|2500140|QN|Cam Pha|Cua Ong|So 76 Duong To Hieu, Phuong Cua Ong, Quan/Huyen Cam Pha, Quang Ninh|20.950500|107.073400|LTE|VinaPhone (VNPT)|45|0
+BTS-QN-041|452|01|22001|2500141|QN|Cam Pha|Cua Ong|So 89 Duong Quoc Lo 18, Phuong Cua Ong, Quan/Huyen Cam Pha, Quang Ninh|20.960000|107.085900|5G NR|MobiFone|46|45
+BTS-QN-042|452|04|22001|2500142|QN|Uong Bi|Quang Trung|So 54 Duong Tran Hung Dao, Phuong Quang Trung, Quan/Huyen Uong Bi, Quang Ninh|20.937500|107.066400|LTE|Viettel|47|90
+BTS-QN-043|452|02|22001|2500143|QN|Uong Bi|Quang Trung|So 67 Duong Quang Trung, Phuong Quang Trung, Quan/Huyen Uong Bi, Quang Ninh|20.947000|107.078900|5G NR|VinaPhone (VNPT)|48|135
+BTS-QN-044|452|01|22001|2500144|QN|Uong Bi|Quang Trung|So 80 Duong Tue Tinh, Phuong Quang Trung, Quan/Huyen Uong Bi, Quang Ninh|20.956500|107.076400|LTE|MobiFone|49|180
+BTS-QN-045|452|04|22001|2500145|QN|Uong Bi|Quang Trung|So 93 Duong Quoc Lo 18, Phuong Quang Trung, Quan/Huyen Uong Bi, Quang Ninh|20.966000|107.088900|5G NR|Viettel|50|225
+BTS-QN-046|452|02|22001|2500146|QN|Uong Bi|Thanh Son|So 58 Duong Tran Hung Dao, Phuong Thanh Son, Quan/Huyen Uong Bi, Quang Ninh|20.943500|107.069400|LTE|VinaPhone (VNPT)|51|270
+BTS-QN-047|452|01|22001|2500147|QN|Uong Bi|Thanh Son|So 71 Duong Quang Trung, Phuong Thanh Son, Quan/Huyen Uong Bi, Quang Ninh|20.953000|107.066900|5G NR|MobiFone|52|315
+BTS-QN-048|452|04|22001|2500148|QN|Uong Bi|Thanh Son|So 84 Duong Tue Tinh, Phuong Thanh Son, Quan/Huyen Uong Bi, Quang Ninh|20.962500|107.079400|LTE|Viettel|53|0
+BTS-QN-049|452|02|22001|2500149|QN|Uong Bi|Thanh Son|So 97 Duong Quoc Lo 18, Phuong Thanh Son, Quan/Huyen Uong Bi, Quang Ninh|20.972000|107.091900|5G NR|VinaPhone (VNPT)|54|45
+BTS-QN-050|452|01|22001|2500150|QN|Uong Bi|Yen Thanh|So 12 Duong Tran Hung Dao, Phuong Yen Thanh, Quan/Huyen Uong Bi, Quang Ninh|20.934500|107.057400|LTE|MobiFone|30|90
+BTS-QN-051|452|04|22001|2500151|QN|Uong Bi|Yen Thanh|So 25 Duong Quang Trung, Phuong Yen Thanh, Quan/Huyen Uong Bi, Quang Ninh|20.944000|107.069900|5G NR|Viettel|31|135
+BTS-QN-052|452|02|22001|2500152|QN|Uong Bi|Yen Thanh|So 38 Duong Tue Tinh, Phuong Yen Thanh, Quan/Huyen Uong Bi, Quang Ninh|20.953500|107.082400|LTE|VinaPhone (VNPT)|32|180
+BTS-QN-053|452|01|22001|2500153|QN|Uong Bi|Yen Thanh|So 51 Duong Quoc Lo 18, Phuong Yen Thanh, Quan/Huyen Uong Bi, Quang Ninh|20.963000|107.094900|5G NR|MobiFone|33|225
+BTS-QN-054|452|04|22001|2500154|QN|Uong Bi|Phuong Dong|So 16 Duong Tran Hung Dao, Phuong Phuong Dong, Quan/Huyen Uong Bi, Quang Ninh|20.940500|107.060400|LTE|Viettel|34|270
+BTS-QN-055|452|02|22001|2500155|QN|Uong Bi|Phuong Dong|So 29 Duong Quang Trung, Phuong Phuong Dong, Quan/Huyen Uong Bi, Quang Ninh|20.950000|107.072900|5G NR|VinaPhone (VNPT)|35|315
+BTS-QN-056|452|01|22001|2500156|QN|Uong Bi|Phuong Dong|So 42 Duong Tue Tinh, Phuong Phuong Dong, Quan/Huyen Uong Bi, Quang Ninh|20.959500|107.085400|LTE|MobiFone|36|0
+BTS-QN-057|452|04|22001|2500157|QN|Uong Bi|Phuong Dong|So 55 Duong Quoc Lo 18, Phuong Phuong Dong, Quan/Huyen Uong Bi, Quang Ninh|20.969000|107.082900|5G NR|Viettel|37|45
+BTS-TH-001|452|02|26001|2500101|TH|TP Thanh Hoa|Ba Dinh|So 13 Duong Tran Phu, Phuong Ba Dinh, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.792200|105.773700|5G NR|VinaPhone (VNPT)|31|45
+BTS-TH-002|452|01|26001|2500102|TH|TP Thanh Hoa|Ba Dinh|So 26 Duong Le Loi, Phuong Ba Dinh, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.801700|105.786200|LTE|MobiFone|32|90
+BTS-TH-003|452|04|26001|2500103|TH|TP Thanh Hoa|Ba Dinh|So 39 Duong Quang Trung, Phuong Ba Dinh, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.811200|105.798700|5G NR|Viettel|33|135
+BTS-TH-004|452|02|26001|2500104|TH|TP Thanh Hoa|Ba Dinh|So 52 Duong Ba Trieu, Phuong Ba Dinh, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.820700|105.796200|LTE|VinaPhone (VNPT)|34|180
+BTS-TH-005|452|01|26001|2500105|TH|TP Thanh Hoa|Ba Dinh|So 65 Duong Trieu Quoc Dat, Phuong Ba Dinh, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.830200|105.808700|5G NR|MobiFone|35|225
+BTS-TH-006|452|04|26001|2500106|TH|TP Thanh Hoa|Dien Bien|So 18 Duong Tran Phu, Phuong Dien Bien, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.799700|105.781200|LTE|Viettel|36|270
+BTS-TH-007|452|02|26001|2500107|TH|TP Thanh Hoa|Dien Bien|So 31 Duong Le Loi, Phuong Dien Bien, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.809200|105.778700|5G NR|VinaPhone (VNPT)|37|315
+BTS-TH-008|452|01|26001|2500108|TH|TP Thanh Hoa|Dien Bien|So 44 Duong Quang Trung, Phuong Dien Bien, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.818700|105.791200|LTE|MobiFone|38|0
+BTS-TH-009|452|04|26001|2500109|TH|TP Thanh Hoa|Dien Bien|So 57 Duong Ba Trieu, Phuong Dien Bien, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.828200|105.803700|5G NR|Viettel|39|45
+BTS-TH-010|452|02|26001|2500110|TH|TP Thanh Hoa|Dien Bien|So 70 Duong Trieu Quoc Dat, Phuong Dien Bien, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.822700|105.801200|LTE|VinaPhone (VNPT)|40|90
+BTS-TH-011|452|01|26001|2500111|TH|TP Thanh Hoa|Ngoc Trao|So 23 Duong Tran Phu, Phuong Ngoc Trao, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.792200|105.773700|5G NR|MobiFone|41|135
+BTS-TH-012|452|04|26001|2500112|TH|TP Thanh Hoa|Ngoc Trao|So 36 Duong Le Loi, Phuong Ngoc Trao, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.801700|105.786200|LTE|Viettel|42|180
+BTS-TH-013|452|02|26001|2500113|TH|TP Thanh Hoa|Ngoc Trao|So 49 Duong Quang Trung, Phuong Ngoc Trao, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.811200|105.798700|5G NR|VinaPhone (VNPT)|43|225
+BTS-TH-014|452|01|26001|2500114|TH|TP Thanh Hoa|Ngoc Trao|So 62 Duong Ba Trieu, Phuong Ngoc Trao, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.820700|105.796200|LTE|MobiFone|44|270
+BTS-TH-015|452|04|26001|2500115|TH|TP Thanh Hoa|Ngoc Trao|So 75 Duong Trieu Quoc Dat, Phuong Ngoc Trao, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.830200|105.808700|5G NR|Viettel|45|315
+BTS-TH-016|452|02|26001|2500116|TH|TP Thanh Hoa|Dong Ve|So 28 Duong Tran Phu, Phuong Dong Ve, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.799700|105.781200|LTE|VinaPhone (VNPT)|46|0
+BTS-TH-017|452|01|26001|2500117|TH|TP Thanh Hoa|Dong Ve|So 41 Duong Le Loi, Phuong Dong Ve, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.809200|105.778700|5G NR|MobiFone|47|45
+BTS-TH-018|452|04|26001|2500118|TH|TP Thanh Hoa|Dong Ve|So 54 Duong Quang Trung, Phuong Dong Ve, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.818700|105.791200|LTE|Viettel|48|90
+BTS-TH-019|452|02|26001|2500119|TH|TP Thanh Hoa|Dong Ve|So 67 Duong Ba Trieu, Phuong Dong Ve, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.828200|105.803700|5G NR|VinaPhone (VNPT)|49|135
+BTS-TH-020|452|01|26001|2500120|TH|TP Thanh Hoa|Dong Ve|So 80 Duong Trieu Quoc Dat, Phuong Dong Ve, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.822700|105.801200|LTE|MobiFone|50|180
+BTS-TH-021|452|04|26001|2500121|TH|TP Thanh Hoa|Ham Rong|So 33 Duong Tran Phu, Phuong Ham Rong, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.792200|105.773700|5G NR|Viettel|51|225
+BTS-TH-022|452|02|26001|2500122|TH|TP Thanh Hoa|Ham Rong|So 46 Duong Le Loi, Phuong Ham Rong, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.801700|105.786200|LTE|VinaPhone (VNPT)|52|270
+BTS-TH-023|452|01|26001|2500123|TH|TP Thanh Hoa|Ham Rong|So 59 Duong Quang Trung, Phuong Ham Rong, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.811200|105.798700|5G NR|MobiFone|53|315
+BTS-TH-024|452|04|26001|2500124|TH|TP Thanh Hoa|Ham Rong|So 72 Duong Ba Trieu, Phuong Ham Rong, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.820700|105.796200|LTE|Viettel|54|0
+BTS-TH-025|452|02|26001|2500125|TH|TP Thanh Hoa|Ham Rong|So 85 Duong Trieu Quoc Dat, Phuong Ham Rong, Quan/Huyen TP Thanh Hoa, Thanh Hoa|19.830200|105.808700|5G NR|VinaPhone (VNPT)|30|45
+BTS-TH-026|452|01|26001|2500126|TH|Sam Son|Truong Son|So 38 Duong Ho Xuan Huong, Phuong Truong Son, Quan/Huyen Sam Son, Thanh Hoa|19.799700|105.781200|LTE|MobiFone|31|90
+BTS-TH-027|452|04|26001|2500127|TH|Sam Son|Truong Son|So 51 Duong Le Loi, Phuong Truong Son, Quan/Huyen Sam Son, Thanh Hoa|19.809200|105.778700|5G NR|Viettel|32|135
+BTS-TH-028|452|02|26001|2500128|TH|Sam Son|Truong Son|So 64 Duong Thanh Nien, Phuong Truong Son, Quan/Huyen Sam Son, Thanh Hoa|19.818700|105.791200|LTE|VinaPhone (VNPT)|33|180
+BTS-TH-029|452|01|26001|2500129|TH|Sam Son|Bac Son|So 41 Duong Ho Xuan Huong, Phuong Bac Son, Quan/Huyen Sam Son, Thanh Hoa|19.804200|105.779700|5G NR|MobiFone|34|225
+BTS-TH-030|452|04|26001|2500130|TH|Sam Son|Bac Son|So 54 Duong Le Loi, Phuong Bac Son, Quan/Huyen Sam Son, Thanh Hoa|19.798700|105.777200|LTE|Viettel|35|270
+BTS-TH-031|452|02|26001|2500131|TH|Sam Son|Bac Son|So 67 Duong Thanh Nien, Phuong Bac Son, Quan/Huyen Sam Son, Thanh Hoa|19.808200|105.789700|5G NR|VinaPhone (VNPT)|36|315
+BTS-TH-032|452|01|26001|2500132|TH|Sam Son|Trung Son|So 44 Duong Ho Xuan Huong, Phuong Trung Son, Quan/Huyen Sam Son, Thanh Hoa|19.793700|105.778200|LTE|MobiFone|37|0
+BTS-TH-033|452|04|26001|2500133|TH|Sam Son|Trung Son|So 57 Duong Le Loi, Phuong Trung Son, Quan/Huyen Sam Son, Thanh Hoa|19.803200|105.790700|5G NR|Viettel|38|45
+BTS-TH-034|452|02|26001|2500134|TH|Sam Son|Trung Son|So 70 Duong Thanh Nien, Phuong Trung Son, Quan/Huyen Sam Son, Thanh Hoa|19.812700|105.788200|LTE|VinaPhone (VNPT)|39|90
+BTS-TN-001|452|02|25001|2500101|TN|TP Thai Nguyen|Hoang Van Thu|So 13 Duong Luong Ngoc Quyen, Phuong Hoang Van Thu, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.578300|105.832700|5G NR|VinaPhone (VNPT)|31|45
+BTS-TN-002|452|01|25001|2500102|TN|TP Thai Nguyen|Hoang Van Thu|So 26 Duong Hoang Van Thu, Phuong Hoang Van Thu, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.587800|105.845200|LTE|MobiFone|32|90
+BTS-TN-003|452|04|25001|2500103|TN|TP Thai Nguyen|Hoang Van Thu|So 39 Duong Bac Kan, Phuong Hoang Van Thu, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.597300|105.857700|5G NR|Viettel|33|135
+BTS-TN-004|452|02|25001|2500104|TN|TP Thai Nguyen|Hoang Van Thu|So 52 Duong Cach Mang Thang 8, Phuong Hoang Van Thu, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.606800|105.855200|LTE|VinaPhone (VNPT)|34|180
+BTS-TN-005|452|01|25001|2500105|TN|TP Thai Nguyen|Hoang Van Thu|So 65 Duong Quang Trung, Phuong Hoang Van Thu, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.616300|105.867700|5G NR|MobiFone|35|225
+BTS-TN-006|452|04|25001|2500106|TN|TP Thai Nguyen|Phan Dinh Phung|So 18 Duong Luong Ngoc Quyen, Phuong Phan Dinh Phung, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.585800|105.840200|LTE|Viettel|36|270
+BTS-TN-007|452|02|25001|2500107|TN|TP Thai Nguyen|Phan Dinh Phung|So 31 Duong Hoang Van Thu, Phuong Phan Dinh Phung, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.595300|105.837700|5G NR|VinaPhone (VNPT)|37|315
+BTS-TN-008|452|01|25001|2500108|TN|TP Thai Nguyen|Phan Dinh Phung|So 44 Duong Bac Kan, Phuong Phan Dinh Phung, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.604800|105.850200|LTE|MobiFone|38|0
+BTS-TN-009|452|04|25001|2500109|TN|TP Thai Nguyen|Phan Dinh Phung|So 57 Duong Cach Mang Thang 8, Phuong Phan Dinh Phung, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.614300|105.862700|5G NR|Viettel|39|45
+BTS-TN-010|452|02|25001|2500110|TN|TP Thai Nguyen|Phan Dinh Phung|So 70 Duong Quang Trung, Phuong Phan Dinh Phung, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.608800|105.860200|LTE|VinaPhone (VNPT)|40|90
+BTS-TN-011|452|01|25001|2500111|TN|TP Thai Nguyen|Quang Trung|So 23 Duong Luong Ngoc Quyen, Phuong Quang Trung, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.578300|105.832700|5G NR|MobiFone|41|135
+BTS-TN-012|452|04|25001|2500112|TN|TP Thai Nguyen|Quang Trung|So 36 Duong Hoang Van Thu, Phuong Quang Trung, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.587800|105.845200|LTE|Viettel|42|180
+BTS-TN-013|452|02|25001|2500113|TN|TP Thai Nguyen|Quang Trung|So 49 Duong Bac Kan, Phuong Quang Trung, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.597300|105.857700|5G NR|VinaPhone (VNPT)|43|225
+BTS-TN-014|452|01|25001|2500114|TN|TP Thai Nguyen|Quang Trung|So 62 Duong Cach Mang Thang 8, Phuong Quang Trung, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.606800|105.855200|LTE|MobiFone|44|270
+BTS-TN-015|452|04|25001|2500115|TN|TP Thai Nguyen|Quang Trung|So 75 Duong Quang Trung, Phuong Quang Trung, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.616300|105.867700|5G NR|Viettel|45|315
+BTS-TN-016|452|02|25001|2500116|TN|TP Thai Nguyen|Dong Quang|So 28 Duong Luong Ngoc Quyen, Phuong Dong Quang, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.585800|105.840200|LTE|VinaPhone (VNPT)|46|0
+BTS-TN-017|452|01|25001|2500117|TN|TP Thai Nguyen|Dong Quang|So 41 Duong Hoang Van Thu, Phuong Dong Quang, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.595300|105.837700|5G NR|MobiFone|47|45
+BTS-TN-018|452|04|25001|2500118|TN|TP Thai Nguyen|Dong Quang|So 54 Duong Bac Kan, Phuong Dong Quang, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.604800|105.850200|LTE|Viettel|48|90
+BTS-TN-019|452|02|25001|2500119|TN|TP Thai Nguyen|Dong Quang|So 67 Duong Cach Mang Thang 8, Phuong Dong Quang, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.614300|105.862700|5G NR|VinaPhone (VNPT)|49|135
+BTS-TN-020|452|01|25001|2500120|TN|TP Thai Nguyen|Dong Quang|So 80 Duong Quang Trung, Phuong Dong Quang, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.608800|105.860200|LTE|MobiFone|50|180
+BTS-TN-021|452|04|25001|2500121|TN|TP Thai Nguyen|Tan Thinh|So 33 Duong Luong Ngoc Quyen, Phuong Tan Thinh, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.578300|105.832700|5G NR|Viettel|51|225
+BTS-TN-022|452|02|25001|2500122|TN|TP Thai Nguyen|Tan Thinh|So 46 Duong Hoang Van Thu, Phuong Tan Thinh, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.587800|105.845200|LTE|VinaPhone (VNPT)|52|270
+BTS-TN-023|452|01|25001|2500123|TN|TP Thai Nguyen|Tan Thinh|So 59 Duong Bac Kan, Phuong Tan Thinh, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.597300|105.857700|5G NR|MobiFone|53|315
+BTS-TN-024|452|04|25001|2500124|TN|TP Thai Nguyen|Tan Thinh|So 72 Duong Cach Mang Thang 8, Phuong Tan Thinh, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.606800|105.855200|LTE|Viettel|54|0
+BTS-TN-025|452|02|25001|2500125|TN|TP Thai Nguyen|Tan Thinh|So 85 Duong Quang Trung, Phuong Tan Thinh, Quan/Huyen TP Thai Nguyen, Thai Nguyen|21.616300|105.867700|5G NR|VinaPhone (VNPT)|30|45
+BTS-TN-026|452|01|25001|2500126|TN|Song Cong|Mo Che|So 38 Duong Cach Mang Thang 8, Phuong Mo Che, Quan/Huyen Song Cong, Thai Nguyen|21.585800|105.840200|LTE|MobiFone|31|90
+BTS-TN-027|452|04|25001|2500127|TN|Song Cong|Mo Che|So 51 Duong 30 Thang 4, Phuong Mo Che, Quan/Huyen Song Cong, Thai Nguyen|21.595300|105.837700|5G NR|Viettel|32|135
+BTS-TN-028|452|02|25001|2500128|TN|Song Cong|Mo Che|So 64 Duong Thong Nhat, Phuong Mo Che, Quan/Huyen Song Cong, Thai Nguyen|21.604800|105.850200|LTE|VinaPhone (VNPT)|33|180
+BTS-TN-029|452|01|25001|2500129|TN|Song Cong|Pho Co|So 41 Duong Cach Mang Thang 8, Phuong Pho Co, Quan/Huyen Song Cong, Thai Nguyen|21.590300|105.838700|5G NR|MobiFone|34|225
+BTS-TN-030|452|04|25001|2500130|TN|Song Cong|Pho Co|So 54 Duong 30 Thang 4, Phuong Pho Co, Quan/Huyen Song Cong, Thai Nguyen|21.584800|105.836200|LTE|Viettel|35|270
+BTS-TN-031|452|02|25001|2500131|TN|Song Cong|Pho Co|So 67 Duong Thong Nhat, Phuong Pho Co, Quan/Huyen Song Cong, Thai Nguyen|21.594300|105.848700|5G NR|VinaPhone (VNPT)|36|315
+BTS-TN-032|452|01|25001|2500132|TN|Song Cong|Cai Dan|So 44 Duong Cach Mang Thang 8, Phuong Cai Dan, Quan/Huyen Song Cong, Thai Nguyen|21.579800|105.837200|LTE|MobiFone|37|0
+BTS-TN-033|452|04|25001|2500133|TN|Song Cong|Cai Dan|So 57 Duong 30 Thang 4, Phuong Cai Dan, Quan/Huyen Song Cong, Thai Nguyen|21.589300|105.849700|5G NR|Viettel|38|45
+BTS-TN-034|452|02|25001|2500134|TN|Song Cong|Cai Dan|So 70 Duong Thong Nhat, Phuong Cai Dan, Quan/Huyen Song Cong, Thai Nguyen|21.598800|105.847200|LTE|VinaPhone (VNPT)|39|90
