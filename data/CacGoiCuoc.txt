@@ -1,23 +1,12 @@
-ST70K;Goi ST70K Viettel;70000;15;30;0;0
-SD135;Goi SD135 Viettel;135000;150;30;0;0
-V120N;Goi V120N Viettel;120000;120;30;1;50
-MXH100;Goi MXH100 Viettel;100000;30;30;0;0
-BIG90;Goi BIG90 VinaPhone;90000;30;30;0;0
-VD150;Goi VD150 VinaPhone;150000;180;30;1;80
-YOLO120;Goi YOLO120 VinaPhone;120000;60;30;0;0
-MF150;Goi MF150 MobiFone;150000;120;30;1;200
-KC90;Goi KC90 MobiFone;90000;30;30;1;30
-D60G;Goi D60G VinaPhone;120000;60;30;1;50
-// MaGoiCuoc: Mã định danh gói cước (VD: ST70K, V120N).
-
-//TenGoiCuoc: Tên đầy đủ của gói cước.
-
-//GiaCuoc: Cước phí đăng ký (đơn vị: VNĐ).
-
-//DungLuongData_GB: Dung lượng Data tốc độ cao/tháng (đơn vị: GB).
-
-//ThoiHan_Ngay: Thời hạn sử dụng (thường là 30 ngày).
-
-//MienPhiNoiMang: Trạng thái thoại nội mạng (1: Miễn phí/có ưu đãi, 0: Không ưu đãi).
-
-//MienPhiNgoaiMang: Số phút gọi ngoại mạng miễn phí (đơn vị: Phút).
+GC001|Goi Cuoc 60G|150000|60|1000|30
+GC002|Goi Cuoc 30G|90000|30|500|30
+VD149|VinaData 149|149000|120|1500|30
+D159V|Data Thoai 159|159000|150|1500|30
+BIG50Y|Big 50 Yeu Thuong|50000|15|0|30
+M50|Mobi 50|50000|5|100|30
+VD140|VinaData 140|140000|30|300|30
+C90N|Combo 90N|90000|120|1000|30
+V200C|Viettel 200C|200000|120|1000|30
+ST150|Sieu Toc 150|150000|90|0|30
+MF150|MobiFone 150|150000|120|1000|30
+VD89P|VinaData 89P|89000|60|500|30

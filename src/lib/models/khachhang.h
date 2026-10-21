@@ -27,8 +27,9 @@ private:
     std::string diaChi;
 
 public:
+    //tao khach hang mac dinh
     KhachHang();
-    
+    //tao khach hang day du thong tin
     KhachHang(
         const std::string& maKH,
         const std::string& hoTen,
@@ -40,28 +41,48 @@ public:
         const std::string& diaChi
     );
 
+    //lay ma khach hang
     std::string getMaKhachHang() const { return id; }
+    //lay ho ten
     std::string getHoTen() const { return hoTen; }
+    //lay loai giay to
     std::string getLoaiGiayTo() const { return loaiGiayTo; }
+    //lay so giay to
     std::string getSoGiayTo() const { return soGiayTo; }
+    //lay ngay cap
     std::string getNgayCap() const { return ngayCap; }
+    //lay noi cap
     std::string getNoiCap() const { return noiCap; }
+    //lay so dien thoai
     std::string getSoDienThoai() const { return soDienThoai; }
+    //lay dia chi
     std::string getDiaChi() const { return diaChi; }
 
+    //cap nhat ho ten khach hang
     void setHoTen(const std::string& value);
+    //cap nhat loai giay to
     void setLoaiGiayTo(const std::string& value);
+    //cap nhat so giay to
     void setSoGiayTo(const std::string& value);
+    //cap nhat ngay cap
     void setNgayCap(const std::string& value);
+    //cap nhat noi cap
     void setNoiCap(const std::string& value);
+    //cap nhat so dien thoai
     void setSoDienThoai(const std::string& value);
+    //cap nhat dia chi
     void setDiaChi(const std::string& value);
 
-    void displayHeader() const override;
-    void displayRow() const override;
-    void displayDetail() const override;
+    //in tieu de danh sach khach hang
+    void displayHeader(std::ostream& os = std::cout) const override;
+    //in mot dong khach hang
+    void displayRow(std::ostream& os = std::cout) const override;
+    //in chi tiet khach hang
+    void displayDetail(std::ostream& os = std::cout) const override;
 
+    //chuyen khach hang thanh dong tep
     std::string toFileString() const override;
+    //nap khach hang tu dong tep
     bool fromFileString(const std::string& line) override;
 };
 

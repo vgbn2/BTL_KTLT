@@ -16,7 +16,25 @@ jobs:
           git config user.email "sync-bot@users.noreply.github.com"
           for b in $(git branch -r --format='%(refname:short)' | grep -v -e 'origin/main' -e 'origin/HEAD' | sed 's|origin/||'); do
             git checkout -q -B "$b" "origin/$b"
-            if git merge origin/main -m "Auto-merge main into $b"; then
+            set +e
+            git merge --no-commit --no-ff origin/main >/dev/null 2>&1
+            set -e
+            if git cat-file -e "origin/$b:Readme.md" 2>/dev/null; then
+              git checkout "origin/$b" -- Readme.md
+              git add Readme.md
+            fi
+            if git cat-file -e "origin/$b:README.md" 2>/dev/null; then
+              git checkout "origin/$b" -- README.md
+              git add README.md
+            fi
+            if git cat-file -e "origin/$b:docs" 2>/dev/null; then
+              git checkout "origin/$b" -- docs/
+              git add docs/
+            fi
+            if [ -z "$(git diff --name-only --diff-filter=U)" ]; then
+              if [ -n "$(git status --porcelain)" ]; then
+                git commit -q -m "Auto-merge main into $b (README + docs preserved)"
+              fi
               git push origin "$b"
             else
               git merge --abort

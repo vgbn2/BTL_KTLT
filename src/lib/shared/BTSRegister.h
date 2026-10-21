@@ -15,11 +15,12 @@ struct BTSRecord{
 };
 class BTSRegistry{
     private:
-        std::vector<BTSRecord>towers;
+        std::vector<BTSRecord>towers;   //la vector kph mang vi vector them moi bts va so luong tot hon mang
     public:
     BTSRegistry();
    explicit BTSRegistry(const std::string& filePath);
     bool LoadFromFile(const std::string& filePath = "data/bts_vietnam.txt");
+    //lay so luong tram phat song
     size_t size()const{ return towers.size(); };
 
     const BTSRecord* findById(const std::string& btsId)const;

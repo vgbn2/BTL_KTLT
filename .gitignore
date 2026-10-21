@@ -1,22 +1,27 @@
 # Binaries and object files
 *.o
+*.gcov
+*.gcda
+*.gcno
 quanlythuebao
 quanlythuebao.exe
 test_runner
 test_runner.exe
+stress_test_runner
+stress_test_runner.exe
 src/main
 
 # Build directories
 build/
 bin/
 workspace/
-# local Envs
-tests/
+compile_commands.json
 # Editor / Agent metadata
 graphify-out/
 .cache/
 .claude/
 .DS_Store
 *.tmp
-.cache/
+tmps
+tmps/
 .vscode/

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <limits>
 
+//xoa trang thai loi va bo dem nhap
 void InputHelper::clearBuffer() {
     if (std::cin.fail()) {
         std::cin.clear();
@@ -11,6 +12,7 @@ void InputHelper::clearBuffer() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
+//doc chuoi va kiem tra ky tu phan cach
 std::string InputHelper::getString(const std::string& prompt, bool allowEmpty) {
     std::string val;
     while (true) {
@@ -33,6 +35,7 @@ std::string InputHelper::getString(const std::string& prompt, bool allowEmpty) {
     }
 }
 
+//doc so nguyen trong khoang cho phep
 int InputHelper::getInt(const std::string& prompt, int minVal, int maxVal) {
     while (true) {
         std::string s = getString(prompt, false);
@@ -49,6 +52,7 @@ int InputHelper::getInt(const std::string& prompt, int minVal, int maxVal) {
     }
 }
 
+//doc so thuc trong khoang cho phep
 double InputHelper::getDouble(const std::string& prompt, double minVal, double maxVal) {
     while (true) {
         std::string s = getString(prompt, false);
@@ -65,6 +69,7 @@ double InputHelper::getDouble(const std::string& prompt, double minVal, double m
     }
 }
 
+//doc ngay hop le tu ban phim
 Date InputHelper::getDate(const std::string& prompt) {
     while (true) {
         std::string s = getString(prompt, false);
@@ -77,6 +82,7 @@ Date InputHelper::getDate(const std::string& prompt) {
     }
 }
 
+//doc ngay sinh trong khoang tuoi cho phep
 Date InputHelper::getBirthDate(const std::string& prompt, int minAge, int maxAge) {
     while (true) {
         Date d = getDate(prompt);
@@ -93,6 +99,7 @@ Date InputHelper::getBirthDate(const std::string& prompt, int minAge, int maxAge
 }
 
 
+//doc va kiem tra so dien thoai
 std::string InputHelper::getPhoneNumber(const std::string& prompt, bool allowUnassigned) {
     while (true) {
         std::string s = getString(prompt, allowUnassigned);
@@ -109,6 +116,7 @@ std::string InputHelper::getPhoneNumber(const std::string& prompt, bool allowUna
     }
 }
 
+//doc cau tra loi xac nhan
 bool InputHelper::getConfirm(const std::string& prompt) {
     while (true) {
         std::string s = getString(prompt + " (y/n): ", false);
@@ -119,6 +127,7 @@ bool InputHelper::getConfirm(const std::string& prompt) {
     }
 }
 
+//tam dung cho nguoi dung xem ket qua
 void InputHelper::pause(const std::string& message) {
     std::cout << message;
     std::string dummy;
