@@ -81,7 +81,12 @@ std::string NormalizedId(const std::string& rawId) {
     std::string digits;
     for (char c : cleaned)
         if (std::isdigit(static_cast<unsigned char>(c))) digits += c;
-    return digits.empty() ? cleaned : digits;   
+    return digits.empty() ? cleaned : digits;
+}
+
+//chuan hoa ma khach hang giu nguyen tien to KH
+std::string NormalizedCustomerId(const std::string& rawId) {
+    return toUpper(trim(rawId));
 }
 
 //tao ma viet tat tu ten tinh

@@ -20,6 +20,7 @@ namespace Normalized {
 
     std::string NormalizedName(const std::string& str);
     std::string NormalizedId(const std::string& str);
+    std::string NormalizedCustomerId(const std::string& str);
     std::string NormalizedProvinceCode(const std::string& str);
     bool isValidPhoneNumber(const std::string& phone, bool allowUnassigned = false);
     bool isValidCustomerId(const std::string& id);

@@ -180,6 +180,8 @@ void testCustomerIdValidation() {
     std::cout << "[RUN] Kiem thu ma khach hang legacy va mo rong...\n";
 
     TEST_ASSERT(Normalized::isValidCustomerId("KH0001"), "Ma KH legacy KH0001 phai hop le");
+    TEST_ASSERT(Normalized::NormalizedCustomerId(" kh0001 ") == "KH0001",
+                "NormalizedCustomerId phai chuan hoa khoang trang va chu thuong");
     TEST_ASSERT(Normalized::isValidCustomerId("KH0000001"), "Ma KH mo rong KH0000001 phai hop le");
     TEST_ASSERT(Normalized::isValidCustomerId("KH9999999"), "Ma KH mo rong KH9999999 phai hop le");
     TEST_ASSERT(!Normalized::isValidCustomerId("KH00001"), "Ma KH 5 chu so phai bi tu choi");
@@ -1233,6 +1235,20 @@ void testRemainingMenuControllers() {
         khMenu.showMenu();
 
         TEST_ASSERT(khRepo.findById("KH0002") != nullptr, "KhachHangMenu phai them duoc KH0002");
+    }
+
+    // 1a. Test KhachHangMenu: tim kiem ma KH khong phan biet hoa thuong
+    {
+        std::istringstream inputSim("3\n1\n kh0001 \n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        khMenu.showMenu();
+
+        TEST_ASSERT(outputCapture.str().find("KH0001") != std::string::npos &&
+                        outputCapture.str().find("Khong tim thay khach hang") == std::string::npos,
+                    "KhachHangMenu phai tim thay KH0001 khi nhap chu thuong");
     }
 
     // 1b. Test KhachHangMenu: tu choi CCCD sai
