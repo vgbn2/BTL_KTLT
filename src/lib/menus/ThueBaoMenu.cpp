@@ -27,6 +27,7 @@ void ThueBaoMenu::themThueBao() {
 
     std::string maKH = InputHelper::getString("Nhap ma khach hang so huu (vd KH0000001): ");
     if (std::cin.eof() || maKH.empty()) return;
+    maKH = Normalized::NormalizedCustomerId(maKH);
     //kiem tra khoa ngoai khach hang,tranh tham chieu sai
     if (khachHangStore.findById(maKH) == nullptr) {
         std::cout << "[LOI] Ma khach hang khong ton tai trong he thong!\n";

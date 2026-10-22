@@ -12,6 +12,7 @@ void KhachHangMenu::themKhachHang() {
     std::cout << "\n--- THEM KHACH HANG MOI (DANG KY THONG TIN EKYC) ---\n";
     std::string maKH = InputHelper::getString("Nhap ma khach hang (KH0000001-KH9999999): ");
     if (std::cin.eof() || maKH.empty()) return;
+    maKH = Normalized::NormalizedCustomerId(maKH);
     if (!Normalized::isValidCustomerId(maKH)) {
         std::cout << "[LOI] Ma khach hang phai co dang KH0001 hoac KH0000001.\n";
         return;
@@ -84,6 +85,7 @@ void KhachHangMenu::timKiemKhachHang() {
 
     if (choice == SEARCH_BY_ID) {
         std::string maKH = InputHelper::getString("Nhap ma khach hang: ");
+        maKH = Normalized::NormalizedCustomerId(maKH);
         KhachHang* kh = store.findById(maKH);
         if (kh == nullptr) {
             std::cout << "[THONG BAO] Khong tim thay khach hang: " << maKH << "\n";
@@ -120,6 +122,7 @@ void KhachHangMenu::capNhatKhachHang() {
     std::cout << "\n--- CAP NHAT THONG TIN KHACH HANG ---\n";
     std::string maKH = InputHelper::getString("Nhap ma khach hang can sua: ");
     if (std::cin.eof()) return;
+    maKH = Normalized::NormalizedCustomerId(maKH);
     KhachHang* kh = store.findById(maKH);
     if (kh == nullptr) {
         std::cout << "[CANH BAO] Khong tim thay khach hang co ma: " << maKH << "\n";
@@ -154,6 +157,7 @@ void KhachHangMenu::xoaKhachHang() {
     std::cout << "\n--- XOA KHACH HANG KHOI HE THONG ---\n";
     std::string maKH = InputHelper::getString("Nhap ma khach hang can xoa: ");
     if (std::cin.eof()) return;
+    maKH = Normalized::NormalizedCustomerId(maKH);
     KhachHang* kh = store.findById(maKH);
     if (kh == nullptr) {
         std::cout << "[CANH BAO] Khong tim thay khach hang: " << maKH << "\n";
@@ -162,7 +166,7 @@ void KhachHangMenu::xoaKhachHang() {
 
     // Kiem tra rang buoc toan ven khoa ngoai: khong duoc xoa neu con thue bao hoac hop dong
     auto activeSubscribers = thueBaoStore.filter([&maKH](const ThueBao& tb) {
-        return tb.getMaKhachHang() == maKH;
+        return Normalized::NormalizedCustomerId(tb.getMaKhachHang()) == maKH;
     });
     if (!activeSubscribers.empty()) {
         std::cout << "[LOI] Khong the xoa khach hang! Hien dang co " << activeSubscribers.size()
@@ -171,7 +175,7 @@ void KhachHangMenu::xoaKhachHang() {
     }
 
     auto activeContracts = hopDongStore.filter([&maKH](const HopDong& hd) {
-        return hd.getMaKhachHang() == maKH;
+        return Normalized::NormalizedCustomerId(hd.getMaKhachHang()) == maKH;
     });
     if (!activeContracts.empty()) {
         std::cout << "[LOI] Khong the xoa khach hang! Hien dang co " << activeContracts.size()
@@ -197,6 +201,7 @@ void KhachHangMenu::xemDanhSachSIM() {
     std::cout << "\n--- TRA CUU DANH SACH SIM / THUE BAO CHINH CHU ---\n";
     std::string maKH = InputHelper::getString("Nhap ma khach hang: ");
     if (std::cin.eof()) return;
+    maKH = Normalized::NormalizedCustomerId(maKH);
     KhachHang* kh = store.findById(maKH);
     if (kh == nullptr) {
         std::cout << "[CANH BAO] Khong tim thay khach hang co ma: " << maKH << "\n";
@@ -205,7 +210,7 @@ void KhachHangMenu::xemDanhSachSIM() {
 
     kh->displayDetail();
     auto sims = thueBaoStore.filter([&maKH](const ThueBao& tb) {
-        return tb.getMaKhachHang() == maKH;
+        return Normalized::NormalizedCustomerId(tb.getMaKhachHang()) == maKH;
     });
 
     if (sims.empty()) {

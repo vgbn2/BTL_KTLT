@@ -1,5 +1,6 @@
 #include "HopDongMenu.h"
 #include "InputHelper.h"
+#include "Normalized.h"
 #include <iostream>
 
 using namespace HopDongMenuChoices;
@@ -65,6 +66,7 @@ void HopDongMenu::themHopDong() {
 
     std::string maKH = InputHelper::getString("Nhap Ma khach hang (VD: KH0000001): ", false);
     if (std::cin.eof() || maKH.empty()) return;
+    maKH = Normalized::NormalizedCustomerId(maKH);
     //kiem tra ma khach hang ton tai
     if (khachHangStore.findById(maKH) == nullptr) {
         std::cout << "  [!] Ma khach hang '" << maKH << "' khong ton tai trong he thong!\n";
@@ -174,8 +176,9 @@ void HopDongMenu::timKiemHopDong() {
         }
     } else if (choice == SEARCH_BY_CUSTOMER) {
         std::string kh = InputHelper::getString("Nhap Ma khach hang: ", false);
+        kh = Normalized::NormalizedCustomerId(kh);
         auto results = store.filter([&kh](const HopDong& hd) {
-            return hd.getMaKhachHang() == kh;
+            return Normalized::NormalizedCustomerId(hd.getMaKhachHang()) == kh;
         });
         if (results.empty()) {
             std::cout << "[THONG BAO] Khong co hop dong nao cua khach hang: " << kh << "\n";
