@@ -3,6 +3,8 @@
 #include <iostream>
 #include <random>
 
+//tao IMEI mo phong cho du lieu demo;menu giu quyen so huu vi ham nay can kiem tra kho hien tai.
+//sinh 14 chu so,phep Luhn tao chu so thu 15, sau do loai trung voi IMEI da luu.
 namespace {
 std::string generateSimulatedImei(const Repository<ThietBiIMEI>& store) {
     std::random_device seed;
