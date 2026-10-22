@@ -1,0 +1,23 @@
+0981234567;Nguyen Van An;001200012345;Trả trước;ST70K;2026 - 01 - 15;1
+0978888999;Tran Thi Binh;001200056789;Trả sau;V120N;2026 - 02 - 20;1
+0912345678;Le Van Cuong;025200011223;Trả trước;BIG90;2026 - 03 - 10;1
+0909999111;Pham Minh Dung;036200044556;Trả sau;MF150;2026 - 04 - 05;1
+0987654321;Hoang Thi Giang;001200099887;Trả trước;SD135;2026 - 05 - 12;0
+0919876543;Vu Van Hai;031200077665;Trả trước;YOLO120;2026 - 06 - 18;1
+0903123456;Dang Thi Hoa;079200033445;Trả sau;KC90;2026 - 07 - 01;1
+0965555444;Bui Tuan Hung;001200088776;Trả trước;MXH100;2026 - 08 - 14;1
+0941112233;Ngo Thi Linh;038200011224;Trả sau;VD150;2026 - 09 - 02;1
+0923334455;Do Hoang Nam;022200055667;Trả trước;D60G;2026 - 10 - 10;1
+//SoThueBao: Số điện thoại thuê bao(chuỗi ký tự).
+
+//HoTenChuSoHuu : Họ và tên chủ sở hữu thuê bao.
+
+//CCCD : Số Căn cước công dân / CMND.
+
+//LoaiThueBao : Loại hình thuê bao(Trả trước hoặc Trả sau).
+
+//MaGoiCuocDangKy : Mã gói cước thuê bao đang sử dụng(liên kết / khóa ngoại với file goicuoc.txt).
+
+//NgayDangKy : Ngày đăng ký gói cước / kích hoạt thuê bao(YYYY - MM - DD).
+
+//TrangThai : Trạng thái hoạt động(1: Đang hoạt động, 0 : Tạm khóa / Ngưng sử dụng).
