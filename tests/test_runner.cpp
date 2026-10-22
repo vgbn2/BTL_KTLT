@@ -1218,6 +1218,8 @@ void testRemainingMenuControllers() {
             const std::string generated = imeiRepo.getAll().front().getMaIMEI();
             TEST_ASSERT(generated.length() == IMEIConstants::REQUIRED_IMEI_LENGTH,
                         "IMEI mo phong phai co dung 15 chu so");
+            TEST_ASSERT(generated.find_first_not_of("0123456789") == std::string::npos,
+                        "IMEI mo phong phai chi gom chu so ASCII");
             TEST_ASSERT(ThietBiIMEI::validateLuhn(generated),
                         "IMEI mo phong phai hop le theo Luhn");
             TEST_ASSERT(outputCapture.str().find("MO PHONG") != std::string::npos,
