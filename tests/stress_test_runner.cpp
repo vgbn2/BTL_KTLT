@@ -31,7 +31,7 @@
 #include "lib/menus/GoiCuocMenu.h"
 #include "lib/menus/ThueBaoMenu.h"
 
-// Stream buffer that discards all output to prevent RAM growth during 100,000+ transitions
+//bo dem luong bo qua toan bo dau ra de ngan bo nho RAM tang qua muc khi co hon 100000 chuyen trang thai
 class NullStreamBuf : public std::streambuf {
 public:
     int overflow(int c) override { return c; }
@@ -54,7 +54,7 @@ void signalHandler(int signum) {
     _exit(1);
 }
 
-// Helper to copy a file
+//ham ho tro sao chep tep
 bool copyFile(const std::string& src, const std::string& dst) {
     std::ifstream in(src, std::ios::binary);
     if (!in.is_open()) return false;
@@ -64,7 +64,7 @@ bool copyFile(const std::string& src, const std::string& dst) {
     return true;
 }
 
-// Compute valid 15th Luhn digit for 14-digit prefix
+//tinh chu so Luhn thu 15 hop le tu tien to 14 chu so
 std::string makeValidLuhnIMEI(const std::string& prefix14) {
     assert(prefix14.length() == 14);
     int sum = 0;
@@ -81,7 +81,7 @@ std::string makeValidLuhnIMEI(const std::string& prefix14) {
     return prefix14 + std::to_string(checkDigit);
 }
 
-// Compute invalid 15th Luhn digit for 14-digit prefix
+//tinh chu so Luhn thu 15 khong hop le tu tien to 14 chu so
 std::string makeInvalidLuhnIMEI(const std::string& prefix14) {
     std::string valid = makeValidLuhnIMEI(prefix14);
     char last = valid.back();
@@ -99,7 +99,7 @@ struct StressMetrics {
     uint64_t fileReloadVerifications = 0;
 };
 
-// Check cross-store relational invariants
+//kiem tra bat bien lien ket giua cac kho du lieu
 void assertRelationalInvariants(
     Repository<HopDong>& hopDongStore,
     Repository<ThietBiIMEI>& imeiStore,
@@ -110,7 +110,7 @@ void assertRelationalInvariants(
     Repository<NapTien>& napTienStore,
     StressMetrics& metrics
 ) {
-    // 1. Every ThueBao must have valid FK to KhachHang
+    //1.moi ThueBao phai co khoa ngoai hop le den KhachHang
     for (const auto& tb : thueBaoStore.getAll()) {
         const std::string& maKH = tb.getMaKhachHang();
         if (!maKH.empty()) {
@@ -123,7 +123,7 @@ void assertRelationalInvariants(
         assert(Normalized::isValidPhoneNumber(tb.getSoDienThoai()) && "ThueBao has invalid phone format!");
     }
 
-    // 2. Every HopDong must have valid FKs and valid date bounds
+    //2.moi HopDong phai co khoa ngoai hop le va gioi han ngay hop le
     for (const auto& hd : hopDongStore.getAll()) {
         assert(khachHangStore.findById(hd.getMaKhachHang()) != nullptr && "HopDong points to non-existent KhachHang!");
         assert(thueBaoStore.findById(hd.getSoDienThoai()) != nullptr && "HopDong points to non-existent ThueBao!");
@@ -132,7 +132,7 @@ void assertRelationalInvariants(
         assert(hd.getGiaTriGoi() >= 0.0 && "HopDong has negative package value!");
     }
 
-    // 3. Every ThietBiIMEI must satisfy Luhn checksum and FK
+    //3.moi ThietBiIMEI phai dat ma kiem tra Luhn va khoa ngoai hop le
     for (const auto& tb : imeiStore.getAll()) {
         assert(ThietBiIMEI::validateLuhn(tb.getMaIMEI()) && "ThietBiIMEI in store has invalid Luhn checksum!");
         const std::string& sdt = tb.getSoDienThoai();
@@ -141,7 +141,7 @@ void assertRelationalInvariants(
         }
     }
 
-    // 4. Invoices and topup vouchers
+    //4.hoa don va phieu nap tien
     for (const auto& hd : hoaDonStore.getAll()) {
         assert(hd.getTongTien() >= 0.0 && "HoaDon has negative total!");
     }
@@ -152,7 +152,7 @@ void assertRelationalInvariants(
     metrics.invariantChecksPassed++;
 }
 
-// Verify that on-disk files match in-memory stores by re-reading into clean repositories
+//doc lai bang repository sach de xac nhan tep tren dia khop kho trong bo nho
 void verifyPersistenceParity(
     const std::string& sandboxDir,
     Repository<HopDong>& hopDongStore,
@@ -183,7 +183,7 @@ void verifyPersistenceParity(
     metrics.fileReloadVerifications++;
 }
 
-// Drive a menu function with redirected cin and silenced cout
+//chay ham menu voi cin da chuyen huong va cout da tat dau ra
 void driveMenuWithInput(const std::string& inputSequence, std::function<void()> menuFunc) {
     std::stringstream inStream(inputSequence);
     NullStreamBuf nullBuf;
@@ -194,8 +194,8 @@ void driveMenuWithInput(const std::string& inputSequence, std::function<void()> 
     try {
         menuFunc();
     } catch (...) {
-        // Menu functions should catch AppException/std::exception internally;
-        // if an unexpected exception escapes, we rethrow for inspection.
+        //ham menu phai tu xu ly AppException/std::exception;
+        //neu ngoai le bat ngo thoat ra, nem lai de kiem tra.
         std::cin.rdbuf(origCin);
         std::cout.rdbuf(origCout);
         std::cin.clear();
@@ -226,7 +226,7 @@ int main(int argc, char* argv[]) {
     std::cout << "[CONFIG] Architecture: Zero-SSD RAM tmpfs staging (/dev/shm)\n";
     std::cout << "[CONFIG] Sanitizer Guard: ASan / UBSan Address & Undefined Sanitizers\n";
 
-    // 1. Setup isolated sandbox in RAM tmpfs
+    //1.thiet lap sandbox rieng tren tmpfs trong RAM
     pid_t pid = getpid();
     g_sandboxDir = "/dev/shm/ktlt_stress_" + std::to_string(pid);
     mkdir(g_sandboxDir.c_str(), 0777);
@@ -239,7 +239,7 @@ int main(int argc, char* argv[]) {
     copyFile("data/hoadon.txt", g_sandboxDir + "/hoadon.txt");
     copyFile("data/naptien.txt", g_sandboxDir + "/naptien.txt");
 
-    // Initialize stores pointing to sandbox
+    //khoi tao cac kho tro den sandbox
     Repository<HopDong> hopDongStore(g_sandboxDir + "/hopdong.txt");
     Repository<ThietBiIMEI> imeiStore(g_sandboxDir + "/imei.txt");
     Repository<GoiCuoc> goiCuocStore(g_sandboxDir + "/CacGoiCuoc.txt");
@@ -259,7 +259,7 @@ int main(int argc, char* argv[]) {
     HopDongMenu hopDongMenu(hopDongStore, khachHangStore, thueBaoStore, goiCuocStore);
     ThietBiIMEIMenu imeiMenu(imeiStore, thueBaoStore);
     GoiCuocMenu goiCuocMenu(goiCuocStore);
-    ThueBaoMenu thueBaoMenu(thueBaoStore, goiCuocStore, khachHangStore);
+    ThueBaoMenu thueBaoMenu(thueBaoStore, goiCuocStore, khachHangStore, imeiStore);
 
     std::cout << "[SANDBOX] Seed data loaded successfully into RAM tmpfs: " << g_sandboxDir << "\n";
     std::cout << "[STATUS] Initial baseline invariants verified. Beginning combinatorial engine...\n\n";
@@ -290,31 +290,31 @@ int main(int argc, char* argv[]) {
         roundCounter++;
 
         // =========================================================================
-        // COMBINATORIAL ENGINE STAGE 1: Interactive Menu Combinatorial Permutations
+        //BO MAY TO HOP GIAI DOAN 1:hoan vi tuong tac ket hop cua cac menu
         // =========================================================================
 
-        // 1.1 GoiCuocMenu Permutations (Add, View, Search, Sort, Update, Delete)
+        //1.1 hoan vi GoiCuocMenu(them,xem,tim,sap xep,cap nhat,xoa)
         {
             std::string maGC = "GC_ST_" + std::to_string(roundCounter % 500);
-            // Case A: Add new package with valid parameters
+            //truong hop A:them goi cuoc voi tham so hop le
             std::string addInput = "1\n" + maGC + "\nGoi Cuoc Stress " + std::to_string(roundCounter) + "\n50000\n5\n100\n30\n0\n";
             driveMenuWithInput(addInput, [&]() { goiCuocMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case B: Search, Sort (Price asc, desc, Data desc)
+            //truong hop B:tim va sap xep(gia tang,gia giam,data giam)
             std::string viewSortInput = "2\n3\nStress\n4\n1\n4\n2\n4\n3\n0\n";
             driveMenuWithInput(viewSortInput, [&]() { goiCuocMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case C: Update package
+            //truong hop C:cap nhat goi cuoc
             std::string updateInput = "5\n" + maGC + "\nUpdated Name\n1\n70000\n0\n";
             driveMenuWithInput(updateInput, [&]() { goiCuocMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case D: Delete half of them periodically to maintain bounded memory
+            //truong hop D:dinh ky xoa mot nua de giu bo nho trong gioi han
             if (roundCounter % 4 == 0) {
                 std::string deleteInput = "6\n" + maGC + "\n1\n0\n";
                 driveMenuWithInput(deleteInput, [&]() { goiCuocMenu.showMenu(); });
@@ -323,33 +323,33 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        // 1.2 ThueBaoMenu Permutations (Add, View, Search, Package Change, Topup, Lock/Unlock, Delete)
+        //1.2 hoan vi ThueBaoMenu(them,xem,tim,doi goi,nap tien,khoa mo,xoa)
         {
-            // Select valid VN phone prefix
+            //chon tien to so dien thoai Viet Nam hop le
             const char* prefixes[] = {"090", "091", "098", "083", "077", "038", "056"};
             std::string sdt = std::string(prefixes[roundCounter % 7]) +
                               std::string(7 - std::to_string(roundCounter % 10000000).length(), '0') +
                               std::to_string(roundCounter % 10000000);
 
-            // Need valid KhachHang ID from store
+            //lay ma KhachHang hop le tu kho
             std::string maKH = "KH0001";
             if (!khachHangStore.empty()) {
                 maKH = khachHangStore.getAll()[roundCounter % khachHangStore.size()].getId();
             }
 
-            // Case A: Add ThueBao
+            //truong hop A:them ThueBao
             std::string addTB = "1\n" + sdt + "\n1\n" + maKH + "\n\n15/05/2023\n100000\n0\n";
             driveMenuWithInput(addTB, [&]() { thueBaoMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case B: Topup
+            //truong hop B:nap tien
             std::string topupTB = "6\n" + sdt + "\n50000\n0\n";
             driveMenuWithInput(topupTB, [&]() { thueBaoMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case C: Register Package (if package exists)
+            //truong hop C:dang ky goi cuoc(neu goi ton tai)
             if (!goiCuocStore.empty()) {
                 std::string maGC = goiCuocStore.getAll().front().getId();
                 std::string regGC = "4\n" + sdt + "\n" + maGC + "\n0\n";
@@ -358,20 +358,20 @@ int main(int argc, char* argv[]) {
                 metrics.totalTransitions++;
             }
 
-            // Case D: Lock/Unlock permutations
+            //truong hop D:hoan vi khoa va mo
             int statusChoice = 1 + (roundCounter % 4);
             std::string lockTB = "5\n" + sdt + "\n" + std::to_string(statusChoice) + "\n0\n";
             driveMenuWithInput(lockTB, [&]() { thueBaoMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case E: Search & List
+            //truong hop E:tim kiem va liet ke
             std::string searchTB = "2\n3\n" + sdt + "\n0\n";
             driveMenuWithInput(searchTB, [&]() { thueBaoMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Clean up subscriber periodically if unlinked
+            //dinh ky don dep thue bao neu khong con lien ket
             if (roundCounter % 6 == 0) {
                 std::string delTB = "7\n" + sdt + "\n1\n0\n";
                 driveMenuWithInput(delTB, [&]() { thueBaoMenu.showMenu(); });
@@ -380,7 +380,7 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        // 1.3 HopDongMenu Permutations (Add, View, Search, Sort, Renew, Status, Delete)
+        //1.3 hoan vi HopDongMenu(them,xem,tim,sap xep,gia han,trang thai,xoa)
         {
             std::string maHD = "HD_ST_" + std::to_string(roundCounter % 300);
             std::string maKH = "KH0001";
@@ -391,25 +391,25 @@ int main(int argc, char* argv[]) {
             if (!thueBaoStore.empty()) sdt = thueBaoStore.getAll().front().getId();
             if (!goiCuocStore.empty()) maGC = goiCuocStore.getAll().front().getId();
 
-            // Case A: Add contract
+            //truong hop A:them hop dong
             std::string addHD = "1\n" + maHD + "\n" + maKH + "\n" + sdt + "\n" + maGC + "\n10/01/2024\n10/01/2025\n1\n149000\n\n0\n";
             driveMenuWithInput(addHD, [&]() { hopDongMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case B: View, Search, Sort
+            //truong hop B:xem,tim va sap xep
             std::string viewHD = "2\n\n3\n1\n" + maHD + "\n\n4\n1\n\n0\n";
             driveMenuWithInput(viewHD, [&]() { hopDongMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case C: Extend Expiry
+            //truong hop C:gia han ngay het han
             std::string extendHD = "5\n" + maHD + "\n2\n20/01/2026\n\n0\n";
             driveMenuWithInput(extendHD, [&]() { hopDongMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case D: Delete contract
+            //truong hop D:xoa hop dong
             if (roundCounter % 5 == 0) {
                 std::string delHD = "6\n" + maHD + "\ny\n\n0\n";
                 driveMenuWithInput(delHD, [&]() { hopDongMenu.showMenu(); });
@@ -418,36 +418,36 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        // 1.4 ThietBiIMEIMenu Permutations (Add, View, Search, Blacklist, Assign SIM, Delete)
+        //1.4 hoan vi ThietBiIMEIMenu(them,xem,tim,danh sach den,gan SIM,xoa)
         {
             std::string prefix14 = "35894109" + std::string(6 - std::to_string(roundCounter % 1000000).length(), '0') +
                                   std::to_string(roundCounter % 1000000);
             std::string validImei = makeValidLuhnIMEI(prefix14);
             std::string sdt = (!thueBaoStore.empty()) ? thueBaoStore.getAll().front().getId() : "";
 
-            // Case A: Add valid IMEI device
+            //truong hop A:them thiet bi IMEI hop le
             std::string addIMEI = "1\n" + validImei + "\nStress Device " + std::to_string(roundCounter) +
                                   "\nSamsung\n" + sdt + "\n01/01/2024\nBTS-HN-STRESS\n\n0\n";
             driveMenuWithInput(addIMEI, [&]() { imeiMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case B: View and Blacklist query
-            std::string viewIMEI = "2\n\n4\n\n0\n";
+            //truong hop B:xem va tra cuu danh sach den
+            std::string viewIMEI = "2\n\n5\n\n0\n";
             driveMenuWithInput(viewIMEI, [&]() { imeiMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case C: Toggle EIR Blacklist
+            //truong hop C:bat tat danh sach den EIR
             int toggle = (roundCounter % 2 == 0) ? 3 : 4;
-            std::string lockIMEI = "5\n" + validImei + "\n" + std::to_string(toggle) + "\n\n0\n";
+            std::string lockIMEI = "6\n" + validImei + "\n" + std::to_string(toggle) + "\n\n0\n";
             driveMenuWithInput(lockIMEI, [&]() { imeiMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
 
-            // Case D: Delete IMEI
+            //truong hop D:xoa IMEI
             if (roundCounter % 7 == 0) {
-                std::string delIMEI = "6\n" + validImei + "\ny\n\n0\n";
+                std::string delIMEI = "7\n" + validImei + "\ny\n\n0\n";
                 driveMenuWithInput(delIMEI, [&]() { imeiMenu.showMenu(); });
                 metrics.menuInvocations++;
                 metrics.totalTransitions++;
@@ -455,20 +455,20 @@ int main(int argc, char* argv[]) {
         }
 
         // =========================================================================
-        // COMBINATORIAL ENGINE STAGE 2: Adversarial Boundary & Invalid Inputs
+        //BO MAY TO HOP GIAI DOAN 2: bien gioi doi nghich va dau vao khong hop le
         // =========================================================================
         {
             size_t advIdx = roundCounter % adversarialInputs.size();
             const std::string& probe = adversarialInputs[advIdx];
 
-            // Drive invalid choices to main/sub menus
+            //dua lua chon khong hop le qua menu chinh/menu con
             std::string badMenuSeq = probe + "\n0\n";
             driveMenuWithInput(badMenuSeq, [&]() { goiCuocMenu.showMenu(); });
             driveMenuWithInput(badMenuSeq, [&]() { thueBaoMenu.showMenu(); });
             driveMenuWithInput(badMenuSeq, [&]() { hopDongMenu.showMenu(); });
             driveMenuWithInput(badMenuSeq, [&]() { imeiMenu.showMenu(); });
 
-            // Drive invalid IMEI (Luhn failure)
+            //dua IMEI khong hop le vao he thong(ma Luhn sai)
             std::string prefix14 = "86753090" + std::string(6 - std::to_string(roundCounter % 1000000).length(), '0') +
                                   std::to_string(roundCounter % 1000000);
             std::string badImei = makeInvalidLuhnIMEI(prefix14);
@@ -480,7 +480,7 @@ int main(int argc, char* argv[]) {
         }
 
         // =========================================================================
-        // COMBINATORIAL ENGINE STAGE 3: Rapid Abrupt EOF Injections
+        //BO MAY TO HOP GIAI DOAN 3: chen EOF dot ngot lien tuc
         // =========================================================================
         {
             // Inject EOF immediately at menu entry
@@ -500,7 +500,7 @@ int main(int argc, char* argv[]) {
         }
 
         // =========================================================================
-        // COMBINATORIAL ENGINE STAGE 4: Direct Relational CRUD State Transitions
+        //BO MAY TO HOP GIAI DOAN 4: chuyen trang thai CRUD lien ket truc tiep
         // =========================================================================
         {
             // Direct Customer insertion
@@ -556,7 +556,7 @@ int main(int argc, char* argv[]) {
                 metrics.totalTransitions++;
             }
 
-            // Direct Invoice & Topup vouchers
+            //them truc tiep hoa don va phieu nap tien
             std::string hdNum = "INV_ST_" + std::to_string(roundCounter % 200);
             if (hoaDonStore.findById(hdNum) == nullptr) {
                 HoaDon h(hdNum, tbId, "02/2024", 50000.0, 40000.0, 90000.0, HoaDonConstants::STATUS_PAID);
@@ -575,7 +575,7 @@ int main(int argc, char* argv[]) {
         }
 
         // =========================================================================
-        // COMBINATORIAL ENGINE STAGE 5: Invariant Verification & File Persistence
+        //BO MAY TO HOP GIAI DOAN 5: kiem tra bat bien va luu tep
         // =========================================================================
         if (roundCounter % 20 == 0) {
             assertRelationalInvariants(hopDongStore, imeiStore, goiCuocStore, thueBaoStore, khachHangStore, hoaDonStore, napTienStore, metrics);
@@ -585,7 +585,7 @@ int main(int argc, char* argv[]) {
             verifyPersistenceParity(g_sandboxDir, hopDongStore, imeiStore, goiCuocStore, thueBaoStore, khachHangStore, metrics);
         }
 
-        // Progress Heartbeat reporting every ~10 seconds
+        //bao cao tien do moi khoang 10 giay
         auto reportNow = std::chrono::steady_clock::now();
         double sinceLastReport = std::chrono::duration<double>(reportNow - lastReportTime).count();
         if (sinceLastReport >= 10.0 || elapsedSec >= targetDuration) {

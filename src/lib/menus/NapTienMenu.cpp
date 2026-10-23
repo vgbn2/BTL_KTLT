@@ -95,6 +95,31 @@ void NapTienMenu::traCuuTheoSoDienThoai() {
     }
 }
 
+//sap xep phieu nap hoac CDR theo ma
+void NapTienMenu::sapXepDanhSach() {
+    std::cout << "\n--- SAP XEP DU LIEU NAP TIEN / CDR ---\n"
+              << "  [" << SORT_NAPTIEN_ID_ASC << "] Ma giao dich nap tien tang dan\n"
+              << "  [" << SORT_NAPTIEN_ID_DESC << "] Ma giao dich nap tien giam dan\n"
+              << "  [" << SORT_CDR_ID_ASC << "] Ma CDR tang dan\n"
+              << "  [" << SORT_CDR_ID_DESC << "] Ma CDR giam dan\n";
+    int choice = InputHelper::getInt("Nhap kieu sap xep [1-4]: ", SORT_NAPTIEN_ID_ASC, SORT_CDR_ID_DESC);
+    try {
+        if (choice == SORT_NAPTIEN_ID_ASC || choice == SORT_NAPTIEN_ID_DESC) {
+            napTienStore.sortById(choice == SORT_NAPTIEN_ID_ASC);
+        } else {
+            cdrStore.sortById(choice == SORT_CDR_ID_ASC);
+        }
+        std::cout << "[THANH CONG] Da sap xep va luu du lieu.\n";
+    } catch (const std::exception& e) {
+        std::cout << "[LOI] Khong the luu thu tu sap xep: " << e.what() << "\n";
+    }
+    if (choice == SORT_NAPTIEN_ID_ASC || choice == SORT_NAPTIEN_ID_DESC) {
+        xemDanhSachPhieu();
+    } else {
+        xemDanhSachCDR();
+    }
+}
+
 //ghi nhan ban ghi cuoc goi hoac phien data
 void NapTienMenu::ghiNhanCDR() {
     std::cout << "\n--- GHI NHAN BAN GHI CUOC GOI / PHIEN DATA (CDR) ---\n";
@@ -182,10 +207,11 @@ void NapTienMenu::showMenu() {
                   << "  [" << MENU_SEARCH_BY_PHONE << "] Tra cuu lich su nap tien theo so thue bao\n"
                   << "  [" << MENU_ADD_CDR << "] Ghi nhan ban ghi cuoc goi / SMS / Data (CDR)\n"
                   << "  [" << MENU_LIST_CDR << "] Xem danh sach nhat ky cuoc goi CDR\n"
+                  << "  [" << MENU_SORT << "] Sap xep phieu nap / CDR theo ma\n"
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
                   << "====================================================================\n";
 
-        int choice = InputHelper::getInt("Nhap lua chon [0-5]: ", MENU_BACK, MENU_LIST_CDR);
+        int choice = InputHelper::getInt("Nhap lua chon [0-6]: ", MENU_BACK, MENU_SORT);
         if (choice == MENU_BACK || std::cin.eof()) {
             break;
         }
@@ -199,6 +225,9 @@ void NapTienMenu::showMenu() {
                 break;
             case MENU_SEARCH_BY_PHONE:
                 traCuuTheoSoDienThoai();
+                break;
+            case MENU_SORT:
+                sapXepDanhSach();
                 break;
             case MENU_ADD_CDR:
                 ghiNhanCDR();

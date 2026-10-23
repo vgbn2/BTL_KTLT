@@ -10,9 +10,13 @@ namespace IMEIMenuChoices {
     const int MENU_ADD = 1;
     const int MENU_LIST = 2;
     const int MENU_SEARCH = 3;
-    const int MENU_BLACKLIST = 4;
-    const int MENU_UPDATE = 5;
-    const int MENU_DELETE = 6;
+    const int MENU_SORT = 4;
+    const int MENU_BLACKLIST = 5;
+    const int MENU_UPDATE = 6;
+    const int MENU_DELETE = 7;
+
+    const int SORT_BY_ID_ASC = 1;
+    const int SORT_BY_ID_DESC = 2;
 
     const int SEARCH_BY_IMEI = 1;
     const int SEARCH_BY_PHONE = 2;
@@ -36,6 +40,8 @@ private:
     void xemDanhSach();
     //tim kiem thiet bi
     void timKiemThietBi();
+    //sap xep thiet bi theo ma IMEI
+    void sapXepDanhSach();
     //hien thi thiet bi bi khoa mang
     void danhSachKhoaMang();
     //cap nhat thiet bi
