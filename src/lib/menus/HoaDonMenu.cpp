@@ -143,6 +143,31 @@ void HoaDonMenu::traCuuTheoSoDienThoai() {
     }
 }
 
+//sap xep hoa don hoac khieu nai theo ma
+void HoaDonMenu::sapXepDanhSach() {
+    std::cout << "\n--- SAP XEP HOA DON / KHIEU NAI ---\n"
+              << "  [" << SORT_INVOICE_ID_ASC << "] Ma hoa don tang dan\n"
+              << "  [" << SORT_INVOICE_ID_DESC << "] Ma hoa don giam dan\n"
+              << "  [" << SORT_COMPLAINT_ID_ASC << "] Ma khieu nai tang dan\n"
+              << "  [" << SORT_COMPLAINT_ID_DESC << "] Ma khieu nai giam dan\n";
+    int choice = InputHelper::getInt("Nhap kieu sap xep [1-4]: ", SORT_INVOICE_ID_ASC, SORT_COMPLAINT_ID_DESC);
+    try {
+        if (choice == SORT_INVOICE_ID_ASC || choice == SORT_INVOICE_ID_DESC) {
+            hoaDonStore.sortById(choice == SORT_INVOICE_ID_ASC);
+        } else {
+            khieuNaiStore.sortById(choice == SORT_COMPLAINT_ID_ASC);
+        }
+        std::cout << "[THANH CONG] Da sap xep va luu du lieu.\n";
+    } catch (const std::exception& e) {
+        std::cout << "[LOI] Khong the luu thu tu sap xep: " << e.what() << "\n";
+    }
+    if (choice == SORT_INVOICE_ID_ASC || choice == SORT_INVOICE_ID_DESC) {
+        xemDanhSachHoaDon();
+    } else {
+        xemDanhSachKhieuNai();
+    }
+}
+
 //tiep nhan phieu khieu nai
 void HoaDonMenu::tiepNhanKhieuNai() {
     std::cout << "\n--- TIEP NHAN PHIEU KHIEU NAI / TRA SOAT CUOC ---\n";
@@ -249,10 +274,11 @@ void HoaDonMenu::showMenu() {
                   << "  [" << MENU_ADD_COMPLAINT << "] Tiep nhan phieu khiieu nai / tra soat cuoc\n"
                   << "  [" << MENU_PROCESS_COMPLAINT << "] Xu ly / Cap nhat trang thai khiieu nai\n"
                   << "  [" << MENU_LIST_COMPLAINTS << "] Xem danh sach phieu khiieu nai\n"
+                  << "  [" << MENU_SORT << "] Sap xep hoa don / khieu nai theo ma\n"
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
                   << "====================================================================\n";
 
-        int choice = InputHelper::getInt("Nhap lua chon [0-7]: ", MENU_BACK, MENU_LIST_COMPLAINTS);
+        int choice = InputHelper::getInt("Nhap lua chon [0-8]: ", MENU_BACK, MENU_SORT);
         if (choice == MENU_BACK || std::cin.eof()) {
             break;
         }
@@ -269,6 +295,9 @@ void HoaDonMenu::showMenu() {
                 break;
             case MENU_SEARCH_BY_PHONE:
                 traCuuTheoSoDienThoai();
+                break;
+            case MENU_SORT:
+                sapXepDanhSach();
                 break;
             case MENU_ADD_COMPLAINT:
                 tiepNhanKhieuNai();

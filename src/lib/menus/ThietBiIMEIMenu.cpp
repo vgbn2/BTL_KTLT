@@ -3,13 +3,13 @@
 #include <iostream>
 #include <random>
 
+namespace {
 //tao IMEI mo phong cho du lieu demo;menu giu quyen so huu vi ham nay can kiem tra kho hien tai.
 //sinh 14 chu so,phep Luhn tao chu so thu 15, sau do loai trung voi IMEI da luu.
-namespace {
 std::string generateSimulatedImei(const Repository<ThietBiIMEI>& store) {
     std::random_device seed;
     std::mt19937 generator(seed());
-    std::uniform_int_distribution<int> digit(0, 9);// tao imei ngau nhien neu admin luoi:0 de lam placeholder
+    std::uniform_int_distribution<int> digit(0, 9);
     while (true) {
         std::string prefix;
         prefix.reserve(14);
@@ -46,13 +46,14 @@ void ThietBiIMEIMenu::showMenu() {
                   << "  [" << MENU_ADD << "] Them thiet bi moi\n"
                   << "  [" << MENU_LIST << "] Xem danh sach thiet bi\n"
                   << "  [" << MENU_SEARCH << "] Tim kiem thiet bi\n"
+                  << "  [" << MENU_SORT << "] Sap xep thiet bi theo Ma IMEI\n"
                   << "  [" << MENU_BLACKLIST << "] Danh sach thiet bi bi khoa mang\n"
                   << "  [" << MENU_UPDATE << "] Cap nhat thiet bi\n"
                   << "  [" << MENU_DELETE << "] Xoa thiet bi\n"
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
                   << "--------------------------------------------------------------------\n";
 
-        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-6]: ", MENU_BACK, MENU_DELETE);
+        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-7]: ", MENU_BACK, MENU_DELETE);
         if (choice == MENU_BACK) {
             break;
         }
@@ -66,6 +67,9 @@ void ThietBiIMEIMenu::showMenu() {
                 break;
             case MENU_SEARCH:
                 timKiemThietBi();
+                break;
+            case MENU_SORT:
+                sapXepDanhSach();
                 break;
             case MENU_BLACKLIST:
                 danhSachKhoaMang();
@@ -207,6 +211,21 @@ void ThietBiIMEIMenu::timKiemThietBi() {
         }
     }
     InputHelper::pause();
+}
+
+//sap xep danh sach thiet bi theo ma IMEI
+void ThietBiIMEIMenu::sapXepDanhSach() {
+    std::cout << "\n>>> SAP XEP DANH SACH THIET BI <<<\n"
+              << "  [" << SORT_BY_ID_ASC << "] Ma IMEI tang dan\n"
+              << "  [" << SORT_BY_ID_DESC << "] Ma IMEI giam dan\n";
+    int choice = InputHelper::getInt("Nhap kieu sap xep [1-2]: ", SORT_BY_ID_ASC, SORT_BY_ID_DESC);
+    try {
+        store.sortById(choice == SORT_BY_ID_ASC);
+        std::cout << "[THANH CONG] Da sap xep va luu danh sach thiet bi.\n";
+    } catch (const std::exception& e) {
+        std::cout << "[LOI] Khong the luu thu tu sap xep: " << e.what() << "\n";
+    }
+    xemDanhSach();
 }
 
 //hien thi danh sach thiet bi bi khoa mang
