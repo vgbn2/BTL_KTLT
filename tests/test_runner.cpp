@@ -468,6 +468,9 @@ void testRepository() {
     TEST_ASSERT(sortRepo.sortById(false), "Sort ID giam dan phai luu thanh cong");
     TEST_ASSERT(sortRepo.getAll()[0].getId() == "HD0002" && sortRepo.getAll()[1].getId() == "HD0001",
                 "Sort ID giam dan phai sap xep trong bo nho");
+    Repository<HopDong> descendingSortRepo(SORT_FILE);
+    TEST_ASSERT(descendingSortRepo.loadFromFile() && descendingSortRepo.getAll()[0].getId() == "HD0002",
+                "Sort ID giam dan phai duoc luu tren tep");
 
     Repository<HopDong> failedSortRepo("/proc/ktlt_repository_sort.txt");
     failedSortRepo.getAll().push_back(sortHd1);
