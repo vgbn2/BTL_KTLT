@@ -99,6 +99,21 @@ void ThueBaoMenu::timKiemThueBao() {
     }
 }
 
+//sap xep danh sach thue bao theo so dien thoai
+void ThueBaoMenu::sapXepDanhSach() {
+    std::cout << "\n--- SAP XEP DANH SACH THUE BAO ---\n"
+              << "  [" << SORT_BY_ID_ASC << "] So dien thoai tang dan\n"
+              << "  [" << SORT_BY_ID_DESC << "] So dien thoai giam dan\n";
+    int choice = InputHelper::getInt("Nhap kieu sap xep [1-2]: ", SORT_BY_ID_ASC, SORT_BY_ID_DESC);
+    try {
+        store.sortById(choice == SORT_BY_ID_ASC);
+        std::cout << "[THANH CONG] Da sap xep va luu danh sach thue bao.\n";
+    } catch (const std::exception& e) {
+        std::cout << "[LOI] Khong the luu thu tu sap xep: " << e.what() << "\n";
+    }
+    xemDanhSach();
+}
+
 //dang ky goi cuoc cho thue bao
 void ThueBaoMenu::dangKyGoiCuoc() {
     std::cout << "\n--- DANG KY / DOI GOI CUOC CHO THUE BAO ---\n";
@@ -214,6 +229,15 @@ void ThueBaoMenu::xoaThueBao() {
         return;
     }
 
+    const auto assignedDevices = imeiStore.filter([&sdt](const ThietBiIMEI& imei) {
+        return imei.getSoDienThoai() == sdt;
+    });
+    if (!assignedDevices.empty()) {
+        std::cout << "[LOI] Khong the xoa thue bao! "
+                     "Thiet bi IMEI dang gan voi so nay.\n";
+        return;
+    }
+
     tb->displayDetail();
     int confirm = InputHelper::getInt("Xac nhan xoa thue bao nay khoi he thong? (1: Co, 0: Khong): ", 0, 1);
     if (std::cin.eof()) return;
@@ -240,10 +264,11 @@ void ThueBaoMenu::showMenu() {
                   << "  [" << MENU_LOCK_UNLOCK << "] Khoa / Mo chieu thue bao\n"
                   << "  [" << MENU_TOPUP << "] Nap tien vao tai khoan thue bao\n"
                   << "  [" << MENU_DELETE << "] Xoa thue bao\n"
+                  << "  [" << MENU_SORT << "] Sap xep thue bao theo So dien thoai\n"
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
                   << "====================================================================\n";
 
-        int choice = InputHelper::getInt("Nhap lua chon [0-7]: ", MENU_BACK, MENU_DELETE);
+        int choice = InputHelper::getInt("Nhap lua chon [0-8]: ", MENU_BACK, MENU_SORT);
         if (choice == MENU_BACK) {
             break;
         }
@@ -257,6 +282,9 @@ void ThueBaoMenu::showMenu() {
                 break;
             case MENU_SEARCH:
                 timKiemThueBao();
+                break;
+            case MENU_SORT:
+                sapXepDanhSach();
                 break;
             case MENU_REGISTER_PACKAGE:
                 dangKyGoiCuoc();

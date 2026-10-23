@@ -41,7 +41,7 @@ namespace TestStats {
     int failed = 0;
 }
 
-// ponytail: RAII guard ensures cin/cout buffers are restored even during test assertion failures or unexpected exceptions
+// ponytail:bo RAII khoi phuc bo dem cin/cout ca khi assert that bai hoac ngoai le bat ngo
 struct StreamRedirectGuard {
     std::streambuf* origCin;
     std::streambuf* origCout;
@@ -451,14 +451,46 @@ void testRepository() {
     TEST_ASSERT(reloadedRepo.size() == 1, "Reloaded store phai co dung 1 ban ghi da luu");
     TEST_ASSERT(reloadedRepo.findById("HD0002") != nullptr, "Reloaded store phai chua HD0002");
 
+    const std::string SORT_FILE = "data/test_repo_sort.txt";
+    Repository<HopDong> sortRepo(SORT_FILE);
+    sortRepo.clear();
+    HopDong sortHd1("HD0002", "KH0002", "0978999888", "GC002", Date(1, 2, 2024), Date(1, 2, 2025), "TraTruoc", "HieuLuc", 90000.0);
+    HopDong sortHd2("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 150000.0);
+    sortRepo.add(sortHd1);
+    sortRepo.add(sortHd2);
+    TEST_ASSERT(sortRepo.sortById(true), "Sort ID tang dan phai luu thanh cong");
+    TEST_ASSERT(sortRepo.getAll()[0].getId() == "HD0001" && sortRepo.getAll()[1].getId() == "HD0002",
+                "Sort ID tang dan phai sap xep trong bo nho");
+    Repository<HopDong> ascendingSortRepo(SORT_FILE);
+    ascendingSortRepo.loadFromFile();
+    TEST_ASSERT(ascendingSortRepo.getAll()[0].getId() == "HD0001",
+                "Sort ID tang dan phai duoc luu tren tep");
+    TEST_ASSERT(sortRepo.sortById(false), "Sort ID giam dan phai luu thanh cong");
+    TEST_ASSERT(sortRepo.getAll()[0].getId() == "HD0002" && sortRepo.getAll()[1].getId() == "HD0001",
+                "Sort ID giam dan phai sap xep trong bo nho");
+
+    Repository<HopDong> failedSortRepo("/proc/ktlt_repository_sort.txt");
+    failedSortRepo.getAll().push_back(sortHd1);
+    bool sortThrew = false;
+    try {
+        failedSortRepo.sortAndSave([](const HopDong& first, const HopDong& second) {
+            return first.getId() > second.getId();
+        });
+    } catch (const FileIOException&) {
+        sortThrew = true;
+    }
+    TEST_ASSERT(sortThrew, "Sort luu that bai phai nem FileIOException");
+    TEST_ASSERT(failedSortRepo.getAll()[0].getId() == "HD0002",
+                "Sort luu that bai phai rollback thu tu trong bo nho");
+
     const std::string INVALID_IMEI_FILE = "data/test_invalid_imei.txt";
     {
         std::ofstream out(INVALID_IMEI_FILE);
         out << "not-an-imei|Phone|Brand|0241234567|15/01/2024|HoatDong|BTS-001\\n";
     }
     Repository<ThietBiIMEI> invalidImeiStore(INVALID_IMEI_FILE);
-    TEST_ASSERT(invalidImeiStore.loadFromFile(), "File IMEI ton tai phai mo duoc");
-    TEST_ASSERT(invalidImeiStore.empty(), "Ban ghi IMEI sai phai bi bo qua khi nap file");
+    TEST_ASSERT(!invalidImeiStore.loadFromFile(), "File IMEI co dong sai phai bao that bai");
+    TEST_ASSERT(invalidImeiStore.empty(), "Repository khong duoc cong bo dong IMEI sai");
 
     const std::string INVALID_HOPDONG_FILE = "data/test_invalid_hopdong.txt";
     {
@@ -466,8 +498,24 @@ void testRepository() {
         out << "HD-BAD|KH-1|0241234567|GC-1|01/01/2024|01/01/2025|TraSau|HieuLuc|1000\\n";
     }
     Repository<HopDong> invalidHopDongStore(INVALID_HOPDONG_FILE);
-    TEST_ASSERT(invalidHopDongStore.loadFromFile(), "File hop dong ton tai phai mo duoc");
-    TEST_ASSERT(invalidHopDongStore.empty(), "Ban ghi hop dong sai phai bi bo qua khi nap file");
+    TEST_ASSERT(!invalidHopDongStore.loadFromFile(), "File hop dong co dong sai phai bao that bai");
+    TEST_ASSERT(invalidHopDongStore.empty(), "Repository khong duoc cong bo dong hop dong sai");
+
+    const std::string MALFORMED_ROW_FILE = "data/test_malformed_row.txt";
+    {
+        std::ofstream out(MALFORMED_ROW_FILE);
+        out << hd2.toFileString() << "\\n";
+        out << "MALFORMED|ROW\\n";
+    }
+    Repository<HopDong> malformedRowStore(MALFORMED_ROW_FILE);
+    TEST_ASSERT(!malformedRowStore.loadFromFile(), "Dong malformed phai lam load that bai");
+    TEST_ASSERT(malformedRowStore.empty(), "Load that bai phai khong cong bo dong hop le truoc do");
+    std::ifstream malformedRowInput(MALFORMED_ROW_FILE);
+    std::string malformedRowContents(
+        (std::istreambuf_iterator<char>(malformedRowInput)),
+        std::istreambuf_iterator<char>());
+    TEST_ASSERT(malformedRowContents.find("MALFORMED|ROW") != std::string::npos,
+                "Load that bai phai giu nguyen tep tren dia");
 
     const std::string MISSING_FILE = "data/test_missing_file.txt";
     std::remove(MISSING_FILE.c_str());
@@ -534,6 +582,7 @@ void testRepository() {
     std::remove(TEST_FILE.c_str());
     std::remove(INVALID_IMEI_FILE.c_str());
     std::remove(INVALID_HOPDONG_FILE.c_str());
+    std::remove(MALFORMED_ROW_FILE.c_str());
 }
 
 void testDisplayHelper() {
@@ -653,6 +702,9 @@ void testMenuControllers() {
         std::string out = outputCapture.str();
         TEST_ASSERT(out.find("QUAN LY THIET BI DAU CUOI (IMEI)") != std::string::npos, "ThietBiIMEIMenu phai hien thi tieu de menu");
         TEST_ASSERT(out.find("[0] Quay lai menu chinh") != std::string::npos, "ThietBiIMEIMenu phai co option [0] Quay lai menu chinh");
+        TEST_ASSERT(out.find("[4] Sap xep thiet bi theo Ma IMEI") < out.find("[5] Danh sach thiet bi bi khoa mang") &&
+                        out.find("[7] Xoa thiet bi") < out.find("[0] Quay lai menu chinh"),
+                    "ThietBiIMEIMenu phai hien thi cac tuy chon theo thu tu so");
     }
 
     //test submenu tim kiem
@@ -683,7 +735,7 @@ void testMenuControllers() {
 
     //test huy cap nhat imei
     {
-        std::istringstream inputSim("5\n860123456789014\n0\n\n0\n");
+        std::istringstream inputSim("6\n860123456789014\n0\n\n0\n");
         std::ostringstream outputCapture;
         std::cin.rdbuf(inputSim.rdbuf());
         std::cout.rdbuf(outputCapture.rdbuf());
@@ -982,6 +1034,7 @@ void testNewRepositoriesAndMenus() {
     const std::string GC_TEST_FILE = "data/test_gc_repo.txt";
     const std::string TB_TEST_FILE = "data/test_tb_repo.txt";
     const std::string KH_TEST_FILE = "data/test_kh_repo.txt";
+    const std::string IMEI_TEST_FILE = "data/test_imei_repo.txt";
 
     Repository<GoiCuoc> gcRepo(GC_TEST_FILE);
     gcRepo.clear();
@@ -1001,11 +1054,17 @@ void testNewRepositoriesAndMenus() {
     ThueBao tb("0981234567", "TraTruoc", "KH0001", "M50", "15/01/2024", "HoatDong", 100000.0);
     tbRepo.add(tb);
 
+    Repository<ThietBiIMEI> imeiRepo(IMEI_TEST_FILE);
+    imeiRepo.clear();
+    imeiRepo.add(ThietBiIMEI(
+        "359876543210983", "Assigned Phone", "Apple", "0981234567",
+        Date(10, 3, 2024), IMEIConstants::STATUS_ACTIVE, "BTS-TEST-001"));
+
     TEST_ASSERT(tbRepo.size() == 1, "tbRepo size phai bang 1 sau khi them");
     TEST_ASSERT(tbRepo.findById("0981234567") != nullptr, "findById 0981234567 phai tim thay");
 
     GoiCuocMenu gcMenu(gcRepo);
-    ThueBaoMenu tbMenu(tbRepo, gcRepo, khRepo);
+    ThueBaoMenu tbMenu(tbRepo, gcRepo, khRepo, imeiRepo);
 
     std::streambuf* origCin = std::cin.rdbuf();
     std::streambuf* origCout = std::cout.rdbuf();
@@ -1036,6 +1095,26 @@ void testNewRepositoriesAndMenus() {
         std::string out = outputCapture.str();
         TEST_ASSERT(out.find("QUAN LY THUE BAO DI DONG") != std::string::npos, "ThueBaoMenu phai hien thi tieu de menu");
         TEST_ASSERT(out.find("[0] Quay lai menu chinh") != std::string::npos, "ThueBaoMenu phai co option [0] Quay lai menu chinh");
+        TEST_ASSERT(out.find("[7] Xoa thue bao") < out.find("[8] Sap xep thue bao theo So dien thoai"),
+                    "ThueBaoMenu phai hien thi cac tuy chon theo thu tu so");
+    }
+
+    //test tu choi xoa thue bao dang gan IMEI
+    {
+        std::istringstream inputSim("7\n0981234567\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        tbMenu.showMenu();
+
+        TEST_ASSERT(tbRepo.findById("0981234567") != nullptr,
+                    "Khong duoc xoa thue bao dang duoc gan IMEI");
+        TEST_ASSERT(imeiRepo.findById("359876543210983") != nullptr &&
+                        imeiRepo.findById("359876543210983")->getSoDienThoai() == "0981234567",
+                    "IMEI phai giu nguyen lien ket khi tu choi xoa thue bao");
+        TEST_ASSERT(outputCapture.str().find("Khong the xoa thue bao") != std::string::npos,
+                    "Menu phai bao loi khi thue bao con IMEI dang gan");
     }
 
     //test tu choi ma kh
@@ -1058,6 +1137,7 @@ void testNewRepositoriesAndMenus() {
     std::remove(GC_TEST_FILE.c_str());
     std::remove(TB_TEST_FILE.c_str());
     std::remove(KH_TEST_FILE.c_str());
+    std::remove(IMEI_TEST_FILE.c_str());
 }
 
 void testCDRAndKhieuNaiModels() {
@@ -1081,6 +1161,20 @@ void testCDRAndKhieuNaiModels() {
     CDR parsedCdr;
     TEST_ASSERT(parsedCdr.fromFileString(cdrStr), "fromFileString CDR phai thanh cong");
     TEST_ASSERT(parsedCdr.getCuocPhatSinh() == 2000.0, "Parsed cuoc phat sinh phai khop");
+
+    const std::vector<std::string> invalidCdrRows = {
+        cdrStr + "|extra",
+        "CDR0002|0981234567|0912345678|Khac|15/01/2024 08:30:00|120|2000",
+        "CDR0003|012345|0912345678|Thoai|15/01/2024 08:30:00|120|2000",
+        "CDR0004|0981234567|0912345678|Thoai|31/02/2024 08:30:00|120|2000",
+        "CDR0005|0981234567|0912345678|Thoai|15/01/2024 08:30:00|120|nan",
+        "CDR0006|0981234567|0912345678|Data|15/01/2024 08:30:00|120|2000"
+    };
+    for (const auto& invalidRow : invalidCdrRows) {
+        CDR rejected;
+        TEST_ASSERT(!rejected.fromFileString(invalidRow),
+                    "fromFileString CDR phai tu choi dong du lieu khong hop le");
+    }
 
     bool threwCdrDuration = false;
     try {
@@ -1236,7 +1330,11 @@ void testRemainingMenuControllers() {
 
         khMenu.showMenu();
 
-        TEST_ASSERT(khRepo.findById("KH0002") != nullptr, "KhachHangMenu phai them duoc KH0002");
+            TEST_ASSERT(khRepo.findById("KH0002") != nullptr, "KhachHangMenu phai them duoc KH0002");
+        std::string out = outputCapture.str();
+        TEST_ASSERT(out.find("[3] Tra cuu khach hang") < out.find("[4] Cap nhat thong tin khach hang") &&
+                        out.find("[7] Sap xep khach hang theo Ma KH") < out.find("[0] Quay lai menu chinh"),
+                    "KhachHangMenu phai hien thi cac tuy chon theo thu tu so");
     }
 
     // 1a. Test KhachHangMenu: tim kiem ma KH khong phan biet hoa thuong
@@ -1291,6 +1389,10 @@ void testRemainingMenuControllers() {
         ntMenu.showMenu();
 
         TEST_ASSERT(ntRepo.findById("GD0001") != nullptr, "NapTienMenu phai luu duoc phieu nap tien GD0001");
+        std::string out = outputCapture.str();
+        TEST_ASSERT(out.find("[3] Tra cuu lich su nap tien") < out.find("[4] Ghi nhan ban ghi cuoc goi") &&
+                        out.find("[6] Sap xep phieu nap / CDR") < out.find("[0] Quay lai menu chinh"),
+                    "NapTienMenu phai hien thi cac tuy chon theo thu tu so");
         ThueBao* updatedTb = tbRepo.findById("0981234567");
         TEST_ASSERT(updatedTb != nullptr && updatedTb->getSoDuTaiKhoan() == 150000.0, "So du thue bao phai duoc cong them 50000 (100k -> 150k)");
     }
@@ -1304,6 +1406,10 @@ void testRemainingMenuControllers() {
 
         hdMenu.showMenu();
 
+        std::string out = outputCapture.str();
+        TEST_ASSERT(out.find("[4] Tra cuu hoa don theo so dien thoai") < out.find("[5] Tiep nhan phieu") &&
+                        out.find("[8] Sap xep hoa don / khieu nai") < out.find("[0] Quay lai menu chinh"),
+                    "HoaDonMenu phai hien thi cac tuy chon theo thu tu so");
         HoaDon* inv = hoaDonRepo.findById("HD01");
         TEST_ASSERT(inv != nullptr, "HoaDonMenu phai lap duoc hoa don HD01");
         if (inv) {
@@ -1322,6 +1428,27 @@ void testRemainingMenuControllers() {
     std::remove(INV_TEST_FILE.c_str());
     std::remove(KN_TEST_FILE.c_str());
     std::remove(IMEI_TEST_FILE.c_str());
+}
+
+void testCanonicalFixtureCounts() {
+    std::cout << "[RUN] Kiem tra so luong fixture du lieu chuan...\n";
+
+    Repository<ThietBiIMEI> imeiStore("data/imei.txt");
+    Repository<NapTien> napTienStore("data/naptien.txt");
+    Repository<CDR> cdrStore("data/ghicuocgoi.txt");
+    Repository<HoaDon> hoaDonStore("data/hoadon.txt");
+    Repository<KhieuNai> khieuNaiStore("data/khieunai.txt");
+
+    TEST_ASSERT(imeiStore.loadFromFile() && imeiStore.size() == 10,
+                "Fixture IMEI phai nap du 10 ban ghi hop le");
+    TEST_ASSERT(napTienStore.loadFromFile() && napTienStore.size() == 10,
+                "Fixture nap tien phai nap du 10 ban ghi hop le");
+    TEST_ASSERT(cdrStore.loadFromFile() && cdrStore.size() == 10,
+                "Fixture CDR phai nap du 10 ban ghi hop le");
+    TEST_ASSERT(hoaDonStore.loadFromFile() && hoaDonStore.size() == 10,
+                "Fixture hoa don phai nap du 10 ban ghi hop le");
+    TEST_ASSERT(khieuNaiStore.loadFromFile() && khieuNaiStore.size() == 10,
+                "Fixture khieu nai phai nap du 10 ban ghi hop le");
 }
 
 int main() {
@@ -1349,6 +1476,7 @@ int main() {
     testCDRAndKhieuNaiModels();
     testBTSRegistry();
     testRemainingMenuControllers();
+    testCanonicalFixtureCounts();
 
     std::cout << "========================================================\n";
     std::cout << "Ket qua kiem thu: "

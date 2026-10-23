@@ -117,6 +117,21 @@ void KhachHangMenu::timKiemKhachHang() {
     }
 }
 
+//sap xep danh sach khach hang theo ma
+void KhachHangMenu::sapXepDanhSach() {
+    std::cout << "\n--- SAP XEP DANH SACH KHACH HANG ---\n"
+              << "  [" << SORT_BY_ID_ASC << "] Ma khach hang tang dan\n"
+              << "  [" << SORT_BY_ID_DESC << "] Ma khach hang giam dan\n";
+    int choice = InputHelper::getInt("Nhap kieu sap xep [1-2]: ", SORT_BY_ID_ASC, SORT_BY_ID_DESC);
+    try {
+        store.sortById(choice == SORT_BY_ID_ASC);
+        std::cout << "[THANH CONG] Da sap xep va luu danh sach khach hang.\n";
+    } catch (const std::exception& e) {
+        std::cout << "[LOI] Khong the luu thu tu sap xep: " << e.what() << "\n";
+    }
+    xemDanhSach();
+}
+
 //cap nhat thong tin khach hang
 void KhachHangMenu::capNhatKhachHang() {
     std::cout << "\n--- CAP NHAT THONG TIN KHACH HANG ---\n";
@@ -233,10 +248,11 @@ void KhachHangMenu::showMenu() {
                   << "  [" << MENU_UPDATE << "] Cap nhat thong tin khach hang\n"
                   << "  [" << MENU_DELETE << "] Xoa khach hang (co kiem tra khoa ngoai)\n"
                   << "  [" << MENU_VIEW_SIMS << "] Tra cuu danh sach SIM / Thue bao cua khach hang\n"
+                  << "  [" << MENU_SORT << "] Sap xep khach hang theo Ma KH\n"
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
                   << "====================================================================\n";
 
-        int choice = InputHelper::getInt("Nhap lua chon [0-6]: ", MENU_BACK, MENU_VIEW_SIMS);
+        int choice = InputHelper::getInt("Nhap lua chon [0-7]: ", MENU_BACK, MENU_SORT);
         if (choice == MENU_BACK || std::cin.eof()) {
             break;
         }
@@ -250,6 +266,9 @@ void KhachHangMenu::showMenu() {
                 break;
             case MENU_SEARCH:
                 timKiemKhachHang();
+                break;
+            case MENU_SORT:
+                sapXepDanhSach();
                 break;
             case MENU_UPDATE:
                 capNhatKhachHang();
