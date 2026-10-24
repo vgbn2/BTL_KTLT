@@ -38,7 +38,7 @@ KhachHang::KhachHang(
     noiCap(noiC),
     soDienThoai(sdt),
     diaChi(dc) {
-    if (id.empty() || hoTen.empty() || loaiGiayTo.empty() || soGiayTo.empty() ||
+    if (id.empty() || !Normalized::isValidName(hoTen) || loaiGiayTo.empty() || soGiayTo.empty() ||
         ngayCap.empty() || noiCap.empty() || soDienThoai.empty() || diaChi.empty()) {
         throw AppException("Loi: Thong tin bat buoc cua khach hang khong hop le!");
     }
@@ -56,6 +56,9 @@ KhachHang::KhachHang(
 
 //cap nhat ho ten khach hang
 void KhachHang::setHoTen(const std::string& value) {
+    if (!Normalized::isValidName(value)) {
+        throw AppException("Loi: Ho ten khong duoc rong hoac qua 50 ky tu!");
+    }
     hoTen = value;
 }
 
@@ -150,6 +153,7 @@ bool KhachHang::fromFileString(const std::string& line) {
     }
 
     try {
+        //tao ban ghi tam da kiem tra de dong sai khong ghi de mot phan doi tuong hien tai.
         //doc va kiem tra thong tin khach hang,chan du thua
         KhachHang parsed(
             tokens[0],

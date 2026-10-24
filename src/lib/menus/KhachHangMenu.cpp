@@ -22,7 +22,7 @@ void KhachHangMenu::themKhachHang() {
         return;
     }
 
-    std::string hoTen = InputHelper::getString("Nhap ho va ten: ");
+    std::string hoTen = InputHelper::getName("Nhap ho va ten: ");
     if (std::cin.eof() || hoTen.empty()) return;
     hoTen = Normalized::NormalizedName(hoTen);
 
@@ -46,8 +46,8 @@ void KhachHangMenu::themKhachHang() {
     std::string noiCap = InputHelper::getString("Nhap noi cap (VD: Cuc C06): ");
     if (std::cin.eof() || noiCap.empty()) return;
 
-    std::string sdt = InputHelper::getPhoneNumber("Nhap so dien thoai lien he: ", false);
-    if (std::cin.eof() || sdt.empty()) return;
+    std::string sdt = InputHelper::getPhoneNumber("Nhap so dien thoai lien he (bo trong neu chua co): ", true);
+    if (std::cin.eof()) return;
 
     std::string diaChi = InputHelper::getString("Nhap dia chi thuong tru: ");
     if (std::cin.eof() || diaChi.empty()) return;
@@ -147,7 +147,7 @@ void KhachHangMenu::capNhatKhachHang() {
     kh->displayDetail();
     KhachHang updated = *kh;
 
-    std::string hoTenMoi = InputHelper::getString("Nhap ho ten moi (bo trong de giu nguyen): ", true);
+    std::string hoTenMoi = InputHelper::getName("Nhap ho ten moi (bo trong de giu nguyen): ", true);
     if (std::cin.eof()) return;
     if (!hoTenMoi.empty()) updated.setHoTen(Normalized::NormalizedName(hoTenMoi));
 

@@ -3,6 +3,7 @@
 #include "Normalized.h"
 #include <fstream>
 #include <sstream>
+#include <iostream>
 
 //tao danh ba tram tu tep mac dinh
 BTSRegistry::BTSRegistry() {
@@ -18,37 +19,50 @@ BTSRegistry::BTSRegistry(const std::string& filePath) {
 bool BTSRegistry::LoadFromFile(const std::string& filePath) {
     std::ifstream file(filePath);
     if (!file.is_open()) {
+        //giu nguyen towers cu khi khong mo duoc tep; khong xoa du lieu hien co.
         return false;
     }
 
-    towers.clear();
+    std::vector<BTSRecord> loadedTowers;
     std::string line;
+    int lineNum = 0;
     while (std::getline(file, line)) {
+        ++lineNum;
         line = Normalized::trim(line);
-        if (line.empty() || line[0] == '#') {
-            continue;
-        }
+        if (line.empty() || line[0] == '#') continue;
 
         auto tokens = FileIO::split(line, '|');
-        if (tokens.size() >= 13) {
-            BTSRecord rec;
-            rec.btsId = tokens[0];
-            rec.ProvinceCode = tokens[5];
-            rec.district = tokens[6];
-            rec.ward = tokens[7];
-            rec.Adress = tokens[8];
-            rec.radiotech = tokens[11];
-            rec.carrier = tokens[12];
-            try {
-                rec.latitude = std::stod(tokens[9]);
-                rec.longtitude = std::stod(tokens[10]);
-            } catch (...) {
-                rec.latitude = 0.0;
-                rec.longtitude = 0.0;
-            }
-            towers.push_back(rec);
+        if (tokens.size() < 13) {
+            std::cerr << "[BTS] dong " << lineNum << " thieu truong, bo qua.\n";
+            continue;
         }
+        BTSRecord rec;
+        rec.btsId       = tokens[0];
+        rec.ProvinceCode = tokens[5];
+        rec.district    = tokens[6];
+        rec.ward        = tokens[7];
+        rec.Adress      = tokens[8];
+        rec.radiotech   = tokens[11];
+        rec.carrier     = tokens[12];
+        try {
+            rec.latitude   = std::stod(tokens[9]);
+            rec.longtitude = std::stod(tokens[10]);
+        } catch (...) {
+            //toa do khong hop le: canh bao va bo qua dong nay, khong dung (0,0) gia.
+            std::cerr << "[BTS] dong " << lineNum << " toa do khong hop le, bo qua:\n"
+                      << "  btsId        : " << tokens[0] << "\n"
+                      << "  ProvinceCode : " << tokens[5] << "\n"
+                      << "  district     : " << tokens[6] << "\n"
+                      << "  ward         : " << tokens[7] << "\n"
+                      << "  Adress       : " << tokens[8] << "\n"
+                      << "  latitude     : " << tokens[9] << "\n"
+                      << "  longtitude   : " << tokens[10] << "\n";
+            continue;
+        }
+        loadedTowers.push_back(rec);
     }
+    //chi thay the towers sau khi doc xong toan bo tep thanh cong.
+    towers.swap(loadedTowers);
     return !towers.empty();
 }
 

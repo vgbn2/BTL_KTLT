@@ -1,3 +1,7 @@
+/**
+ * Terminal-device domain model: IMEI identity, SIM assignment, status, and BTS metadata.
+ * Validation and persistence stay in the model contract; menus only collect user choices.
+ */
 #ifndef IMEI_H
 #define IMEI_H
 
@@ -67,11 +71,12 @@ public:
 
     //cap nhat ma IMEI
     void setMaIMEI(const std::string& imei);
+    
     //cap nhat ten thiet bi
-    void setTenThietBi(const std::string& ten) { tenThietBi = ten; }
-    //cap nhat hang san xuat
-    void setHangSanXuat(const std::string& hang) { hangSanXuat = hang; }
-    //gan so dien thoai cho thiet bi
+    void setTenThietBi(const std::string& ten);
+    void setHangSanXuat(const std::string& hang);
+
+    
     void setSoDienThoai(const std::string& sdt) { ganSIM(sdt); }
     //cap nhat ngay kich hoat
     void setNgayKichHoat(const Date& d) { ngayKichHoat = d; }
@@ -83,6 +88,7 @@ public:
     bool isBlacklisted() const;
     //dat trang thai khoa hoac mo khoa
     void setBlacklist(bool lock);
+
     //gan so dien thoai cho thiet bi
     void ganSIM(const std::string& sdt);
     //go so dien thoai khoi thiet bi
@@ -92,9 +98,7 @@ public:
 
     //in tieu de danh sach thiet bi
     void displayHeader(std::ostream& os = std::cout) const override;
-    //in mot dong thiet bi
     void displayRow(std::ostream& os = std::cout) const override;
-    //in chi tiet thiet bi
     void displayDetail(std::ostream& os = std::cout) const override;
 
     //chuyen thiet bi thanh dong tep

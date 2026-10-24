@@ -1,3 +1,7 @@
+/**
+ *trien khai model thiet bi dau cuoi khai bao trong imei.h, gom kiem tra Luhn,
+ *chuyen trang thai SIM/BTS, hien thi console va tuan tu hoa tep phang bay truong.
+ */
 #include "imei.h"
 #include "Exceptions.h"
 #include "fileio.h"
@@ -35,8 +39,8 @@ ThietBiIMEI::ThietBiIMEI(const std::string& imei,
       ngayKichHoat(ngayKH),
       trangThai(tThai),
       tramBTSGanNhat(bts) {
-    if (id.empty() || tenThietBi.empty() || hangSanXuat.empty() ||
-        trangThai.empty() || tramBTSGanNhat.empty()) {
+    if (id.empty() || !Normalized::isValidName(tenThietBi) ||
+        !Normalized::isValidName(hangSanXuat) || trangThai.empty() || tramBTSGanNhat.empty()) {
         throw AppException("Loi: Thong tin thiet bi IMEI khong duoc de trong cac truong bat buoc!");
     }
     if (!validateLuhn(imei)) {
@@ -75,6 +79,21 @@ bool ThietBiIMEI::isBlacklisted() const {
 //dat trang thai khoa hoac mo khoa
 void ThietBiIMEI::setBlacklist(bool lock) {
     trangThai = lock ? STATUS_LOCKED : STATUS_ACTIVE;
+}
+
+//cap nhat ten thiet bi va hang san xuat
+void ThietBiIMEI::setTenThietBi(const std::string& ten) {
+    if (!Normalized::isValidName(ten)) {
+        throw AppException("Loi: Ten thiet bi khong duoc rong hoac qua 50 ky tu!");
+    }
+    tenThietBi = ten;
+}
+
+void ThietBiIMEI::setHangSanXuat(const std::string& hang) {
+    if (!Normalized::isValidName(hang)) {
+        throw AppException("Loi: Hang san xuat khong duoc rong hoac qua 50 ky tu!");
+    }
+    hangSanXuat = hang;
 }
 
 //cap nhat trang thai thiet bi
@@ -156,6 +175,7 @@ bool ThietBiIMEI::fromFileString(const std::string& line) {
     }
 
     try {
+        //kiem tra ngay,ma IMEI,sentinel so dien thoai va trang thai truoc khi gan.
         ThietBiIMEI parsed(
             tokens[0],
             tokens[1],
