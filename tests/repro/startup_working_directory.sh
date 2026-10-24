@@ -12,4 +12,4 @@ cp "$source_data"/*.txt "$workdir/bin/data/"
 printf '0\n' | (cd "$workdir/launch" && "$workdir/bin/quanlythuebao" >"$workdir/output.txt" 2>"$workdir/error.txt")
 test ! -e "$workdir/launch/data"
 test ! -s "$workdir/error.txt"
-grep -q 'Da dong bo toan bo du lieu he thong thanh cong' "$workdir/output.txt"
+grep -q 'Da dong bo toan bo du lieu he thong' "$workdir/output.txt"

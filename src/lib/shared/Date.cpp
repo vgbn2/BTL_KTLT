@@ -91,8 +91,11 @@ bool Date::isValid(int d, int m, int y) {
     return d >= 1 && d <= daysInMonth(m, y);
 }
 
-//phan tich chuoi thanh ngay
+//phan tich chuoi thanh ngay (ho tro ca "now" de lay thoi gian hien tai)
 Date Date::parse(const std::string& str) {
+    if (str == "now" || str == "NOW" || str == "Now") {
+        return Date::now();
+    }
     int d = 0, m = 0, y = 0;
     char sep1 = 0, sep2 = 0;
     std::istringstream iss(str);

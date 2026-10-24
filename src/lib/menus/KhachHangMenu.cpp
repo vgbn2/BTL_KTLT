@@ -9,7 +9,7 @@ using namespace KhachHangMenuChoices;
 
 //them khach hang moi va xac thuc thong tin
 void KhachHangMenu::themKhachHang() {
-    std::cout << "\n--- THEM KHACH HANG MOI (DANG KY THONG TIN EKYC) ---\n";
+    std::cout << "\n>>> THEM KHACH HANG MOI (DANG KY THONG TIN EKYC) <<<\n";
     std::string maKH = InputHelper::getString("Nhap ma khach hang (KH0000001-KH9999999): ");
     if (std::cin.eof() || maKH.empty()) return;
     maKH = Normalized::NormalizedCustomerId(maKH);
@@ -34,10 +34,13 @@ void KhachHangMenu::themKhachHang() {
         return;
     }
 
-    std::string ngayCap = InputHelper::getString("Nhap ngay cap (DD/MM/YYYY): ");
-    if (std::cin.eof() || ngayCap.empty()) return;
+    std::string ngayCap = InputHelper::getString("Nhap ngay cap (DD/MM/YYYY, 'now' hoac '0' de huy): ");
+    if (ngayCap == "0" || std::cin.eof()) {
+        std::cout << "[DA HUY] Thao tac them khach hang da duoc huy bo.\n";
+        return;
+    }
     try {
-        Date::parse(ngayCap);
+        ngayCap = Date::parse(ngayCap).toString();
     } catch (const std::exception& e) {
         std::cout << "[LOI] Ngay cap khong hop le: " << e.what() << "\n";
         return;
@@ -55,17 +58,17 @@ void KhachHangMenu::themKhachHang() {
     try {
         KhachHang kh(maKH, hoTen, loaiGT, soGT, ngayCap, noiCap, sdt, diaChi);
         store.add(kh);
-        std::cout << "\n[THANH CONG] Da them khach hang " << hoTen << " (" << maKH << ") thanh cong!\n";
+        std::cout << "[THANH CONG] Da them khach hang " << hoTen << " (" << maKH << ") thanh cong!\n";
     } catch (const std::exception& e) {
-        std::cout << "\n[LOI] Khong the them khach hang: " << e.what() << "\n";
+        std::cout << "[LOI] Khong the them khach hang: " << e.what() << "\n";
     }
 }
 
 //hien thi danh sach khach hang
 void KhachHangMenu::xemDanhSach() {
-    std::cout << "\n--- DANH SACH KHACH HANG (KYC PROFILE) ---\n";
+    std::cout << "\n>>> DANH SACH KHACH HANG (KYC PROFILE) <<<\n";
     if (store.empty()) {
-        std::cout << "Chua co khach hang nao trong he thong.\n";
+        std::cout << "[THONG BAO] Danh sach khach hang hien dang trong!\n";
         return;
     }
     DisplayHelper::printTable(store.getAll());
@@ -74,7 +77,7 @@ void KhachHangMenu::xemDanhSach() {
 
 //tim kiem khach hang theo dieu kien
 void KhachHangMenu::timKiemKhachHang() {
-    std::cout << "\n--- TIM KIEM KHACH HANG ---\n"
+    std::cout << "\n>>> TIM KIEM KHACH HANG <<<\n"
               << "  [" << SEARCH_BY_ID << "] Tim theo Ma khach hang\n"
               << "  [" << SEARCH_BY_CCCD << "] Tim theo So CCCD\n"
               << "  [" << SEARCH_BY_NAME << "] Tim theo Ho ten\n"
@@ -119,10 +122,12 @@ void KhachHangMenu::timKiemKhachHang() {
 
 //sap xep danh sach khach hang theo ma
 void KhachHangMenu::sapXepDanhSach() {
-    std::cout << "\n--- SAP XEP DANH SACH KHACH HANG ---\n"
+    std::cout << "\n>>> SAP XEP DANH SACH KHACH HANG <<<\n"
               << "  [" << SORT_BY_ID_ASC << "] Ma khach hang tang dan\n"
-              << "  [" << SORT_BY_ID_DESC << "] Ma khach hang giam dan\n";
-    int choice = InputHelper::getInt("Nhap kieu sap xep [1-2]: ", SORT_BY_ID_ASC, SORT_BY_ID_DESC);
+              << "  [" << SORT_BY_ID_DESC << "] Ma khach hang giam dan\n"
+              << "  [0] Quay lai\n";
+    int choice = InputHelper::getInt("Nhap lua chon [0-2]: ", 0, SORT_BY_ID_DESC);
+    if (choice == 0) return;
     try {
         store.sortById(choice == SORT_BY_ID_ASC);
         std::cout << "[THANH CONG] Da sap xep va luu danh sach khach hang.\n";
@@ -134,7 +139,7 @@ void KhachHangMenu::sapXepDanhSach() {
 
 //cap nhat thong tin khach hang
 void KhachHangMenu::capNhatKhachHang() {
-    std::cout << "\n--- CAP NHAT THONG TIN KHACH HANG ---\n";
+    std::cout << "\n>>> CAP NHAT THONG TIN KHACH HANG <<<\n";
     std::string maKH = InputHelper::getString("Nhap ma khach hang can sua: ");
     if (std::cin.eof()) return;
     maKH = Normalized::NormalizedCustomerId(maKH);
@@ -161,15 +166,15 @@ void KhachHangMenu::capNhatKhachHang() {
 
     try {
         store.update(maKH, updated);
-        std::cout << "\n[THANH CONG] Da cap nhat thong tin khach hang " << maKH << "!\n";
+        std::cout << "[THANH CONG] Da cap nhat thong tin khach hang " << maKH << "!\n";
     } catch (const std::exception& e) {
-        std::cout << "\n[LOI] Khong the cap nhat: " << e.what() << "\n";
+        std::cout << "[LOI] Khong the cap nhat: " << e.what() << "\n";
     }
 }
 
 //xoa khach hang va kiem tra khoa ngoai
 void KhachHangMenu::xoaKhachHang() {
-    std::cout << "\n--- XOA KHACH HANG KHOI HE THONG ---\n";
+    std::cout << "\n>>> XOA KHACH HANG KHOI HE THONG <<<\n";
     std::string maKH = InputHelper::getString("Nhap ma khach hang can xoa: ");
     if (std::cin.eof()) return;
     maKH = Normalized::NormalizedCustomerId(maKH);
@@ -202,18 +207,18 @@ void KhachHangMenu::xoaKhachHang() {
     if (InputHelper::getConfirm("Ban co chac chan muon xoa khach hang nay khoi he thong?")) {
         try {
             store.remove(maKH);
-            std::cout << "\n[THANH CONG] Da xoa khach hang " << maKH << " thanh cong!\n";
+            std::cout << "[THANH CONG] Da xoa khach hang " << maKH << " thanh cong!\n";
         } catch (const std::exception& e) {
-            std::cout << "\n[LOI] Khong the xoa: " << e.what() << "\n";
+            std::cout << "[LOI] Khong the xoa: " << e.what() << "\n";
         }
     } else {
-        std::cout << "Da huy thao tac xoa.\n";
+        std::cout << "[DA HUY] Thao tac xoa da duoc huy bo.\n";
     }
 }
 
 //hien thi danh sach SIM cua khach hang
 void KhachHangMenu::xemDanhSachSIM() {
-    std::cout << "\n--- TRA CUU DANH SACH SIM / THUE BAO CHINH CHU ---\n";
+    std::cout << "\n>>> TRA CUU DANH SACH SIM / THUE BAO CHINH CHU <<<\n";
     std::string maKH = InputHelper::getString("Nhap ma khach hang: ");
     if (std::cin.eof()) return;
     maKH = Normalized::NormalizedCustomerId(maKH);
@@ -252,7 +257,7 @@ void KhachHangMenu::showMenu() {
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
                   << "====================================================================\n";
 
-        int choice = InputHelper::getInt("Nhap lua chon [0-7]: ", MENU_BACK, MENU_SORT);
+        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-7]: ", MENU_BACK, MENU_SORT);
         if (choice == MENU_BACK || std::cin.eof()) {
             break;
         }
@@ -267,9 +272,6 @@ void KhachHangMenu::showMenu() {
             case MENU_SEARCH:
                 timKiemKhachHang();
                 break;
-            case MENU_SORT:
-                sapXepDanhSach();
-                break;
             case MENU_UPDATE:
                 capNhatKhachHang();
                 break;
@@ -278,6 +280,9 @@ void KhachHangMenu::showMenu() {
                 break;
             case MENU_VIEW_SIMS:
                 xemDanhSachSIM();
+                break;
+            case MENU_SORT:
+                sapXepDanhSach();
                 break;
             default:
                 break;

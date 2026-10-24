@@ -116,7 +116,7 @@ int main(int argc, char* argv[]) {
                 napTienStore.saveToFile();
                 ghicuocgoiStore.saveToFile();
                 khieuNaiStore.saveToFile();
-                std::cout << "\n[Luu du lieu] Da dong bo toan bo du lieu he thong thanh cong.\n";
+                std::cout << "\n[THANH CONG] Da dong bo toan bo du lieu he thong.\n";
             } catch (const std::exception& e) {
                 std::cerr << "\n[CANH BAO] Khong the luu du lieu khi thoat: " << e.what() << "\n";
             }
