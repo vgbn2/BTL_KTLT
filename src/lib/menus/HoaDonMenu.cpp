@@ -39,7 +39,7 @@ int HoaDonMenu::kiemTraNo(const Date& ngay) {
 
 //lap hoa don cuoc phat sinh
 void HoaDonMenu::lapHoaDon() {
-    std::cout << "\n--- LAP HOA DON CUOC PHAT SINH TRONG THANG ---\n";
+    std::cout << "\n>>> LAP HOA DON CUOC PHAT SINH TRONG THANG <<<\n";
     std::string maHD = InputHelper::getString("Nhap ma hoa don (VD: HD11): ");
     if (std::cin.eof() || maHD.empty()) return;
     if (hoaDonStore.findById(maHD) != nullptr) {
@@ -89,17 +89,17 @@ void HoaDonMenu::lapHoaDon() {
     try {
         HoaDon hd(maHD, sdt, kyCuoc, tienGoi, tienData, tongTien, HoaDonConstants::STATUS_UNPAID);
         hoaDonStore.add(hd);
-        std::cout << "\n[THANH CONG] Da lap hoa don " << maHD << " thanh cong!\n";
+        std::cout << "[THANH CONG] Da lap hoa don " << maHD << " thanh cong!\n";
     } catch (const std::exception& e) {
-        std::cout << "\n[LOI] Khong the lap hoa don: " << e.what() << "\n";
+        std::cout << "[LOI] Khong the lap hoa don: " << e.what() << "\n";
     }
 }
 
 //hien thi danh sach hoa don
 void HoaDonMenu::xemDanhSachHoaDon() {
-    std::cout << "\n--- DANH SACH HOA DON CUOC ---\n";
+    std::cout << "\n>>> DANH SACH HOA DON CUOC <<<\n";
     if (hoaDonStore.empty()) {
-        std::cout << "Chua co hoa don nao trong he thong.\n";
+        std::cout << "[THONG BAO] Danh sach hoa don hien dang trong!\n";
         return;
     }
     DisplayHelper::printTable(hoaDonStore.getAll());
@@ -108,7 +108,7 @@ void HoaDonMenu::xemDanhSachHoaDon() {
 
 //thanh toan hoa don
 void HoaDonMenu::thanhToanHoaDon() {
-    std::cout << "\n--- THANH TOAN HOA DON CUOC ---\n";
+    std::cout << "\n>>> THANH TOAN HOA DON CUOC <<<\n";
     std::string maHD = InputHelper::getString("Nhap ma hoa don can thanh toan: ");
     if (std::cin.eof() || maHD.empty()) return;
     HoaDon* hd = hoaDonStore.findById(maHD);
@@ -134,18 +134,18 @@ void HoaDonMenu::thanhToanHoaDon() {
                 tb->setTrangThai(ThueBaoConstants::STATUS_ACTIVE);
                 thueBaoStore.saveToFile();
             }
-            std::cout << "\n[THANH CONG] Da thanh toan hoa don " << maHD << " thanh cong!\n";
+            std::cout << "[THANH CONG] Da thanh toan hoa don " << maHD << " thanh cong!\n";
         } catch (const std::exception& e) {
-            std::cout << "\n[LOI] Khong the cap nhat trang thai thanh toan: " << e.what() << "\n";
+            std::cout << "[LOI] Khong the cap nhat trang thai thanh toan: " << e.what() << "\n";
         }
     } else {
-        std::cout << "Da huy thao tac thanh toan.\n";
+        std::cout << "[DA HUY] Thao tac thanh toan da duoc huy bo.\n";
     }
 }
 
 //tra cuu hoa don theo so dien thoai
 void HoaDonMenu::traCuuTheoSoDienThoai() {
-    std::cout << "\n--- TRA CUU HOA DON THEO SO THUE BAO ---\n";
+    std::cout << "\n>>> TRA CUU HOA DON THEO SO THUE BAO <<<\n";
     std::string sdt = InputHelper::getPhoneNumber("Nhap so dien thoai: ", false);
     if (std::cin.eof() || sdt.empty()) return;
 
@@ -163,12 +163,14 @@ void HoaDonMenu::traCuuTheoSoDienThoai() {
 
 //sap xep hoa don hoac khieu nai theo ma
 void HoaDonMenu::sapXepDanhSach() {
-    std::cout << "\n--- SAP XEP HOA DON / KHIEU NAI ---\n"
+    std::cout << "\n>>> SAP XEP HOA DON / KHIEU NAI <<<\n"
               << "  [" << SORT_INVOICE_ID_ASC << "] Ma hoa don tang dan\n"
               << "  [" << SORT_INVOICE_ID_DESC << "] Ma hoa don giam dan\n"
               << "  [" << SORT_COMPLAINT_ID_ASC << "] Ma khieu nai tang dan\n"
-              << "  [" << SORT_COMPLAINT_ID_DESC << "] Ma khieu nai giam dan\n";
-    int choice = InputHelper::getInt("Nhap kieu sap xep [1-4]: ", SORT_INVOICE_ID_ASC, SORT_COMPLAINT_ID_DESC);
+              << "  [" << SORT_COMPLAINT_ID_DESC << "] Ma khieu nai giam dan\n"
+              << "  [0] Quay lai\n";
+    int choice = InputHelper::getInt("Nhap lua chon [0-4]: ", 0, SORT_COMPLAINT_ID_DESC);
+    if (choice == 0) return;
     try {
         if (choice == SORT_INVOICE_ID_ASC || choice == SORT_INVOICE_ID_DESC) {
             hoaDonStore.sortById(choice == SORT_INVOICE_ID_ASC);
@@ -188,11 +190,11 @@ void HoaDonMenu::sapXepDanhSach() {
 
 //tiep nhan phieu khieu nai
 void HoaDonMenu::tiepNhanKhieuNai() {
-    std::cout << "\n--- TIEP NHAN PHIEU KHIEU NAI / TRA SOAT CUOC ---\n";
-    std::string maKN = InputHelper::getString("Nhap ma phieu khiieu nai (VD: KN0001): ");
+    std::cout << "\n>>> TIEP NHAN PHIEU KHIEU NAI / TRA SOAT CUOC <<<\n";
+    std::string maKN = InputHelper::getString("Nhap ma phieu khieu nai (VD: KN0001): ");
     if (std::cin.eof() || maKN.empty()) return;
     if (khieuNaiStore.findById(maKN) != nullptr) {
-        std::cout << "[CANH BAO] Ma phieu khiieu nai da ton tai!\n";
+        std::cout << "[CANH BAO] Ma phieu khieu nai da ton tai!\n";
         return;
     }
 
@@ -203,7 +205,7 @@ void HoaDonMenu::tiepNhanKhieuNai() {
         return;
     }
 
-    std::cout << "Chon loai khiieu nai:\n"
+    std::cout << "Chon loai khieu nai:\n"
               << "  [1] " << KhieuNaiConstants::TYPE_BILLING << " (Cuoc phat sinh bat thuong)\n"
               << "  [2] " << KhieuNaiConstants::TYPE_NETWORK << " (Chat luong mang/song kem)\n"
               << "  [3] " << KhieuNaiConstants::TYPE_CARD << " (Loi the cao/nap tien)\n"
@@ -215,10 +217,13 @@ void HoaDonMenu::tiepNhanKhieuNai() {
                        : (typeChoice == 3) ? KhieuNaiConstants::TYPE_CARD
                                            : KhieuNaiConstants::TYPE_SERVICE;
 
-    std::string ngayGui = InputHelper::getString("Nhap ngay tiep nhan (DD/MM/YYYY): ");
-    if (std::cin.eof() || ngayGui.empty()) return;
+    std::string ngayGui = InputHelper::getString("Nhap ngay tiep nhan (DD/MM/YYYY, 'now' hoac '0' de huy): ");
+    if (ngayGui == "0" || std::cin.eof()) {
+        std::cout << "[DA HUY] Thao tac tiep nhan khieu nai da duoc huy bo.\n";
+        return;
+    }
     try {
-        Date::parse(ngayGui);
+        ngayGui = Date::parse(ngayGui).toString();
     } catch (const std::exception& e) {
         std::cout << "[LOI] " << e.what() << "\n";
         return;
@@ -230,20 +235,20 @@ void HoaDonMenu::tiepNhanKhieuNai() {
     try {
         KhieuNai kn(maKN, sdt, loaiKN, ngayGui, noiDung, KhieuNaiConstants::STATUS_RECEIVED);
         khieuNaiStore.add(kn);
-        std::cout << "\n[THANH CONG] Da tiep nhan phieu khiieu nai " << maKN << " vao he thong!\n";
+        std::cout << "[THANH CONG] Da tiep nhan phieu khieu nai " << maKN << " vao he thong!\n";
     } catch (const std::exception& e) {
-        std::cout << "\n[LOI] Khong the luu phieu khiieu nai: " << e.what() << "\n";
+        std::cout << "[LOI] Khong the luu phieu khieu nai: " << e.what() << "\n";
     }
 }
 
 //xu ly phieu khieu nai
 void HoaDonMenu::xuLyKhieuNai() {
-    std::cout << "\n--- XU LY / TRA SOAT PHIEU KHIEU NAI ---\n";
-    std::string maKN = InputHelper::getString("Nhap ma phieu khiieu nai can xu ly: ");
+    std::cout << "\n>>> XU LY / TRA SOAT PHIEU KHIEU NAI <<<\n";
+    std::string maKN = InputHelper::getString("Nhap ma phieu khieu nai can xu ly: ");
     if (std::cin.eof() || maKN.empty()) return;
     KhieuNai* kn = khieuNaiStore.findById(maKN);
     if (kn == nullptr) {
-        std::cout << "[CANH BAO] Khong tim thay phieu khiieu nai: " << maKN << "\n";
+        std::cout << "[CANH BAO] Khong tim thay phieu khieu nai: " << maKN << "\n";
         return;
     }
 
@@ -262,21 +267,21 @@ void HoaDonMenu::xuLyKhieuNai() {
     updated.setTrangThai(newStatus);
     try {
         khieuNaiStore.update(maKN, updated);
-        std::cout << "\n[THANH CONG] Da cap nhat trang thai phieu khiieu nai thanh: " << newStatus << "!\n";
+        std::cout << "[THANH CONG] Da cap nhat trang thai phieu khieu nai thanh: " << newStatus << "!\n";
     } catch (const std::exception& e) {
-        std::cout << "\n[LOI] Khong the cap nhat: " << e.what() << "\n";
+        std::cout << "[LOI] Khong the cap nhat: " << e.what() << "\n";
     }
 }
 
 //hien thi danh sach khieu nai
 void HoaDonMenu::xemDanhSachKhieuNai() {
-    std::cout << "\n--- DANH SACH PHIEU KHIEU NAI / TRA SOAT ---\n";
+    std::cout << "\n>>> DANH SACH PHIEU KHIEU NAI / TRA SOAT <<<\n";
     if (khieuNaiStore.empty()) {
-        std::cout << "Chua co phieu khiieu nai nao trong he thong.\n";
+        std::cout << "[THONG BAO] Danh sach phieu khieu nai hien dang trong!\n";
         return;
     }
     DisplayHelper::printTable(khieuNaiStore.getAll());
-    std::cout << "Tong so: " << khieuNaiStore.size() << " phieu khiieu nai.\n";
+    std::cout << "Tong so: " << khieuNaiStore.size() << " phieu khieu nai.\n";
 }
 
 //hien thi menu quan ly hoa don va khieu nai
@@ -289,14 +294,14 @@ void HoaDonMenu::showMenu() {
                   << "  [" << MENU_LIST_INVOICES << "] Xem danh sach tat ca hoa don\n"
                   << "  [" << MENU_PAY_INVOICE << "] Thanh toan hoa don cuoc\n"
                   << "  [" << MENU_SEARCH_BY_PHONE << "] Tra cuu hoa don theo so dien thoai\n"
-                  << "  [" << MENU_ADD_COMPLAINT << "] Tiep nhan phieu khiieu nai / tra soat cuoc\n"
-                  << "  [" << MENU_PROCESS_COMPLAINT << "] Xu ly / Cap nhat trang thai khiieu nai\n"
-                  << "  [" << MENU_LIST_COMPLAINTS << "] Xem danh sach phieu khiieu nai\n"
+                  << "  [" << MENU_ADD_COMPLAINT << "] Tiep nhan phieu khieu nai / tra soat cuoc\n"
+                  << "  [" << MENU_PROCESS_COMPLAINT << "] Xu ly / Cap nhat trang thai khieu nai\n"
+                  << "  [" << MENU_LIST_COMPLAINTS << "] Xem danh sach phieu khieu nai\n"
                   << "  [" << MENU_SORT << "] Sap xep hoa don / khieu nai theo ma\n"
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
                   << "====================================================================\n";
 
-        int choice = InputHelper::getInt("Nhap lua chon [0-8]: ", MENU_BACK, MENU_SORT);
+        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-8]: ", MENU_BACK, MENU_SORT);
         if (choice == MENU_BACK || std::cin.eof()) {
             break;
         }
@@ -314,9 +319,6 @@ void HoaDonMenu::showMenu() {
             case MENU_SEARCH_BY_PHONE:
                 traCuuTheoSoDienThoai();
                 break;
-            case MENU_SORT:
-                sapXepDanhSach();
-                break;
             case MENU_ADD_COMPLAINT:
                 tiepNhanKhieuNai();
                 break;
@@ -326,7 +328,10 @@ void HoaDonMenu::showMenu() {
             case MENU_LIST_COMPLAINTS:
                 xemDanhSachKhieuNai();
                 break;
-                default:
+            case MENU_SORT:
+                sapXepDanhSach();
+                break;
+            default:
                 break;
         }
     }

@@ -8,10 +8,10 @@ using namespace ThueBaoMenuChoices;
 
 //them thue bao moi va kiem tra lien ket
 void ThueBaoMenu::themThueBao() {
-    std::cout << "\n--- THEM THUE BAO MOI ---\n";
-    std::string sdt = InputHelper::getString("Nhap so dien thoai cap phat (bo trong neu chua co SIM): ", true);
+    std::cout << "\n>>> THEM THUE BAO MOI <<<\n";
+    std::string sdt = InputHelper::getString("Nhap so dien thoai cap phat (bo trong neu chua co SIM / ChuaGan): ", true);
     if (std::cin.eof()) return;
-    if (sdt.empty()) {
+    if (sdt.empty() || sdt == "ChuaGan") {
         sdt = "ChuaGan";
     } else {
         if (!Normalized::isValidPhoneNumber(sdt)) {
@@ -45,10 +45,13 @@ void ThueBaoMenu::themThueBao() {
         return;
     }
 
-    std::string ngayKH = InputHelper::getString("Nhap ngay kich hoat (DD/MM/YYYY): ");
-    if (std::cin.eof() || ngayKH.empty()) return;
+    std::string ngayKH = InputHelper::getString("Nhap ngay kich hoat (DD/MM/YYYY, 'now' hoac '0' de huy): ");
+    if (ngayKH == "0" || std::cin.eof()) {
+        std::cout << "[DA HUY] Thao tac them thue bao da duoc huy bo.\n";
+        return;
+    }
     try {
-        Date::parse(ngayKH);
+        ngayKH = Date::parse(ngayKH).toString();
     } catch (const std::exception& e) {
         std::cout << "[LOI] " << e.what() << "\n";
         return;
@@ -60,28 +63,26 @@ void ThueBaoMenu::themThueBao() {
     try {
         ThueBao tb(sdt, loaiTB, maKH, maGC, ngayKH, ThueBaoConstants::STATUS_ACTIVE, soDu);
         store.add(tb);
-        std::cout << "\n[THANH CONG] Da them thue bao moi thanh cong!\n";
+        std::cout << "[THANH CONG] Da them thue bao moi thanh cong!\n";
     } catch (const std::exception& e) {
-        std::cout << "\n[LOI] Khong the them thue bao: " << e.what() << "\n";
+        std::cout << "[LOI] Khong the them thue bao: " << e.what() << "\n";
     }
 }
 
 //hien thi danh sach thue bao
 void ThueBaoMenu::xemDanhSach() {
-    std::cout << "\n--- DANH SACH THUE BAO DI DONG ---\n";
+    std::cout << "\n>>> DANH SACH THUE BAO DI DONG <<<\n";
     if (store.empty()) {
-        std::cout << "Chua co thue bao nao trong he thong.\n";
+        std::cout << "[THONG BAO] Danh sach thue bao hien dang trong!\n";
         return;
     }
-    store.getAll()[0].displayHeader();
-    for (const auto& tb : store.getAll()) {
-        tb.displayRow();
-    }
+    DisplayHelper::printTable(store.getAll());
+    std::cout << "Tong so: " << store.size() << " thue bao.\n";
 }
 
 //tim kiem thue bao theo tu khoa
 void ThueBaoMenu::timKiemThueBao() {
-    std::cout << "\n--- TIM KIEM THUE BAO ---\n";
+    std::cout << "\n>>> TIM KIEM THUE BAO <<<\n";
     std::string keyword = InputHelper::getString("Nhap so dien thoai hoac ma khach hang can tim: ");
     std::string normKeyword = Normalized::toLower(Normalized::trim(keyword));
 
@@ -93,22 +94,22 @@ void ThueBaoMenu::timKiemThueBao() {
     });
 
     if (results.empty()) {
-        std::cout << "Khong tim thay thue bao phu hop.\n";
+        std::cout << "[THONG BAO] Khong tim thay thue bao phu hop.\n";
         return;
     }
 
-    results[0].displayHeader();
-    for (const auto& tb : results) {
-        tb.displayRow();
-    }
+    DisplayHelper::printTable(results);
+    std::cout << "Tim thay " << results.size() << " thue bao.\n";
 }
 
 //sap xep danh sach thue bao theo so dien thoai
 void ThueBaoMenu::sapXepDanhSach() {
-    std::cout << "\n--- SAP XEP DANH SACH THUE BAO ---\n"
+    std::cout << "\n>>> SAP XEP DANH SACH THUE BAO <<<\n"
               << "  [" << SORT_BY_ID_ASC << "] So dien thoai tang dan\n"
-              << "  [" << SORT_BY_ID_DESC << "] So dien thoai giam dan\n";
-    int choice = InputHelper::getInt("Nhap kieu sap xep [1-2]: ", SORT_BY_ID_ASC, SORT_BY_ID_DESC);
+              << "  [" << SORT_BY_ID_DESC << "] So dien thoai giam dan\n"
+              << "  [0] Quay lai\n";
+    int choice = InputHelper::getInt("Nhap lua chon [0-2]: ", 0, SORT_BY_ID_DESC);
+    if (choice == 0) return;
     try {
         store.sortById(choice == SORT_BY_ID_ASC);
         std::cout << "[THANH CONG] Da sap xep va luu danh sach thue bao.\n";
@@ -120,7 +121,7 @@ void ThueBaoMenu::sapXepDanhSach() {
 
 //dang ky goi cuoc cho thue bao
 void ThueBaoMenu::dangKyGoiCuoc() {
-    std::cout << "\n--- DANG KY / DOI GOI CUOC CHO THUE BAO ---\n";
+    std::cout << "\n>>> DANG KY / DOI GOI CUOC CHO THUE BAO <<<\n";
     std::string sdt = InputHelper::getString("Nhap so dien thoai thue bao: ");
     if (std::cin.eof()) return;
     ThueBao* tb = store.findById(sdt);
@@ -153,16 +154,16 @@ void ThueBaoMenu::dangKyGoiCuoc() {
     try {
         //luu ban sao,tranh sua truc tiep khi loi
         store.update(sdt, updated);
-        std::cout << "\n[THANH CONG] Dang ky goi cuoc " << gc->getTenGoi() << " (" << maGC
+        std::cout << "[THANH CONG] Dang ky goi cuoc " << gc->getTenGoi() << " (" << maGC
                   << ") cho thue bao " << sdt << " thanh cong!\n";
     } catch (const std::exception& e) {
-        std::cout << "\n[LOI] Khong the luu thay doi: " << e.what() << "\n";
+        std::cout << "[LOI] Khong the luu thay doi: " << e.what() << "\n";
     }
 }
 
 //cap nhat trang thai khoa mo chieu thue bao
 void ThueBaoMenu::khoaMoChieu() {
-    std::cout << "\n--- KHOA / MO CHIEU HOAT DONG THUE BAO ---\n";
+    std::cout << "\n>>> KHOA / MO CHIEU HOAT DONG THUE BAO <<<\n";
     std::string sdt = InputHelper::getString("Nhap so dien thoai: ");
     if (std::cin.eof()) return;
     ThueBao* tb = store.findById(sdt);
@@ -190,15 +191,15 @@ void ThueBaoMenu::khoaMoChieu() {
     updated.setTrangThai(newStatus);
     try {
         store.update(sdt, updated);
-        std::cout << "\n[THANH CONG] Da cap nhat trang thai thue bao thanh: " << newStatus << "\n";
+        std::cout << "[THANH CONG] Da cap nhat trang thai thue bao thanh: " << newStatus << "\n";
     } catch (const std::exception& e) {
-        std::cout << "\n[LOI] Khong the luu thay doi: " << e.what() << "\n";
+        std::cout << "[LOI] Khong the luu thay doi: " << e.what() << "\n";
     }
 }
 
 //nap tien vao tai khoan thue bao
 void ThueBaoMenu::napTien() {
-    std::cout << "\n--- NAP TIEN VAO TAI KHOAN THUE BAO ---\n";
+    std::cout << "\n>>> NAP TIEN VAO TAI KHOAN THUE BAO <<<\n";
     std::string sdt = InputHelper::getString("Nhap so dien thoai can nap: ");
     if (std::cin.eof()) return;
     ThueBao* tb = store.findById(sdt);
@@ -215,16 +216,16 @@ void ThueBaoMenu::napTien() {
 
     try {
         store.update(sdt, updated);
-        std::cout << "\n[THANH CONG] Da nap " << soTien << " VND thanh cong! So du moi: "
+        std::cout << "[THANH CONG] Da nap " << soTien << " VND thanh cong! So du moi: "
                   << updated.getSoDuTaiKhoan() << " VND\n";
     } catch (const std::exception& e) {
-        std::cout << "\n[LOI] Khong the luu thay doi: " << e.what() << "\n";
+        std::cout << "[LOI] Khong the luu thay doi: " << e.what() << "\n";
     }
 }
 
 //xoa thue bao khoi he thong
 void ThueBaoMenu::xoaThueBao() {
-    std::cout << "\n--- XOA THUE BAO ---\n";
+    std::cout << "\n>>> XOA THUE BAO KHOI HE THONG <<<\n";
     std::string sdt = InputHelper::getString("Nhap so dien thoai can xoa: ");
     if (std::cin.eof()) return;
     ThueBao* tb = store.findById(sdt);
@@ -243,15 +244,17 @@ void ThueBaoMenu::xoaThueBao() {
     }
 
     tb->displayDetail();
-    int confirm = InputHelper::getInt("Xac nhan xoa thue bao nay khoi he thong? (1: Co, 0: Khong): ", 0, 1);
+    bool confirm = InputHelper::getConfirm("Ban co chac chan muon xoa thue bao nay khoi he thong?");
     if (std::cin.eof()) return;
-    if (confirm == 1) {
+    if (confirm) {
         try {
             store.remove(sdt);
-            std::cout << "\n[THANH CONG] Da xoa thue bao khoi he thong!\n";
+            std::cout << "[THANH CONG] Da xoa thue bao " << sdt << " khoi he thong!\n";
         } catch (const std::exception& e) {
-            std::cout << "\n[LOI] Khong the xoa thue bao: " << e.what() << "\n";
+            std::cout << "[LOI] Khong the xoa thue bao: " << e.what() << "\n";
         }
+    } else {
+        std::cout << "[DA HUY] Thao tac xoa da duoc huy bo.\n";
     }
 }
 
@@ -272,7 +275,7 @@ void ThueBaoMenu::showMenu() {
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
                   << "====================================================================\n";
 
-        int choice = InputHelper::getInt("Nhap lua chon [0-8]: ", MENU_BACK, MENU_SORT);
+        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-8]: ", MENU_BACK, MENU_SORT);
         if (choice == MENU_BACK || std::cin.eof()) {
             break;
         }
@@ -287,9 +290,6 @@ void ThueBaoMenu::showMenu() {
             case MENU_SEARCH:
                 timKiemThueBao();
                 break;
-            case MENU_SORT:
-                sapXepDanhSach();
-                break;
             case MENU_REGISTER_PACKAGE:
                 dangKyGoiCuoc();
                 break;
@@ -301,6 +301,9 @@ void ThueBaoMenu::showMenu() {
                 break;
             case MENU_DELETE:
                 xoaThueBao();
+                break;
+            case MENU_SORT:
+                sapXepDanhSach();
                 break;
             default:
                 break;
