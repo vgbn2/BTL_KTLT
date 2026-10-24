@@ -1,3 +1,9 @@
+/**
+ * @file KhachHangMenu.h
+ * Thanh vien phu trach: Trương Khánh (B24DCVT201)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #ifndef KHACHHANG_MENU_H
 #define KHACHHANG_MENU_H
 

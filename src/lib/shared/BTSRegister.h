@@ -1,3 +1,11 @@
+/**
+ * @file BTSRegister.h
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ * luu y cho rieng file nay, file nay la gimmick/thi nghiem ko that su 
+ * duoc su dung o trong menu 
+ */
+
 #ifndef BTSRegister_H
 #define BTSRegister_H
 #include <vector>

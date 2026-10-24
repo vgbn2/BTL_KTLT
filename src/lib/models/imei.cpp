@@ -1,4 +1,10 @@
 /**
+ * @file imei.cpp
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
+/**
  *trien khai model thiet bi dau cuoi khai bao trong imei.h, gom kiem tra Luhn,
  *chuyen trang thai SIM/BTS, hien thi console va tuan tu hoa tep phang bay truong.
  */
@@ -10,6 +16,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <random>
 #include <vector>
 
 using namespace IMEIConstants;
@@ -57,6 +64,28 @@ ThietBiIMEI::ThietBiIMEI(const std::string& imei,
 //kiem tra IMEI theo thuat toan luhn
 bool ThietBiIMEI::validateLuhn(const std::string& imeiStr) {
     return Normalized::isValidLuhn(imeiStr);
+}
+
+//sinh chuoi IMEI 15 chu so mo phong hop le theo thuat toan Luhn 3GPP
+//static_cast<char>(X) tuong duong (char)X trong C
+std::string ThietBiIMEI::generateSimulatedImei() {
+    std::random_device seed;
+    std::mt19937 generator(seed());
+    std::uniform_int_distribution<int> digit(0, 9);
+    while (true) {
+        std::string prefix;
+        prefix.reserve(14);
+        prefix.push_back(static_cast<char>('3' + digit(generator) % 7));
+        for (int i = 1; i < 14; ++i) {
+            prefix.push_back(static_cast<char>('0' + digit(generator)));
+        }
+        for (int checkDigit = 0; checkDigit <= 9; ++checkDigit) {
+            std::string candidate = prefix + std::to_string(checkDigit);
+            if (validateLuhn(candidate)) {
+                return candidate;
+            }
+        }
+    }
 }
 
 //cap nhat ma IMEI va kiem tra luhn
@@ -134,8 +163,14 @@ void ThietBiIMEI::displayHeader(std::ostream& os) const {
 //in mot dong thiet bi
 void ThietBiIMEI::displayRow(std::ostream& os) const {
     DisplayHelper::printRow(
-        {id, tenThietBi, hangSanXuat, soDienThoai, ngayKichHoat.toString(), trangThai, tramBTSGanNhat},
-        {COL_WIDTH_IMEI, COL_WIDTH_NAME, COL_WIDTH_BRAND, COL_WIDTH_PHONE, COL_WIDTH_DATE, COL_WIDTH_STATUS, COL_WIDTH_BTS},
+        {id, 
+        tenThietBi, hangSanXuat,
+        soDienThoai, ngayKichHoat.toString(),
+        trangThai, tramBTSGanNhat},
+        {COL_WIDTH_IMEI, 
+        COL_WIDTH_NAME, COL_WIDTH_BRAND,
+        COL_WIDTH_PHONE, COL_WIDTH_DATE, 
+        COL_WIDTH_STATUS, COL_WIDTH_BTS},
         {}, os
     );
 }

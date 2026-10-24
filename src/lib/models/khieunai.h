@@ -1,3 +1,9 @@
+/**
+ * @file khieunai.h
+ * Thanh vien phu trach: Nguyễn Minh Quang (B24DCVT308)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #ifndef KHIEUNAI_H
 #define KHIEUNAI_H
 

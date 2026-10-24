@@ -1,3 +1,8 @@
+/**
+ * @file khachhang.h
+ * Thanh vien phu trach: Trương Khánh (B24DCVT201)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
 
 #ifndef KHACHHANG_H
 #define KHACHHANG_H

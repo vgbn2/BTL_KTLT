@@ -48,6 +48,7 @@ int main() {
     runTest("testHoaDonAndNapTienModels", testHoaDonAndNapTienModels);
     runTest("testNewRepositoriesAndMenus", testNewRepositoriesAndMenus);
     runTest("testCDRAndKhieuNaiModels", testCDRAndKhieuNaiModels);
+    runTest("testSourceFileHeaders", testSourceFileHeaders);
     runTest("testBTSRegistry", testBTSRegistry);
     runTest("testRemainingMenuControllers", testRemainingMenuControllers);
 

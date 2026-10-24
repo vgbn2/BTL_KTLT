@@ -1,3 +1,9 @@
+/**
+ * @file Date.cpp
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "Date.h"
 #include "Exceptions.h"
 #include <sstream>

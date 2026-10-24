@@ -1,3 +1,20 @@
+/**
+ * @file fileio.h
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ *
+ * file nay chiu trach nhiem vao ra du lieu cho he thong:
+ * - split: tach chuoi theo dau '|', giu cot rong de bat loi thieu du lieu
+ * - luu file an toan (atomic): ghi vao tmps truoc roi moi doi ten thay file cu
+ * - khac biet he dieu hanh (Linux vs Windows):
+ *   + Linux: tao symlink tmps sang /dev/shm (RAM tmpfs) de chay test khong ton SSD;
+ *     dung getpid(), rename() va copy qua file trung gian neu lech phan vung.
+ *   + Windows: khong co /dev/shm nen tao folder tmps truc tiep bang _mkdir();
+ *     dung GetCurrentProcessId(), dung MoveFileExA voi co ghi de (REPLACE_EXISTING)
+ *     va ghi thang xuong dia (WRITE_THROUGH).
+ * - tu tim thu muc data: chay o thu muc nao cung doc duoc 9 file data
+ */
+
 #ifndef FILEIO_H
 #define FILEIO_H
 
