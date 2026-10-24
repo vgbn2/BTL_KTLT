@@ -1,5 +1,6 @@
 #include "ThietBiIMEIMenu.h"
 #include "InputHelper.h"
+#include "DisplayHelper.h"
 #include "Date.h"
 #include <iostream>
 #include <random>
@@ -41,9 +42,9 @@ using namespace IMEIMenuChoices;
 //hien thi menu quan ly thiet bi IMEI
 void ThietBiIMEIMenu::showMenu() {
     while (true) {
-        std::cout << "\n--------------------------------------------------------------------\n"
+        std::cout << "\n====================================================================\n"
                   << "                     QUAN LY THIET BI DAU CUOI (IMEI)\n"
-                  << "--------------------------------------------------------------------\n"
+                  << "====================================================================\n"
                   << "  [" << MENU_ADD << "] Them thiet bi moi\n"
                   << "  [" << MENU_LIST << "] Xem danh sach thiet bi\n"
                   << "  [" << MENU_SEARCH << "] Tim kiem thiet bi\n"
@@ -52,7 +53,7 @@ void ThietBiIMEIMenu::showMenu() {
                   << "  [" << MENU_UPDATE << "] Cap nhat thiet bi\n"
                   << "  [" << MENU_DELETE << "] Xoa thiet bi\n"
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
-                  << "--------------------------------------------------------------------\n";
+                  << "====================================================================\n";
 
         int choice = InputHelper::getInt("Nhap lua chon cua ban [0-7]: ", MENU_BACK, MENU_DELETE);
         if (choice == MENU_BACK || std::cin.eof()) {
@@ -132,13 +133,32 @@ void ThietBiIMEIMenu::themThietBi() {
 
     //ngayKh KH thu cong hoac kich hoat tu dong
     Date ngayKH;
-    int DateChoice=InputHelper::getInt("Chon Cach Tao Ngay [1-2]: \n  [1] Lay Thoi Gian Hien tai \n  [2] Nhap Thu Cong ", 1 , 2);
-    if(DateChoice == 1){
-    ngayKH=Date::now();
+    std::cout << "Chon Cach Tao Ngay [1-2] (hoac 0 de huy):\n"
+              << "  [1] Lay Thoi Gian Hien tai (now)\n"
+              << "  [2] Nhap Thu Cong (DD/MM/YYYY)\n"
+              << "  [0] Quay lai / Huy bo\n";
+    int DateChoice = InputHelper::getInt("Nhap lua chon [0-2]: ", 0, 2);
+    if (DateChoice == 0 || std::cin.eof()) {
+        std::cout << "[DA HUY] Thao tac them thiet bi da duoc huy bo.\n";
+        InputHelper::pause();
+        return;
     }
-    else if(DateChoice == 2){
-    ngayKH = InputHelper::getDate("Nhap Ngay kich hoat (DD/MM/YYYY): ");
-    if(std::cin.eof()) return ;
+    if (DateChoice == 1) {
+        ngayKH = Date::now();
+    } else if (DateChoice == 2) {
+        std::string s = InputHelper::getString("Nhap Ngay kich hoat (DD/MM/YYYY, 'now' hoac '0' de huy): ", false);
+        if (s == "0" || std::cin.eof()) {
+            std::cout << "[DA HUY] Thao tac them thiet bi da duoc huy bo.\n";
+            InputHelper::pause();
+            return;
+        }
+        try {
+            ngayKH = Date::parse(s);
+        } catch (const std::exception& e) {
+            std::cout << "[LOI] " << e.what() << "\n";
+            InputHelper::pause();
+            return;
+        }
     }
     
     std::string bts=InputHelper::getString("Nhap Tram BTS gan nhat (VD: BT-HN-001): ",false);
@@ -164,10 +184,7 @@ void ThietBiIMEIMenu::xemDanhSach() {
         return;
     }
 
-    list[0].displayHeader();
-    for (const auto& tb : list) {
-        tb.displayRow();
-    }
+    DisplayHelper::printTable(list);
     std::cout << "Tong so: " << list.size() << " thiet bi.\n";
     InputHelper::pause();
 }
@@ -199,10 +216,7 @@ void ThietBiIMEIMenu::timKiemThietBi() {
         if (results.empty()) {
             std::cout << "[THONG BAO] Khong co thiet bi nao dang gan so: " << sdt << "\n";
         } else {
-            results[0].displayHeader();
-            for (const auto& tb : results) {
-                tb.displayRow();
-            }
+            DisplayHelper::printTable(results);
             std::cout << "Tim thay " << results.size() << " thiet bi.\n";
         }
     } else if (choice == SEARCH_BY_BRAND) {
@@ -213,10 +227,7 @@ void ThietBiIMEIMenu::timKiemThietBi() {
         if (results.empty()) {
             std::cout << "[THONG BAO] Khong co thiet bi nao cua hang: " << brand << "\n";
         } else {
-            results[0].displayHeader();
-            for (const auto& tb : results) {
-                tb.displayRow();
-            }
+            DisplayHelper::printTable(results);
             std::cout << "Tim thay " << results.size() << " thiet bi.\n";
         }
     }
@@ -228,12 +239,9 @@ void ThietBiIMEIMenu::sapXepDanhSach() {
     std::cout << "\n>>> SAP XEP DANH SACH THIET BI <<<\n"
               << "  [" << SORT_BY_ID_ASC << "] Ma IMEI tang dan\n"
               << "  [" << SORT_BY_ID_DESC << "] Ma IMEI giam dan\n"
-              << "  [0] Quay Lai\n";
-    int choice = InputHelper::getInt("Nhap lua chon [0-2]: " , SORT_BY_ID_ASC, SORT_BY_ID_DESC);
-    if(choice == 0 )return;
-    else if(choice == SORT_BY_ID_DESC){
-        store.sortById(choice == SORT_BY_ID_DESC);
-    }
+              << "  [0] Quay lai\n";
+    int choice = InputHelper::getInt("Nhap lua chon [0-2]: ", 0, SORT_BY_ID_DESC);
+    if (choice == 0) return;
     try {
         store.sortById(choice == SORT_BY_ID_ASC);
         std::cout << "[THANH CONG] Da sap xep va luu danh sach thiet bi.\n";
@@ -253,10 +261,7 @@ void ThietBiIMEIMenu::danhSachKhoaMang() {
     if (blacklisted.empty()) {
         std::cout << "[THONG BAO] Hien khong co thiet bi nao bi khoa mang\n";
     } else {
-        blacklisted[0].displayHeader();
-        for (const auto& tb : blacklisted) {
-            tb.displayRow();
-        }
+        DisplayHelper::printTable(blacklisted);
         std::cout << "Tong so thiet bi bi khoa mang: " << blacklisted.size() << ".\n";
     }
     InputHelper::pause();

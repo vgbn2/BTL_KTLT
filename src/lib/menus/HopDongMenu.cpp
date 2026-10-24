@@ -1,5 +1,6 @@
 #include "HopDongMenu.h"
 #include "InputHelper.h"
+#include "DisplayHelper.h"
 #include "Normalized.h"
 #include "Date.h"
 #include <iostream>
@@ -9,9 +10,9 @@ using namespace HopDongMenuChoices;
 //hien thi menu quan ly hop dong
 void HopDongMenu::showMenu() {
     while (true) {
-        std::cout << "\n--------------------------------------------------------------------\n"
+        std::cout << "\n====================================================================\n"
                   << "                     QUAN LY HOP DONG DANG KY\n"
-                  << "--------------------------------------------------------------------\n"
+                  << "====================================================================\n"
                   << "  [" << MENU_ADD << "] Them hop dong moi\n"
                   << "  [" << MENU_LIST << "] Xem danh sach hop dong\n"
                   << "  [" << MENU_SEARCH << "] Tim kiem hop dong\n"
@@ -19,7 +20,7 @@ void HopDongMenu::showMenu() {
                   << "  [" << MENU_UPDATE << "] Cap nhat thong tin hop dong\n"
                   << "  [" << MENU_DELETE << "] Xoa hop dong\n"
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
-                  << "--------------------------------------------------------------------\n";
+                  << "====================================================================\n";
 
         int choice = InputHelper::getInt("Nhap lua chon cua ban [0-6]: ", MENU_BACK, MENU_DELETE);
         if (choice == MENU_BACK || std::cin.eof()) {
@@ -91,9 +92,20 @@ void HopDongMenu::themHopDong() {
     }
 
 
-    Date ngayDK = InputHelper::getDate("Nhap Ngay dang ky (DD/MM/YYYY): ");
-
-    if (std::cin.eof()) return;
+    std::string ngayDKStr = InputHelper::getString("Nhap Ngay dang ky (DD/MM/YYYY, 'now' hoac '0' de huy): ", false);
+    if (ngayDKStr == "0" || std::cin.eof()) {
+        std::cout << "[DA HUY] Thao tac them hop dong da duoc huy bo.\n";
+        InputHelper::pause();
+        return;
+    }
+    Date ngayDK;
+    try {
+        ngayDK = Date::parse(ngayDKStr);
+    } catch (const std::exception& e) {
+        std::cout << "[LOI] " << e.what() << "\n";
+        InputHelper::pause();
+        return;
+    }
 
     Date ngayHH;
     while (true) {
@@ -136,10 +148,7 @@ void HopDongMenu::xemDanhSach() {
         return;
     }
 
-    list[0].displayHeader();
-    for (const auto& hd : list) {
-        hd.displayRow();
-    }
+    DisplayHelper::printTable(list);
     std::cout << "Tong so: " << list.size() << " hop dong.\n";
     InputHelper::pause();
 }
@@ -172,10 +181,7 @@ void HopDongMenu::timKiemHopDong() {
         if (results.empty()) {
             std::cout << "[THONG BAO] Khong co hop dong nao gan voi so: " << sdt << "\n";
         } else {
-            results[0].displayHeader();
-            for (const auto& hd : results) {
-                hd.displayRow();
-            }
+            DisplayHelper::printTable(results);
             std::cout << "Tim thay " << results.size() << " hop dong.\n";
         }
     } else if (choice == SEARCH_BY_CUSTOMER) {
@@ -187,10 +193,7 @@ void HopDongMenu::timKiemHopDong() {
         if (results.empty()) {
             std::cout << "[THONG BAO] Khong co hop dong nao cua khach hang: " << kh << "\n";
         } else {
-            results[0].displayHeader();
-            for (const auto& hd : results) {
-                hd.displayRow();
-            }
+            DisplayHelper::printTable(results);
             std::cout << "Tim thay " << results.size() << " hop dong.\n";
         }
     }
@@ -273,8 +276,20 @@ void HopDongMenu::capNhatHopDong() {
             store.update(id, updated);
             std::cout << "[THANH CONG] Da cap nhat goi cuoc moi cho hop dong " << id << "!\n";
         } else if (choice == UPDATE_EXPIRY) {
-            Date ngayHHMoi = InputHelper::getDate("Nhap Ngay het han moi (DD/MM/YYYY): ");
-            if (std::cin.eof()) return;
+            std::string ngayHHStr = InputHelper::getString("Nhap Ngay het han moi (DD/MM/YYYY, 'now' hoac '0' de huy): ", false);
+            if (ngayHHStr == "0" || std::cin.eof()) {
+                std::cout << "[DA HUY] Thao tac gia han da duoc huy bo.\n";
+                InputHelper::pause();
+                return;
+            }
+            Date ngayHHMoi;
+            try {
+                ngayHHMoi = Date::parse(ngayHHStr);
+            } catch (const std::exception& e) {
+                std::cout << "[LOI] " << e.what() << "\n";
+                InputHelper::pause();
+                return;
+            }
             updated.giaHan(ngayHHMoi);
             store.update(id, updated);
             std::cout << "[THANH CONG] Da gia han hop dong " << id << " den ngay " << ngayHHMoi.toString() << "!\n";

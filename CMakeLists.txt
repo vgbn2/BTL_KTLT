@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-include_directories(src src/lib src/lib/shared src/lib/models src/lib/menus)
+include_directories(src src/lib src/lib/shared src/lib/models src/lib/menus tests/modules)
 
 set(LIB_SOURCES
     src/lib/shared/Date.cpp
@@ -31,10 +31,19 @@ set(LIB_SOURCES
     src/lib/menus/HoaDonMenu.cpp
 )
 
+set(TEST_MODULE_SOURCES
+    tests/modules/test_shared.cpp
+    tests/modules/test_infrastructure.cpp
+    tests/modules/test_models.cpp
+    tests/modules/test_menus.cpp
+    tests/modules/test_fixtures.cpp
+)
+
 add_executable(quanlythuebao src/main.cpp ${LIB_SOURCES})
 
 add_executable(test_runner
     tests/test_runner.cpp
+    ${TEST_MODULE_SOURCES}
     ${LIB_SOURCES}
 )
 
