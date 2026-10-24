@@ -885,6 +885,20 @@ void testKhachHangModel() {
     TEST_ASSERT(kh.getSoGiayTo() == "001201004567", "So giay to phai khop");
     TEST_ASSERT(kh.getSoDienThoai() == "0981234567", "So dien thoai phai khop");
 
+    bool caughtLongName = false;
+    try {
+        KhachHang tooLong("KH0002", std::string(51, 'A'), "CCCD", "001201004567",
+                          "01/01/2021", "C06", "0981234567", "HN");
+    } catch (const AppException&) {
+        caughtLongName = true;
+    }
+    TEST_ASSERT(caughtLongName, "KhachHang phai tu choi ho ten qua 50 ky tu");
+    TEST_ASSERT(Normalized::isValidName(std::string(50, 'A')), "Ten dung 50 ky tu phai hop le");
+    TEST_ASSERT(!Normalized::isValidName(std::string(51, 'A')), "Ten 51 ky tu phai bi tu choi");
+    TEST_ASSERT(Normalized::isValidName("Nguyen Van An"), "Ten hop le phai duoc chap nhan");
+    TEST_ASSERT(!Normalized::isValidName("   "), "Ten chi co khoang trang phai bi tu choi");
+    TEST_ASSERT(!Normalized::isValidName(std::string("A\xC3\x28")), "Ten UTF-8 loi phai bi tu choi");
+
     //kiem tra loi sdt
     bool caughtPhone = false;
     try {
@@ -1219,6 +1233,23 @@ void testCDRAndKhieuNaiModels() {
         threwKnPhone = true;
     }
     TEST_ASSERT(threwKnPhone, "SĐT khong hop le phai nem InvalidPhoneNumberException");
+
+    // VAL-01: fromFileString phai kiem tra chinh xac 6 truong (khong it hon, khong nhieu hon).
+    KhieuNai kn2;
+    TEST_ASSERT(!kn2.fromFileString("KN0001|0912345678|CuocPhatSinh|02/03/2024|Noi dung"),
+                "fromFileString 5 truong phai return false");
+    TEST_ASSERT(!kn2.fromFileString("KN0001|0912345678|CuocPhatSinh|02/03/2024|Noi dung|TiepNhan|TruongThua"),
+                "fromFileString 7 truong phai return false");
+    TEST_ASSERT(!kn2.fromFileString("KN0001|012BAD|CuocPhatSinh|02/03/2024|Noi dung|TiepNhan"),
+                "fromFileString so dien thoai sai phai return false");
+    TEST_ASSERT(!kn2.fromFileString("||CuocPhatSinh|02/03/2024|Noi dung|TiepNhan"),
+                "fromFileString ma phieu rong phai return false");
+    // tat ca 4 loai va 3 trang thai chinh thuc phai duoc chap nhan.
+    KhieuNai kn3;
+    TEST_ASSERT(kn3.fromFileString("KN0011|0912345678|CuocPhatSinh|01/01/2024|nd|TiepNhan"),   "loai CuocPhatSinh phai hop le");
+    TEST_ASSERT(kn3.fromFileString("KN0012|0912345678|ChatLuongMang|01/01/2024|nd|DangXuLy"),  "loai ChatLuongMang phai hop le");
+    TEST_ASSERT(kn3.fromFileString("KN0013|0912345678|TheCao|01/01/2024|nd|DaGiaiQuyet"),      "loai TheCao phai hop le");
+    TEST_ASSERT(kn3.fromFileString("KN0014|0912345678|DichVuGoi|01/01/2024|nd|TuChoi"),        "loai DichVuGoi phai hop le");
 }
 
 void testBTSRegistry() {
@@ -1237,6 +1268,35 @@ void testBTSRegistry() {
 
     std::string nearest = bts.suggestNearestBTS("Thu Dau Mot");
     TEST_ASSERT(!nearest.empty(), "suggestNearestBTS phai goi y duoc ma tram");
+
+    // VAL-02: hang toa do xau phai bi bo qua, khong luu (0,0) gia.
+    {
+        const std::string BTS_BAD_COORD = "data/test_bts_badcoord.txt";
+        {
+            std::ofstream f(BTS_BAD_COORD);
+            //dong hop le
+            f << "BTS-T01|452|02|1001|2001|HN|Ba Dinh|Truc Bach|Dia chi test|21.034000|105.848000|LTE|Viettel|30|0\n";
+            //dong toa do xau: phai bi bo qua, khong them vao danh sach
+            f << "BTS-T02|452|02|1002|2002|HN|Hoan Kiem|Hoan Kiem|Dia chi test|BADLAT|BADLON|LTE|Viettel|30|0\n";
+        }
+        BTSRegistry bts2;
+        bts2.LoadFromFile(BTS_BAD_COORD);
+        TEST_ASSERT(bts2.size() == 1, "Hang toa do xau phai bi bo qua, chi giu hang hop le");
+        TEST_ASSERT(bts2.findById("BTS-T01") != nullptr, "Hang hop le phai duoc nap");
+        TEST_ASSERT(bts2.findById("BTS-T02") == nullptr, "Hang toa do xau khong duoc them vao danh sach");
+        std::remove(BTS_BAD_COORD.c_str());
+    }
+
+    // VAL-02: LoadFromFile that bai khong xoa du lieu cu trong towers.
+    {
+        BTSRegistry bts3;
+        bts3.LoadFromFile("data/bts_vietnam.txt");
+        size_t sizeBefore = bts3.size();
+        TEST_ASSERT(sizeBefore > 0, "Phai co du lieu truoc khi thu load tep xau");
+        bool ok = bts3.LoadFromFile("data/KHONG_TON_TAI_____bts.txt");
+        TEST_ASSERT(!ok, "LoadFromFile tep khong ton tai phai return false");
+        TEST_ASSERT(bts3.size() == sizeBefore, "Towers cu phai duoc giu nguyen khi load that bai");
+    }
 }
 
 void testRemainingMenuControllers() {

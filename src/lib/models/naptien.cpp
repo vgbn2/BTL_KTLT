@@ -112,6 +112,7 @@ bool NapTien::fromFileString(const std::string& line) {
     }
 
     try {
+        //chi so ket thuc phan biet gia tri day du voi tien to so kem ky tu rac.
         //doc va kiem tra giao dich nap tien,chan du thua
         size_t idxTien = 0;
         double tien = std::stod(tokens[3], &idxTien);

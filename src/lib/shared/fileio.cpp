@@ -18,10 +18,12 @@
 std::vector<std::string> FileIO::split(const std::string& s, char delimiter) {
     std::vector<std::string> tokens;
     std::string token;
+    //cat khoang trang tung truong tai ranh gioi phan cach truoc khi dua vao model.
     std::istringstream tokenStream(s);
     while (std::getline(tokenStream, token, delimiter)) {
         tokens.push_back(Normalized::trim(token));
     }
+    //giu truong rong cuoi dong de buoc kiem tra so luong truong tu choi ro rang.
     if (!s.empty() && s.back() == delimiter) {
         tokens.push_back("");
     }

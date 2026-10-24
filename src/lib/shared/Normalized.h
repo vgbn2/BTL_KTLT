@@ -4,6 +4,10 @@
 #include <string>
 
 namespace Normalized {
+    const size_t MAX_NAME_LENGTH = 50;
+
+    //kiem tra ten khong rong, khong pha schema va khong qua 50 ky tu UTF-8
+    bool isValidName(const std::string& str);
     //cat khoang trang dau cuoi
     std::string trim(const std::string& str);
     //gom nhieu khoang trang thanh mot

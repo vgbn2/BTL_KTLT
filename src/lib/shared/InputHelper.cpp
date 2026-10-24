@@ -12,11 +12,22 @@ void InputHelper::clearBuffer() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
+//doc ten va ap dung cung mot cong validation voi model
+std::string InputHelper::getName(const std::string& prompt, bool allowEmpty) {
+    while (true) {
+        std::string value = getString(prompt, allowEmpty);
+        if ((allowEmpty && value.empty()) || Normalized::isValidName(value)) return value;
+        if (std::cin.eof()) return "";
+        std::cout << "  [!] Ten khong duoc rong, chua '|' hoac qua 50 ky tu! Vui long nhap lai.\n";
+    }
+}
+
 //doc chuoi va kiem tra ky tu phan cach
 std::string InputHelper::getString(const std::string& prompt, bool allowEmpty) {
     std::string val;
     while (true) {
         std::cout << prompt;
+        //doc tron dong roi chuan hoa truoc khi thuc hien bat ky kiem tra nao.
         if (!std::getline(std::cin, val)) {
             if (std::cin.eof()) return "";
             clearBuffer();
@@ -27,6 +38,7 @@ std::string InputHelper::getString(const std::string& prompt, bool allowEmpty) {
             std::cout << "  [!] Gia tri khong duoc de trong! Vui long nhap lai.\n";
             continue;
         }
+        //ky tu '|' la dau phan cach khi luu tep,cho phep no se lam thay doi schema.
         if (val.find('|') != std::string::npos) {
             std::cout << "  [!] Gia tri khong duoc chua ky tu phan cach '|'! Vui long nhap lai.\n";
             continue;
@@ -43,6 +55,7 @@ int InputHelper::getInt(const std::string& prompt, int minVal, int maxVal) {
         try {
             size_t idx = 0;
             int val = std::stoi(s, &idx);
+            //yeu cau phep chuyen doi doc het moi ky tu;tu choi tien to so kem ky tu rac.
             if (idx == s.length() && val >= minVal && val <= maxVal) {
                 return val;
             }
@@ -60,6 +73,7 @@ double InputHelper::getDouble(const std::string& prompt, double minVal, double m
         try {
             size_t idx = 0;
             double val = std::stod(s, &idx);
+            //kiem tra vi tri doc ngan gia tri nhu "1000xyz" bi chap nhan thanh 1000.
             if (idx == s.length() && val >= minVal && val <= maxVal) {
                 return val;
             }

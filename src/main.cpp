@@ -1,9 +1,9 @@
 #include <iostream>
-//shared
+//thu vien dung chung
 #include "lib/shared/fileio.h"
 #include "lib/shared/Repository.h"
 #include "lib/shared/InputHelper.h"
-//models
+//model nghiep vu
 #include "lib/models/hopdong.h"
 #include "lib/models/imei.h"
 #include "lib/models/goicuoc.h"
@@ -13,7 +13,7 @@
 #include "lib/models/naptien.h"
 #include "lib/models/ghicuocgoi.h"
 #include "lib/models/khieunai.h"
-//Menu
+//menu tuong tac
 #include "lib/menus/HopDongMenu.h"
 #include "lib/menus/ThietBiIMEIMenu.h"
 #include "lib/menus/GoiCuocMenu.h"
@@ -56,15 +56,19 @@ int main(int argc, char* argv[]) {
     Repository<KhieuNai> khieuNaiStore(dataPath("khieunai.txt"));
 
     try {
-        hopDongStore.loadFromFile();
-        imeiStore.loadFromFile();
-        goiCuocStore.loadFromFile();
-        thueBaoStore.loadFromFile();
-        khachHangStore.loadFromFile();
-        hoaDonStore.loadFromFile();
-        napTienStore.loadFromFile();
-        ghicuocgoiStore.loadFromFile();
-        khieuNaiStore.loadFromFile();
+        if (!hopDongStore.loadFromFile() ||
+            !imeiStore.loadFromFile() ||
+            !goiCuocStore.loadFromFile() ||
+            !thueBaoStore.loadFromFile() ||
+            !khachHangStore.loadFromFile() ||
+            !hoaDonStore.loadFromFile() ||
+            !napTienStore.loadFromFile() ||
+            !ghicuocgoiStore.loadFromFile() ||
+            !khieuNaiStore.loadFromFile()) {
+            std::cerr << "[LOI] Khong the tai du lieu ban dau; "
+                         "tep du lieu khong duoc thay doi.\n";
+            return 1;
+        }
     } catch (const std::exception& e) {
         std::cerr << "[LOI] Loi khi tai du lieu ban dau: " << e.what() << "\n";
         return 1;
@@ -72,11 +76,11 @@ int main(int argc, char* argv[]) {
 
     KhachHangMenu khachHangMenu(khachHangStore, thueBaoStore, hopDongStore);
     GoiCuocMenu goiCuocMenu(goiCuocStore);
-    ThueBaoMenu thueBaoMenu(thueBaoStore, goiCuocStore, khachHangStore);
+    ThueBaoMenu thueBaoMenu(thueBaoStore, goiCuocStore, khachHangStore, imeiStore);
     HopDongMenu hopDongMenu(hopDongStore, khachHangStore, thueBaoStore, goiCuocStore);
     ThietBiIMEIMenu imeiMenu(imeiStore, thueBaoStore);
     NapTienMenu napTienMenu(napTienStore, thueBaoStore, ghicuocgoiStore);
-    HoaDonMenu hoaDonMenu(hoaDonStore, thueBaoStore, khieuNaiStore);
+    HoaDonMenu hoaDonMenu(hoaDonStore, thueBaoStore, khieuNaiStore, ghicuocgoiStore);
     if (hoaDonMenu.kiemTraNo() > 0) {
         std::cout << "[CANH BAO] Da khoa thue bao no cuoc qua han.\n";
     }

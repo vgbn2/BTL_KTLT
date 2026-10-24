@@ -1,6 +1,7 @@
 #include "goicuoc.h"
 #include "Exceptions.h"
 #include "fileio.h"
+#include "Normalized.h"
 #include "DisplayHelper.h"
 #include <iostream>
 #include <iomanip>
@@ -31,8 +32,8 @@ GoiCuoc::GoiCuoc(
     dungLuongData(data),
     soPhutGoi(goi),
     chuKyNgay(chuky) {
-    if (id.empty() || tenGoi.empty()) {
-        throw AppException("Loi: Ma goi va ten goi khong duoc de trong!");
+    if (id.empty() || !Normalized::isValidName(tenGoi)) {
+        throw AppException("Loi: Ma goi va ten goi khong duoc de trong hoac qua 50 ky tu!");
     }
     if (giaCuoc < 0.0) {
         throw AppException("Loi: Gia cuoc khong the am!");
@@ -44,6 +45,9 @@ GoiCuoc::GoiCuoc(
 
 //cap nhat ten goi cuoc
 void GoiCuoc::setTenGoi(const std::string& ten) {
+    if (!Normalized::isValidName(ten)) {
+        throw AppException("Loi: Ten goi cuoc khong duoc rong hoac qua 50 ky tu!");
+    }
     tenGoi = ten;
 }
 
@@ -135,6 +139,7 @@ bool GoiCuoc::fromFileString(const std::string& line) {
     try {
         //doc va kiem tra gia tri so,chong chuoi rac
         size_t idxGia = 0, idxData = 0, idxGoi = 0, idxCK = 0;
+        //moi phep chuyen doi tra ve vi tri da doc het trong truong.
         double gia = std::stod(tokens[2], &idxGia);
         int data = std::stoi(tokens[3], &idxData);
         int goi = std::stoi(tokens[4], &idxGoi);

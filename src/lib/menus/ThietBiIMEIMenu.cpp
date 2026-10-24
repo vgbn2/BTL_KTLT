@@ -1,5 +1,6 @@
 #include "ThietBiIMEIMenu.h"
 #include "InputHelper.h"
+#include "Date.h"
 #include <iostream>
 #include <random>
 
@@ -54,31 +55,31 @@ void ThietBiIMEIMenu::showMenu() {
                   << "--------------------------------------------------------------------\n";
 
         int choice = InputHelper::getInt("Nhap lua chon cua ban [0-7]: ", MENU_BACK, MENU_DELETE);
-        if (choice == MENU_BACK) {
+        if (choice == MENU_BACK || std::cin.eof()) {
             break;
         }
 
         switch (choice) {
             case MENU_ADD:
-                themThietBi();
+                themThietBi();      //[1]
                 break;
             case MENU_LIST:
-                xemDanhSach();
+                xemDanhSach();      //[2]
                 break;
             case MENU_SEARCH:
-                timKiemThietBi();
+                timKiemThietBi();   //[3]
                 break;
             case MENU_SORT:
-                sapXepDanhSach();
+                sapXepDanhSach();   //[4]
                 break;
             case MENU_BLACKLIST:
-                danhSachKhoaMang();
+                danhSachKhoaMang(); //[5]
                 break;
             case MENU_UPDATE:
-                capNhatThietBi();
+                capNhatThietBi();   //[6]
                 break;
             case MENU_DELETE:
-                xoaThietBi();
+                xoaThietBi();       //[7]
                 break;
             default:
                 break;
@@ -116,9 +117,9 @@ void ThietBiIMEIMenu::themThietBi() {
             break;
         }
     }
-    std::string tenTB = InputHelper::getString("Nhap Ten thiet bi (VD: iPhone 15 Pro, Galaxy S24): ", false);
+    std::string tenTB = InputHelper::getName("Nhap Ten thiet bi (VD: iPhone 15 Pro, Galaxy S24): ", false);
     if (std::cin.eof() || tenTB.empty()) return;
-    std::string hangSX = InputHelper::getString("Nhap Hang san xuat (VD: Apple, Samsung, Xiaomi): ", false);
+    std::string hangSX = InputHelper::getName("Nhap Hang san xuat (VD: Apple, Samsung, Xiaomi): ", false);
     if (std::cin.eof() || hangSX.empty()) return;
     std::string sdt = InputHelper::getPhoneNumber("Nhap So dien thoai gan kem: ", true);
     if (std::cin.eof()) return;
@@ -129,13 +130,22 @@ void ThietBiIMEIMenu::themThietBi() {
         return;
     }
 
-    Date ngayKH = InputHelper::getDate("Nhap Ngay kich hoat (DD/MM/YYYY): ");
-    if (std::cin.eof()) return;
-    std::string bts = InputHelper::getString("Nhap Tram BTS gan nhat (VD: BTS-HN-001): ", false);
+    //ngayKh KH thu cong hoac kich hoat tu dong
+    Date ngayKH;
+    int DateChoice=InputHelper::getInt("Chon Cach Tao Ngay [1-2]: \n  [1] Lay Thoi Gian Hien tai \n  [2] Nhap Thu Cong ", 1 , 2);
+    if(DateChoice == 1){
+    ngayKH=Date::now();
+    }
+    else if(DateChoice == 2){
+    ngayKH = InputHelper::getDate("Nhap Ngay kich hoat (DD/MM/YYYY): ");
+    if(std::cin.eof()) return ;
+    }
+    
+    std::string bts=InputHelper::getString("Nhap Tram BTS gan nhat (VD: BT-HN-001): ",false);
     if (std::cin.eof() || bts.empty()) return;
 
     try {
-        ThietBiIMEI tb(imei, tenTB, hangSX, sdt, ngayKH, IMEIConstants::STATUS_ACTIVE, bts);
+        ThietBiIMEI tb(imei, tenTB, hangSX, sdt, ngayKH, IMEIConstants::STATUS_ACTIVE,bts);
         store.add(tb);
         std::cout << "[THANH CONG] Da them thiet bi IMEI " << imei << " vao he thong!\n";
     } catch (const AppException& e) {
@@ -217,8 +227,13 @@ void ThietBiIMEIMenu::timKiemThietBi() {
 void ThietBiIMEIMenu::sapXepDanhSach() {
     std::cout << "\n>>> SAP XEP DANH SACH THIET BI <<<\n"
               << "  [" << SORT_BY_ID_ASC << "] Ma IMEI tang dan\n"
-              << "  [" << SORT_BY_ID_DESC << "] Ma IMEI giam dan\n";
-    int choice = InputHelper::getInt("Nhap kieu sap xep [1-2]: ", SORT_BY_ID_ASC, SORT_BY_ID_DESC);
+              << "  [" << SORT_BY_ID_DESC << "] Ma IMEI giam dan\n"
+              << "  [0] Quay Lai\n";
+    int choice = InputHelper::getInt("Nhap lua chon [0-2]: " , SORT_BY_ID_ASC, SORT_BY_ID_DESC);
+    if(choice == 0 )return;
+    else if(choice == SORT_BY_ID_DESC){
+        store.sortById(choice == SORT_BY_ID_DESC);
+    }
     try {
         store.sortById(choice == SORT_BY_ID_ASC);
         std::cout << "[THANH CONG] Da sap xep va luu danh sach thiet bi.\n";

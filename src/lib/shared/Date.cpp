@@ -2,7 +2,12 @@
 #include "Exceptions.h"
 #include <sstream>
 #include <iomanip>
+#include <iostream>
 #include <ctime>
+#include <tuple>
+#include <string>
+#include <istream>
+#include <ostream>
 
 using namespace CalendarConstants;
 
@@ -22,9 +27,7 @@ Date::Date(int d, int m, int y) {
 }
 
 //tao ngay tu chuoi
-Date::Date(const std::string& dateStr) {
-    *this = parse(dateStr);
-}
+Date::Date(const std::string& dateStr) : Date(parse(dateStr)) {}
 
 //cap nhat ngay va kiem tra tinh hop le
 void Date::setDay(int d) {
@@ -37,7 +40,7 @@ void Date::setDay(int d) {
 //cap nhat thang va kiem tra tinh hop le
 void Date::setMonth(int m) {
     if (!isValid(day, m, year)) {
-        throw InvalidDateException("Thang khong hop le!");
+        throw InvalidDateException("Thang khong hop le voi ngay/nam hien tai!");
     }
     month = m;
 }
@@ -45,8 +48,20 @@ void Date::setMonth(int m) {
 //cap nhat nam va kiem tra tinh hop le
 void Date::setYear(int y) {
     if (!isValid(day, month, y)) {
-        throw InvalidDateException("Nam khong hop le!");
+        throw InvalidDateException("Nam khong hop le voi ngay/thang hien tai!");
     }
+    year = y;
+}
+
+//cap nhat ca ngay,thang,nam cung luc
+void Date::setDate(int d, int m, int y) {
+    if (!isValid(d, m, y)) {
+        std::ostringstream oss;
+        oss << "Ngay khong hop le: " << d << "/" << m << "/" << y;
+        throw InvalidDateException(oss.str());
+    }
+    day = d;
+    month = m;
     year = y;
 }
 
@@ -57,7 +72,6 @@ bool Date::isLeapYear(int y) {
 
 //lay so ngay toi da cua thang
 int Date::daysInMonth(int m, int y) {
-    if (m < 1 || m > MONTHS_PER_YEAR) return 0;
     switch (m) {
         case 1: case 3: case 5: case 7: case 8: case 10: case 12:
             return DAYS_LONG_MONTH;
@@ -74,8 +88,7 @@ int Date::daysInMonth(int m, int y) {
 bool Date::isValid(int d, int m, int y) {
     if (y < MIN_VALID_YEAR || y > MAX_VALID_YEAR) return false;
     if (m < 1 || m > MONTHS_PER_YEAR) return false;
-    int maxDays = daysInMonth(m, y);
-    return (d >= 1 && d <= maxDays);
+    return d >= 1 && d <= daysInMonth(m, y);
 }
 
 //phan tich chuoi thanh ngay
@@ -83,19 +96,28 @@ Date Date::parse(const std::string& str) {
     int d = 0, m = 0, y = 0;
     char sep1 = 0, sep2 = 0;
     std::istringstream iss(str);
-    std::string trailing;
-    //kiem tra dau gach,chan ky tu thua phia sau
-    if (!(iss >> d >> sep1 >> m >> sep2 >> y) || (sep1 != '/' && sep1 != '-') || (sep1 != sep2) || (iss >> trailing)) {
+    //khong bo qua khoang trang: chi chap nhan dung dinh dang
+    iss >> std::noskipws;
+    //kiem tra dau gach va chan ky tu thua phia sau
+    if (!(iss >> d >> sep1 >> m >> sep2 >> y)
+        || (sep1 != '/' && sep1 != '-')
+        || sep1 != sep2
+        || iss.peek() != std::char_traits<char>::eof()) {
         throw InvalidDateException("Dinh dang ngay phai la DD/MM/YYYY (Chuoi nhap: '" + str + "')");
     }
     return Date(d, m, y);
 }
 
-//lay ngay hien tai cua he thong
+//lay ngay hien tai cua he thong (thread-safe)
 Date Date::now() {
     std::time_t t = std::time(nullptr);
-    std::tm* localTime = std::localtime(&t);
-    return Date(localTime->tm_mday, localTime->tm_mon + 1, localTime->tm_year + 1900);
+    std::tm tmv{};
+#ifdef _WIN32
+    localtime_s(&tmv, &t);
+#else
+    localtime_r(&t, &tmv);
+#endif
+    return Date(tmv.tm_mday, tmv.tm_mon + 1, tmv.tm_year + 1900);
 }
 
 //tinh tuoi tai ngay tham chieu
@@ -123,7 +145,7 @@ bool Date::isValidBirthDate(const Date& d, int minAge, int maxAge, const Date& r
         return false;
     }
     int age = d.calculateAge(relativeTo);
-    return (age >= minAge && age <= maxAge);
+    return age >= minAge && age <= maxAge;
 }
 
 //dinh dang ngay thanh chuoi
@@ -136,41 +158,30 @@ std::string Date::toString() const {
 }
 
 //so sanh ngay nho hon
-bool Date::operator<(const Date& other) const {
-    if (year != other.year) return year < other.year;
-    if (month != other.month) return month < other.month;
-    return day < other.day;
+bool Date::operator<(const Date& o) const {
+    return std::tie(year, month, day) < std::tie(o.year, o.month, o.day);
 }
 
 //so sanh ngay nho hon hoac bang
-bool Date::operator<=(const Date& other) const {
-    return (*this < other) || (*this == other);
-}
+bool Date::operator<=(const Date& o) const { return !(o < *this); }
 
 //so sanh ngay lon hon
-bool Date::operator>(const Date& other) const {
-    return !(*this <= other);
-}
+bool Date::operator>(const Date& o) const { return o < *this; }
 
 //so sanh ngay lon hon hoac bang
-bool Date::operator>=(const Date& other) const {
-    return !(*this < other);
-}
+bool Date::operator>=(const Date& o) const { return !(*this < o); }
 
 //so sanh hai ngay bang nhau
-bool Date::operator==(const Date& other) const {
-    return (year == other.year && month == other.month && day == other.day);
+bool Date::operator==(const Date& o) const {
+    return year == o.year && month == o.month && day == o.day;
 }
 
 //so sanh hai ngay khac nhau
-bool Date::operator!=(const Date& other) const {
-    return !(*this == other);
-}
+bool Date::operator!=(const Date& o) const { return !(*this == o); }
 
 //ghi ngay ra luong
 std::ostream& operator<<(std::ostream& os, const Date& d) {
-    os << d.toString();
-    return os;
+    return os << d.toString();
 }
 
 //doc ngay tu luong
@@ -179,7 +190,7 @@ std::istream& operator>>(std::istream& is, Date& d) {
     if (is >> s) {
         try {
             d = Date::parse(s);
-        } catch (...) {
+        } catch (const InvalidDateException&) {
             is.setstate(std::ios::failbit);
         }
     }

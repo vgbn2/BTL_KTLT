@@ -16,6 +16,8 @@ namespace GoiCuocMenuChoices {
     const int SORT_BY_PRICE_ASC = 1;
     const int SORT_BY_PRICE_DESC = 2;
     const int SORT_BY_DATA_DESC = 3;
+    const int SORT_BY_ID_ASC = 4;
+    const int SORT_BY_ID_DESC = 5;
 }
 
 class GoiCuocMenu {

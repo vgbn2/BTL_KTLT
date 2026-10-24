@@ -17,7 +17,7 @@ void GoiCuocMenu::themGoiCuoc() {
         return;
     }
 
-    std::string tenGoi = InputHelper::getString("Nhap ten goi cuoc: ");
+    std::string tenGoi = InputHelper::getName("Nhap ten goi cuoc: ");
     if (std::cin.eof() || tenGoi.empty()) return;
     double giaCuoc = InputHelper::getDouble("Nhap gia cuoc (VND): ", 0.0);
     if (std::cin.eof()) return;
@@ -80,22 +80,30 @@ void GoiCuocMenu::sapXepDanhSach() {
     std::cout << "  [" << SORT_BY_PRICE_ASC << "] Gia cuoc tang dan\n";
     std::cout << "  [" << SORT_BY_PRICE_DESC << "] Gia cuoc giam dan\n";
     std::cout << "  [" << SORT_BY_DATA_DESC << "] Dung luong Data giam dan\n";
+    std::cout << "  [" << SORT_BY_ID_ASC << "] Ma goi tang dan\n";
+    std::cout << "  [" << SORT_BY_ID_DESC << "] Ma goi giam dan\n";
 
-    int choice = InputHelper::getInt("Nhap kieu sap xep: ", 1, 3);
-    if (choice == SORT_BY_PRICE_ASC) {
-        store.sort([](const GoiCuoc& a, const GoiCuoc& b) {
-            return a.getGiaCuoc() < b.getGiaCuoc();
-        });
-    } else if (choice == SORT_BY_PRICE_DESC) {
-        store.sort([](const GoiCuoc& a, const GoiCuoc& b) {
-            return a.getGiaCuoc() > b.getGiaCuoc();
-        });
-    } else if (choice == SORT_BY_DATA_DESC) {
-        store.sort([](const GoiCuoc& a, const GoiCuoc& b) {
-            return a.getDungLuongData() > b.getDungLuongData();
-        });
+    int choice = InputHelper::getInt("Nhap kieu sap xep: ", 1, 5);
+    try {
+        if (choice == SORT_BY_PRICE_ASC) {
+            store.sortAndSave([](const GoiCuoc& a, const GoiCuoc& b) {
+                return a.getGiaCuoc() < b.getGiaCuoc();
+            });
+        } else if (choice == SORT_BY_PRICE_DESC) {
+            store.sortAndSave([](const GoiCuoc& a, const GoiCuoc& b) {
+                return a.getGiaCuoc() > b.getGiaCuoc();
+            });
+        } else if (choice == SORT_BY_DATA_DESC) {
+            store.sortAndSave([](const GoiCuoc& a, const GoiCuoc& b) {
+                return a.getDungLuongData() > b.getDungLuongData();
+            });
+        } else {
+            store.sortById(choice == SORT_BY_ID_ASC);
+        }
+        std::cout << "\n[THANH CONG] Da sap xep danh sach goi cuoc!\n";
+    } catch (const std::exception& e) {
+        std::cout << "\n[LOI] Khong the luu thu tu sap xep: " << e.what() << "\n";
     }
-    std::cout << "\n[THANH CONG] Da sap xep danh sach goi cuoc!\n";
     xemDanhSach();
 }
 
@@ -112,12 +120,12 @@ void GoiCuocMenu::capNhatGoiCuoc() {
 
     gc->displayDetail();
     GoiCuoc updated = *gc;
-    std::string tenMoi = InputHelper::getString("Nhap ten goi moi (bo trong de giu nguyen): ", true);
+    std::string tenMoi = InputHelper::getName("Nhap ten goi moi (bo trong de giu nguyen): ", true);
     if (std::cin.eof()) return;
     if (!tenMoi.empty()) updated.setTenGoi(tenMoi);
 
     std::cout << "Ban co muon thay doi gia cuoc khong? (1: Co, 0: Khong): ";
-    int doiGia = InputHelper::getInt("", 0, 1);
+    int doiGia = InputHelper::getInt("Nhap lua chon [0-1]: ", 0, 1);
     if (std::cin.eof()) return;
     if (doiGia == 1) {
         double giaMoi = InputHelper::getDouble("Nhap gia cuoc moi (VND): ", 0.0);
@@ -176,7 +184,7 @@ void GoiCuocMenu::showMenu() {
                   << "====================================================================\n";
 
         int choice = InputHelper::getInt("Nhap lua chon [0-6]: ", MENU_BACK, MENU_DELETE);
-        if (choice == MENU_BACK) {
+        if (choice == MENU_BACK || std::cin.eof()) {
             break;
         }
 

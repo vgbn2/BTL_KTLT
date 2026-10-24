@@ -68,6 +68,7 @@ Branch: main
   - 0 open PRs on GitHub (all teammate contributions merged or properly closed).
 
 ## Recent Activity (2026-10-23)
+- Added one shared `Normalized::isValidName()` gate: names are non-empty, pipe-safe, and at most 50 UTF-8 code points. `InputHelper::getName()` and customer/package/device constructors, setters, and deserializers enforce it. `make test`, CMake/CTest 3/3, and the 51-character reproducer passed. No matching “stop claude” commit or push existed; no history rewrite was performed.
 - Audited top-level CLI menu consistency: all primary menus now render choices in ascending numeric order, including IMEI, customer, subscriber, top-up/CDR, and invoice/complaint menus. Added captured-output regressions; `make test` passes 326/326 and the sibling baseline reproducer now exits 0. This was a presentation-only correction; constants and dispatch were already correct.
 - Final IMEI menu numbering is now `1 add, 2 list, 3 search, 4 sort, 5 blacklist, 6 update, 7 delete`; shifted test/stress inputs and updated `docs/Display/CONSOLE_UI_SPEC.md`. IMEI numbering reproducer and CTest 3/3 passed.
 
