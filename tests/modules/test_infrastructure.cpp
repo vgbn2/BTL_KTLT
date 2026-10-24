@@ -196,6 +196,8 @@ void testFileIOTmpfs() {
     ASSERT_TRUE(FileIO::resolveDataDirectory("/tmp/quanlythuebao") == "data",
                 "resolveDataDirectory phai tim thay bo data tu thu muc hien tai");
     ASSERT_TRUE(FileIO::initTmpDir(), "initTmpDir phai return true");
+    ASSERT_TRUE(FileIO::ensureDirectoryExists("tmps/test_dir/file.txt"),
+                "ensureDirectoryExists voi POSIX_DIR_PERMISSIONS phai thanh cong");
 
     std::string testTarget = "data/test_tmpfs_target.txt";
     std::string stagingPath = FileIO::getTempStagingPath(testTarget);
