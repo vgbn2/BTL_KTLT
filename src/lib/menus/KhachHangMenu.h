@@ -14,8 +14,11 @@ namespace KhachHangMenuChoices {
     const int MENU_UPDATE = 4;
     const int MENU_DELETE = 5;
     const int MENU_VIEW_SIMS = 6;
+    const int MENU_SORT = 7;
 
     const int SEARCH_BY_ID = 1;
+    const int SORT_BY_ID_ASC = 1;
+    const int SORT_BY_ID_DESC = 2;
     const int SEARCH_BY_CCCD = 2;
     const int SEARCH_BY_NAME = 3;
 }
@@ -32,6 +35,8 @@ private:
     void xemDanhSach();
     //tim kiem khach hang
     void timKiemKhachHang();
+    //sap xep khach hang theo ma
+    void sapXepDanhSach();
     //cap nhat khach hang
     void capNhatKhachHang();
     //xoa khach hang

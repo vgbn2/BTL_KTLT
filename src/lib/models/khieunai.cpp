@@ -88,14 +88,14 @@ std::string KhieuNai::toFileString() const {
 //nap khieu nai tu dong tep
 bool KhieuNai::fromFileString(const std::string& line) {
     auto tokens = FileIO::split(line, '|');
-    if (tokens.size() < 6) return false;
-
-    id = tokens[0];
-    soDienThoai = tokens[1];
-    loaiKhieuNai = tokens[2];
-    ngayTiepNhan = tokens[3];
-    noiDung = tokens[4];
-    trangThai = tokens[5];
-
-    return !id.empty() && !soDienThoai.empty();
+    //phai co dung 6 truong; it hon hoac nhieu hon deu la du lieu sai schema.
+    if (tokens.size() != 6) return false;
+    try {
+        //uy quyen cho constructor de kiem tra so dien thoai va cac truong bat buoc.
+        KhieuNai parsed(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5]);
+        *this = parsed;
+        return true;
+    } catch (...) {
+        return false;
+    }
 }

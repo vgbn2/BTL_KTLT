@@ -13,6 +13,12 @@ namespace NapTienMenuChoices {
     const int MENU_SEARCH_BY_PHONE = 3;
     const int MENU_ADD_CDR = 4;
     const int MENU_LIST_CDR = 5;
+    const int MENU_SORT = 6;
+
+    const int SORT_NAPTIEN_ID_ASC = 1;
+    const int SORT_NAPTIEN_ID_DESC = 2;
+    const int SORT_CDR_ID_ASC = 3;
+    const int SORT_CDR_ID_DESC = 4;
 }
 
 class NapTienMenu {
@@ -27,6 +33,8 @@ private:
     void xemDanhSachPhieu();
     //tra cuu nap tien theo so dien thoai
     void traCuuTheoSoDienThoai();
+    //sap xep phieu nap hoac CDR theo ma
+    void sapXepDanhSach();
     //ghi nhan ban ghi CDR
     void ghiNhanCDR();
     //hien thi danh sach CDR

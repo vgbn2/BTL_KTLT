@@ -137,6 +137,7 @@ bool HoaDon::fromFileString(const std::string& line) {
     try {
         //doc va kiem tra gia tri hoa don,chong du thua
         size_t i1 = 0, i2 = 0, i3 = 0;
+        //kiem tra toan bo truong de tu choi so tien co tien to hop le nhung kem ky tu rac.
         double tGoi = std::stod(tokens[3], &i1);
         double tData = std::stod(tokens[4], &i2);
         double tong = std::stod(tokens[5], &i3);
