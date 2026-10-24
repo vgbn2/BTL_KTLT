@@ -1,3 +1,9 @@
+/**
+ * @file ThueBaoMenu.cpp
+ * Thanh vien phu trach: Tùng Dương (B24DCVT106), Trương Khánh (B24DCVT201)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "ThueBaoMenu.h"
 #include "InputHelper.h"
 #include "DisplayHelper.h"

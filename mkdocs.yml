@@ -1,0 +1,86 @@
+site_name: KTLT Telecommunications Subscriber Management Platform
+site_description: Technical Manual, System Architecture Specification, and Telecom Engineering Runbooks
+site_url: https://github.com/vgbn2/KTLT
+repo_url: https://github.com/vgbn2/KTLT
+repo_name: vgbn2/KTLT
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.path
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.keys
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+
+extra_css:
+  - stylesheets/architecture-report.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.min.js
+  - javascripts/mermaid-report.js
+
+nav:
+  - Home: index.md
+  - Reports:
+      - Technical Manual & System Specification (EN): Reports/KTLT_TECHNICAL_MANUAL_AND_SYSTEM_SPECIFICATION.md
+      - Sổ Tay Kỹ Thuật & Đặc Tả Hệ Thống (VN): Reports/SO_TAY_KY_THUAT_VA_DAC_TA_KIEN_TRUC_HE_THONG_KTLT.md
+      - IMEI & Shared Libraries Report: Reports/IMEI_AND_SHARED_LIBRARIES_REPORT.md
+  - Architecture:
+      - Overview & Requirements: Overview/ARCHITECTURE_AND_REQUIREMENTS.md
+      - Technical Design Specification: Operational/TECHNICAL_DESIGN_SPECIFICATION.md
+      - Shared Libraries: Overview/lib.md
+      - Syntax & Standards: Overview/syntax.md
+  - Operational:
+      - Function Callflow Specification: Operational/FUNCTION_CALLFLOW_SPEC.md
+      - CDR & Usage Records: Operational/CDR_GHICUOCGOI.md
+      - Interaction Diagrams: Operational/INTERACTION_DIAGRAM.md
+      - Oral Defense Guide: Operational/IMEI_SHARED_ORAL_DEFENSE.md
+      - Code Explanation Notes: Operational/CODE_EXPLANATION_NOTES.md
+      - Lead Architect Guide: ducanh.md
+  - Guides:
+      - Console UI Specification: Display/CONSOLE_UI_SPEC.md
+      - User Manual: UserGuide/USER_MANUAL.md
+      - Function Process Map: engineering/function_process_map.md

@@ -1,3 +1,9 @@
+/**
+ * @file thuebao.h
+ * Thanh vien phu trach: Tùng Dương (B24DCVT106), Trương Khánh (B24DCVT201)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #ifndef THUEBAO_H
 #define THUEBAO_H
 

@@ -20,19 +20,17 @@ int HoaDonMenu::kiemTraNo(const Date& ngay) {
             no.push_back(tb->getSoDienThoai());
         }
     }
-    bool changed = false;
-    for (auto& tb : thueBaoStore.getAll()) {
+    for (const auto& tb : thueBaoStore.getAll()) {
         const bool hasDebt = std::find(no.begin(), no.end(), tb.getSoDienThoai()) != no.end();
         if (hasDebt && tb.getTrangThai() != ThueBaoConstants::STATUS_LOCKED_DEBT) {
-            tb.setTrangThai(ThueBaoConstants::STATUS_LOCKED_DEBT);
-            changed = true;
+            ThueBao updatedTb = tb;
+            updatedTb.setTrangThai(ThueBaoConstants::STATUS_LOCKED_DEBT);
+            thueBaoStore.update(tb.getId(), updatedTb);
         } else if (!hasDebt && tb.getTrangThai() == ThueBaoConstants::STATUS_LOCKED_DEBT) {
-            tb.setTrangThai(ThueBaoConstants::STATUS_ACTIVE);
-            changed = true;
+            ThueBao updatedTb = tb;
+            updatedTb.setTrangThai(ThueBaoConstants::STATUS_ACTIVE);
+            thueBaoStore.update(tb.getId(), updatedTb);
         }
-    }
-    if (changed) {
-        thueBaoStore.saveToFile();
     }
     return static_cast<int>(no.size());
 }

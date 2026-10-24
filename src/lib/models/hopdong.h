@@ -1,3 +1,9 @@
+/**
+ * @file hopdong.h
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #ifndef HOPDONG_H
 #define HOPDONG_H
 

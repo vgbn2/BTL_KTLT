@@ -1,3 +1,9 @@
+/**
+ * @file NapTienMenu.cpp
+ * Thanh vien phu trach: Phạm Đức Chính (B24DCVT047)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "NapTienMenu.h"
 #include "InputHelper.h"
 #include "DisplayHelper.h"

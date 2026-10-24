@@ -1,3 +1,9 @@
+/**
+ * @file HopDongMenu.cpp
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "HopDongMenu.h"
 #include "InputHelper.h"
 #include "DisplayHelper.h"
@@ -107,16 +113,7 @@ void HopDongMenu::themHopDong() {
         return;
     }
 
-    Date ngayHH;
-    while (true) {
-        ngayHH = ngayDK;
-        if (std::cin.eof()) return;
-        if (ngayHH < ngayDK) {
-            std::cout << "  [!] Ngay het han khong duoc nho hon ngay dang ky (" << ngayDK.toString() << ")!\n";
-            continue;
-        }
-        break;
-    }
+    Date ngayHH = ngayDK;
 
     std::cout << "Chon Loai hop dong:\n"
               << "  [" << TYPE_CHOICE_PREPAID << "] Tra truoc \n"

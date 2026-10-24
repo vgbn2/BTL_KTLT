@@ -84,6 +84,7 @@ void testGoiCuocModel();
 void testThueBaoModel();
 void testHoaDonAndNapTienModels();
 void testCDRAndKhieuNaiModels();
+void testSourceFileHeaders();
 
 // 4. Menu Controllers tests (test_menus.cpp)
 void testMenuControllers();

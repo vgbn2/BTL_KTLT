@@ -1,3 +1,9 @@
+/**
+ * @file ghicuocgoi.h
+ * Thanh vien phu trach: Phạm Đức Chính (B24DCVT047)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #ifndef CDR_H
 #define CDR_H
 

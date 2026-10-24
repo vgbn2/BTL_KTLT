@@ -1,3 +1,9 @@
+/**
+ * @file Normalized.h
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #ifndef NORMALIZED_H
 #define NORMALIZED_H
 

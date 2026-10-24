@@ -1,3 +1,9 @@
+/**
+ * @file KhachHangMenu.cpp
+ * Thanh vien phu trach: Trương Khánh (B24DCVT201)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "KhachHangMenu.h"
 #include "InputHelper.h"
 #include "DisplayHelper.h"
@@ -32,6 +38,12 @@ void KhachHangMenu::themKhachHang() {
     if (!Normalized::isValidCredential(soGT)) {
         std::cout << "[LOI] So CCCD khong hop le.\n";
         return;
+    }
+    for (const auto& item : store.getAll()) {
+        if (item.getSoGiayTo() == soGT) {
+            std::cout << "[CANH BAO] So CCCD da duoc dang ky boi khach hang " << item.getId() << "!\n";
+            return;
+        }
     }
 
     std::string ngayCap = InputHelper::getString("Nhap ngay cap (DD/MM/YYYY, 'now' hoac '0' de huy): ");
