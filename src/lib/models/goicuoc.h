@@ -1,3 +1,9 @@
+/**
+ * @file goicuoc.h
+ * Thanh vien phu trach: Tùng Dương (B24DCVT106)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #ifndef GOICUOC_H
 #define GOICUOC_H
 

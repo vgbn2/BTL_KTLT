@@ -1,3 +1,9 @@
+/**
+ * @file GoiCuocMenu.cpp
+ * Thanh vien phu trach: Tùng Dương (B24DCVT106)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "GoiCuocMenu.h"
 #include "InputHelper.h"
 #include "DisplayHelper.h"

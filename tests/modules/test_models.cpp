@@ -104,6 +104,13 @@ void testIMEILuhn() {
                 "Deserialized id, hang sx va sdt goSIM phai khop");
     ASSERT_TRUE(deserialized.getTenThietBi() == "iPhone 15" && deserialized.getTrangThai() == tb.getTrangThai() && deserialized.getTramBTSGanNhat() == "BTS-HN-001",
                 "Deserialized ten, trang thai va BTS ID phai khop toan ven");
+
+    // Kiem tra phuong thuc sinh IMEI mo phong hop le theo thuat toan Luhn
+    for (int i = 0; i < 5; ++i) {
+        std::string simImei = ThietBiIMEI::generateSimulatedImei();
+        ASSERT_TRUE(simImei.length() == IMEIConstants::REQUIRED_IMEI_LENGTH, "IMEI mo phong phai co do dai dung 15 chu so");
+        ASSERT_TRUE(ThietBiIMEI::validateLuhn(simImei), "IMEI mo phong phai thoa man thuat toan Luhn");
+    }
 }
 
 void testHopDong() {
@@ -201,6 +208,7 @@ void testKhachHangModel() {
     ASSERT_TRUE(Normalized::isValidName(std::string(50, 'A')), "Ten dung 50 ky tu phai hop le");
     ASSERT_TRUE(!Normalized::isValidName(std::string(51, 'A')), "Ten 51 ky tu phai bi tu choi");
     ASSERT_TRUE(Normalized::isValidName("Nguyen Van An"), "Ten hop le phai duoc chap nhan");
+    ASSERT_TRUE(Normalized::isValidName("Trần Đức Anh"), "Ten tieng Viet co dau UTF-8 phai duoc chap nhan");
     ASSERT_TRUE(!Normalized::isValidName("   "), "Ten chi co khoang trang phai bi tu choi");
     ASSERT_TRUE(!Normalized::isValidName(std::string("A\xC3\x28")), "Ten UTF-8 loi phai bi tu choi");
 
@@ -446,5 +454,29 @@ void testCDRAndKhieuNaiModels() {
     ASSERT_TRUE(kn3.fromFileString("KN0012|0912345678|ChatLuongMang|01/01/2024|nd|DangXuLy"),  "loai ChatLuongMang phai hop le");
     ASSERT_TRUE(kn3.fromFileString("KN0013|0912345678|TheCao|01/01/2024|nd|DaGiaiQuyet"),      "loai TheCao phai hop le");
     ASSERT_TRUE(kn3.fromFileString("KN0014|0912345678|DichVuGoi|01/01/2024|nd|TuChoi"),        "loai DichVuGoi phai hop le");
+}
+
+void testSourceFileHeaders() {
+    // ponytail: verify Doxygen header comments and student IDs across module files
+    auto verifyHeader = [](const std::string& path, const std::string& expectedBrief) {
+        std::ifstream f(path);
+        ASSERT_TRUE(f.is_open(), (path + " phai mo duoc").c_str());
+        std::string line;
+        bool found = false;
+        while (std::getline(f, line)) {
+            if (line.find(expectedBrief) != std::string::npos) {
+                found = true;
+                break;
+            }
+        }
+        ASSERT_TRUE(found, (path + " phai co header dung voi: " + expectedBrief).c_str());
+    };
+
+    verifyHeader("src/lib/models/ghicuocgoi.h", "Thanh vien phu trach: Phạm Đức Chính (B24DCVT047)");
+    verifyHeader("src/lib/models/imei.h", "Thanh vien phu trach: Trần Đức Anh (B24DCVT021)");
+    verifyHeader("src/lib/models/thuebao.h", "Thanh vien phu trach: Tùng Dương (B24DCVT106), Trương Khánh (B24DCVT201)");
+    verifyHeader("src/lib/models/khachhang.h", "Thanh vien phu trach: Trương Khánh (B24DCVT201)");
+    verifyHeader("src/lib/models/hoadon.h", "Thanh vien phu trach: Nguyễn Minh Quang (B24DCVT308)");
+    verifyHeader("src/lib/models/goicuoc.h", "Thanh vien phu trach: Tùng Dương (B24DCVT106)");
 }
 

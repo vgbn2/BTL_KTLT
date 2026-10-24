@@ -1,3 +1,9 @@
+/**
+ * @file khieunai.cpp
+ * Thanh vien phu trach: Nguyễn Minh Quang (B24DCVT308)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "khieunai.h"
 #include "Exceptions.h"
 #include "fileio.h"
@@ -50,10 +56,15 @@ void KhieuNai::setTrangThai(const std::string& status) {
 //in tieu de danh sach khieu nai
 void KhieuNai::displayHeader(std::ostream& os) const {
     DisplayHelper::printHeader(
-        {"Ma KN", "So Dien Thoai", "Loai Khieu Nai", "Ngay Gui", "Trang Thai", "Noi Dung"},
-        {COL_WIDTH_ID, COL_WIDTH_PHONE, COL_WIDTH_TYPE, COL_WIDTH_DATE,
+        {"Ma KN", "So Dien Thoai",
+       	"Loai Khieu Nai", "Ngay Gui",
+       	"Trang Thai", "Noi Dung"},
+       
+       	{COL_WIDTH_ID, COL_WIDTH_PHONE,
+       	COL_WIDTH_TYPE, COL_WIDTH_DATE,
          COL_WIDTH_STATUS, COL_WIDTH_CONTENT},
-        {false, false, false, false, false, false}, os
+       
+	 {false, false, false, false, false, false}, os
     );
 }
 
@@ -92,7 +103,12 @@ bool KhieuNai::fromFileString(const std::string& line) {
     if (tokens.size() != 6) return false;
     try {
         //uy quyen cho constructor de kiem tra so dien thoai va cac truong bat buoc.
-        KhieuNai parsed(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5]);
+        KhieuNai parsed(tokens[0],
+		       	tokens[1],
+		       	tokens[2],
+		       	tokens[3],
+		       	tokens[4],
+		       	tokens[5]);
         *this = parsed;
         return true;
     } catch (...) {

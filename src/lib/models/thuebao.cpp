@@ -1,3 +1,9 @@
+/**
+ * @file thuebao.cpp
+ * Thanh vien phu trach: Tùng Dương (B24DCVT106), Trương Khánh (B24DCVT201)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "thuebao.h"
 #include "Date.h"
 #include "Exceptions.h"
@@ -123,8 +129,16 @@ void ThueBao::displayRow(std::ostream& os) const {
     std::ostringstream oss;
     oss << std::fixed << std::setprecision(0) << soDuTaiKhoan;
     DisplayHelper::printRow(
-        {id, loaiThueBao, maKhachHang, maGoiCuoc, ngayKichHoat, trangThai, oss.str()},
-        {COL_WIDTH_PHONE, COL_WIDTH_TYPE, COL_WIDTH_CUST, COL_WIDTH_PACKAGE, COL_WIDTH_DATE, COL_WIDTH_STATUS, COL_WIDTH_BALANCE},
+        {id, loaiThueBao, 
+        maKhachHang, maGoiCuoc, 
+        ngayKichHoat, trangThai, 
+        oss.str()},
+        
+        {COL_WIDTH_PHONE, COL_WIDTH_TYPE, 
+        COL_WIDTH_CUST, COL_WIDTH_PACKAGE, 
+        COL_WIDTH_DATE, COL_WIDTH_STATUS, 
+        COL_WIDTH_BALANCE},
+        
         {false, false, false, false, false, false, true}, os
     );
 }

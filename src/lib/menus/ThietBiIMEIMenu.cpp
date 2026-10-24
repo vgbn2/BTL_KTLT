@@ -1,41 +1,14 @@
+/**
+ * @file ThietBiIMEIMenu.cpp
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "ThietBiIMEIMenu.h"
 #include "InputHelper.h"
 #include "DisplayHelper.h"
 #include "Date.h"
 #include <iostream>
-#include <random>
-
-namespace {
-//tao IMEI mo phong cho du lieu demo;menu giu quyen so huu vi ham nay can kiem tra kho hien tai.
-//sinh 14 chu so,phep Luhn tao chu so thu 15, sau do loai trung voi IMEI da luu.
-std::string generateSimulatedImei(const Repository<ThietBiIMEI>& store) {
-    std::random_device seed;
-    std::mt19937 generator(seed());
-    std::uniform_int_distribution<int> digit(0, 9);
-    while (true) {
-        std::string prefix;
-        prefix.reserve(14);
-        prefix.push_back(static_cast<char>('3' + digit(generator) % 7));
-        for (int i = 1; i < 14; ++i) {
-            prefix.push_back(static_cast<char>('0' + digit(generator)));
-        }
-
-        int sum = 0;
-        for (int i = 0; i < 14; ++i) {
-            int value = prefix[i] - '0';
-            if ((15 - i) % 2 == 0) {
-                value *= 2;
-                if (value > 9) value -= 9;
-            }
-            sum += value;
-        }
-        const std::string imei = prefix + std::to_string((10 - sum % 10) % 10);
-        if (store.findById(imei) == nullptr && ThietBiIMEI::validateLuhn(imei)) {
-            return imei;
-        }
-    }
-}
-}
 
 using namespace IMEIMenuChoices;
 
@@ -97,7 +70,9 @@ void ThietBiIMEIMenu::themThietBi() {
     if (std::cin.eof()) return;
     std::string imei;
     if (imeiChoice == 2) {
-        imei = generateSimulatedImei(store);
+        do {
+            imei = ThietBiIMEI::generateSimulatedImei();
+        } while (store.findById(imei) != nullptr);
         std::cout << "[MO PHONG] Da sinh IMEI duy nhat: " << imei << "\n";
     } else {
         while (true) {

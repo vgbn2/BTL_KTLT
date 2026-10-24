@@ -1,3 +1,9 @@
+/**
+ * @file khachhang.cpp
+ * Thanh vien phu trach: Trương Khánh (B24DCVT201)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "khachhang.h"
 #include "Date.h"
 #include "Exceptions.h"
@@ -49,7 +55,7 @@ KhachHang::KhachHang(
         throw InvalidCredentialException(soGiayTo);
     }
     Date::parse(ngayCap);
-    if (!Normalized::isValidPhoneNumber(soDienThoai)) {
+    if (!Normalized::isValidPhoneNumber(soDienThoai, true)) {
         throw InvalidPhoneNumberException(soDienThoai);
     }
 }
@@ -87,7 +93,7 @@ void KhachHang::setNoiCap(const std::string& value) {
 
 //cap nhat so dien thoai khach hang
 void KhachHang::setSoDienThoai(const std::string& value) {
-    if (!value.empty() && !Normalized::isValidPhoneNumber(value)) {
+    if (!value.empty() && !Normalized::isValidPhoneNumber(value, true)) {
         throw InvalidPhoneNumberException(value);
     }
     soDienThoai = value;

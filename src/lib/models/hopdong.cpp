@@ -1,3 +1,9 @@
+/**
+ * @file hopdong.cpp
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "hopdong.h"
 #include "Exceptions.h"
 #include "fileio.h"
@@ -133,8 +139,18 @@ void HopDong::kichHoatLai() {
 //in tieu de danh sach hop dong
 void HopDong::displayHeader(std::ostream& os) const {
     DisplayHelper::printHeader(
-        {"Ma HD", "Ma KH", "So Dien Thoai", "Ma Goi", "Ngay DK", "Ngay HH", "Loai HD", "Trang Thai", "Gia Cuoc (VND)"},
-        {COL_WIDTH_ID, COL_WIDTH_CUST, COL_WIDTH_PHONE, COL_WIDTH_PACKAGE, COL_WIDTH_DATE, COL_WIDTH_DATE, COL_WIDTH_TYPE, COL_WIDTH_STATUS, COL_WIDTH_PRICE},
+        {"Ma HD","Ma KH", 
+        "So Dien Thoai", "Ma Goi", 
+        "Ngay DK", "Ngay HH", 
+        "Loai HD", "Trang Thai", 
+        "Gia Cuoc (VND)"},
+
+        {COL_WIDTH_ID, COL_WIDTH_CUST, 
+        COL_WIDTH_PHONE, COL_WIDTH_PACKAGE, 
+        COL_WIDTH_DATE, COL_WIDTH_DATE, 
+        COL_WIDTH_TYPE, COL_WIDTH_STATUS, 
+        COL_WIDTH_PRICE},
+
         {false, false, false, false, false, false, false, false, true}, os
     );
 }

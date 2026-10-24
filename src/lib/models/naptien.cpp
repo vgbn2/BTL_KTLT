@@ -1,3 +1,9 @@
+/**
+ * @file naptien.cpp
+ * Thanh vien phu trach: Phạm Đức Chính (B24DCVT047)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "naptien.h"
 #include "Date.h"
 #include "Exceptions.h"
@@ -71,8 +77,14 @@ void NapTien::displayRow(std::ostream& os) const {
     oss << std::fixed << std::setprecision(0) << soTien;
 
     DisplayHelper::printRow(
-        {id, soDienThoai, ngayNap, oss.str(), hinhThucNap, trangThai},
-        {COL_WIDTH_ID, COL_WIDTH_PHONE, COL_WIDTH_DATE, COL_WIDTH_AMOUNT, COL_WIDTH_METHOD, COL_WIDTH_STATUS},
+        {id, soDienThoai, 
+        ngayNap, oss.str(), 
+        hinhThucNap, trangThai},
+        
+        {COL_WIDTH_ID, COL_WIDTH_PHONE, 
+        COL_WIDTH_DATE, COL_WIDTH_AMOUNT, 
+        COL_WIDTH_METHOD, COL_WIDTH_STATUS},
+        
         {false, false, false, true, false, false}, os
     );
 }

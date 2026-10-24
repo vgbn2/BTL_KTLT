@@ -1,3 +1,9 @@
+/**
+ * @file ghicuocgoi.cpp
+ * Thanh vien phu trach: Phạm Đức Chính (B24DCVT047)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "ghicuocgoi.h"
 #include "Exceptions.h"
 #include "fileio.h"
@@ -69,14 +75,17 @@ CDR::CDR(
     thoiGianBatDau(startTime),
     thoiLuong(duration),
     cuocPhatSinh(cost) {
-    if (id.empty() || soGoi.empty() || soNhan.empty() || loaiDichVu.empty() || thoiGianBatDau.empty()) {
+    const bool missingRequiredFields = id.empty() || soGoi.empty() || soNhan.empty() ||
+                                      loaiDichVu.empty() || thoiGianBatDau.empty();
+    if (missingRequiredFields) {
         throw AppException("Loi: Thong tin ban ghi CDR khong duoc de trong cac truong bat buoc!");
     }
     if (!isKnownServiceType(loaiDichVu)) {
         throw AppException("Loi: Loai dich vu CDR khong hop le!");
     }
-    if (!Normalized::isValidPhoneNumber(soGoi) ||
-        (loaiDichVu == TYPE_DATA ? soNhan != "DATA_SESSION" : !Normalized::isValidPhoneNumber(soNhan))) {
+    const bool validReceiver = (loaiDichVu == TYPE_DATA) ? (soNhan == "DATA_SESSION")
+                                                         : Normalized::isValidPhoneNumber(soNhan);
+    if (!Normalized::isValidPhoneNumber(soGoi) || !validReceiver) {
         throw AppException("Loi: So dien thoai CDR khong hop le!");
     }
     if (!isValidStartTime(thoiGianBatDau)) {
@@ -102,20 +111,37 @@ void CDR::displayHeader(std::ostream& os) const {
 
 //in mot dong CDR
 void CDR::displayRow(std::ostream& os) const {
-    std::string durationStr = (loaiDichVu == TYPE_DATA) ? (std::to_string(thoiLuong) + " MB")
-                                                        : (std::to_string(thoiLuong) + " s");
+    std::string durationStr;
+    if (loaiDichVu == TYPE_DATA) {
+        durationStr = std::to_string(thoiLuong) + " MB";
+    } else {
+        durationStr = std::to_string(thoiLuong) + " s";
+    }
     DisplayHelper::printRow(
-        {id, soGoi, soNhan, loaiDichVu, thoiGianBatDau, durationStr, DisplayHelper::formatCurrency(cuocPhatSinh)},
-        {COL_WIDTH_ID, COL_WIDTH_CALLER, COL_WIDTH_RECEIVER, COL_WIDTH_TYPE,
-         COL_WIDTH_TIME, COL_WIDTH_DURATION, COL_WIDTH_COST},
-        {false, false, false, false, false, true, true}, os
+        {id, 
+        soGoi, soNhan, 
+        loaiDichVu, 
+        thoiGianBatDau, durationStr, 
+        DisplayHelper::formatCurrency(cuocPhatSinh)},
+
+        {COL_WIDTH_ID, 
+        COL_WIDTH_CALLER, COL_WIDTH_RECEIVER, 
+        COL_WIDTH_TYPE,
+         COL_WIDTH_TIME, COL_WIDTH_DURATION, 
+         COL_WIDTH_COST},
+        
+         {false, false, false, false, false, true, true}, os
     );
 }
 
 //in chi tiet CDR
 void CDR::displayDetail(std::ostream& os) const {
-    std::string durationStr = (loaiDichVu == TYPE_DATA) ? (std::to_string(thoiLuong) + " MB")
-                                                        : (std::to_string(thoiLuong) + " giay");
+    std::string durationStr;
+    if (loaiDichVu == TYPE_DATA) {
+        durationStr = std::to_string(thoiLuong) + " MB";
+    } else {
+        durationStr = std::to_string(thoiLuong) + " giay";
+    }
     DisplayHelper::printCard({
         {"Ma ban ghi CDR", id},
         {"So thue bao goi", soGoi},

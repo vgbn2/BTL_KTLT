@@ -1,3 +1,9 @@
+/**
+ * @file naptien.h
+ * Thanh vien phu trach: Phạm Đức Chính (B24DCVT047)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #ifndef NAPTIEN_H
 #define NAPTIEN_H
 

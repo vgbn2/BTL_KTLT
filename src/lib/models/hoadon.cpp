@@ -1,3 +1,9 @@
+/**
+ * @file hoadon.cpp
+ * Thanh vien phu trach: Nguyễn Minh Quang (B24DCVT308)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "hoadon.h"
 #include "Exceptions.h"
 #include "fileio.h"
@@ -76,8 +82,16 @@ void HoaDon::thanhToan() {
 //in tieu de danh sach hoa don
 void HoaDon::displayHeader(std::ostream& os) const {
     DisplayHelper::printHeader(
-        {"Ma HD", "So Dien Thoai", "Ky Cuoc", "Tien Goi (VND)", "Tien Data (VND)", "Tong Cong (VND)", "Trang Thai"},
-        {COL_WIDTH_ID, COL_WIDTH_PHONE, COL_WIDTH_CYCLE, COL_WIDTH_CALL, COL_WIDTH_DATA, COL_WIDTH_TOTAL, COL_WIDTH_STATUS},
+        {"Ma HD", "So Dien Thoai", 
+        "Ky Cuoc", "Tien Goi (VND)", 
+        "Tien Data (VND)", "Tong Cong (VND)", 
+        "Trang Thai"},
+        
+        {COL_WIDTH_ID, COL_WIDTH_PHONE, 
+        COL_WIDTH_CYCLE, COL_WIDTH_CALL, 
+        COL_WIDTH_DATA, COL_WIDTH_TOTAL, 
+        COL_WIDTH_STATUS},
+        
         {false, false, false, true, true, true, false}, os
     );
 }
@@ -90,8 +104,16 @@ void HoaDon::displayRow(std::ostream& os) const {
     ossTong << std::fixed << std::setprecision(0) << tongTien;
 
     DisplayHelper::printRow(
-        {id, soDienThoai, kyCuoc, ossGoi.str(), ossData.str(), ossTong.str(), trangThai},
-        {COL_WIDTH_ID, COL_WIDTH_PHONE, COL_WIDTH_CYCLE, COL_WIDTH_CALL, COL_WIDTH_DATA, COL_WIDTH_TOTAL, COL_WIDTH_STATUS},
+        {id, 
+        soDienThoai, kyCuoc, 
+        ossGoi.str(), ossData.str(), ossTong.str(), 
+        trangThai},
+        
+        {COL_WIDTH_ID,
+        COL_WIDTH_PHONE, COL_WIDTH_CYCLE, 
+        COL_WIDTH_CALL, COL_WIDTH_DATA, COL_WIDTH_TOTAL, 
+        COL_WIDTH_STATUS},
+        
         {false, false, false, true, true, true, false}, os
     );
 }

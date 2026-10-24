@@ -1,4 +1,10 @@
 /**
+ * @file imei.h
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
+/**
  * Terminal-device domain model: IMEI identity, SIM assignment, status, and BTS metadata.
  * Validation and persistence stay in the model contract; menus only collect user choices.
  */
@@ -53,6 +59,9 @@ public:
 
     //kiem tra IMEI theo thuat toan luhn
     static bool validateLuhn(const std::string& imeiStr);
+
+    //sinh chuoi IMEI 15 chu so mo phong hop le theo thuat toan Luhn 3GPP
+    static std::string generateSimulatedImei();
 
     //lay ma IMEI
     std::string getMaIMEI() const { return id; }

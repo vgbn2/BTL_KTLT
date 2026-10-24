@@ -1,3 +1,9 @@
+/**
+ * @file goicuoc.cpp
+ * Thanh vien phu trach: Tùng Dương (B24DCVT106)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #include "goicuoc.h"
 #include "Exceptions.h"
 #include "fileio.h"
@@ -86,8 +92,14 @@ void GoiCuoc::setChuKyNgay(int chuky) {
 //in tieu de danh sach goi cuoc
 void GoiCuoc::displayHeader(std::ostream& os) const {
     DisplayHelper::printHeader(
-        {"Ma Goi", "Ten Goi Cuoc", "Gia Cuoc (VND)", "Data (GB)", "Thoai (Phut)", "Chu Ky (Ngay)"},
-        {COL_WIDTH_ID, COL_WIDTH_NAME, COL_WIDTH_PRICE, COL_WIDTH_DATA, COL_WIDTH_VOICE, COL_WIDTH_CYCLE},
+        {"Ma Goi", "Ten Goi Cuoc", 
+        "Gia Cuoc (VND)", "Data (GB)", 
+        "Thoai (Phut)", "Chu Ky (Ngay)"},
+        
+        {COL_WIDTH_ID, COL_WIDTH_NAME, 
+        COL_WIDTH_PRICE, COL_WIDTH_DATA, 
+        COL_WIDTH_VOICE, COL_WIDTH_CYCLE},
+        
         {false, false, true, true, true, true}, os
     );
 }

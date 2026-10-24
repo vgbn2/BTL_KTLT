@@ -1,3 +1,27 @@
+/**
+ * @file fileio.cpp
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ *
+ * file nay chiu trach nhiem cho luong vao ra cua repo:
+ * 1. tach chuoi (split): tach theo '|', giu truong rong de kiem tra loi
+ * 2. tao thu muc tam tmps & khac biet OS (Linux vs Windows):
+ *    - Tren Linux: tao symlink tmps sang /dev/shm (RAM tmpfs) 
+ *      de tranh hao mon o SSD;
+ *      khi commit thi phai copy sang .ssd_swap roi rename 
+ *      vi rename khong nhay qua
+ *      duoc 2 phan vung khac nhau (RAM sang o dia bi loi EXDEV). 
+ *      Dung getpid() tranh trung lap.
+ *    - Tren Windows: khong co /dev/shm nen tao thu muc tmps binh thuong (_mkdir);
+ *      dung GetCurrentProcessId(), dung MoveFileExA (MOVEFILE_REPLACE_EXISTING va
+ *      MOVEFILE_WRITE_THROUGH) de ghi de an toan va ep flush du lieu xuong dia.
+ * 3. ghi tam roi commit: ghi ra file tam .tmp truoc,
+ * kiem tra xong moi doi ten sang file goc
+ *    de neu dang ghi ma bi crash/tat nguon thi du lieu cu kho co the bi hong
+ * 4. resolveDataDirectory: tu tim duong dan thu muc data chua 9 file
+ *     dulieu du chay o dau
+ */
+
 #include "fileio.h"
 #include "Normalized.h"
 #include <sstream>
@@ -12,6 +36,11 @@
 #include <windows.h>
 #else
 #include <unistd.h>
+// quyen thu muc POSIX (he bat phan / octal):
+// 0755 = rwxr-xr-x (chu so huu full quyen doc/ghi/chay 7, nhom va nguoi khac chi doc/chay 5)
+// 0777 = rwxrwxrwx (full quyen cho tat ca tien trinh doc/ghi tren vung nho dem ram /dev/shm)
+#define POSIX_DIR_PERMISSIONS 0755
+#define POSIX_SHM_PERMISSIONS 0777
 #endif
 
 //tach chuoi thanh cac truong du lieu
@@ -38,7 +67,9 @@ bool FileIO::ensureDirectoryExists(const std::string& filepath) {
 #if defined(_WIN32)
     _mkdir(dir.c_str());
 #else
-    mkdir(dir.c_str(), 0755);
+    // 0755 la he bat phan (octal) quyen POSIX rwxr-xr-x:
+    // chu so huu full quyen doc/ghi/chay (7), nhom va nguoi khac chi doc va truy cap (5)
+    mkdir(dir.c_str(), POSIX_DIR_PERMISSIONS);
 #endif
     return true;
 }
@@ -60,26 +91,26 @@ bool FileIO::initTmpDir() {
         }
 
         //khoi phuc tmpfs truoc,loi moi dung o cung
-        mkdir("/dev/shm/ktlt_tmps", 0777);
+        mkdir("/dev/shm/ktlt_tmps", POSIX_SHM_PERMISSIONS);
         if (stat(FilePaths::TMP_DIR.c_str(), &target) == 0 && S_ISDIR(target.st_mode)) {
             return true;
         }
         if (unlink(FilePaths::TMP_DIR.c_str()) != 0) {
             return false;
         }
-        return mkdir(FilePaths::TMP_DIR.c_str(), 0755) == 0 || errno == EEXIST;
+        return mkdir(FilePaths::TMP_DIR.c_str(), POSIX_DIR_PERMISSIONS) == 0 || errno == EEXIST;
     }
 
     //tao symlink sang /dev/shm de luu tren ram
     struct stat shmStat;
     if (stat("/dev/shm", &shmStat) == 0 && S_ISDIR(shmStat.st_mode)) {
-        mkdir("/dev/shm/ktlt_tmps", 0777);
+        mkdir("/dev/shm/ktlt_tmps", POSIX_SHM_PERMISSIONS);
         if (symlink("/dev/shm/ktlt_tmps", FilePaths::TMP_DIR.c_str()) == 0) {
             return true;
         }
     }
 
-    return mkdir(FilePaths::TMP_DIR.c_str(), 0755) == 0;
+    return mkdir(FilePaths::TMP_DIR.c_str(), POSIX_DIR_PERMISSIONS) == 0;
 #endif
 }
 
@@ -88,7 +119,11 @@ std::string FileIO::getTempStagingPath(const std::string& targetFilePath) {
     initTmpDir();
     size_t lastSlash = targetFilePath.find_last_of("/\\");
     std::string filename = (lastSlash == std::string::npos) ? targetFilePath : targetFilePath.substr(lastSlash + 1);
-    return FilePaths::TMP_DIR + "/" + filename + ".tmp";
+#if defined(_WIN32)
+    return FilePaths::TMP_DIR + "/" + filename + "." + std::to_string(GetCurrentProcessId()) + ".tmp";
+#else
+    return FilePaths::TMP_DIR + "/" + filename + "." + std::to_string(getpid()) + ".tmp";
+#endif
 }
 
 //commit tep tam vao tep dich
@@ -113,7 +148,11 @@ bool FileIO::commitFromTmp(const std::string& tmpPath, const std::string& target
         return false;
     }
 
-    std::string intermediateTarget = targetPath + ".ssd_swap";
+#if defined(_WIN32)
+    std::string intermediateTarget = targetPath + "." + std::to_string(GetCurrentProcessId()) + ".ssd_swap";
+#else
+    std::string intermediateTarget = targetPath + "." + std::to_string(getpid()) + ".ssd_swap";
+#endif
     std::ofstream dst(intermediateTarget, std::ios::binary | std::ios::trunc);
     if (!dst.is_open()) {
         src.close();
@@ -192,6 +231,7 @@ std::string FileIO::resolveDataDirectory(const std::string& executablePath) {
         "ghicuocgoi.txt", 
         "khieunai.txt"
     };
+    //tim path bang cac luot qua tat ca 
 for (const auto& directory : searchPaths) {
         bool complete = true;
         for (const auto& filename : requiredFiles) {

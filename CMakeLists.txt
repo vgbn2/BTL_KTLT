@@ -52,6 +52,21 @@ add_executable(stress_test_runner
     ${LIB_SOURCES}
 )
 
+add_executable(malformed_fuzzer_runner
+    tests/malformed_fuzzer_runner.cpp
+    ${LIB_SOURCES}
+)
+
+add_executable(crud_deep_tester
+    tests/crud_deep_tester.cpp
+    ${LIB_SOURCES}
+)
+
+add_executable(lifecycle_3phase_runner
+    tests/lifecycle_3phase_runner.cpp
+    ${LIB_SOURCES}
+)
+
 enable_testing()
 add_test(NAME unit_tests COMMAND test_runner)
 set_tests_properties(unit_tests PROPERTIES WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")

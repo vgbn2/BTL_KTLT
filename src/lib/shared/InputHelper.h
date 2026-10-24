@@ -1,3 +1,9 @@
+/**
+ * @file InputHelper.h
+ * Thanh vien phu trach: Trần Đức Anh (B24DCVT021)
+ * Hoc phan: Ky thuat lap trinh (KTLT) - PTIT
+ */
+
 #ifndef INPUTHELPER_H
 #define INPUTHELPER_H
 
