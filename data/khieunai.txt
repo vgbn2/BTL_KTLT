@@ -1,2 +1,10 @@
 KN0001|0912345678|CuocPhatSinh|02/03/2024|Cuoc data phat sinh qua cao trong thang 2|DangXuLy
 KN0002|0888123456|TheCao|06/04/2024|The cao nap bi mo ma the da giai quyet|DaGiaiQuyet
+KN0003|0903456789|ChatLuongMang|13/04/2024|Tin hieu mang khong on dinh tai khu vuc cu tru|DangXuLy
+KN0004|0934567890|CuocPhatSinh|26/04/2024|Cuoc thoai phat sinh chua ro nguon goc|TiepNhan
+KN0005|0778901234|DichVuGoi|03/05/2024|Khong nhan duoc thong bao gia han goi cuoc|DangXuLy
+KN0006|0834567890|TheCao|19/05/2024|The cao nap cham duoc ghi nhan|DaGiaiQuyet
+KN0007|0967890123|CuocPhatSinh|02/06/2024|Cuoc data vuot muc du kien|DangXuLy
+KN0008|0981234567|DichVuGoi|16/06/2024|Yeu cau kiem tra trang thai dich vu|TiepNhan
+KN0009|0978999888|ChatLuongMang|21/06/2024|Khach hang phan anh vung song yeu|DangXuLy
+KN0010|0912345678|CuocPhatSinh|25/06/2024|De nghi doi soat hoa don thang truoc|DaGiaiQuyet

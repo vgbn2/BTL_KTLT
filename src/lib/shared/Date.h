@@ -2,7 +2,7 @@
 #define DATE_H
 
 #include <string>
-#include <iostream>
+#include <iosfwd>
 
 namespace CalendarConstants {
     const int MIN_VALID_YEAR = 1900;
@@ -46,6 +46,8 @@ public:
     void setMonth(int m);
     //cap nhat nam
     void setYear(int y);
+    //cap nhat ca ngay,thang,nam cung luc
+    void setDate(int d, int m, int y);
 
     //chuyen ngay thanh chuoi
     std::string toString() const;

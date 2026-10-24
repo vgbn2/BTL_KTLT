@@ -5,6 +5,7 @@
 #include "hoadon.h"
 #include "thuebao.h"
 #include "khieunai.h"
+#include "ghicuocgoi.h"
 #include "Date.h"
 
 namespace HoaDonMenuChoices {
@@ -16,6 +17,12 @@ namespace HoaDonMenuChoices {
     const int MENU_ADD_COMPLAINT = 5;
     const int MENU_PROCESS_COMPLAINT = 6;
     const int MENU_LIST_COMPLAINTS = 7;
+    const int MENU_SORT = 8;
+
+    const int SORT_INVOICE_ID_ASC = 1;
+    const int SORT_INVOICE_ID_DESC = 2;
+    const int SORT_COMPLAINT_ID_ASC = 3;
+    const int SORT_COMPLAINT_ID_DESC = 4;
 }
 
 class HoaDonMenu {
@@ -23,6 +30,7 @@ private:
     Repository<HoaDon>& hoaDonStore;
     Repository<ThueBao>& thueBaoStore;
     Repository<KhieuNai>& khieuNaiStore;
+    Repository<CDR>& cdrStore;
 
     //lap hoa don cuoc phat sinh
     void lapHoaDon();
@@ -32,6 +40,8 @@ private:
     void thanhToanHoaDon();
     //tra cuu hoa don theo so dien thoai
     void traCuuTheoSoDienThoai();
+    //sap xep hoa don hoac khieu nai theo ma
+    void sapXepDanhSach();
     //tiep nhan phieu khieu nai
     void tiepNhanKhieuNai();
     //xu ly phieu khieu nai
@@ -45,8 +55,9 @@ public:
     //tao menu quan ly hoa don va khieu nai
     HoaDonMenu(Repository<HoaDon>& hdRepo,
                Repository<ThueBao>& tbRepo,
-               Repository<KhieuNai>& knRepo)
-        : hoaDonStore(hdRepo), thueBaoStore(tbRepo), khieuNaiStore(knRepo) {}
+               Repository<KhieuNai>& knRepo,
+               Repository<CDR>& cdrRepo)
+        : hoaDonStore(hdRepo), thueBaoStore(tbRepo), khieuNaiStore(knRepo), cdrStore(cdrRepo) {}
 
     //hien thi menu quan ly hoa don va khieu nai
     void showMenu();

@@ -193,6 +193,7 @@ bool HopDong::fromFileString(const std::string& line) {
     try {
         //doc va kiem tra dinh dang hop dong,chong du thua
         size_t idxGia = 0;
+        //phan tich gia tri truoc khi tao doi tuong;constructor se kiem tra toan bo ban ghi.
         double gia = std::stod(tokens[8], &idxGia);
         if (idxGia != tokens[8].length()) return false;
         HopDong parsed(

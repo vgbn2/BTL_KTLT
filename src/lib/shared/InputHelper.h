@@ -19,6 +19,8 @@ class InputHelper {
 public:
     //xoa trang thai loi va bo dem nhap
     static void clearBuffer();
+    //doc ten tu ban phim
+    static std::string getName(const std::string& prompt, bool allowEmpty = false);
     //doc chuoi tu ban phim
     static std::string getString(const std::string& prompt, bool allowEmpty = false);
     //doc so nguyen trong khoang cho phep

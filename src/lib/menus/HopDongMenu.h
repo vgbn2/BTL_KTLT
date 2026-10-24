@@ -22,6 +22,8 @@ namespace HopDongMenuChoices {
 
     const int SORT_BY_DATE_DESC = 1;
     const int SORT_BY_PRICE_DESC = 2;
+    const int SORT_BY_ID_ASC = 3;
+    const int SORT_BY_ID_DESC = 4;
 
     const int UPDATE_PACKAGE = 1;
     const int UPDATE_EXPIRY = 2;

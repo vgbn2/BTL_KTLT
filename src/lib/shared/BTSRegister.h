@@ -7,15 +7,15 @@ struct BTSRecord{
                 ProvinceCode,   //tinh/tpho
                 district,       //quan/huyen
                 ward,           //phuong
-                Adress,         
+                Adress,         //dia chi
                 carrier,
                 radiotech;
-    double latitude;
+    double latitude;            //kinh tuyen vi tuyen 
     double longtitude;
 };
 class BTSRegistry{
     private:
-        std::vector<BTSRecord>towers;   //la vector kph mang vi vector them moi bts va so luong tot hon mang
+        std::vector<BTSRecord>towers;   //la vector kph mang vi vector them moi bts va so luong de hon mang
     public:
     BTSRegistry();
    explicit BTSRegistry(const std::string& filePath);

@@ -3,11 +3,45 @@
 #include "fileio.h"
 #include "Normalized.h"
 #include "DisplayHelper.h"
+#include "Date.h"
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include <cmath>
 
 using namespace CDRConstants;
+
+namespace {
+
+bool isKnownServiceType(const std::string& type) {
+    return type == TYPE_VOICE || type == TYPE_SMS || type == TYPE_DATA;
+}
+
+bool isValidStartTime(const std::string& value) {
+    std::istringstream input(value);
+    std::string date;
+    int hour = 0;
+    int minute = 0;
+    int second = 0;
+    char firstSeparator = 0;
+    char secondSeparator = 0;
+    std::string trailing;
+
+    if (!(input >> date >> hour >> firstSeparator >> minute >> secondSeparator >> second) ||
+        firstSeparator != ':' || secondSeparator != ':' || (input >> trailing) ||
+        hour < 0 || hour > 23 || minute < 0 || minute > 59 || second < 0 || second > 59) {
+        return false;
+    }
+
+    try {
+        Date::parse(date);
+        return true;
+    } catch (...) {
+        return false;
+    }
+}
+
+} // namespace
 
 //tao ban ghi CDR mac dinh
 CDR::CDR()
@@ -38,11 +72,21 @@ CDR::CDR(
     if (id.empty() || soGoi.empty() || soNhan.empty() || loaiDichVu.empty() || thoiGianBatDau.empty()) {
         throw AppException("Loi: Thong tin ban ghi CDR khong duoc de trong cac truong bat buoc!");
     }
+    if (!isKnownServiceType(loaiDichVu)) {
+        throw AppException("Loi: Loai dich vu CDR khong hop le!");
+    }
+    if (!Normalized::isValidPhoneNumber(soGoi) ||
+        (loaiDichVu == TYPE_DATA ? soNhan != "DATA_SESSION" : !Normalized::isValidPhoneNumber(soNhan))) {
+        throw AppException("Loi: So dien thoai CDR khong hop le!");
+    }
+    if (!isValidStartTime(thoiGianBatDau)) {
+        throw AppException("Loi: Thoi gian bat dau CDR khong hop le!");
+    }
     if (thoiLuong < 0) {
         throw AppException("Loi: Thoi luong cuoc goi / data khong duoc am!");
     }
-    if (cuocPhatSinh < 0.0) {
-        throw AppException("Loi: Cuoc phat sinh khong duoc am!");
+    if (!std::isfinite(cuocPhatSinh) || cuocPhatSinh < 0.0) {
+        throw AppException("Loi: Cuoc phat sinh khong duoc am hoac khong huu han!");
     }
 }
 
@@ -93,24 +137,21 @@ std::string CDR::toFileString() const {
 //nap CDR tu dong tep
 bool CDR::fromFileString(const std::string& line) {
     auto tokens = FileIO::split(line, '|');
-    if (tokens.size() < 7) return false;
+    if (tokens.size() != 7) return false;
 
     try {
-        id = tokens[0];
-        soGoi = tokens[1];
-        soNhan = tokens[2];
-        loaiDichVu = tokens[3];
-        thoiGianBatDau = tokens[4];
+        //phan tich tung truong truoc khi gan ban ghi da kiem tra vao doi tuong.
+        size_t durationIndex = 0;
+        int duration = std::stoi(tokens[5], &durationIndex);
+        if (durationIndex != tokens[5].length()) return false;
 
-        size_t idx = 0;
-        thoiLuong = std::stoi(tokens[5], &idx);
-        if (idx != tokens[5].length() || thoiLuong < 0) return false;
+        size_t costIndex = 0;
+        double cost = std::stod(tokens[6], &costIndex);
+        if (costIndex != tokens[6].length()) return false;
 
-        idx = 0;
-        cuocPhatSinh = std::stod(tokens[6], &idx);
-        if (idx != tokens[6].length() || cuocPhatSinh < 0.0) return false;
-
-        return !id.empty() && !soGoi.empty() && !soNhan.empty();
+        CDR parsed(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], duration, cost);
+        *this = parsed;
+        return true;
     } catch (...) {
         return false;
     }

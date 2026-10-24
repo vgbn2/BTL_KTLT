@@ -165,6 +165,7 @@ bool ThueBao::fromFileString(const std::string& line) {
     }
 
     try {
+        //phan tich day du so du truoc khi constructor kiem tra thue bao.
         //doc va kiem tra dinh dang thue bao,chong du thua
         size_t idxSoDu = 0;
         double soDu = std::stod(tokens[6], &idxSoDu);

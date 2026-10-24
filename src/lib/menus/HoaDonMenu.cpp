@@ -58,6 +58,24 @@ void HoaDonMenu::lapHoaDon() {
     std::string kyCuoc = InputHelper::getString("Nhap ky cuoc (MM/YYYY): ");
     if (std::cin.eof() || kyCuoc.empty()) return;
 
+    // Tra cuu va hien thi cuoc phat sinh thuc te tu CDR trong ky cuoc
+    double tienGoiCDR = 0.0, tienDataCDR = 0.0;
+    for (const auto& cdr : cdrStore.getAll()) {
+        // thoiGianBatDau co dang "DD/MM/YYYY HH:MM:SS", lay MM/YYYY tu vi tri 3
+        if (cdr.getSoGoi() != sdt) continue;
+        if (cdr.getThoiGianBatDau().size() < 10) continue;
+        if (cdr.getThoiGianBatDau().substr(3, 7) != kyCuoc) continue;
+        if (cdr.getLoaiDichVu() == CDRConstants::TYPE_DATA)
+            tienDataCDR += cdr.getCuocPhatSinh();
+        else
+            tienGoiCDR += cdr.getCuocPhatSinh();
+    }
+
+    std::cout << "Thong ke cuoc tu ban ghi CDR ky " << kyCuoc << ":\n"
+              << "  - Cuoc thoai/SMS tu CDR: " << DisplayHelper::formatCurrency(tienGoiCDR, "VND") << "\n"
+              << "  - Cuoc data tu CDR:      " << DisplayHelper::formatCurrency(tienDataCDR, "VND") << "\n"
+              << "  - Tong cuoc tu CDR:      " << DisplayHelper::formatCurrency(tienGoiCDR + tienDataCDR, "VND") << "\n";
+
     double tienGoi = InputHelper::getDouble("Nhap tien cuoc goi co ban (VND): ", 0.0);
     if (std::cin.eof()) return;
 
