@@ -65,8 +65,6 @@ extra_javascript:
 nav:
   - Home: index.md
   - Reports:
-      - Technical Manual & System Specification (EN): Reports/KTLT_TECHNICAL_MANUAL_AND_SYSTEM_SPECIFICATION.md
-      - Sổ Tay Kỹ Thuật & Đặc Tả Hệ Thống (VN): Reports/SO_TAY_KY_THUAT_VA_DAC_TA_KIEN_TRUC_HE_THONG_KTLT.md
       - IMEI & Shared Libraries Report: Reports/IMEI_AND_SHARED_LIBRARIES_REPORT.md
   - Architecture:
       - Overview & Requirements: Overview/ARCHITECTURE_AND_REQUIREMENTS.md
