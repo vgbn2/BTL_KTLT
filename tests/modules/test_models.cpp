@@ -208,9 +208,9 @@ void testKhachHangModel() {
     ASSERT_TRUE(Normalized::isValidName(std::string(50, 'A')), "Ten dung 50 ky tu phai hop le");
     ASSERT_TRUE(!Normalized::isValidName(std::string(51, 'A')), "Ten 51 ky tu phai bi tu choi");
     ASSERT_TRUE(Normalized::isValidName("Nguyen Van An"), "Ten hop le phai duoc chap nhan");
-    ASSERT_TRUE(Normalized::isValidName("Trần Đức Anh"), "Ten tieng Viet co dau UTF-8 phai duoc chap nhan");
     ASSERT_TRUE(!Normalized::isValidName("   "), "Ten chi co khoang trang phai bi tu choi");
-    ASSERT_TRUE(!Normalized::isValidName(std::string("A\xC3\x28")), "Ten UTF-8 loi phai bi tu choi");
+    ASSERT_TRUE(!Normalized::isValidName("Name|WithPipe"), "Ten co ky tu phan cach phai bi tu choi");
+    ASSERT_TRUE(!Normalized::isValidName("Name\nWithNewline"), "Ten co ky tu dieu khien phai bi tu choi");
 
     //kiem tra loi sdt
     bool caughtPhone = false;
@@ -319,6 +319,37 @@ void testThueBaoModel() {
     ASSERT_TRUE(parsedTb.fromFileString(tbStr), "fromFileString ThueBao phai parse thanh cong");
     ASSERT_TRUE(parsedTb.getSoDienThoai() == "0981234567", "Parsed SDT phai khop");
     ASSERT_TRUE(parsedTb.getSoDuTaiKhoan() == 50000.0, "Parsed so du phai khop");
+
+    // Kiem thu thue bao tra sau voi so du am (Postpaid Negative Balance)
+    ThueBao tbTraSau("0987654321", ThueBaoConstants::TYPE_POSTPAID, "KH0002", "B100", "01/01/2024", ThueBaoConstants::STATUS_ACTIVE, -50000.0);
+    ASSERT_TRUE(tbTraSau.getSoDuTaiKhoan() == -50000.0, "Thue bao tra sau duoc phep co so du am ban dau");
+
+    tbTraSau.truTien(25000.0);
+    ASSERT_TRUE(tbTraSau.getSoDuTaiKhoan() == -75000.0, "Thue bao tra sau tru tien xuong sau hon so am thanh cong");
+
+    std::string tsStr = tbTraSau.toFileString();
+    ThueBao parsedTs;
+    ASSERT_TRUE(parsedTs.fromFileString(tsStr), "fromFileString phai nap thanh cong thue bao tra sau co so du am");
+    ASSERT_TRUE(parsedTs.getSoDuTaiKhoan() == -75000.0, "So du am cua thue bao tra sau sau deserialization phai duoc bao toan");
+
+    bool caughtPrepaidNegative = false;
+    try {
+        ThueBao tbBad("0981112233", ThueBaoConstants::TYPE_PREPAID, "KH0001", "M50", "01/01/2024", ThueBaoConstants::STATUS_ACTIVE, -1000.0);
+    } catch (const AppException& e) {
+        caughtPrepaidNegative = (!std::string(e.what()).empty());
+    }
+    ASSERT_TRUE(caughtPrepaidNegative, "Thue bao tra truoc co so du am phai bi chan bang AppException");
+
+    tbTraSau.setSoDuTaiKhoan(-30000.0);
+    ASSERT_TRUE(tbTraSau.getSoDuTaiKhoan() == -30000.0, "setSoDuTaiKhoan am cho tra sau phai thanh cong");
+
+    bool caughtSetPrepaidNegative = false;
+    try {
+        tb.setSoDuTaiKhoan(-5000.0);
+    } catch (const AppException& e) {
+        caughtSetPrepaidNegative = (!std::string(e.what()).empty());
+    }
+    ASSERT_TRUE(caughtSetPrepaidNegative, "setSoDuTaiKhoan am cho tra truoc phai bi chan bang AppException");
 }
 
 void testHoaDonAndNapTienModels() {

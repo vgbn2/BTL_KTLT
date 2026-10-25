@@ -12,6 +12,8 @@
 #include "goicuoc.h"
 #include "khachhang.h"
 #include "imei.h"
+#include "hopdong.h"
+#include "hoadon.h"
 
 namespace ThueBaoMenuChoices {
     const int MENU_BACK = 0;
@@ -34,6 +36,8 @@ private:
     Repository<GoiCuoc>& goiCuocStore;
     Repository<KhachHang>& khachHangStore;
     Repository<ThietBiIMEI>& imeiStore;
+    Repository<HopDong>* hopDongStore;
+    Repository<HoaDon>* hoaDonStore;
 
     //them thue bao moi
     void themThueBao();
@@ -57,8 +61,11 @@ public:
     ThueBaoMenu(Repository<ThueBao>& s,
                 Repository<GoiCuoc>& gs,
                 Repository<KhachHang>& ks,
-                Repository<ThietBiIMEI>& is)
-        : store(s), goiCuocStore(gs), khachHangStore(ks), imeiStore(is) {}
+                Repository<ThietBiIMEI>& is,
+                Repository<HopDong>* hs = nullptr,
+                Repository<HoaDon>* hds = nullptr)
+        : store(s), goiCuocStore(gs), khachHangStore(ks), imeiStore(is),
+          hopDongStore(hs), hoaDonStore(hds) {}
     //hien thi menu quan ly thue bao
     void showMenu();
 };

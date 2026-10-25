@@ -81,8 +81,8 @@ int main(int argc, char* argv[]) {
     }
 
     KhachHangMenu khachHangMenu(khachHangStore, thueBaoStore, hopDongStore);
-    GoiCuocMenu goiCuocMenu(goiCuocStore);
-    ThueBaoMenu thueBaoMenu(thueBaoStore, goiCuocStore, khachHangStore, imeiStore);
+    GoiCuocMenu goiCuocMenu(goiCuocStore, &thueBaoStore, &hopDongStore);
+    ThueBaoMenu thueBaoMenu(thueBaoStore, goiCuocStore, khachHangStore, imeiStore, &hopDongStore, &hoaDonStore);
     HopDongMenu hopDongMenu(hopDongStore, khachHangStore, thueBaoStore, goiCuocStore);
     ThietBiIMEIMenu imeiMenu(imeiStore, thueBaoStore);
     NapTienMenu napTienMenu(napTienStore, thueBaoStore, ghicuocgoiStore);

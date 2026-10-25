@@ -113,7 +113,9 @@ void HopDongMenu::themHopDong() {
         return;
     }
 
-    Date ngayHH = ngayDK;
+    GoiCuoc* gc = goiCuocStore.findById(maGC);
+    int chuKy = (gc != nullptr && gc->getChuKyNgay() > 0) ? gc->getChuKyNgay() : 30;
+    Date ngayHH = ngayDK.addDays(chuKy);
 
     std::cout << "Chon Loai hop dong:\n"
               << "  [" << TYPE_CHOICE_PREPAID << "] Tra truoc \n"
