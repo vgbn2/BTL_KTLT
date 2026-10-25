@@ -57,6 +57,18 @@ void testDate() {
                 "Date::parse('now') phai tra ve ngay hien tai");
     Date parsedNowUpper = Date::parse("NOW");
     ASSERT_TRUE(parsedNowUpper == actualNow, "Date::parse('NOW') phai tra ve ngay hien tai");
+
+    // Kiem thu phep tinh cong tru ngay (addDays)
+    ASSERT_TRUE(Date(15, 1, 2024).addDays(5) == Date(20, 1, 2024), "15/01/2024 + 5 ngay phai la 20/01/2024");
+    ASSERT_TRUE(Date(28, 1, 2024).addDays(5) == Date(2, 2, 2024), "28/01/2024 + 5 ngay phai la 02/02/2024");
+    ASSERT_TRUE(Date(28, 2, 2024).addDays(1) == Date(29, 2, 2024), "28/02 nam nhuan 2024 + 1 ngay phai la 29/02/2024");
+    ASSERT_TRUE(Date(29, 2, 2024).addDays(1) == Date(1, 3, 2024), "29/02/2024 + 1 ngay phai la 01/03/2024");
+    ASSERT_TRUE(Date(28, 2, 2023).addDays(1) == Date(1, 3, 2023), "28/02 nam thuong 2023 + 1 ngay phai sang 01/03/2023");
+    ASSERT_TRUE(Date(30, 12, 2024).addDays(3) == Date(2, 1, 2025), "30/12/2024 + 3 ngay phai sang 02/01/2025");
+    ASSERT_TRUE(Date(1, 3, 2024).addDays(-1) == Date(29, 2, 2024), "01/03/2024 - 1 ngay phai la 29/02/2024");
+    ASSERT_TRUE(Date(1, 1, 2025).addDays(-1) == Date(31, 12, 2024), "01/01/2025 - 1 ngay phai la 31/12/2024");
+    ASSERT_TRUE(Date(15, 1, 2024).addDays(30) == Date(14, 2, 2024), "15/01/2024 + chu ky 30 ngay phai la 14/02/2024");
+    ASSERT_TRUE(Date(15, 1, 2024).addDays(0) == Date(15, 1, 2024), "addDays(0) phai giu nguyen ngay");
 }
 
 void testBirthDateAndAgeValidation() {

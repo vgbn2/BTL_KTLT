@@ -213,8 +213,8 @@ int main(int argc, char* argv[]) {
               << ", TB=" << baseTb << ", HD=" << baseHd << ", IMEI=" << baseImei << "\n\n";
 
     KhachHangMenu khMenu(khRepo, tbRepo, hdRepo);
-    GoiCuocMenu gcMenu(gcRepo);
-    ThueBaoMenu tbMenu(tbRepo, gcRepo, khRepo, imeiRepo);
+    GoiCuocMenu gcMenu(gcRepo, &tbRepo, &hdRepo);
+    ThueBaoMenu tbMenu(tbRepo, gcRepo, khRepo, imeiRepo, &hdRepo);
     HopDongMenu hdMenu(hdRepo, khRepo, tbRepo, gcRepo);
     ThietBiIMEIMenu imeiMenu(imeiRepo, tbRepo);
 

@@ -157,6 +157,29 @@ void GoiCuocMenu::xoaGoiCuoc() {
     }
 
     gc->displayDetail();
+
+    if (thueBaoStore != nullptr) {
+        auto usingTbs = thueBaoStore->filter([&maGoi](const ThueBao& tb) {
+            return tb.getMaGoiCuoc() == maGoi;
+        });
+        if (!usingTbs.empty()) {
+            std::cout << "[LOI] Khong the xoa goi cuoc! Hien dang co " << usingTbs.size()
+                      << " thue bao dang su dung goi cuoc nay.\n";
+            return;
+        }
+    }
+
+    if (hopDongStore != nullptr) {
+        auto usingHds = hopDongStore->filter([&maGoi](const HopDong& hd) {
+            return hd.getMaGoiCuoc() == maGoi;
+        });
+        if (!usingHds.empty()) {
+            std::cout << "[LOI] Khong the xoa goi cuoc! Hien dang co " << usingHds.size()
+                      << " hop dong dang su dung goi cuoc nay.\n";
+            return;
+        }
+    }
+
     bool confirm = InputHelper::getConfirm("Ban co chac chan muon xoa goi cuoc nay khoi he thong?");
     if (std::cin.eof()) return;
     if (confirm) {

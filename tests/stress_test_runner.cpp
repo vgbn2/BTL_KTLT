@@ -226,6 +226,41 @@ std::pair<std::string, std::string> generateRandomIMEI(std::mt19937_64& rng, boo
     return std::make_pair(imei, btsId);
 }
 
+std::string generateRandomName(std::mt19937_64& rng, bool valid) {
+    if (valid) {
+        static const std::vector<std::string> firstNames = {"Nguyen", "Tran", "Le", "Pham", "Hoang", "Vu", "Dang", "Bui"};
+        static const std::vector<std::string> middleNames = {"Van", "Thi", "Duc", "Quoc", "Minh", "Tung", "Anh", "Dinh"};
+        static const std::vector<std::string> lastNames = {"An", "Binh", "Chinh", "Duong", "Khanh", "Quang", "Nam", "Long"};
+        std::uniform_int_distribution<size_t> fDist(0, firstNames.size() - 1);
+        std::uniform_int_distribution<size_t> mDist(0, middleNames.size() - 1);
+        std::uniform_int_distribution<size_t> lDist(0, lastNames.size() - 1);
+        return firstNames[fDist(rng)] + " " + middleNames[mDist(rng)] + " " + lastNames[lDist(rng)];
+    } else {
+        static const std::vector<std::string> badNames = {
+            "", "   ", "Name|WithPipe", "Name\nWithNewline", std::string(55, 'A')
+        };
+        std::uniform_int_distribution<size_t> dist(0, badNames.size() - 1);
+        return badNames[dist(rng)];
+    }
+}
+
+std::string generateRandomPackageName(std::mt19937_64& rng, bool valid) {
+    if (valid) {
+        static const std::vector<std::string> prefixes = {"Data", "Voice", "SMS", "Combo", "Eco", "Pro", "Max", "Speed"};
+        static const std::vector<std::string> tiers = {"Basic", "Plus", "VIP", "Super", "Flex", "Family"};
+        std::uniform_int_distribution<size_t> pDist(0, prefixes.size() - 1);
+        std::uniform_int_distribution<size_t> tDist(0, tiers.size() - 1);
+        std::uniform_int_distribution<int> numDist(1, 999);
+        return prefixes[pDist(rng)] + " " + tiers[tDist(rng)] + " " + std::to_string(numDist(rng));
+    } else {
+        static const std::vector<std::string> badNames = {
+            "", "  ", "Pack|Pipe", "Bad\tName", std::string(52, 'X')
+        };
+        std::uniform_int_distribution<size_t> dist(0, badNames.size() - 1);
+        return badNames[dist(rng)];
+    }
+}
+
 struct StressMetrics {
     uint64_t totalTransitions = 0;
     uint64_t menuInvocations = 0;
@@ -238,6 +273,7 @@ struct StressMetrics {
     uint64_t prematureRejectionsVerified = 0;
     uint64_t validRegistrationsVerified = 0;
     uint64_t conflictCollisionsCaught = 0;
+    uint64_t referentialCascadeRejectionsVerified = 0;
 };
 
 //kiem tra bat bien lien ket giua cac kho du lieu
@@ -406,8 +442,8 @@ int main(int argc, char* argv[]) {
     KhachHangMenu khachHangMenu(khachHangStore, thueBaoStore, hopDongStore);
     HopDongMenu hopDongMenu(hopDongStore, khachHangStore, thueBaoStore, goiCuocStore);
     ThietBiIMEIMenu imeiMenu(imeiStore, thueBaoStore);
-    GoiCuocMenu goiCuocMenu(goiCuocStore);
-    ThueBaoMenu thueBaoMenu(thueBaoStore, goiCuocStore, khachHangStore, imeiStore);
+    GoiCuocMenu goiCuocMenu(goiCuocStore, &thueBaoStore, &hopDongStore);
+    ThueBaoMenu thueBaoMenu(thueBaoStore, goiCuocStore, khachHangStore, imeiStore, &hopDongStore, &hoaDonStore);
     NapTienMenu napTienMenu(napTienStore, thueBaoStore, ghicuocgoiStore);
     HoaDonMenu hoaDonMenu(hoaDonStore, thueBaoStore, khieuNaiStore, ghicuocgoiStore);
 
@@ -461,6 +497,8 @@ int main(int argc, char* argv[]) {
             std::string dynCCCD = generateRandomCredential(rng, true);
             std::string dynDate = generateRandomDate(rng, true);
             std::string dynAddress = generateRandomAddress(rng);
+            std::string dynKHName = generateRandomName(rng, true);
+            std::string dynGCName = generateRandomPackageName(rng, true);
 
             // 2. Dinh nghia cac buoc dang ky don vi
             // 0: KhachHang, 1: GoiCuoc, 2: ThueBao, 3: HopDong, 4: ThietBiIMEI
@@ -479,13 +517,13 @@ int main(int argc, char* argv[]) {
             // Thuc thi cac buoc theo dung thu tu da xao tron
             for (int step : stepOrder) {
                 if (step == 0) { // KhachHang
-                    std::string khInput = "1\n" + dynKH + "\nNguyen Van An\n" +
+                    std::string khInput = "1\n" + dynKH + "\n" + dynKHName + "\n" +
                                           dynCCCD + "\n10/01/2021\nCuc C06\n\n" + dynAddress + "\n0\n";
                     driveMenuWithInput(khInput, [&]() { khachHangMenu.showMenu(); });
                     metrics.menuInvocations++;
                     metrics.totalTransitions++;
                 } else if (step == 1) { // GoiCuoc
-                    std::string gcInput = "1\n" + dynGC + "\nGoi Stress RNG\n50000\n5\n100\n30\n0\n";
+                    std::string gcInput = "1\n" + dynGC + "\n" + dynGCName + "\n50000\n5\n100\n30\n0\n";
                     driveMenuWithInput(gcInput, [&]() { goiCuocMenu.showMenu(); });
                     metrics.menuInvocations++;
                     metrics.totalTransitions++;
@@ -565,6 +603,32 @@ int main(int argc, char* argv[]) {
                 driveMenuWithInput(dupTbInput, [&]() { thueBaoMenu.showMenu(); });
                 assert(thueBaoStore.size() == oldTbSize && "CONFLICT VIOLATION: Duplicate ThueBao phone increased store size!");
                 metrics.conflictCollisionsCaught++;
+            }
+
+            // KIEM TRA THAT BAI 4: Tu choi xoa khi con rang buoc toan ven (Referential Cascade Deletion Protection)
+            if (posKH < posTB && posGC < posTB && posTB < posHD && posTB < posIMEI) {
+                if (goiCuocStore.findById(dynGC) != nullptr && thueBaoStore.findById(dynPhone) != nullptr) {
+                    // 4.1: Goi cuoc dang co thue bao su dung -> xoa phai bi tu choi
+                    std::string delGcInput = "6\n" + dynGC + "\n1\n0\n";
+                    driveMenuWithInput(delGcInput, [&]() { goiCuocMenu.showMenu(); });
+                    assert(goiCuocStore.findById(dynGC) != nullptr &&
+                           "REFERENTIAL INTEGRITY VIOLATION: GoiCuoc deleted while active ThueBao/HopDong references exist!");
+                    metrics.referentialCascadeRejectionsVerified++;
+
+                    // 4.2: Thue bao dang co hop dong/IMEI lien ket -> xoa phai bi tu choi
+                    std::string delTbInput = "7\n" + dynPhone + "\n1\n0\n";
+                    driveMenuWithInput(delTbInput, [&]() { thueBaoMenu.showMenu(); });
+                    assert(thueBaoStore.findById(dynPhone) != nullptr &&
+                           "REFERENTIAL INTEGRITY VIOLATION: ThueBao deleted while active HopDong/IMEI references exist!");
+                    metrics.referentialCascadeRejectionsVerified++;
+
+                    // 4.3: Khach hang dang so huu thue bao -> xoa phai bi tu choi
+                    std::string delKhInput = "6\n" + dynKH + "\ny\n0\n";
+                    driveMenuWithInput(delKhInput, [&]() { khachHangMenu.showMenu(); });
+                    assert(khachHangStore.findById(dynKH) != nullptr &&
+                           "REFERENTIAL INTEGRITY VIOLATION: KhachHang deleted while owning active ThueBao/HopDong!");
+                    metrics.referentialCascadeRejectionsVerified++;
+                }
             }
         }
 
@@ -731,6 +795,56 @@ int main(int argc, char* argv[]) {
                 metrics.menuInvocations++;
                 metrics.totalTransitions++;
             }
+        }
+
+        //1.5 hoan vi NapTienMenu (UC07: Phieu nap tien, UC08: Ban ghi CDR)
+        {
+            std::string sdt = (!thueBaoStore.empty()) ? thueBaoStore.getAll().front().getId() : "0981234567";
+            std::string maGD = "GD_ST_" + std::to_string(roundCounter % 500);
+
+            // Truong hop A (UC07): Lap phieu nap tien (The cao, Banking, Vi)
+            std::string topupInput = "1\n" + maGD + "\n" + sdt + "\n50000\n1\n15/01/2024\n0\n";
+            driveMenuWithInput(topupInput, [&]() { napTienMenu.showMenu(); });
+            metrics.menuInvocations++;
+            metrics.totalTransitions++;
+
+            // Truong hop B (UC08): Ghi nhan ban ghi CDR (Thoai/SMS/Data)
+            std::string maCDR = "CDR_ST_" + std::to_string(roundCounter % 500);
+            std::string cdrInput = "4\n" + maCDR + "\n" + sdt + "\n1\n0912345678\n15/01/2024 10:00:00\n60\n1000\n0\n";
+            driveMenuWithInput(cdrInput, [&]() { napTienMenu.showMenu(); });
+            metrics.menuInvocations++;
+            metrics.totalTransitions++;
+
+            // Truong hop C: Xem danh sach va tra cuu
+            std::string viewNtInput = "2\n3\n" + sdt + "\n5\n6\n1\n0\n";
+            driveMenuWithInput(viewNtInput, [&]() { napTienMenu.showMenu(); });
+            metrics.menuInvocations++;
+            metrics.totalTransitions++;
+        }
+
+        //1.6 hoan vi HoaDonMenu (UC09: Hoa don cuoc, UC10: Phieu khieu nai)
+        {
+            std::string sdt = (!thueBaoStore.empty()) ? thueBaoStore.getAll().front().getId() : "0981234567";
+            std::string maINV = "INV_ST_" + std::to_string(roundCounter % 500);
+
+            // Truong hop A (UC09): Lap hoa don cuoc phat sinh va thanh toan
+            std::string invInput = "1\n" + maINV + "\n" + sdt + "\n01/2024\n50000\n20000\n3\n" + maINV + "\ny\n0\n";
+            driveMenuWithInput(invInput, [&]() { hoaDonMenu.showMenu(); });
+            metrics.menuInvocations++;
+            metrics.totalTransitions++;
+
+            // Truong hop B (UC10): Tiep nhan phieu khieu nai va tra soat
+            std::string maKN = "KN_ST_" + std::to_string(roundCounter % 500);
+            std::string knInput = "5\n" + maKN + "\n" + sdt + "\n1\nnow\nCuoc phat sinh bat thuong\n6\n" + maKN + "\n2\n0\n";
+            driveMenuWithInput(knInput, [&]() { hoaDonMenu.showMenu(); });
+            metrics.menuInvocations++;
+            metrics.totalTransitions++;
+
+            // Truong hop C: Xem danh sach va tra cuu hoa don
+            std::string viewInvInput = "2\n4\n" + sdt + "\n7\n8\n1\n0\n";
+            driveMenuWithInput(viewInvInput, [&]() { hoaDonMenu.showMenu(); });
+            metrics.menuInvocations++;
+            metrics.totalTransitions++;
         }
 
         // =========================================================================
@@ -907,7 +1021,7 @@ int main(int argc, char* argv[]) {
                       << " | EOF: " << metrics.rapidEofInjections
                       << " | Fuzz: " << metrics.adversarialFuzzProbes
                       << " | Rate: " << static_cast<uint64_t>(transitionsPerSec) << "/s"
-                      << " | Invariants: 100% PASS\n" << std::flush;
+                      << " | Invariants: " << metrics.invariantChecksPassed << " OK\n" << std::flush;
         }
     }
 
@@ -924,21 +1038,19 @@ int main(int argc, char* argv[]) {
     std::cout << "====================================================================\n";
     std::cout << "       STRESS TEST EXECUTION SUMMARY (CHESS-ENGINE DEPTH)           \n";
     std::cout << "====================================================================\n";
-    std::cout << "  - Total Execution Time:         " << totalElapsed << " seconds\n";
-    std::cout << "  - Total State Transitions:      " << metrics.totalTransitions << "\n";
-    std::cout << "  - Interactive Menu Invocations: " << metrics.menuInvocations << "\n";
-    std::cout << "  - Direct CRUD State Operations: " << metrics.directCrudOperations << "\n";
-    std::cout << "  - Rapid EOF Abrupt Injections:  " << metrics.rapidEofInjections << "\n";
-    std::cout << "  - Adversarial & Fuzz Probes:    " << metrics.adversarialFuzzProbes << "\n";
-    std::cout << "  - Shuffled Permutation Runs:    " << metrics.shuffledPermutationTests << "\n";
-    std::cout << "  - Premature Rejections Verified:" << metrics.prematureRejectionsVerified << " (100% Fail-Closed)\n";
-    std::cout << "  - Valid Registrations Verified: " << metrics.validRegistrationsVerified << " (100% Accepted)\n";
-    std::cout << "  - Conflict & Collision Traps:   " << metrics.conflictCollisionsCaught << " (100% Blocked)\n";
-    std::cout << "  - Relational Invariant Passes:  " << metrics.invariantChecksPassed << " (100% PASS)\n";
-    std::cout << "  - File Persistence Parity:      " << metrics.fileReloadVerifications << " (100% MATCH)\n";
-    std::cout << "  - Memory Safety (ASan/UBSan):   CLEAN (0 leaks, 0 undefined behavior)\n";
-    std::cout << "====================================================================\n";
-    std::cout << "TAT CA CAC RANG BUOC NGHIEP VU VA BO NHO DEU HOAN HAO (100% PASS)!\n";
+    std::cout << "  - Total Execution Time:          " << totalElapsed << " seconds\n";
+    std::cout << "  - Total State Transitions:       " << metrics.totalTransitions << "\n";
+    std::cout << "  - Interactive Menu Invocations:  " << metrics.menuInvocations << "\n";
+    std::cout << "  - Direct CRUD State Operations:  " << metrics.directCrudOperations << "\n";
+    std::cout << "  - Rapid EOF Abrupt Injections:   " << metrics.rapidEofInjections << "\n";
+    std::cout << "  - Adversarial & Fuzz Probes:     " << metrics.adversarialFuzzProbes << "\n";
+    std::cout << "  - Shuffled Permutation Runs:     " << metrics.shuffledPermutationTests << "\n";
+    std::cout << "  - Premature Rejections Verified: " << metrics.prematureRejectionsVerified << "\n";
+    std::cout << "  - Valid Registrations Verified:  " << metrics.validRegistrationsVerified << "\n";
+    std::cout << "  - Conflict & Collision Traps:    " << metrics.conflictCollisionsCaught << "\n";
+    std::cout << "  - Referential Cascade Protect:   " << metrics.referentialCascadeRejectionsVerified << "\n";
+    std::cout << "  - Relational Invariant Passes:   " << metrics.invariantChecksPassed << "\n";
+    std::cout << "  - File Persistence Parity:       " << metrics.fileReloadVerifications << "\n";
     std::cout << "====================================================================\n";
 
     return 0;

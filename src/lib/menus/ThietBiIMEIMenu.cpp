@@ -99,11 +99,20 @@ void ThietBiIMEIMenu::themThietBi() {
     if (std::cin.eof() || hangSX.empty()) return;
     std::string sdt = InputHelper::getPhoneNumber("Nhap So dien thoai gan kem: ", true);
     if (std::cin.eof()) return;
-    //kiem tra thue bao gan kem ton tai
-    if (!sdt.empty() && sdt != IMEIConstants::UNASSIGNED_PHONE && thueBaoStore.findById(sdt) == nullptr) {
-        std::cout << "  [!] So dien thoai '" << sdt << "' chua duoc dang ky tren he thong!\n";
-        InputHelper::pause();
-        return;
+    //kiem tra thue bao gan kem ton tai va tranh trung lap thiet bi
+    if (!sdt.empty() && sdt != IMEIConstants::UNASSIGNED_PHONE) {
+        if (thueBaoStore.findById(sdt) == nullptr) {
+            std::cout << "  [!] So dien thoai '" << sdt << "' chua duoc dang ky tren he thong!\n";
+            InputHelper::pause();
+            return;
+        }
+        for (const auto& dev : store.getAll()) {
+            if (dev.getSoDienThoai() == sdt) {
+                std::cout << "  [!] So dien thoai '" << sdt << "' da duoc gan voi thiet bi IMEI " << dev.getId() << "!\n";
+                InputHelper::pause();
+                return;
+            }
+        }
     }
 
     //ngayKh KH thu cong hoac kich hoat tu dong
@@ -274,12 +283,26 @@ void ThietBiIMEIMenu::capNhatThietBi() {
 
     try {
         if (choice == UPDATE_ASSIGN_SIM) {
-            std::string sdtMoi = InputHelper::getPhoneNumber("Nhap So dien thoai moi (hoac de trong de go SIM): ", true);
-            if (std::cin.eof()) return;
-            if (!sdtMoi.empty() && sdtMoi != IMEIConstants::UNASSIGNED_PHONE && thueBaoStore.findById(sdtMoi) == nullptr) {
-                std::cout << "  [!] So dien thoai '" << sdtMoi << "' chua duoc dang ky tren he thong!\n";
+            if (updated.isBlacklisted()) {
+                std::cout << "  [!] Thiet bi dang bi khoa mang (EIR Blacklist), khong the gan SIM hoat dong!\n";
                 InputHelper::pause();
                 return;
+            }
+            std::string sdtMoi = InputHelper::getPhoneNumber("Nhap So dien thoai moi (hoac de trong de go SIM): ", true);
+            if (std::cin.eof()) return;
+            if (!sdtMoi.empty() && sdtMoi != IMEIConstants::UNASSIGNED_PHONE) {
+                if (thueBaoStore.findById(sdtMoi) == nullptr) {
+                    std::cout << "  [!] So dien thoai '" << sdtMoi << "' chua duoc dang ky tren he thong!\n";
+                    InputHelper::pause();
+                    return;
+                }
+                for (const auto& dev : store.getAll()) {
+                    if (dev.getId() != imei && dev.getSoDienThoai() == sdtMoi) {
+                        std::cout << "  [!] So dien thoai '" << sdtMoi << "' da duoc gan voi thiet bi IMEI " << dev.getId() << "!\n";
+                        InputHelper::pause();
+                        return;
+                    }
+                }
             }
             updated.ganSIM(sdtMoi);
             store.update(imei, updated);

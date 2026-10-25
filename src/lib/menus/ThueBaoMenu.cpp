@@ -249,6 +249,28 @@ void ThueBaoMenu::xoaThueBao() {
         return;
     }
 
+    if (hopDongStore != nullptr) {
+        const auto activeContracts = hopDongStore->filter([&sdt](const HopDong& hd) {
+            return hd.getSoDienThoai() == sdt && hd.getTrangThai() == HopDongConstants::STATUS_ACTIVE;
+        });
+        if (!activeContracts.empty()) {
+            std::cout << "[LOI] Khong the xoa thue bao! Hien dang co "
+                      << activeContracts.size() << " hop dong dang hieu luc gan voi so nay.\n";
+            return;
+        }
+    }
+
+    if (hoaDonStore != nullptr) {
+        const auto unpaidInvoices = hoaDonStore->filter([&sdt](const HoaDon& hd) {
+            return hd.getSoDienThoai() == sdt && hd.getTrangThai() == HoaDonConstants::STATUS_UNPAID;
+        });
+        if (!unpaidInvoices.empty()) {
+            std::cout << "[LOI] Khong the xoa thue bao! Thue bao con "
+                      << unpaidInvoices.size() << " hoa don cuoc chua thanh toan.\n";
+            return;
+        }
+    }
+
     tb->displayDetail();
     bool confirm = InputHelper::getConfirm("Ban co chac chan muon xoa thue bao nay khoi he thong?");
     if (std::cin.eof()) return;
