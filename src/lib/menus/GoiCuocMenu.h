@@ -9,6 +9,8 @@
 
 #include "Repository.h"
 #include "goicuoc.h"
+#include "thuebao.h"
+#include "hopdong.h"
 
 namespace GoiCuocMenuChoices {
     const int MENU_BACK = 0;
@@ -29,6 +31,8 @@ namespace GoiCuocMenuChoices {
 class GoiCuocMenu {
 private:
     Repository<GoiCuoc>& store;
+    Repository<ThueBao>* thueBaoStore;
+    Repository<HopDong>* hopDongStore;
 
     //them goi cuoc moi
     void themGoiCuoc();
@@ -45,7 +49,10 @@ private:
 
 public:
     //tao menu quan ly goi cuoc
-    explicit GoiCuocMenu(Repository<GoiCuoc>& s) : store(s) {}
+    explicit GoiCuocMenu(Repository<GoiCuoc>& s,
+                         Repository<ThueBao>* tbStore = nullptr,
+                         Repository<HopDong>* hdStore = nullptr)
+        : store(s), thueBaoStore(tbStore), hopDongStore(hdStore) {}
     //hien thi menu quan ly goi cuoc
     void showMenu();
 };

@@ -57,8 +57,8 @@ ThueBao::ThueBao(
         trangThai != STATUS_CANCELLED) {
         throw AppException("Loi: Trang thai thue bao khong hop le!");
     }
-    if (soDuTaiKhoan < 0.0) {
-        throw AppException("Loi: So du tai khoan khong the am!");
+    if (soDuTaiKhoan < 0.0 && loaiThueBao == TYPE_PREPAID) {
+        throw AppException("Loi: So du tai khoan tra truoc khong the am!");
     }
 }
 
@@ -92,6 +92,9 @@ void ThueBao::setTrangThai(const std::string& tThai) {
 
 //cap nhat so du tai khoan
 void ThueBao::setSoDuTaiKhoan(double soDu) {
+    if (soDu < 0.0 && loaiThueBao == TYPE_PREPAID) {
+        throw AppException("Loi: So du tai khoan tra truoc khong the am!");
+    }
     soDuTaiKhoan = soDu;
 }
 

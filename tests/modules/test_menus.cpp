@@ -162,6 +162,44 @@ void testMenuControllers() {
         ASSERT_TRUE(imeiRepo.findById("861987654321096") == nullptr, "ThietBiIMEIMenu khong duoc luu ban ghi khi SDT chua dang ky");
     }
 
+    //test chan gan trung lap SIM vao nhieu thiet bi IMEI (SIM collision)
+    {
+        std::istringstream inputSim("1\n1\n861987654321096\nXiaomi 14\nXiaomi\n0981234567\n\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        imeiMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        ASSERT_TRUE(out.find("da duoc gan voi thiet bi IMEI 860123456789014") != std::string::npos,
+                    "ThietBiIMEIMenu phai phat hien va chan trung lap SIM tren nhieu thiet bi");
+        ASSERT_TRUE(imeiRepo.findById("861987654321096") == nullptr,
+                    "ThietBiIMEIMenu khong duoc luu thiet bi khi bi trung lap SIM");
+    }
+
+    //test chan gan SIM vao thiet bi bi khoa mang (EIR Blacklist)
+    {
+        ThietBiIMEI blackImei("861987654321096", "Pixel 8", "Google", IMEIConstants::UNASSIGNED_PHONE,
+                              Date(1, 1, 2024), IMEIConstants::STATUS_LOCKED, "BTS-HN-001");
+        imeiRepo.add(blackImei);
+
+        std::istringstream inputSim("6\n861987654321096\n1\n\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        imeiMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        ASSERT_TRUE(out.find("EIR Blacklist") != std::string::npos,
+                    "ThietBiIMEIMenu phai chan gan SIM vao thiet bi trong danh sach den EIR");
+        ThietBiIMEI* checkDev = imeiRepo.findById("861987654321096");
+        ASSERT_TRUE(checkDev != nullptr && checkDev->getSoDienThoai() == IMEIConstants::UNASSIGNED_PHONE,
+                    "Thiet bi bi khoa mang phai khong the gan SIM hoat dong");
+        imeiRepo.remove("861987654321096");
+    }
+
     std::remove(HD_TEST_FILE.c_str());
     std::remove(IMEI_TEST_FILE.c_str());
     std::remove(KH_TEST_FILE.c_str());
@@ -176,6 +214,8 @@ void testNewRepositoriesAndMenus() {
     const std::string TB_TEST_FILE = "data/test_tb_repo.txt";
     const std::string KH_TEST_FILE = "data/test_kh_repo.txt";
     const std::string IMEI_TEST_FILE = "data/test_imei_repo.txt";
+    const std::string HD_FK_TEST_FILE = "data/test_hd_fk.txt";
+    const std::string INV_FK_TEST_FILE = "data/test_inv_fk.txt";
 
     Repository<GoiCuoc> gcRepo(GC_TEST_FILE);
     gcRepo.clear();
@@ -201,11 +241,17 @@ void testNewRepositoriesAndMenus() {
         "359876543210983", "Assigned Phone", "Apple", "0981234567",
         Date(10, 3, 2024), IMEIConstants::STATUS_ACTIVE, "BTS-TEST-001"));
 
+    Repository<HopDong> hdRepo(HD_FK_TEST_FILE);
+    hdRepo.clear();
+
+    Repository<HoaDon> hoaDonRepo(INV_FK_TEST_FILE);
+    hoaDonRepo.clear();
+
     ASSERT_TRUE(tbRepo.size() == 1, "tbRepo size phai bang 1 sau khi them");
     ASSERT_TRUE(tbRepo.findById("0981234567") != nullptr, "findById 0981234567 phai tim thay");
 
-    GoiCuocMenu gcMenu(gcRepo);
-    ThueBaoMenu tbMenu(tbRepo, gcRepo, khRepo, imeiRepo);
+    GoiCuocMenu gcMenu(gcRepo, &tbRepo, &hdRepo);
+    ThueBaoMenu tbMenu(tbRepo, gcRepo, khRepo, imeiRepo, &hdRepo, &hoaDonRepo);
 
     StreamRedirectGuard streamGuard;
 
@@ -304,10 +350,97 @@ void testNewRepositoriesAndMenus() {
                     "Nhap '0' tai prompt ngay khong duoc tao ban ghi thue bao");
     }
 
+    // Test GoiCuocMenu: tu choi xoa goi cuoc khi co thue bao dang su dung
+    {
+        std::istringstream inputSim("6\nM50\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        gcMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        ASSERT_TRUE(out.find("Khong the xoa goi cuoc! Hien dang co") != std::string::npos,
+                    "GoiCuocMenu phai tu choi xoa goi cuoc dang co thue bao su dung");
+        ASSERT_TRUE(gcRepo.findById("M50") != nullptr,
+                    "Goi cuoc M50 khong duoc bi xoa khi co thue bao su dung");
+    }
+
+    // Test GoiCuocMenu: tu choi xoa goi cuoc khi co hop dong dang su dung
+    {
+        GoiCuoc gc2("M100", "Mobi 100", 100000.0, 10, 200, 30);
+        gcRepo.add(gc2);
+        HopDong hdTest("HD_GC", "KH0001", "0981112233", "M100", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 100000.0);
+        hdRepo.add(hdTest);
+
+        std::istringstream inputSim("6\nM100\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        gcMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        ASSERT_TRUE(out.find("Khong the xoa goi cuoc! Hien dang co") != std::string::npos &&
+                    out.find("hop dong") != std::string::npos,
+                    "GoiCuocMenu phai tu choi xoa goi cuoc dang co hop dong su dung");
+        ASSERT_TRUE(gcRepo.findById("M100") != nullptr,
+                    "Goi cuoc M100 khong duoc bi xoa khi co hop dong su dung");
+
+        hdRepo.remove("HD_GC");
+        gcRepo.remove("M100");
+    }
+
+    // Test ThueBaoMenu: tu choi xoa thue bao khi co hop dong dang hieu luc
+    {
+        HopDong hdActive("HD_TB", "KH0001", "0981112233", "M50", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", HopDongConstants::STATUS_ACTIVE, 100000.0);
+        hdRepo.add(hdActive);
+
+        std::istringstream inputSim("7\n0981112233\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        tbMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        ASSERT_TRUE(out.find("Khong the xoa thue bao! Hien dang co") != std::string::npos &&
+                    out.find("hop dong") != std::string::npos,
+                    "ThueBaoMenu phai tu choi xoa thue bao co hop dong con hieu luc");
+        ASSERT_TRUE(tbRepo.findById("0981112233") != nullptr,
+                    "Thue bao co hop dong hieu luc khong duoc bi xoa");
+
+        hdRepo.remove("HD_TB");
+    }
+
+    // Test ThueBaoMenu: tu choi xoa thue bao khi con hoa don chua thanh toan
+    {
+        HoaDon hdUnpaid("INV_TB", "0981112233", "02/2024", 50000.0, 50000.0, 50000.0, HoaDonConstants::STATUS_UNPAID);
+        hoaDonRepo.add(hdUnpaid);
+
+        std::istringstream inputSim("7\n0981112233\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        tbMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        ASSERT_TRUE(out.find("Khong the xoa thue bao! Thue bao con") != std::string::npos &&
+                    out.find("hoa don cuoc chua thanh toan") != std::string::npos,
+                    "ThueBaoMenu phai tu choi xoa thue bao con hoa don no chua thanh toan");
+        ASSERT_TRUE(tbRepo.findById("0981112233") != nullptr,
+                    "Thue bao con hoa don chua thanh toan khong duoc bi xoa");
+
+        hoaDonRepo.remove("INV_TB");
+    }
+
     std::remove(GC_TEST_FILE.c_str());
     std::remove(TB_TEST_FILE.c_str());
     std::remove(KH_TEST_FILE.c_str());
     std::remove(IMEI_TEST_FILE.c_str());
+    std::remove(HD_FK_TEST_FILE.c_str());
+    std::remove(INV_FK_TEST_FILE.c_str());
 }
 
 void testRemainingMenuControllers() {
@@ -488,6 +621,76 @@ void testRemainingMenuControllers() {
         if (inv) {
             ASSERT_TRUE(inv->getTrangThai() == HoaDonConstants::STATUS_PAID, "Hoa don phai duoc cap nhat thanh DaThanhToan sau khi xac nhan");
         }
+    }
+
+    // 5. Test HoaDonMenu: mo khoa no cuoc theo pham vi tung thue bao (subscriber-scoped debt unblocking)
+    {
+        // Tao 2 thue bao tra sau deu bi khoa no
+        ThueBao tbNo1("0983334455", "TraSau", "KH0001", "GC001", "01/01/2024", ThueBaoConstants::STATUS_LOCKED_DEBT, 0.0);
+        ThueBao tbNo2("0985556677", "TraSau", "KH0001", "GC001", "01/01/2024", ThueBaoConstants::STATUS_LOCKED_DEBT, 0.0);
+        tbRepo.add(tbNo1);
+        tbRepo.add(tbNo2);
+
+        // Tao 2 hoa don no qua han cho 2 thue bao
+        HoaDon hdDebt1("HD_DEBT1", "0983334455", "01/2024", 0.0, 150000.0, 150000.0, HoaDonConstants::STATUS_UNPAID);
+        HoaDon hdDebt2("HD_DEBT2", "0985556677", "01/2024", 0.0, 200000.0, 200000.0, HoaDonConstants::STATUS_UNPAID);
+        hoaDonRepo.add(hdDebt1);
+        hoaDonRepo.add(hdDebt2);
+
+        // Thanh toan hoa don HD_DEBT1 cua thue bao 1 qua menu
+        std::istringstream inputSim("3\nHD_DEBT1\ny\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        hdMenu.showMenu();
+
+        // Thue bao 1 phai duoc mo khoa HoatDong vi da tra het no cua chinh minh
+        ThueBao* checkTb1 = tbRepo.findById("0983334455");
+        ASSERT_TRUE(checkTb1 != nullptr && checkTb1->getTrangThai() == ThueBaoConstants::STATUS_ACTIVE,
+                    "Thue bao 1 phai duoc tu dong mo khoa HoatDong khi thanh toan het no cua minh");
+
+        // Thue bao 2 van phai bi KhoaNo vi con hoa don no chua thanh toan
+        ThueBao* checkTb2 = tbRepo.findById("0985556677");
+        ASSERT_TRUE(checkTb2 != nullptr && checkTb2->getTrangThai() == ThueBaoConstants::STATUS_LOCKED_DEBT,
+                    "Thue bao 2 van phai bi KhoaNo khi chua thanh toan hoa don cua minh");
+
+        tbRepo.remove("0983334455");
+        tbRepo.remove("0985556677");
+        hoaDonRepo.remove("HD_DEBT1");
+        hoaDonRepo.remove("HD_DEBT2");
+    }
+
+    // 6. Test NapTienMenu: tu choi lap phieu nap tien cho so thue bao chua dang ky
+    {
+        std::istringstream inputSim("1\nGD9999\n0989999999\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        ntMenu.showMenu();
+
+        std::string out = outputCapture.str();
+        ASSERT_TRUE(out.find("chua duoc dang ky tren he thong") != std::string::npos,
+                    "NapTienMenu phai tu choi lap phieu cho so dien thoai chua ton tai");
+        ASSERT_TRUE(ntRepo.findById("GD9999") == nullptr,
+                    "Khong duoc luu phieu nap GD9999 khi so dien thoai khong ton tai");
+    }
+
+    // 7. Test NapTienMenu: ghi nhan ban ghi CDR va tu dong tru tien thue bao tra truoc
+    {
+        std::istringstream inputSim("4\nCDR_TEST1\n0981234567\n1\n0989999888\n01/01/2024 10:00:00\n120\n20000\n0\n");
+        std::ostringstream outputCapture;
+        std::cin.rdbuf(inputSim.rdbuf());
+        std::cout.rdbuf(outputCapture.rdbuf());
+
+        ntMenu.showMenu();
+
+        ASSERT_TRUE(cdrRepo.findById("CDR_TEST1") != nullptr,
+                    "NapTienMenu phai ghi nhan va luu ban ghi CDR_TEST1 vao he thong");
+        ThueBao* afterCdrTb = tbRepo.findById("0981234567");
+        ASSERT_TRUE(afterCdrTb != nullptr && afterCdrTb->getSoDuTaiKhoan() == 130000.0,
+                    "Thue bao tra truoc phai duoc tru cuoc phi tu dong sau khi ghi nhan CDR (150k -> 130k)");
     }
 
     std::remove(KH_TEST_FILE.c_str());

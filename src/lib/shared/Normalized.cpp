@@ -8,12 +8,13 @@
 #include <sstream>
 #include <cctype>
 
+// nhan doi chu so trong thuat toan Luhn: digit * 2, tru 9 neu > 9 (vi du: 3 -> 6, 8 -> 7)
 static int doubleLuhnDigit(int digit) {
     const int doubled = digit * 2;
     return (doubled > 9) ? (doubled - 9) : doubled;
 }
 
-//cat khoang trang dau cuoi chuoi
+// cat khoang trang o dau va cuoi chuoi
 std::string Normalized::trim(const std::string& str) {
     size_t first = str.find_first_not_of(" \t\r\n");
     if (first == std::string::npos) return "";
@@ -21,7 +22,7 @@ std::string Normalized::trim(const std::string& str) {
     return str.substr(first, last - first + 1);
 }
 
-//gom cac khoang trang lien tiep
+// gom cac khoang trang lien tiep thanh mot khoang trang don
 std::string Normalized::CollapseSpace(const std::string& str) {
     std::string trimmed = trim(str);
     std::string result;
@@ -42,7 +43,7 @@ std::string Normalized::CollapseSpace(const std::string& str) {
     return result;
 }
 
-//thay ky tu cam bang khoang trang
+// thay ky tu cam bang khoang trang roi gom lai
 std::string Normalized::removeSymbols(const std::string& str) {
     const std::string FORBIDDEN = "|{}><~`#@!%^&*():;";
     std::string result = str;
@@ -54,7 +55,7 @@ std::string Normalized::removeSymbols(const std::string& str) {
     return CollapseSpace(result);
 }
 
-//loai bo chu so khoi chuoi
+// loai bo chu so khoi chuoi
 std::string Normalized::removeDigits(const std::string& str) {
     const std::string DIGITS = "0123456789";
     std::string result = str;
@@ -66,7 +67,7 @@ std::string Normalized::removeDigits(const std::string& str) {
     return CollapseSpace(result);
 }
 
-//chuyen chuoi thanh chu thuong
+// chuyen chuoi thanh chu thuong
 std::string Normalized::toLower(const std::string& str) {
     std::string result = str;
     for (char& character : result) {
@@ -75,7 +76,7 @@ std::string Normalized::toLower(const std::string& str) {
     return result;
 }
 
-//chuyen chuoi thanh chu hoa
+// chuyen chuoi thanh chu hoa
 std::string Normalized::toUpper(const std::string& str) {
     std::string result = str;
     for (char& character : result) {
@@ -84,7 +85,9 @@ std::string Normalized::toUpper(const std::string& str) {
     return result;
 }
 
-//chuan hoa ho ten theo tung tu
+// chuan hoa ho va ten: loai bo ky tu cam, viet hoa chu cai dau moi tu, cac chu sau viet thuong
+// vi du: "   nguyen   van   a  " -> "Nguyen Van A"
+//        "TRAN#@#DUC$$$ANH" -> "Tran Duc Anh"
 std::string Normalized::NormalizedName(const std::string& rawName) {
     std::istringstream iss(removeSymbols(rawName));
     std::string word, result;
@@ -99,7 +102,8 @@ std::string Normalized::NormalizedName(const std::string& rawName) {
     return result;
 }
 
-//chuan hoa ma dinh danh
+// chuan hoa ma dinh danh: trich xuat chu so neu co, nguoc lai giu nguyen chu hoa
+// vi du: " KH-0012 " -> "0012", " BTS_HN " -> "BTS_HN"
 std::string Normalized::NormalizedId(const std::string& rawId) {
     std::string cleaned = toUpper(trim(rawId));
     std::string digits;
@@ -111,12 +115,14 @@ std::string Normalized::NormalizedId(const std::string& rawId) {
     return digits.empty() ? cleaned : digits;
 }
 
-//chuan hoa ma khach hang giu nguyen tien to KH
+// chuan hoa ma khach hang: trim va viet hoa (vi du: "  kh0001  " -> "KH0001")
 std::string Normalized::NormalizedCustomerId(const std::string& rawId) {
     return toUpper(trim(rawId));
 }
 
-//tao ma viet tat tu ten tinh
+// tao ma viet tat tinh/thanh pho tu chu cai dau moi tu va chu cai cuoi cung
+// vi du: "Ha Noi" -> cac chu cai dau: 'H', 'N'; chu cai cuoi: 'I' -> "HNI"
+//        "Bac Ninh" -> chu cai dau: 'B', 'N'; chu cai cuoi: 'H' -> "BNH"
 std::string Normalized::NormalizedProvinceCode(const std::string& tinhLe) {
     std::string code;
     bool startOfWord = true;
@@ -138,7 +144,8 @@ std::string Normalized::NormalizedProvinceCode(const std::string& tinhLe) {
     return code;
 }
 
-//kiem tra so dien thoai di dong viet nam
+// kiem tra so di dong VN 10 chu so bat dau bang 0[3|5|7|8|9] (hoac ChuaGan neu allowUnassigned)
+// vi du: "0912345678" -> hop le; "0241234567" (co dinh), "09123" (ngan) -> khong hop le
 bool Normalized::isValidPhoneNumber(const std::string& phone, bool allowUnassigned) {
     if (allowUnassigned && (phone.empty() || phone == "ChuaGan")) {
         return true;
@@ -157,7 +164,8 @@ bool Normalized::isValidPhoneNumber(const std::string& phone, bool allowUnassign
     return true;
 }
 
-//kiem tra ma khach hang theo tien to KH va day so
+// kiem tra ma khach hang: bat dau bang "KH" theo sau boi 4 hoac 7 chu so (vi du: KH0001, KH0000001)
+// vi du: "KH0001" -> hop le; "KH1" (ngan), "AB0001" (sai tien to) -> khong hop le
 bool Normalized::isValidCustomerId(const std::string& id) {
     if (id.size() != 6 && id.size() != 9) {
         return false;
@@ -173,7 +181,8 @@ bool Normalized::isValidCustomerId(const std::string& id) {
     return true;
 }
 
-//kiem tra so can cuoc cong dan viet nam
+// kiem tra CCCD 12 chu so: 3 so tinh (001-096), the ky/gioi tinh (<=5), 2 so nam sinh, 6 so ngau nhien
+// vi du: "001099123456" (Ha Noi, Nam, 1999) -> hop le; "999099123456" -> sai ma tinh
 bool Normalized::isValidCredential(const std::string& cccd) {
     static const std::string PROVINCE_CODES =
         " 001 002 004 006 008 010 011 012 014 015 017 019 020 022 024 025 026 027 030 031 "
@@ -195,7 +204,10 @@ bool Normalized::isValidCredential(const std::string& cccd) {
     return cccd[3] <= '5';
 }
 
-//kiem tra ma IMEI theo thuat toan luhn
+// kiem tra ma IMEI 15 chu so theo thuat toan Luhn (Mod-10) chuan 3GPP:
+// nhan doi chu so o vi tri chan tu phai sang trai (tru 9 neu > 9), tong tat ca phai chia het cho 10
+// vi du: "358912345678902" -> sum = 70, 70 % 10 == 0 -> hop le
+//        "358912345678903" -> sum = 71, 71 % 10 != 0 -> khong hop le
 bool Normalized::isValidLuhn(const std::string& imeiStr) {
     if (imeiStr.length() != 15) {
         return false;
@@ -223,36 +235,16 @@ bool Normalized::isValidLuhn(const std::string& imeiStr) {
     return (sum % 10 == 0);
 }
 
-//kiem tra ten khong rong, khong pha schema va khong qua 50 ky tu UTF-8
+// kiem tra ten: khong rong sau khi trim, khong chua '|', toi da 50 ky tu ASCII in duoc [32, 126]
+// vi du: "Nguyen Van A" -> hop le; "Nguyen|Van A", "  " -> khong hop le
+// ponytail: clean ASCII name validation with length limit; upgrade to ICU if localization is required
 bool Normalized::isValidName(const std::string& str) {
-    if (trim(str).empty() || str.find('|') != std::string::npos) {
+    if (trim(str).empty() || str.find('|') != std::string::npos || str.size() > MAX_NAME_LENGTH) {
         return false;
     }
-    size_t codePoints = 0;
-    for (size_t i = 0; i < str.size();) {
-        unsigned char c = static_cast<unsigned char>(str[i]);
-        if (c < 32 || c == 127) {
-            return false;
-        }
-        size_t width = 1;
-        //UTF-8 dau 2/3/4 byte nam trong cac khoang byte nay;0x80 la dau byte tiep tuc.
-        if (c >= 0xC2 && c <= 0xDF) width = 2;
-        else if (c >= 0xE0 && c <= 0xEF) width = 3;
-        else if (c >= 0xF0 && c <= 0xF4) width = 4;
-        else if (c >= 0x80) return false;
-        if (width > str.size() - i) return false;
-        for (size_t j = 1; j < width; ++j) {
-            unsigned char continuation = static_cast<unsigned char>(str[i + j]);
-            //0xC0 la mat bit dung de nhan dien byte tiep tuc: 10xxxxxx.
-            if ((continuation & 0xC0) != 0x80) return false;
-        }
-        //tranh overlong va surrogate/out-of-range.
-        if (width == 3 && ((c == 0xE0 && static_cast<unsigned char>(str[i + 1]) < 0xA0) ||
-                           (c == 0xED && static_cast<unsigned char>(str[i + 1]) > 0x9F))) return false;
-        if (width == 4 && ((c == 0xF0 && static_cast<unsigned char>(str[i + 1]) < 0x90) ||
-                           (c == 0xF4 && static_cast<unsigned char>(str[i + 1]) > 0x8F))) return false;
-        i += width;
-        if (++codePoints > MAX_NAME_LENGTH) return false;
+    for (char ch : str) {
+        unsigned char c = static_cast<unsigned char>(ch);
+        if (c < 32 || c > 126) return false;
     }
     return true;
 }

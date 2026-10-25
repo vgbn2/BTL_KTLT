@@ -55,26 +55,29 @@ public:
     //cap nhat ca ngay,thang,nam cung luc
     void setDate(int d, int m, int y);
 
-    //chuyen ngay thanh chuoi
+    //chuyen ngay thanh chuoi DD/MM/YYYY
     std::string toString() const;
 
     //kiem tra nam nhuan
     static bool isLeapYear(int y);
     //lay so ngay trong thang
     static int daysInMonth(int m, int y);
-    //kiem tra ngay hop le
+    //kiem tra ngay hop le trong khoang nam [1900, 2100]
     static bool isValid(int d, int m, int y);
-    //kiem tra ngay sinh theo do tuoi
+    //kiem tra ngay sinh theo do tuoi chu thue bao [14, 120]
     static bool isValidBirthDate(const Date& d,
                                  int minAge = CalendarConstants::DEFAULT_MIN_SUBSCRIBER_AGE,
                                  int maxAge = CalendarConstants::DEFAULT_MAX_SUBSCRIBER_AGE,
                                  const Date& relativeTo = Date::now());
-    //phan tich ngay tu chuoi
+    //phan tich ngay tu chuoi (DD/MM/YYYY, DD-MM-YYYY hoac "now")
     static Date parse(const std::string& str);
-    //lay ngay hien tai
+    //lay ngay hien tai cua he thong
     static Date now();
 
-    //tinh tuoi tai moc thoi gian
+    //cong/tru them so ngay
+    Date addDays(int days) const;
+
+    //tinh tuoi tai moc thoi gian tham chieu
     int calculateAge(const Date& relativeTo = Date::now()) const;
     //kiem tra ngay nam trong tuong lai
     bool isFuture(const Date& relativeTo = Date::now()) const;

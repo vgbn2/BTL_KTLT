@@ -127,10 +127,21 @@ void HoaDonMenu::thanhToanHoaDon() {
         try {
             hoaDonStore.update(maHD, updated);
             ThueBao* tb = thueBaoStore.findById(updated.getSoDienThoai());
-            if (tb != nullptr && tb->getTrangThai() == ThueBaoConstants::STATUS_LOCKED_DEBT &&
-                kiemTraNo(Date::now()) == 0) {
-                tb->setTrangThai(ThueBaoConstants::STATUS_ACTIVE);
-                thueBaoStore.saveToFile();
+            if (tb != nullptr && tb->getTrangThai() == ThueBaoConstants::STATUS_LOCKED_DEBT) {
+                bool hasRemainingDebt = false;
+                for (const auto& h : hoaDonStore.getAll()) {
+                    if (h.getSoDienThoai() == updated.getSoDienThoai() &&
+                        h.getTrangThai() == HoaDonConstants::STATUS_UNPAID &&
+                        h.quaHan(Date::now())) {
+                        hasRemainingDebt = true;
+                        break;
+                    }
+                }
+                if (!hasRemainingDebt) {
+                    ThueBao updatedTb = *tb;
+                    updatedTb.setTrangThai(ThueBaoConstants::STATUS_ACTIVE);
+                    thueBaoStore.update(tb->getId(), updatedTb);
+                }
             }
             std::cout << "[THANH CONG] Da thanh toan hoa don " << maHD << " thanh cong!\n";
         } catch (const std::exception& e) {

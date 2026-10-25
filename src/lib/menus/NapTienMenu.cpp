@@ -64,8 +64,13 @@ void NapTienMenu::lapPhieuNapTien() {
 
         // Cong tien truc tiep vao so du thue bao
         ThueBao updated = *tb;
-        updated.congTien(soTien);
-        thueBaoStore.update(sdt, updated);
+        try {
+            updated.congTien(soTien);
+            thueBaoStore.update(sdt, updated);
+        } catch (const std::exception&) {
+            napTienStore.remove(maGD);
+            throw;
+        }
 
         std::cout << "[THANH CONG] Da lap phieu nap tien " << maGD << " thanh cong!\n"
                   << "So du moi cua thue bao " << sdt << ": "
