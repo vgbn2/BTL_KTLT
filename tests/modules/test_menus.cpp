@@ -435,6 +435,53 @@ void testNewRepositoriesAndMenus() {
         hoaDonRepo.remove("INV_TB");
     }
 
+    // Test ThueBaoMenu: dang ky goi cuoc va tru tien thue bao tra truoc
+    {
+        gcRepo.add(GoiCuoc("M200", "Mobi 200", 200000.0, 30, 500, 30));
+        gcRepo.add(GoiCuoc("M70", "Mobi 70", 70000.0, 7, 150, 30));
+
+        // 1. So du khong du (100k < 200k) -> bi tu choi, giu nguyen so du va goi cuoc cu
+        {
+            std::istringstream inputSim("4\n0981234567\nM200\n0\n");
+            std::ostringstream outputCapture;
+            std::cin.rdbuf(inputSim.rdbuf());
+            std::cout.rdbuf(outputCapture.rdbuf());
+
+            tbMenu.showMenu();
+
+            std::string out = outputCapture.str();
+            ASSERT_TRUE(out.find("khong du de dang ky goi cuoc") != std::string::npos,
+                        "ThueBaoMenu phai tu choi dang ky goi cuoc khi so du khong du");
+            ThueBao* checkTb = tbRepo.findById("0981234567");
+            ASSERT_TRUE(checkTb != nullptr && checkTb->getSoDuTaiKhoan() == 100000.0,
+                        "So du thue bao khong duoc bi tru khi dang ky that bai");
+            ASSERT_TRUE(checkTb != nullptr && checkTb->getMaGoiCuoc() == "M50",
+                        "Goi cuoc thue bao phai giu nguyen goi cu khi dang ky that bai");
+        }
+
+        // 2. So du du (100k >= 70k) -> dang ky thanh cong, tru tien (100k -> 30k), cap nhat ma goi
+        {
+            std::istringstream inputSim("4\n0981234567\nM70\n0\n");
+            std::ostringstream outputCapture;
+            std::cin.rdbuf(inputSim.rdbuf());
+            std::cout.rdbuf(outputCapture.rdbuf());
+
+            tbMenu.showMenu();
+
+            std::string out = outputCapture.str();
+            ASSERT_TRUE(out.find("thanh cong") != std::string::npos,
+                        "ThueBaoMenu phai dang ky thanh cong khi so du hop le");
+            ThueBao* checkTb = tbRepo.findById("0981234567");
+            ASSERT_TRUE(checkTb != nullptr && checkTb->getSoDuTaiKhoan() == 30000.0,
+                        "So du thue bao phai bi tru 70000 (100k -> 30k)");
+            ASSERT_TRUE(checkTb != nullptr && checkTb->getMaGoiCuoc() == "M70",
+                        "Goi cuoc thue bao phai duoc cap nhat sang M70");
+        }
+
+        gcRepo.remove("M200");
+        gcRepo.remove("M70");
+    }
+
     std::remove(GC_TEST_FILE.c_str());
     std::remove(TB_TEST_FILE.c_str());
     std::remove(KH_TEST_FILE.c_str());
