@@ -93,8 +93,7 @@ int main(int argc, char* argv[]) {
 
     while (true) {
         std::cout << "\n====================================================================\n"
-                  << "        HE THONG QUAN LY THUE BAO DI DONG VIEN THONG (KTLT)\n"
-                  << "                  Hoc vien Cong nghe Buu chinh Vien thong\n"
+                  << "        HE THONG QUAN LY THUE BAO DI DONG VIEN THONG\n"
                   << "====================================================================\n"
                   << "  [" << MainMenuChoices::MENU_KHACHHANG << "] Quan ly Khach hang & SIM eKYC\n"
                   << "  [" << MainMenuChoices::MENU_GOICUOC << "] Quan ly Goi cuoc di dong\n"

@@ -40,6 +40,7 @@ void HoaDonMenu::lapHoaDon() {
     std::cout << "\n>>> LAP HOA DON CUOC PHAT SINH TRONG THANG <<<\n";
     std::string maHD = InputHelper::getString("Nhap ma hoa don (VD: HD11): ");
     if (std::cin.eof() || maHD.empty()) return;
+    maHD = Normalized::toUpper(Normalized::trim(maHD));
     if (hoaDonStore.findById(maHD) != nullptr) {
         std::cout << "[CANH BAO] Ma hoa don da ton tai trong he thong!\n";
         return;
@@ -109,6 +110,7 @@ void HoaDonMenu::thanhToanHoaDon() {
     std::cout << "\n>>> THANH TOAN HOA DON CUOC <<<\n";
     std::string maHD = InputHelper::getString("Nhap ma hoa don can thanh toan: ");
     if (std::cin.eof() || maHD.empty()) return;
+    maHD = Normalized::toUpper(Normalized::trim(maHD));
     HoaDon* hd = hoaDonStore.findById(maHD);
     if (hd == nullptr) {
         std::cout << "[CANH BAO] Khong tim thay hoa don: " << maHD << "\n";
@@ -202,6 +204,7 @@ void HoaDonMenu::tiepNhanKhieuNai() {
     std::cout << "\n>>> TIEP NHAN PHIEU KHIEU NAI / TRA SOAT CUOC <<<\n";
     std::string maKN = InputHelper::getString("Nhap ma phieu khieu nai (VD: KN0001): ");
     if (std::cin.eof() || maKN.empty()) return;
+    maKN = Normalized::toUpper(Normalized::trim(maKN));
     if (khieuNaiStore.findById(maKN) != nullptr) {
         std::cout << "[CANH BAO] Ma phieu khieu nai da ton tai!\n";
         return;
@@ -255,6 +258,7 @@ void HoaDonMenu::xuLyKhieuNai() {
     std::cout << "\n>>> XU LY / TRA SOAT PHIEU KHIEU NAI <<<\n";
     std::string maKN = InputHelper::getString("Nhap ma phieu khieu nai can xu ly: ");
     if (std::cin.eof() || maKN.empty()) return;
+    maKN = Normalized::toUpper(Normalized::trim(maKN));
     KhieuNai* kn = khieuNaiStore.findById(maKN);
     if (kn == nullptr) {
         std::cout << "[CANH BAO] Khong tim thay phieu khieu nai: " << maKN << "\n";
