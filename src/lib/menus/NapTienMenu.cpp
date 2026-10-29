@@ -12,6 +12,51 @@
 
 using namespace NapTienMenuChoices;
 
+//hien thi menu nap tien va CDR
+void NapTienMenu::showMenu() {
+    while (true) {
+        std::cout << "\n====================================================================\n"
+                  << "          QUAN LY PHIEU NAP TIEN & BAN GHI CUOC GOI (CDR)\n"
+                  << "====================================================================\n"
+                  << "  [" << MENU_TOPUP << "] Lap phieu nap tien (The cao, Banking, Vi)\n"
+                  << "  [" << MENU_LIST_VOUCHERS << "] Xem danh sach phieu nap tien\n"
+                  << "  [" << MENU_SEARCH_BY_PHONE << "] Tra cuu lich su nap tien theo so thue bao\n"
+                  << "  [" << MENU_ADD_CDR << "] Ghi nhan ban ghi cuoc goi / SMS / Data (CDR)\n"
+                  << "  [" << MENU_LIST_CDR << "] Xem danh sach nhat ky cuoc goi CDR\n"
+                  << "  [" << MENU_SORT << "] Sap xep phieu nap / CDR theo ma\n"
+                  << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
+                  << "====================================================================\n";
+
+        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-6]: ", MENU_BACK, MENU_SORT);
+        if (choice == MENU_BACK || std::cin.eof()) {
+            break;
+        }
+
+        switch (choice) {
+            case MENU_TOPUP:
+                lapPhieuNapTien();
+                break;
+            case MENU_LIST_VOUCHERS:
+                xemDanhSachPhieu();
+                break;
+            case MENU_SEARCH_BY_PHONE:
+                traCuuTheoSoDienThoai();
+                break;
+            case MENU_ADD_CDR:
+                ghiNhanCDR();
+                break;
+            case MENU_LIST_CDR:
+                xemDanhSachCDR();
+                break;
+            case MENU_SORT:
+                sapXepDanhSach();
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 //lap phieu nap tien va cap nhat so du
 void NapTienMenu::lapPhieuNapTien() {
     std::cout << "\n>>> LAP PHIEU NAP TIEN VAO TAI KHOAN <<<\n";
@@ -213,49 +258,4 @@ void NapTienMenu::xemDanhSachCDR() {
     }
     DisplayHelper::printTable(cdrStore.getAll());
     std::cout << "Tong so: " << cdrStore.size() << " ban ghi CDR.\n";
-}
-
-//hien thi menu nap tien va CDR
-void NapTienMenu::showMenu() {
-    while (true) {
-        std::cout << "\n====================================================================\n"
-                  << "          QUAN LY PHIEU NAP TIEN & BAN GHI CUOC GOI (CDR)\n"
-                  << "====================================================================\n"
-                  << "  [" << MENU_TOPUP << "] Lap phieu nap tien (The cao, Banking, Vi)\n"
-                  << "  [" << MENU_LIST_VOUCHERS << "] Xem danh sach phieu nap tien\n"
-                  << "  [" << MENU_SEARCH_BY_PHONE << "] Tra cuu lich su nap tien theo so thue bao\n"
-                  << "  [" << MENU_ADD_CDR << "] Ghi nhan ban ghi cuoc goi / SMS / Data (CDR)\n"
-                  << "  [" << MENU_LIST_CDR << "] Xem danh sach nhat ky cuoc goi CDR\n"
-                  << "  [" << MENU_SORT << "] Sap xep phieu nap / CDR theo ma\n"
-                  << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
-                  << "====================================================================\n";
-
-        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-6]: ", MENU_BACK, MENU_SORT);
-        if (choice == MENU_BACK || std::cin.eof()) {
-            break;
-        }
-
-        switch (choice) {
-            case MENU_TOPUP:
-                lapPhieuNapTien();
-                break;
-            case MENU_LIST_VOUCHERS:
-                xemDanhSachPhieu();
-                break;
-            case MENU_SEARCH_BY_PHONE:
-                traCuuTheoSoDienThoai();
-                break;
-            case MENU_ADD_CDR:
-                ghiNhanCDR();
-                break;
-            case MENU_LIST_CDR:
-                xemDanhSachCDR();
-                break;
-            case MENU_SORT:
-                sapXepDanhSach();
-                break;
-            default:
-                break;
-        }
-    }
 }
