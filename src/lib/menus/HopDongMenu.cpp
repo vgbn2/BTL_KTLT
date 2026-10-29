@@ -65,6 +65,7 @@ void HopDongMenu::themHopDong() {
     while (true) {
         maHD = InputHelper::getString("Nhap Ma hop dong (VD: HD0010): ", false);
         if (std::cin.eof()) return;
+        maHD = Normalized::toUpper(Normalized::trim(maHD));
         if (store.findById(maHD) != nullptr) {
             std::cout << "  [!] Ma hop dong '" << maHD << "' da ton tai! Vui long nhap ma khac.\n";
             continue;
@@ -91,6 +92,7 @@ void HopDongMenu::themHopDong() {
 
     std::string maGC = InputHelper::getString("Nhap Ma goi cuoc (VD: GC001, VD149): ", false);
     if (std::cin.eof() || maGC.empty()) return;
+    maGC = Normalized::toUpper(Normalized::trim(maGC));
     //kiem tra goi cuoc ton tai
     if (goiCuocStore.findById(maGC) == nullptr) {
         std::cout << "  [!] Goi cuoc '" << maGC << "' khong ton tai trong he thong!\n";
@@ -164,6 +166,8 @@ void HopDongMenu::timKiemHopDong() {
 
     if (choice == SEARCH_BY_ID) {
         std::string id = InputHelper::getString("Nhap Ma hop dong can tim: ", false);
+        if (std::cin.eof()) return;
+        id = Normalized::toUpper(Normalized::trim(id));
         HopDong* hd = store.findById(id);
         if (hd == nullptr) {
             std::cout << "[THONG BAO] Khong tim thay hop dong nao co ma: " << id << "\n";
@@ -235,6 +239,8 @@ void HopDongMenu::sapXepDanhSach() {
 void HopDongMenu::capNhatHopDong() {
     std::cout << "\n>>> CAP NHAT THONG TIN HOP DONG <<<\n";
     std::string id = InputHelper::getString("Nhap Ma hop dong can cap nhat: ", false);
+    if (std::cin.eof()) return;
+    id = Normalized::toUpper(Normalized::trim(id));
     HopDong* hd = store.findById(id);
     if (hd == nullptr) {
         std::cout << "[LOI] Khong tim thay hop dong co ma: " << id << "\n";
@@ -263,6 +269,7 @@ void HopDongMenu::capNhatHopDong() {
         if (choice == UPDATE_PACKAGE) {
             std::string maGoiMoi = InputHelper::getString("Nhap Ma goi cuoc moi: ", false);
             if (std::cin.eof()) return;
+            maGoiMoi = Normalized::toUpper(Normalized::trim(maGoiMoi));
             if (goiCuocStore.findById(maGoiMoi) == nullptr) {
                 std::cout << "  [!] Ma goi cuoc '" << maGoiMoi << "' khong ton tai trong he thong!\n";
                 InputHelper::pause();
@@ -316,6 +323,8 @@ void HopDongMenu::capNhatHopDong() {
 void HopDongMenu::xoaHopDong() {
     std::cout << "\n>>> XOA / THANH LY HOP DONG <<<\n";
     std::string id = InputHelper::getString("Nhap Ma hop dong can xoa: ", false);
+    if (std::cin.eof()) return;
+    id = Normalized::toUpper(Normalized::trim(id));
     HopDong* hd = store.findById(id);
     if (hd == nullptr) {
         std::cout << "[LOI] Khong tim thay hop dong co ma: " << id << "\n";
@@ -327,6 +336,7 @@ void HopDongMenu::xoaHopDong() {
     hd->displayDetail();
 
     bool confirm = InputHelper::getConfirm("Ban co chac chan muon xoa hop dong nay khoi he thong?");
+    if (std::cin.eof()) return;
     if (confirm) {
         try {
             store.remove(id);

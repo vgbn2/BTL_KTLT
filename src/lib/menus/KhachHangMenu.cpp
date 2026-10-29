@@ -216,7 +216,9 @@ void KhachHangMenu::xoaKhachHang() {
     }
 
     kh->displayDetail();
-    if (InputHelper::getConfirm("Ban co chac chan muon xoa khach hang nay khoi he thong?")) {
+    bool confirm = InputHelper::getConfirm("Ban co chac chan muon xoa khach hang nay khoi he thong?");
+    if (std::cin.eof()) return;
+    if (confirm) {
         try {
             store.remove(maKH);
             std::cout << "[THANH CONG] Da xoa khach hang " << maKH << " thanh cong!\n";

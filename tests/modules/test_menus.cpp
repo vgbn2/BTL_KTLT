@@ -740,6 +740,36 @@ void testRemainingMenuControllers() {
                     "Thue bao tra truoc phai duoc tru cuoc phi tu dong sau khi ghi nhan CDR (150k -> 130k)");
     }
 
+    // 8. Test Input Normalization & Case-Insensitivity across Menus (maGD, maHD, maKN)
+    {
+        // Test NapTien lowercase & trimmed maGD
+        std::istringstream ntSim("1\n  gd0002  \n0981234567\n20000\n1\n15/01/2024\n0\n");
+        std::ostringstream ntOut;
+        std::cin.rdbuf(ntSim.rdbuf());
+        std::cout.rdbuf(ntOut.rdbuf());
+        ntMenu.showMenu();
+        ASSERT_TRUE(ntRepo.findById("GD0002") != nullptr,
+                    "NapTienMenu phai chuan hoa chu thuong gd0002 thanh chu hoa GD0002");
+
+        // Test HoaDon lowercase & trimmed maHD
+        std::istringstream hdSim("1\n  hd02  \n0981234567\n01/2024\n10000\n10000\n0\n");
+        std::ostringstream hdOut;
+        std::cin.rdbuf(hdSim.rdbuf());
+        std::cout.rdbuf(hdOut.rdbuf());
+        hdMenu.showMenu();
+        ASSERT_TRUE(hoaDonRepo.findById("HD02") != nullptr,
+                    "HoaDonMenu phai chuan hoa chu thuong hd02 thanh chu hoa HD02");
+
+        // Test KhieuNai lowercase & trimmed maKN
+        std::istringstream knSim("5\n  kn0001  \n0981234567\n1\n15/01/2024\nCuoc bat thuong\n0\n");
+        std::ostringstream knOut;
+        std::cin.rdbuf(knSim.rdbuf());
+        std::cout.rdbuf(knOut.rdbuf());
+        hdMenu.showMenu();
+        ASSERT_TRUE(knRepo.findById("KN0001") != nullptr,
+                    "HoaDonMenu phai chuan hoa chu thuong kn0001 thanh chu hoa KN0001");
+    }
+
     std::remove(KH_TEST_FILE.c_str());
     std::remove(TB_TEST_FILE.c_str());
     std::remove(HD_TEST_FILE.c_str());
