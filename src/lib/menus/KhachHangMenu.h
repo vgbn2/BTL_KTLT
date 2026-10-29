@@ -41,14 +41,14 @@ private:
     void xemDanhSach();
     //tim kiem khach hang
     void timKiemKhachHang();
-    //sap xep khach hang theo ma
-    void sapXepDanhSach();
     //cap nhat khach hang
     void capNhatKhachHang();
     //xoa khach hang
     void xoaKhachHang();
     //hien thi danh sach SIM cua khach hang
     void xemDanhSachSIM();
+    //sap xep khach hang theo ma
+    void sapXepDanhSach();
 
 public:
     //tao menu quan ly khach hang
