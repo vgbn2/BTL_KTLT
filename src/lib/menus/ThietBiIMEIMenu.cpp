@@ -8,6 +8,7 @@
 #include "InputHelper.h"
 #include "DisplayHelper.h"
 #include "Date.h"
+#include "Normalized.h"
 #include <iostream>
 
 using namespace IMEIMenuChoices;
@@ -147,6 +148,7 @@ void ThietBiIMEIMenu::themThietBi() {
     
     std::string bts=InputHelper::getString("Nhap Tram BTS gan nhat (VD: BT-HN-001): ",false);
     if (std::cin.eof() || bts.empty()) return;
+    bts = Normalized::toUpper(Normalized::trim(bts));
 
     try {
         ThietBiIMEI tb(imei, tenTB, hangSX, sdt, ngayKH, IMEIConstants::STATUS_ACTIVE,bts);
@@ -312,6 +314,7 @@ void ThietBiIMEIMenu::capNhatThietBi() {
         else if (choice == UPDATE_BTS) {
             std::string btsMoi = InputHelper::getString("Nhap Ma tram BTS moi: ", false);
             if (std::cin.eof() || btsMoi.empty()) return;
+            btsMoi = Normalized::toUpper(Normalized::trim(btsMoi));
             updated.capNhatBTS(btsMoi);
             store.update(imei, updated);
             std::cout << "[THANH CONG] Da cap nhat vi tri tram BTS thanh " << btsMoi << "!\n";
