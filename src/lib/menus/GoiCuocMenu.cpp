@@ -13,6 +13,52 @@
 
 using namespace GoiCuocMenuChoices;
 
+//hien thi menu quan ly goi cuoc
+void GoiCuocMenu::showMenu() {
+    while (true) {
+        std::cout << "\n====================================================================\n"
+                  << "                      QUAN LY GOI CUOC DI DONG\n"
+                  << "====================================================================\n"
+                  << "  [" << MENU_ADD << "] Them goi cuoc moi\n"
+                  << "  [" << MENU_LIST << "] Xem danh sach goi cuoc\n"
+                  << "  [" << MENU_SEARCH << "] Tim kiem goi cuoc theo ten / ma\n"
+                  << "  [" << MENU_SORT << "] Sap xep danh sach goi cuoc (gia / dung luong)\n"
+                  << "  [" << MENU_UPDATE << "] Cap nhat thong tin goi cuoc\n"
+                  << "  [" << MENU_DELETE << "] Xoa goi cuoc\n"
+                  << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
+                  << "====================================================================\n";
+
+        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-6]: ", MENU_BACK, MENU_DELETE);
+        if (choice == MENU_BACK || std::cin.eof()) {
+            break;
+        }
+
+        switch (choice) {
+            case MENU_ADD:
+                themGoiCuoc();
+                break;
+            case MENU_LIST:
+                xemDanhSach();
+                break;
+            case MENU_SEARCH:
+                timKiemGoiCuoc();
+                break;
+            case MENU_SORT:
+                sapXepDanhSach();
+                break;
+            case MENU_UPDATE:
+                capNhatGoiCuoc();
+                break;
+            case MENU_DELETE:
+                xoaGoiCuoc();
+                break;
+            default:
+                break;
+        }
+        InputHelper::pause();
+    }
+}
+
 //them goi cuoc moi
 void GoiCuocMenu::themGoiCuoc() {
     std::cout << "\n>>> THEM GOI CUOC MOI <<<\n";
@@ -194,51 +240,5 @@ void GoiCuocMenu::xoaGoiCuoc() {
         }
     } else {
         std::cout << "[DA HUY] Thao tac xoa da duoc huy bo.\n";
-    }
-}
-
-//hien thi menu quan ly goi cuoc
-void GoiCuocMenu::showMenu() {
-    while (true) {
-        std::cout << "\n====================================================================\n"
-                  << "                      QUAN LY GOI CUOC DI DONG\n"
-                  << "====================================================================\n"
-                  << "  [" << MENU_ADD << "] Them goi cuoc moi\n"
-                  << "  [" << MENU_LIST << "] Xem danh sach goi cuoc\n"
-                  << "  [" << MENU_SEARCH << "] Tim kiem goi cuoc theo ten / ma\n"
-                  << "  [" << MENU_SORT << "] Sap xep danh sach goi cuoc (gia / dung luong)\n"
-                  << "  [" << MENU_UPDATE << "] Cap nhat thong tin goi cuoc\n"
-                  << "  [" << MENU_DELETE << "] Xoa goi cuoc\n"
-                  << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
-                  << "====================================================================\n";
-
-        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-6]: ", MENU_BACK, MENU_DELETE);
-        if (choice == MENU_BACK || std::cin.eof()) {
-            break;
-        }
-
-        switch (choice) {
-            case MENU_ADD:
-                themGoiCuoc();
-                break;
-            case MENU_LIST:
-                xemDanhSach();
-                break;
-            case MENU_SEARCH:
-                timKiemGoiCuoc();
-                break;
-            case MENU_SORT:
-                sapXepDanhSach();
-                break;
-            case MENU_UPDATE:
-                capNhatGoiCuoc();
-                break;
-            case MENU_DELETE:
-                xoaGoiCuoc();
-                break;
-            default:
-                break;
-        }
-        InputHelper::pause();
     }
 }
