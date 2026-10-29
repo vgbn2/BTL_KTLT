@@ -13,6 +13,55 @@
 
 using namespace KhachHangMenuChoices;
 
+//hien thi menu quan ly khach hang
+void KhachHangMenu::showMenu() {
+    while (true) {
+        std::cout << "\n====================================================================\n"
+                  << "             QUAN LY KHACH HANG & SIM CHINH CHU (EKYC)\n"
+                  << "====================================================================\n"
+                  << "  [" << MENU_ADD << "] Dang ky khach hang moi (CCCD / Giay to)\n"
+                  << "  [" << MENU_LIST << "] Xem danh sach khach hang\n"
+                  << "  [" << MENU_SEARCH << "] Tra cuu khach hang theo Ma KH / CCCD / Ten\n"
+                  << "  [" << MENU_UPDATE << "] Cap nhat thong tin khach hang\n"
+                  << "  [" << MENU_DELETE << "] Xoa khach hang (co kiem tra khoa ngoai)\n"
+                  << "  [" << MENU_VIEW_SIMS << "] Tra cuu danh sach SIM / Thue bao cua khach hang\n"
+                  << "  [" << MENU_SORT << "] Sap xep khach hang theo Ma KH\n"
+                  << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
+                  << "====================================================================\n";
+
+        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-7]: ", MENU_BACK, MENU_SORT);
+        if (choice == MENU_BACK || std::cin.eof()) {
+            break;
+        }
+
+        switch (choice) {
+            case MENU_ADD:
+                themKhachHang();
+                break;
+            case MENU_LIST:
+                xemDanhSach();
+                break;
+            case MENU_SEARCH:
+                timKiemKhachHang();
+                break;
+            case MENU_UPDATE:
+                capNhatKhachHang();
+                break;
+            case MENU_DELETE:
+                xoaKhachHang();
+                break;
+            case MENU_VIEW_SIMS:
+                xemDanhSachSIM();
+                break;
+            case MENU_SORT:
+                sapXepDanhSach();
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 //them khach hang moi va xac thuc thong tin
 void KhachHangMenu::themKhachHang() {
     std::cout << "\n>>> THEM KHACH HANG MOI (DANG KY THONG TIN EKYC) <<<\n";
@@ -252,54 +301,5 @@ void KhachHangMenu::xemDanhSachSIM() {
     } else {
         std::cout << "\nDanh sach " << sims.size() << " thue bao / SIM so huu:\n";
         DisplayHelper::printTable(sims);
-    }
-}
-
-//hien thi menu quan ly khach hang
-void KhachHangMenu::showMenu() {
-    while (true) {
-        std::cout << "\n====================================================================\n"
-                  << "             QUAN LY KHACH HANG & SIM CHINH CHU (EKYC)\n"
-                  << "====================================================================\n"
-                  << "  [" << MENU_ADD << "] Dang ky khach hang moi (CCCD / Giay to)\n"
-                  << "  [" << MENU_LIST << "] Xem danh sach khach hang\n"
-                  << "  [" << MENU_SEARCH << "] Tra cuu khach hang theo Ma KH / CCCD / Ten\n"
-                  << "  [" << MENU_UPDATE << "] Cap nhat thong tin khach hang\n"
-                  << "  [" << MENU_DELETE << "] Xoa khach hang (co kiem tra khoa ngoai)\n"
-                  << "  [" << MENU_VIEW_SIMS << "] Tra cuu danh sach SIM / Thue bao cua khach hang\n"
-                  << "  [" << MENU_SORT << "] Sap xep khach hang theo Ma KH\n"
-                  << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
-                  << "====================================================================\n";
-
-        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-7]: ", MENU_BACK, MENU_SORT);
-        if (choice == MENU_BACK || std::cin.eof()) {
-            break;
-        }
-
-        switch (choice) {
-            case MENU_ADD:
-                themKhachHang();
-                break;
-            case MENU_LIST:
-                xemDanhSach();
-                break;
-            case MENU_SEARCH:
-                timKiemKhachHang();
-                break;
-            case MENU_UPDATE:
-                capNhatKhachHang();
-                break;
-            case MENU_DELETE:
-                xoaKhachHang();
-                break;
-            case MENU_VIEW_SIMS:
-                xemDanhSachSIM();
-                break;
-            case MENU_SORT:
-                sapXepDanhSach();
-                break;
-            default:
-                break;
-        }
     }
 }

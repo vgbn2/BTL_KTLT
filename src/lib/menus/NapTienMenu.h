@@ -39,12 +39,12 @@ private:
     void xemDanhSachPhieu();
     //tra cuu nap tien theo so dien thoai
     void traCuuTheoSoDienThoai();
-    //sap xep phieu nap hoac CDR theo ma
-    void sapXepDanhSach();
     //ghi nhan ban ghi CDR
     void ghiNhanCDR();
     //hien thi danh sach CDR
     void xemDanhSachCDR();
+    //sap xep phieu nap hoac CDR theo ma
+    void sapXepDanhSach();
 
 public:
     //tao menu nap tien va CDR
