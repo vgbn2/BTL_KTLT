@@ -18,6 +18,7 @@ void GoiCuocMenu::themGoiCuoc() {
     std::cout << "\n>>> THEM GOI CUOC MOI <<<\n";
     std::string maGoi = InputHelper::getString("Nhap ma goi cuoc: ");
     if (std::cin.eof() || maGoi.empty()) return;
+    maGoi = Normalized::toUpper(Normalized::trim(maGoi));
     if (store.findById(maGoi) != nullptr) {
         std::cout << "[CANH BAO] Ma goi cuoc da ton tai!\n";
         return;
@@ -116,6 +117,7 @@ void GoiCuocMenu::capNhatGoiCuoc() {
     std::cout << "\n>>> CAP NHAT THONG TIN GOI CUOC <<<\n";
     std::string maGoi = InputHelper::getString("Nhap ma goi cuoc can sua: ");
     if (std::cin.eof()) return;
+    maGoi = Normalized::toUpper(Normalized::trim(maGoi));
     GoiCuoc* gc = store.findById(maGoi);
     if (gc == nullptr) {
         std::cout << "[CANH BAO] Khong tim thay goi cuoc co ma: " << maGoi << "\n";
@@ -150,6 +152,7 @@ void GoiCuocMenu::xoaGoiCuoc() {
     std::cout << "\n>>> XOA GOI CUOC KHOI HE THONG <<<\n";
     std::string maGoi = InputHelper::getString("Nhap ma goi cuoc can xoa: ");
     if (std::cin.eof()) return;
+    maGoi = Normalized::toUpper(Normalized::trim(maGoi));
     GoiCuoc* gc = store.findById(maGoi);
     if (gc == nullptr) {
         std::cout << "[CANH BAO] Khong tim thay goi cuoc co ma: " << maGoi << "\n";

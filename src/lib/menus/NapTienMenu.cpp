@@ -17,6 +17,7 @@ void NapTienMenu::lapPhieuNapTien() {
     std::cout << "\n>>> LAP PHIEU NAP TIEN VAO TAI KHOAN <<<\n";
     std::string maGD = InputHelper::getString("Nhap ma giao dich (VD: GD0010): ");
     if (std::cin.eof() || maGD.empty()) return;
+    maGD = Normalized::toUpper(Normalized::trim(maGD));
     if (napTienStore.findById(maGD) != nullptr) {
         std::cout << "[CANH BAO] Ma giao dich da ton tai trong he thong!\n";
         return;
@@ -141,6 +142,7 @@ void NapTienMenu::ghiNhanCDR() {
     std::cout << "\n>>> GHI NHAN BAN GHI CUOC GOI / PHIEN DATA (CDR) <<<\n";
     std::string maCDR = InputHelper::getString("Nhap ma ban ghi CDR (VD: CDR0001): ");
     if (std::cin.eof() || maCDR.empty()) return;
+    maCDR = Normalized::toUpper(Normalized::trim(maCDR));
     if (cdrStore.findById(maCDR) != nullptr) {
         std::cout << "[CANH BAO] Ma ban ghi CDR da ton tai!\n";
         return;
@@ -157,8 +159,9 @@ void NapTienMenu::ghiNhanCDR() {
     std::cout << "Chon loai dich vu CDR:\n"
               << "  [1] " << CDRConstants::TYPE_VOICE << " (Cuoc goi thoai)\n"
               << "  [2] " << CDRConstants::TYPE_SMS << " (Tin nhan SMS)\n"
-              << "  [3] " << CDRConstants::TYPE_DATA << " (Truy cap Data)\n";
-    int typeChoice = InputHelper::getInt("Nhap lua chon [1-3]: ", 1, 3);
+              << "  [3] " << CDRConstants::TYPE_DATA << " (Truy cap Data)\n"
+              << "  [0] Quay lai\n";
+    int typeChoice = InputHelper::getInt("Nhap lua chon [0-3]: ", 0, 3);
     if (std::cin.eof()) return;
     std::string loaiDV = (typeChoice == 1) ? CDRConstants::TYPE_VOICE
                        : (typeChoice == 2) ? CDRConstants::TYPE_SMS

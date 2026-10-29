@@ -46,6 +46,9 @@ void ThueBaoMenu::themThueBao() {
 
     std::string maGC = InputHelper::getString("Nhap ma goi cuoc ban dau (hoac bo trong): ", true);
     if (std::cin.eof()) return;
+    if (!maGC.empty()) {
+        maGC = Normalized::toUpper(Normalized::trim(maGC));
+    }
     if (!maGC.empty() && goiCuocStore.findById(maGC) == nullptr) {
         std::cout << "[LOI] Ma goi cuoc khong ton tai trong he thong!\n";
         return;
@@ -139,6 +142,7 @@ void ThueBaoMenu::dangKyGoiCuoc() {
     tb->displayDetail();
     std::string maGC = InputHelper::getString("Nhap ma goi cuoc moi muon dang ky: ");
     if (std::cin.eof()) return;
+    maGC = Normalized::toUpper(Normalized::trim(maGC));
     GoiCuoc* gc = goiCuocStore.findById(maGC);
     if (gc == nullptr) {
         std::cout << "[CANH BAO] Ma goi cuoc khong ton tai trong he thong!\n";
