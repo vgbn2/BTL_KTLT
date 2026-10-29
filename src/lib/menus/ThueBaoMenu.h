@@ -25,6 +25,7 @@ namespace ThueBaoMenuChoices {
     const int MENU_TOPUP = 6;
     const int MENU_DELETE = 7;
     const int MENU_SORT = 8;
+    const int MENU_UPDATE = 9;
 
     const int SORT_BY_ID_ASC = 1;
     const int SORT_BY_ID_DESC = 2;
@@ -55,6 +56,8 @@ private:
     void napTien();
     //xoa thue bao
     void xoaThueBao();
+     //cap nhat thong tin thue bao
+    void capNhatThueBao();
 
 public:
     //tao menu quan ly thue bao
