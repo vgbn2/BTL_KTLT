@@ -46,14 +46,14 @@ private:
     void thanhToanHoaDon();
     //tra cuu hoa don theo so dien thoai
     void traCuuTheoSoDienThoai();
-    //sap xep hoa don hoac khieu nai theo ma
-    void sapXepDanhSach();
     //tiep nhan phieu khieu nai
     void tiepNhanKhieuNai();
     //xu ly phieu khieu nai
     void xuLyKhieuNai();
     //hien thi danh sach khieu nai
     void xemDanhSachKhieuNai();
+    //sap xep hoa don hoac khieu nai theo ma
+    void sapXepDanhSach();
 
 public:
     //kiem tra va khoa thue bao no cuoc

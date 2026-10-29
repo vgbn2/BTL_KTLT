@@ -25,6 +25,7 @@ namespace ThueBaoMenuChoices {
     const int MENU_TOPUP = 6;
     const int MENU_DELETE = 7;
     const int MENU_SORT = 8;
+    const int MENU_UPDATE = 9;
 
     const int SORT_BY_ID_ASC = 1;
     const int SORT_BY_ID_DESC = 2;
@@ -39,22 +40,24 @@ private:
     Repository<HopDong>* hopDongStore;
     Repository<HoaDon>* hoaDonStore;
 
-    //them thue bao moi
+    // 1. them thue bao moi
     void themThueBao();
-    //hien thi danh sach thue bao
+    // 2. hien thi danh sach thue bao
     void xemDanhSach();
-    //tim kiem thue bao
+    // 3. tim kiem thue bao
     void timKiemThueBao();
-    //sap xep thue bao theo so dien thoai
-    void sapXepDanhSach();
-    //dang ky goi cuoc
+    // 4. dang ky goi cuoc
     void dangKyGoiCuoc();
-    //khoa hoac mo chieu thue bao
+    // 5. khoa hoac mo chieu thue bao
     void khoaMoChieu();
-    //nap tien vao tai khoan
+    // 6. nap tien vao tai khoan
     void napTien();
-    //xoa thue bao
+    // 7. xoa thue bao
     void xoaThueBao();
+    // 8. sap xep thue bao
+    void sapXepDanhSach();
+    // 9. cap nhat thong tin thue bao
+    void capNhatThueBao();
 
 public:
     //tao menu quan ly thue bao

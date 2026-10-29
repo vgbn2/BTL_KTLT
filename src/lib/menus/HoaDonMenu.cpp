@@ -7,6 +7,62 @@
 
 using namespace HoaDonMenuChoices;
 
+//hien thi menu quan ly hoa don va khieu nai
+void HoaDonMenu::showMenu() {
+    if (kiemTraNo() > 0) {
+        std::cout << "\n[CANH BAO] Da khoa thue bao no cuoc qua han.\n";
+    }
+    while (true) {
+        std::cout << "\n====================================================================\n"
+                  << "              QUAN LY HOA DON CUOC & PHIEU KHIEU NAI\n"
+                  << "====================================================================\n"
+                  << "  [" << MENU_CREATE_INVOICE << "] Lap hoa don cuoc moi trong thang\n"
+                  << "  [" << MENU_LIST_INVOICES << "] Xem danh sach tat ca hoa don\n"
+                  << "  [" << MENU_PAY_INVOICE << "] Thanh toan hoa don cuoc\n"
+                  << "  [" << MENU_SEARCH_BY_PHONE << "] Tra cuu hoa don theo so dien thoai\n"
+                  << "  [" << MENU_ADD_COMPLAINT << "] Tiep nhan phieu khieu nai / tra soat cuoc\n"
+                  << "  [" << MENU_PROCESS_COMPLAINT << "] Xu ly / Cap nhat trang thai khieu nai\n"
+                  << "  [" << MENU_LIST_COMPLAINTS << "] Xem danh sach phieu khieu nai\n"
+                  << "  [" << MENU_SORT << "] Sap xep hoa don / khieu nai theo ma\n"
+                  << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
+                  << "====================================================================\n";
+
+        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-8]: ", MENU_BACK, MENU_SORT);
+        if (choice == MENU_BACK || std::cin.eof()) {
+            break;
+        }
+
+        switch (choice) {
+            case MENU_CREATE_INVOICE:
+                lapHoaDon();
+                break;
+            case MENU_LIST_INVOICES:
+                xemDanhSachHoaDon();
+                break;
+            case MENU_PAY_INVOICE:
+                thanhToanHoaDon();
+                break;
+            case MENU_SEARCH_BY_PHONE:
+                traCuuTheoSoDienThoai();
+                break;
+            case MENU_ADD_COMPLAINT:
+                tiepNhanKhieuNai();
+                break;
+            case MENU_PROCESS_COMPLAINT:
+                xuLyKhieuNai();
+                break;
+            case MENU_LIST_COMPLAINTS:
+                xemDanhSachKhieuNai();
+                break;
+            case MENU_SORT:
+                sapXepDanhSach();
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 //kiem tra va khoa thue bao no cuoc
 int HoaDonMenu::kiemTraNo(const Date& ngay) {
     std::vector<std::string> no;
@@ -295,57 +351,4 @@ void HoaDonMenu::xemDanhSachKhieuNai() {
     }
     DisplayHelper::printTable(khieuNaiStore.getAll());
     std::cout << "Tong so: " << khieuNaiStore.size() << " phieu khieu nai.\n";
-}
-
-//hien thi menu quan ly hoa don va khieu nai
-void HoaDonMenu::showMenu() {
-    while (true) {
-        std::cout << "\n====================================================================\n"
-                  << "              QUAN LY HOA DON CUOC & PHIEU KHIEU NAI\n"
-                  << "====================================================================\n"
-                  << "  [" << MENU_CREATE_INVOICE << "] Lap hoa don cuoc moi trong thang\n"
-                  << "  [" << MENU_LIST_INVOICES << "] Xem danh sach tat ca hoa don\n"
-                  << "  [" << MENU_PAY_INVOICE << "] Thanh toan hoa don cuoc\n"
-                  << "  [" << MENU_SEARCH_BY_PHONE << "] Tra cuu hoa don theo so dien thoai\n"
-                  << "  [" << MENU_ADD_COMPLAINT << "] Tiep nhan phieu khieu nai / tra soat cuoc\n"
-                  << "  [" << MENU_PROCESS_COMPLAINT << "] Xu ly / Cap nhat trang thai khieu nai\n"
-                  << "  [" << MENU_LIST_COMPLAINTS << "] Xem danh sach phieu khieu nai\n"
-                  << "  [" << MENU_SORT << "] Sap xep hoa don / khieu nai theo ma\n"
-                  << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
-                  << "====================================================================\n";
-
-        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-8]: ", MENU_BACK, MENU_SORT);
-        if (choice == MENU_BACK || std::cin.eof()) {
-            break;
-        }
-
-        switch (choice) {
-            case MENU_CREATE_INVOICE:
-                lapHoaDon();
-                break;
-            case MENU_LIST_INVOICES:
-                xemDanhSachHoaDon();
-                break;
-            case MENU_PAY_INVOICE:
-                thanhToanHoaDon();
-                break;
-            case MENU_SEARCH_BY_PHONE:
-                traCuuTheoSoDienThoai();
-                break;
-            case MENU_ADD_COMPLAINT:
-                tiepNhanKhieuNai();
-                break;
-            case MENU_PROCESS_COMPLAINT:
-                xuLyKhieuNai();
-                break;
-            case MENU_LIST_COMPLAINTS:
-                xemDanhSachKhieuNai();
-                break;
-            case MENU_SORT:
-                sapXepDanhSach();
-                break;
-            default:
-                break;
-        }
-    }
 }
