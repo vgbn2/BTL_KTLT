@@ -281,7 +281,8 @@ void testNewRepositoriesAndMenus() {
         std::string out = outputCapture.str();
         ASSERT_TRUE(out.find("QUAN LY THUE BAO DI DONG") != std::string::npos, "ThueBaoMenu phai hien thi tieu de menu");
         ASSERT_TRUE(out.find("[0] Quay lai menu chinh") != std::string::npos, "ThueBaoMenu phai co option [0] Quay lai menu chinh");
-        ASSERT_TRUE(out.find("[7] Xoa thue bao") < out.find("[8] Sap xep thue bao theo So dien thoai"),
+        ASSERT_TRUE(out.find("[7] Xoa thue bao") < out.find("[8] Sap xep thue bao") &&
+                    out.find("[8] Sap xep thue bao") < out.find("[9] Cap nhat thong tin thue bao"),
                     "ThueBaoMenu phai hien thi cac tuy chon theo thu tu so");
     }
 
@@ -480,6 +481,50 @@ void testNewRepositoriesAndMenus() {
 
         gcRepo.remove("M200");
         gcRepo.remove("M70");
+    }
+
+    // Test ThueBaoMenu: Cap nhat thong tin thue bao (Option 9)
+    {
+        KhachHang kh2("KH0002", "Tran Thi B", "CCCD", "001201004568", "11/01/2021", "Cuc C06", "0981112233", "Da Nang");
+        khRepo.add(kh2);
+
+        // 1. Cap nhat voi Ma KH khong ton tai -> phai bao loi va khong doi Ma KH
+        {
+            std::istringstream inputSim("9\n0981234567\n\nKH9999\n\n0\n");
+            std::ostringstream outputCapture;
+            std::cin.rdbuf(inputSim.rdbuf());
+            std::cout.rdbuf(outputCapture.rdbuf());
+
+            tbMenu.showMenu();
+
+            std::string out = outputCapture.str();
+            ASSERT_TRUE(out.find("Ma khach hang khong ton tai") != std::string::npos,
+                        "ThueBaoMenu capNhatThueBao phai tu choi Ma KH khong ton tai");
+            ThueBao* checkTb = tbRepo.findById("0981234567");
+            ASSERT_TRUE(checkTb != nullptr && checkTb->getMaKhachHang() == "KH0001",
+                        "Ma KH cua thue bao khong duoc thay doi khi nhap ma khong ton tai");
+        }
+
+        // 2. Cap nhat hop le sang TraSau, Ma KH = KH0002
+        {
+            std::istringstream inputSim("9\n0981234567\n2\nKH0002\n\n0\n");
+            std::ostringstream outputCapture;
+            std::cin.rdbuf(inputSim.rdbuf());
+            std::cout.rdbuf(outputCapture.rdbuf());
+
+            tbMenu.showMenu();
+
+            std::string out = outputCapture.str();
+            ASSERT_TRUE(out.find("Cap nhat thue bao thanh cong") != std::string::npos,
+                        "ThueBaoMenu capNhatThueBao phai cap nhat thanh cong voi thong tin hop le");
+            ThueBao* checkTb = tbRepo.findById("0981234567");
+            ASSERT_TRUE(checkTb != nullptr && checkTb->getLoaiThueBao() == ThueBaoConstants::TYPE_POSTPAID,
+                        "Loai thue bao phai duoc cap nhat sang TraSau");
+            ASSERT_TRUE(checkTb != nullptr && checkTb->getMaKhachHang() == "KH0002",
+                        "Ma KH phai duoc cap nhat sang KH0002");
+        }
+
+        khRepo.remove("KH0002");
     }
 
     std::remove(GC_TEST_FILE.c_str());
@@ -691,6 +736,9 @@ void testRemainingMenuControllers() {
         std::cout.rdbuf(outputCapture.rdbuf());
 
         hdMenu.showMenu();
+
+        ASSERT_TRUE(outputCapture.str().find("[CANH BAO] Da khoa thue bao no cuoc qua han.") != std::string::npos,
+                    "HoaDonMenu phai tu dong quet va canh bao khoa no khi vao menu");
 
         // Thue bao 1 phai duoc mo khoa HoatDong vi da tra het no cua chinh minh
         ThueBao* checkTb1 = tbRepo.findById("0983334455");

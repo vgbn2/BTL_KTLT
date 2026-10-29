@@ -87,9 +87,6 @@ int main(int argc, char* argv[]) {
     ThietBiIMEIMenu imeiMenu(imeiStore, thueBaoStore);
     NapTienMenu napTienMenu(napTienStore, thueBaoStore, ghicuocgoiStore);
     HoaDonMenu hoaDonMenu(hoaDonStore, thueBaoStore, khieuNaiStore, ghicuocgoiStore);
-    if (hoaDonMenu.kiemTraNo() > 0) {
-        std::cout << "[CANH BAO] Da khoa thue bao no cuoc qua han.\n";
-    }
 
     while (true) {
         std::cout << "\n====================================================================\n"
