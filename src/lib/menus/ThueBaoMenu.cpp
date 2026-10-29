@@ -286,6 +286,123 @@ void ThueBaoMenu::xoaThueBao() {
     }
 }
 
+ // Cap nhat thong tin thue bao
+void ThueBaoMenu::capNhatThueBao() {
+    std::cout << "\n>>> CAP NHAT THONG TIN THUE BAO <<<\n";
+
+    // Nhap so dien thoai cua thue bao can cap nhat
+    std::string sdt = InputHelper::getString(
+        "Nhap so dien thoai can cap nhat: "
+    );
+
+    if (std::cin.eof() || sdt.empty()) {
+        return;
+    }
+
+    // Tim thue bao trong kho du lieu
+    ThueBao* tb = store.findById(sdt);
+
+    if (tb == nullptr) {
+        std::cout << "[CANH BAO] Khong tim thay thue bao!\n";
+        return;
+    }
+
+    // Tao ban sao de cap nhat
+    ThueBao updated = *tb;
+
+    // Hien thi thong tin hien tai
+    std::cout << "\nThong tin thue bao hien tai:\n";
+    updated.displayDetail();
+
+    std::cout << "\nNhap thong tin moi.\n";
+    std::cout << "Bo trong neu muon giu nguyen gia tri cu.\n";
+
+    try {
+        // Cap nhat loai thue bao
+        std::string loaiTB = InputHelper::getString(
+            "Loai thue bao (1: Tra truoc, 2: Tra sau): ",
+            true
+        );
+
+        if (std::cin.eof()) {
+            return;
+        }
+
+        if (!loaiTB.empty()) {
+            if (loaiTB == "1") {
+                updated.setLoaiThueBao(
+                    ThueBaoConstants::TYPE_PREPAID
+                );
+            }
+            else if (loaiTB == "2") {
+                updated.setLoaiThueBao(
+                    ThueBaoConstants::TYPE_POSTPAID
+                );
+            }
+            else {
+                std::cout << "[LOI] Loai thue bao khong hop le!\n";
+                return;
+            }
+        }
+
+        // Cap nhat ma khach hang so huu
+        
+        std::string maKH = InputHelper::getString(
+    "Nhap ma khach hang moi (KH0000001-KH9999999): ",
+    true
+);
+
+if (std::cin.eof()) {
+    return;
+}
+
+if (!maKH.empty()) {
+    // Chuan hoa ma khach hang
+    maKH = Normalized::NormalizedCustomerId(maKH);
+
+    // Kiem tra dinh dang ma khach hang
+    if (!Normalized::isValidCustomerId(maKH)) {
+        std::cout << "[LOI] Ma khach hang khong dung dinh dang!\n";
+        return;
+    }
+
+    // Kiem tra ma khach hang da ton tai trong danh sach khach hang
+    if (khachHangStore.findById(maKH) != nullptr) {
+        std::cout << "[LOI] Ma khach hang nay da duoc su dung!\n";
+        return;
+    }
+
+    // Gan ma khach hang moi cho thue bao
+    updated.setMaKhachHang(maKH);
+}
+
+        // Cap nhat ngay kich hoat
+        std::string ngayKH = InputHelper::getString(
+            "Ngay kich hoat moi (DD/MM/YYYY): ",
+            true
+        );
+
+        if (std::cin.eof()) {
+            return;
+        }
+
+        if (!ngayKH.empty()) {
+            ngayKH = Date::parse(ngayKH).toString();
+            updated.setNgayKichHoat(ngayKH);
+        }
+
+        // Luu thong tin moi vao kho du lieu
+        store.update(sdt, updated);
+
+        std::cout << "[THANH CONG] Cap nhat thue bao thanh cong!\n";
+    }
+    catch (const std::exception& e) {
+        std::cout << "[LOI] Khong the cap nhat thue bao: "
+                  << e.what() << "\n";
+    }
+}
+
+
 //hien thi menu quan ly thue bao
 void ThueBaoMenu::showMenu() {
     while (true) {
@@ -300,10 +417,15 @@ void ThueBaoMenu::showMenu() {
                   << "  [" << MENU_TOPUP << "] Nap tien vao tai khoan thue bao\n"
                   << "  [" << MENU_DELETE << "] Xoa thue bao\n"
                   << "  [" << MENU_SORT << "] Sap xep thue bao theo So dien thoai\n"
+                  << "  [" << MENU_UPDATE << "] Cap nhat thong tin thue bao\n"
                   << "  [" << MENU_BACK << "] Quay lai menu chinh\n"
                   << "====================================================================\n";
 
-        int choice = InputHelper::getInt("Nhap lua chon cua ban [0-8]: ", MENU_BACK, MENU_SORT);
+        int choice = InputHelper::getInt(
+    "Nhap lua chon cua ban [0-9]: ",
+    MENU_BACK,
+    MENU_UPDATE
+);
         if (choice == MENU_BACK || std::cin.eof()) {
             break;
         }
@@ -332,6 +454,9 @@ void ThueBaoMenu::showMenu() {
                 break;
             case MENU_SORT:
                 sapXepDanhSach();
+                break;
+            case MENU_UPDATE:
+                capNhatThueBao();
                 break;
             default:
                 break;
