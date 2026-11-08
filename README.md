@@ -68,7 +68,7 @@ Choose one supported setup:
 2. **Visual Studio 2019/2022** — install the **Desktop development with C++** workload and the CMake tools component.
 3. **Git for Windows** — recommended for cloning and for the Git Bash commands below.
 
-The included `run_windows.bat` is the simplest MinGW path. It requires `g++` on `PATH`, compiles with C++11 and warnings enabled, then starts `quanlythuebao.exe`.
+The included `run_windows.bat` is the simplest MinGW path. It automatically sets the UTF-8 code page (`chcp 65001`), requires `g++` on `PATH`, compiles with C++11 and warnings enabled, then starts `quanlythuebao.exe`.
 
 Check a MinGW/MSYS2 installation in Command Prompt or Git Bash:
 
@@ -84,6 +84,11 @@ To install GDB on Windows via MSYS2:
 ```bash
 pacman -S mingw-w64-x86_64-gdb
 ```
+
+> **Note on UTF-8 in Windows Terminal:**
+> The application uses Vietnamese console menus. If running directly from Command Prompt or PowerShell without `run_windows.bat`, set the console code page to UTF-8 before running:
+> - Command Prompt: `chcp 65001`
+> - PowerShell: `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8`
 
 ## Get the source
 
@@ -126,35 +131,48 @@ The program can also be launched from another working directory because it resol
 
 ## Build and run on Windows
 
-### Option A: MinGW/MSYS2 batch script
+### Option A: One-click Batch script (MinGW-w64)
 
 1. Open Command Prompt or Git Bash.
-2. Change to the repository root.
-3. Confirm `g++` is available.
+2. Navigate to the repository root.
+3. Ensure `g++` is available on your `PATH`.
 4. Run the script:
 
 ```bat
 run_windows.bat
 ```
 
-The script creates `quanlythuebao.exe` in the repository root and starts it. Run it from the project root so the relative `data/` directory is available.
+The script sets `chcp 65001` for UTF-8 Vietnamese display, compiles all source files into `quanlythuebao.exe` at the project root, and starts it with the required `data/` fixtures.
 
-To build and run manually from Git Bash with MinGW:
+To compile manually with MinGW in Command Prompt or Git Bash:
 
 ```bash
 g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus \
   src/main.cpp src/lib/shared/*.cpp src/lib/models/*.cpp src/lib/menus/*.cpp \
   -o quanlythuebao.exe
-./quanlythuebao.exe
+chcp 65001
+.\quanlythuebao.exe
 ```
 
-### Option B: Visual Studio or CMake GUI
+### Option B: MinGW-w64 / MSYS2 with CMake
 
-From a **Developer PowerShell for VS** or a terminal where CMake is available:
+From Command Prompt, PowerShell, or Git Bash with MinGW tools on `PATH`:
+
+```bat
+cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug
+cmake --build build --parallel
+chcp 65001
+.\build\quanlythuebao.exe
+```
+
+### Option C: Visual Studio (MSVC) or Developer PowerShell
+
+From a **Developer PowerShell for VS** or a terminal where MSVC/CMake is available:
 
 ```powershell
 cmake -S . -B build
 cmake --build build --config Debug --parallel
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 .\build\Debug\quanlythuebao.exe
 ```
 
@@ -193,7 +211,9 @@ make clean     # remove generated binaries and coverage files
 
 ## Run tests
 
-### CTest
+### CTest (Automated Test Suite)
+
+On Linux / macOS or Windows with single-config generators (MinGW Makefiles / Unix Makefiles):
 
 ```bash
 cmake -S . -B build
@@ -201,17 +221,61 @@ cmake --build build --parallel
 ctest --test-dir build --output-on-failure
 ```
 
+On Windows with Visual Studio / multi-config generators:
+
+```powershell
+cmake -S . -B build
+cmake --build build --config Debug --parallel
+ctest --test-dir build -C Debug --output-on-failure
+```
+
 The CTest suite contains:
 
-1. Direct unit/model/menu tests
-2. A five-second stress test
-3. Startup from a different working directory
+1. `unit_tests` — Direct unit/model/menu tests (507 assertions)
+2. `stress_test_quick` — A five-second combinatorial state transition stress test
+3. `startup_from_other_directory` — Startup from a different working directory
 
 ### Direct assertion runner
 
+On Linux / macOS:
+
 ```bash
+# Via GNU Make
+make test
+
+# Or via CMake build artifact
 ./build/test_runner
 ```
+
+On Windows:
+
+```bat
+# With MinGW / CMake
+.\build\test_runner.exe
+
+# With Visual Studio (MSVC)
+.\build\Debug\test_runner.exe
+```
+
+To compile and run unit tests directly on Windows using MinGW `g++`:
+
+```bat
+g++ -std=c++11 -Wall -Wextra -Isrc -Isrc/lib -Isrc/lib/shared -Isrc/lib/models -Isrc/lib/menus -Itests/modules tests/test_runner.cpp tests/modules/*.cpp src/lib/shared/*.cpp src/lib/models/*.cpp src/lib/menus/*.cpp -o test_runner.exe
+.\test_runner.exe
+```
+
+## Package submission archive
+
+To package a clean, deterministic submission archive `Nhóm 04.zip` matching the PTIT assignment structure (single `Nhoms4/` root without temporary files, swap artifacts, or build directories):
+
+On Linux or Git Bash on Windows:
+
+```bash
+chmod +x scripts/package_submission.sh
+./scripts/package_submission.sh
+```
+
+The script cleans transient artifacts and archives all source code, build files (`CMakeLists.txt`, `Makefile`, `run_windows.bat`), documentation, and data fixtures into `Nhóm 04.zip`.
 
 ### Debugging and Tracing with GDB
 
