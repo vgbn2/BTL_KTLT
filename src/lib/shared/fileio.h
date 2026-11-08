@@ -5,7 +5,7 @@
  *
  * file nay chiu trach nhiem vao ra du lieu cho he thong:
  * - split: tach chuoi theo dau '|', giu cot rong de bat loi thieu du lieu
- * - luu file an toan (atomic): ghi vao tmps truoc roi moi doi ten thay file cu
+ * - luu file an toan : ghi vao tmps truoc roi moi doi ten thay file cu
  * - khac biet he dieu hanh (Linux vs Windows):
  *   + Linux: tao symlink tmps sang /dev/shm (RAM tmpfs) de chay test khong ton SSD;
  *     dung getpid(), rename() va copy qua file trung gian neu lech phan vung.
@@ -46,6 +46,8 @@ class FileIO {
     static std::vector<std::string> split(const std::string& s, char delimiter = FileConstants::DEFAULT_DELIMITER);
     //dam bao thu muc cua tep ton tai
     static bool ensureDirectoryExists(const std::string& filepath);
+    //don dep cac tep swap mo coi bi bo lai sau su co
+    static void cleanupStaleSwapFiles(const std::string& directory = "data");
     //khoi tao thu muc luu tep tam thoi
     static bool initTmpDir();
     //tao duong dan tep tam thoi de ghi

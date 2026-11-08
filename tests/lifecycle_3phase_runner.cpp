@@ -312,12 +312,12 @@ int main(int argc, char* argv[]) {
                 std::string targetKH = dynamicKhList[idxA];
                 std::string newPhone = generateRandomPhone(rng);
 
-                driveMenu("4\n" + targetKH + "\nOverwritten Name " + uidStr + "\n" + newPhone + "\nNew Street " + uidStr + "\n0\n",
+                driveMenu("4\n" + targetKH + "\nOverwritten Name " + uidStr + "\n" + newPhone + "\nNew Street " + uidStr + "\n\n\n0\n",
                           [&]() { khMenu.showMenu(); });
 
                 // 2. Overwrite Package details (Price, Data)
                 std::string targetGC = dynamicGcList[roundCounter % dynamicGcList.size()];
-                driveMenu("5\n" + targetGC + "\nUpdated GC " + uidStr + "\n120000\n0\n",
+                driveMenu("5\n" + targetGC + "\nUpdated GC " + uidStr + "\ny\n120000\ny\n10\nn\nn\n\n0\n",
                           [&]() { gcMenu.showMenu(); });
 
                 // 3. Credential Swapping between 2 customers (CCCD swap)
@@ -346,14 +346,14 @@ int main(int argc, char* argv[]) {
                     std::string originalPhoneA = curA->getSoDienThoai();
 
                     // Attempt updating contact phone via menu with another customer's existing phone
-                    driveMenu("4\n" + targetKH + "\n\n" + phoneOfB + "\n\n0\n",
+                    driveMenu("4\n" + targetKH + "\n\n" + phoneOfB + "\n\n\n\n0\n",
                               [&]() { khMenu.showMenu(); });
 
                     KhachHang* afterUpdateA = khRepo.findById(targetKH);
                     if (afterUpdateA && afterUpdateA->getSoDienThoai() == phoneOfB) {
                         metrics.dupPersonalUpdateAllowed++;
                         // Restore original phone
-                        driveMenu("4\n" + targetKH + "\n\n" + originalPhoneA + "\n\n0\n",
+                        driveMenu("4\n" + targetKH + "\n\n" + originalPhoneA + "\n\n\n\n0\n",
                                   [&]() { khMenu.showMenu(); });
                     } else {
                         metrics.dupPersonalUpdateExcepted++;
