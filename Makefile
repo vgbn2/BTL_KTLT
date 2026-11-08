@@ -31,6 +31,7 @@ TEST_MODULE_SRCS = tests/modules/test_shared.cpp \
                    tests/modules/test_infrastructure.cpp \
                    tests/modules/test_models.cpp \
                    tests/modules/test_menus.cpp \
+                   tests/modules/test_menu_parity.cpp \
                    tests/modules/test_fixtures.cpp
 
 MAIN_SRC = src/main.cpp
