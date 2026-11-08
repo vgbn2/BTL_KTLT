@@ -652,7 +652,7 @@ int main(int argc, char* argv[]) {
             metrics.totalTransitions++;
 
             //truong hop C:cap nhat goi cuoc
-            std::string updateInput = "5\n" + maGC + "\nUpdated Name\n1\n70000\n0\n";
+            std::string updateInput = "5\n" + maGC + "\nUpdated Name\ny\n70000\nn\nn\nn\n\n0\n";
             driveMenuWithInput(updateInput, [&]() { goiCuocMenu.showMenu(); });
             metrics.menuInvocations++;
             metrics.totalTransitions++;
