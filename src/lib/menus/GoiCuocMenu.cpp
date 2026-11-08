@@ -171,6 +171,7 @@ void GoiCuocMenu::capNhatGoiCuoc() {
     }
 
     gc->displayDetail();
+    //sua tren ban sao,de EOF giua chung khong luu thay doi dang do
     GoiCuoc updated = *gc;
     std::string tenMoi = InputHelper::getName("Nhap ten goi moi (bo trong de giu nguyen): ", true);
     if (std::cin.eof()) return;
@@ -184,8 +185,32 @@ void GoiCuocMenu::capNhatGoiCuoc() {
         updated.setGiaCuoc(giaMoi);
     }
 
+    bool doiData = InputHelper::getConfirm("Ban co muon thay doi dung luong data khong?");
+    if (std::cin.eof()) return;
+    if (doiData) {
+        int dataMoi = InputHelper::getInt("Nhap dung luong data moi (GB): ", 0);
+        if (std::cin.eof()) return;
+        updated.setDungLuongData(dataMoi);
+    }
+
+    bool doiPhut = InputHelper::getConfirm("Ban co muon thay doi so phut thoai khong?");
+    if (std::cin.eof()) return;
+    if (doiPhut) {
+        int phutMoi = InputHelper::getInt("Nhap so phut thoai moi: ", 0);
+        if (std::cin.eof()) return;
+        updated.setSoPhutGoi(phutMoi);
+    }
+
+    bool doiChuKy = InputHelper::getConfirm("Ban co muon thay doi chu ky ngay khong?");
+    if (std::cin.eof()) return;
+    if (doiChuKy) {
+        int chuKyMoi = InputHelper::getInt("Nhap chu ky ngay moi: ", 1, 365);
+        if (std::cin.eof()) return;
+        updated.setChuKyNgay(chuKyMoi);
+    }
+
     try {
-        //cap nhat ban sao,dam bao rollback neu loi
+        //chi luu danh muc goi,khong doi gia/han cua hop dong da lap
         store.update(maGoi, updated);
         std::cout << "[THANH CONG] Da cap nhat goi cuoc!\n";
     } catch (const std::exception& e) {

@@ -32,6 +32,7 @@ namespace IMEIMenuChoices {
     const int UPDATE_BTS = 2;
     const int UPDATE_LOCK = 3;
     const int UPDATE_UNLOCK = 4;
+    const int UPDATE_METADATA = 5;
     const int UPDATE_CANCEL = 0;
 }
 

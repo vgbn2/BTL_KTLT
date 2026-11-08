@@ -211,6 +211,7 @@ void KhachHangMenu::capNhatKhachHang() {
     }
 
     kh->displayDetail();
+    //sua tren ban sao,de huy hoac EOF khong luu thay doi dang do
     KhachHang updated = *kh;
 
     std::string hoTenMoi = InputHelper::getName("Nhap ho ten moi (bo trong de giu nguyen): ", true);
@@ -226,6 +227,20 @@ void KhachHangMenu::capNhatKhachHang() {
     if (!diaChiMoi.empty()) updated.setDiaChi(diaChiMoi);
 
     try {
+        //chi sua ngay/noi cap,khong thay ma khach hang va so giay to
+        std::string ngayCapMoi = InputHelper::getString("Nhap ngay cap moi (DD/MM/YYYY, 'now', bo trong de giu nguyen, '0' de huy): ", true);
+        if (std::cin.eof()) return;
+        if (ngayCapMoi == "0") {
+            std::cout << "[DA HUY] Thao tac cap nhat da duoc huy bo.\n";
+            return;
+        }
+        if (!ngayCapMoi.empty()) updated.setNgayCap(Date::parse(ngayCapMoi).toString());
+
+        std::string noiCapMoi = InputHelper::getString("Nhap noi cap moi (bo trong de giu nguyen): ", true);
+        if (std::cin.eof()) return;
+        if (!noiCapMoi.empty()) updated.setNoiCap(noiCapMoi);
+
+        //luu mot lan sau khi du lieu hop le,repository rollback neu ghi loi
         store.update(maKH, updated);
         std::cout << "[THANH CONG] Da cap nhat thong tin khach hang " << maKH << "!\n";
     } catch (const std::exception& e) {
