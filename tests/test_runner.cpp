@@ -51,6 +51,9 @@ int main() {
     runTest("testSourceFileHeaders", testSourceFileHeaders);
     runTest("testBTSRegistry", testBTSRegistry);
     runTest("testRemainingMenuControllers", testRemainingMenuControllers);
+    runTest("testPackageUpdateParity", testPackageUpdateParity);
+    runTest("testDeviceMetadataUpdate", testDeviceMetadataUpdate);
+    runTest("testCustomerIssueMetadataUpdate", testCustomerIssueMetadataUpdate);
 
     // 5. Canonical Fixtures Verification
     runTest("testCanonicalFixtureCounts", testCanonicalFixtureCounts);

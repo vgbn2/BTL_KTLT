@@ -36,6 +36,7 @@
 #include <windows.h>
 #else
 #include <unistd.h>
+#include <dirent.h>
 // quyen thu muc POSIX (he bat phan / octal):
 // 0755 = rwxr-xr-x (chu so huu full quyen doc/ghi/chay 7, nhom va nguoi khac chi doc/chay 5)
 // 0777 = rwxrwxrwx (full quyen cho tat ca tien trinh doc/ghi tren vung nho dem ram /dev/shm)
@@ -74,8 +75,27 @@ bool FileIO::ensureDirectoryExists(const std::string& filepath) {
     return true;
 }
 
+//don dep cac tep swap mo coi tu phien lam viec truoc bi gian doan
+// ponytail: stdlib opendir/remove on .ssd_swap; upgrade to kill(pid, 0) probe if concurrent daemons added
+void FileIO::cleanupStaleSwapFiles(const std::string& directory) {
+#if !defined(_WIN32)
+    DIR* dir = opendir(directory.c_str());
+    if (!dir) return;
+    struct dirent* entry;
+    while ((entry = readdir(dir)) != nullptr) {
+        std::string name = entry->d_name;
+        if (name.size() > 9 && name.substr(name.size() - 9) == ".ssd_swap") {
+            std::string fullPath = directory + "/" + name;
+            std::remove(fullPath.c_str());
+        }
+    }
+    closedir(dir);
+#endif
+}
+
 //khoi tao thu muc tam tren bo nho phu hop
 bool FileIO::initTmpDir() {
+    cleanupStaleSwapFiles("data");
 #if defined(_WIN32)
     _mkdir(FilePaths::TMP_DIR.c_str());
     return true;
