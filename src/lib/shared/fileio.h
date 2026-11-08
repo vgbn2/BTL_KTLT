@@ -46,6 +46,8 @@ class FileIO {
     static std::vector<std::string> split(const std::string& s, char delimiter = FileConstants::DEFAULT_DELIMITER);
     //dam bao thu muc cua tep ton tai
     static bool ensureDirectoryExists(const std::string& filepath);
+    //don dep cac tep swap mo coi bi bo lai sau su co
+    static void cleanupStaleSwapFiles(const std::string& directory = "data");
     //khoi tao thu muc luu tep tam thoi
     static bool initTmpDir();
     //tao duong dan tep tam thoi de ghi
