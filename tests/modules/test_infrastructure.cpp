@@ -51,7 +51,8 @@ void testRepository() {
     ASSERT_TRUE(reloadedRepo.size() == 1, "Reloaded store phai co dung 1 ban ghi da luu");
     ASSERT_TRUE(reloadedRepo.findById("HD0002") != nullptr, "Reloaded store phai chua HD0002");
 
-    const std::string SORT_FILE = "data/test_repo_sort.txt";
+    FileIO::initTmpDir();
+    const std::string SORT_FILE = "tmps/test_repo_sort.txt";
     Repository<HopDong> sortRepo(SORT_FILE);
     sortRepo.clear();
     HopDong sortHd1("HD0002", "KH0002", "0978999888", "GC002", Date(1, 2, 2024), Date(1, 2, 2025), "TraTruoc", "HieuLuc", 90000.0);
@@ -71,6 +72,7 @@ void testRepository() {
     Repository<HopDong> descendingSortRepo(SORT_FILE);
     ASSERT_TRUE(descendingSortRepo.loadFromFile() && descendingSortRepo.getAll()[0].getId() == "HD0002",
                 "Sort ID giam dan phai duoc luu tren tep");
+    std::remove(SORT_FILE.c_str());
 
     Repository<HopDong> failedSortRepo("/proc/ktlt_repository_sort.txt");
     failedSortRepo.getAll().push_back(sortHd1);
@@ -261,6 +263,18 @@ void testFileIOTmpfs() {
 #else
     rmdir(preservedTarget.c_str());
 #endif
+
+    // kiem thu don dep file .ssd_swap mo coi
+    const std::string staleSwapPath = "data/test_stale_unit.12345.ssd_swap";
+    {
+        std::ofstream swapOut(staleSwapPath);
+        swapOut << "STALE_SWAP_DATA";
+    }
+    FileIO::cleanupStaleSwapFiles("data");
+    {
+        std::ifstream swapCheck(staleSwapPath);
+        ASSERT_TRUE(!swapCheck.is_open(), "cleanupStaleSwapFiles phai xoa file swap mo coi");
+    }
 }
 
 void testBTSRegistry() {

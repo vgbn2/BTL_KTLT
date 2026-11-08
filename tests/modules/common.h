@@ -90,6 +90,9 @@ void testSourceFileHeaders();
 void testMenuControllers();
 void testNewRepositoriesAndMenus();
 void testRemainingMenuControllers();
+void testPackageUpdateParity();
+void testDeviceMetadataUpdate();
+void testCustomerIssueMetadataUpdate();
 
 // 5. Fixture tests (test_fixtures.cpp)
 void testCanonicalFixtureCounts();

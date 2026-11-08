@@ -274,8 +274,9 @@ void ThietBiIMEIMenu::capNhatThietBi() {
               << "  [" << UPDATE_BTS << "] Cap nhat vi tri tram BTS\n"
               << "  [" << UPDATE_LOCK << "] Khoa mang thiet bi\n"
               << "  [" << UPDATE_UNLOCK << "] Mo khoa mang thiet bi\n"
+              << "  [" << UPDATE_METADATA << "] Sua ten thiet bi va hang san xuat\n"
               << "  [" << UPDATE_CANCEL << "] Huy bo thao tac\n";
-    int choice = InputHelper::getInt("Nhap lua chon [0-4]: ", UPDATE_CANCEL, UPDATE_UNLOCK);
+    int choice = InputHelper::getInt("Nhap lua chon [0-5]: ", UPDATE_CANCEL, UPDATE_METADATA);
 
     if (choice == UPDATE_CANCEL || std::cin.eof()) {
         std::cout << "[DA HUY] Thao tac cap nhat da duoc huy bo.\n";
@@ -330,6 +331,19 @@ void ThietBiIMEIMenu::capNhatThietBi() {
             updated.setBlacklist(false);
             store.update(imei, updated);
             std::cout << "[THANH CONG] Da MO KHOA MANG thiet bi " << imei << " (Trang thai: HoatDong)!\n";
+        }
+
+        else if (choice == UPDATE_METADATA) {
+            //chi sua ten va hang,giu nguyen IMEI,SIM,BTS va trang thai khoa mang
+            std::string tenMoi = InputHelper::getName("Nhap ten thiet bi moi (bo trong de giu nguyen): ", true);
+            if (std::cin.eof()) return;
+            std::string hangMoi = InputHelper::getName("Nhap hang san xuat moi (bo trong de giu nguyen): ", true);
+            if (std::cin.eof()) return;
+            if (!tenMoi.empty()) updated.setTenThietBi(tenMoi);
+            if (!hangMoi.empty()) updated.setHangSanXuat(hangMoi);
+            //chi luu mot lan sau khi ca hai ten da duoc kiem tra
+            store.update(imei, updated);
+            std::cout << "[THANH CONG] Da cap nhat thong tin thiet bi " << imei << "!\n";
         }
     } catch (const AppException& e) {
         std::cout << "[LOI] " << e.what() << "\n";
