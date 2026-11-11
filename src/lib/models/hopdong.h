@@ -11,6 +11,8 @@
 #include "Entity.h"
 #include "Date.h"
 
+
+
 namespace HopDongConstants {
     const std::string STATUS_ACTIVE = "HieuLuc";
     const std::string STATUS_SUSPENDED = "TamDung";
@@ -28,7 +30,7 @@ namespace HopDongConstants {
     const int COL_WIDTH_STATUS = 12;
     const int COL_WIDTH_PRICE = 16;
 }
-
+class ThueBao;
 class HopDong : public Entity {
 private:
     std::string maKhachHang;
@@ -36,11 +38,13 @@ private:
     std::string maGoiCuoc;
     Date ngayDangKy;
     Date ngayHetHan;
-    std::string loaiHopDong;
     std::string trangThai;
     double giaTriGoi;
 
 public:
+    //hien thi loai hopdong
+    void displayRow(const ThueBao& sim, std::ostream& os=std::cout)const;
+    void displayDetail(const ThueBao& sim,std::ostream& os=std::cout)const;
     //tao hop dong mac dinh
     HopDong();
     //tao hop dong day du thong tin
@@ -50,7 +54,6 @@ public:
             const std::string& maGC,
             const Date& ngayDK,
             const Date& ngayHH,
-            const std::string& loaiHD,
             const std::string& tThai,
             double gia);
 
@@ -67,7 +70,7 @@ public:
     //lay ngay het han
     Date getNgayHetHan() const { return ngayHetHan; }
     //lay loai hop dong
-    std::string getLoaiHopDong() const { return loaiHopDong; }
+    std::string getLoaiHopDong(const ThueBao& sim) const;
     //lay trang thai hop dong
     std::string getTrangThai() const { return trangThai; }
     //lay gia tri goi
@@ -84,8 +87,6 @@ public:
     void setNgayDangKy(const Date& d) { ngayDangKy = d; }
     //cap nhat ngay het han
     void setNgayHetHan(const Date& d);
-    //cap nhat loai hop dong
-    void setLoaiHopDong(const std::string& loai);
     //cap nhat trang thai hop dong
     void setTrangThai(const std::string& tThai);
     //cap nhat gia tri goi
