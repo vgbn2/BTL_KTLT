@@ -40,8 +40,6 @@ namespace HopDongMenuChoices {
     const int STATUS_CHOICE_SUSPENDED = 2;
     const int STATUS_CHOICE_TERMINATED = 3;
 
-    const int TYPE_CHOICE_PREPAID = 1;
-    const int TYPE_CHOICE_POSTPAID = 2;
 }
 
 class HopDongMenu {
