@@ -118,7 +118,27 @@ void testHopDong() {
 
     Date start(1, 1, 2024);
     Date end(1, 1, 2025);
-    HopDong hd("HD9999", "KH9999", "0981234567", "GC999", start, end, "TraSau", "HieuLuc", 100000.0);
+    HopDong hd("HD9999", "KH9999", "0981234567", "GC999", start, end, "HieuLuc", 100000.0);
+
+    ThueBao linkedSim("0981234567", ThueBaoConstants::TYPE_POSTPAID, "KH9999", "GC999", "01/01/2024");
+    ASSERT_TRUE(hd.getLoaiHopDong(linkedSim) == ThueBaoConstants::TYPE_POSTPAID,
+                "HopDong phai lay loai hop dong tu SIM lien ket");
+    linkedSim.setLoaiThueBao(ThueBaoConstants::TYPE_PREPAID);
+    ASSERT_TRUE(hd.getLoaiHopDong(linkedSim) == ThueBaoConstants::TYPE_PREPAID,
+                "Loai hop dong phai cap nhat theo loai SIM hien tai");
+    std::ostringstream linkedDisplay;
+    hd.displayRow(linkedSim, linkedDisplay);
+    ASSERT_TRUE(linkedDisplay.str().find(ThueBaoConstants::TYPE_PREPAID) != std::string::npos,
+                "Dong hop dong phai hien thi loai tu SIM lien ket");
+
+    bool rejectedWrongSim = false;
+    try {
+        ThueBao otherSim("0987654321", ThueBaoConstants::TYPE_POSTPAID, "KH9999", "GC999", "01/01/2024");
+        hd.getLoaiHopDong(otherSim);
+    } catch (const AppException&) {
+        rejectedWrongSim = true;
+    }
+    ASSERT_TRUE(rejectedWrongSim, "HopDong phai tu choi SIM khong lien ket");
 
     ASSERT_TRUE(hd.getId() == "HD9999", "HopDong getId phai khop");
     ASSERT_TRUE(!hd.isExpired(Date(1, 6, 2024)), "HopDong khong the expired vao thang 6/2024");
@@ -129,7 +149,7 @@ void testHopDong() {
     for (const auto& bad : invalidHdPhones) {
         bool threwCtor = false;
         try {
-            HopDong badPhone("HD8888", "KH8888", bad, "GC001", start, end, "TraSau", "HieuLuc", 100.0);
+            HopDong badPhone("HD8888", "KH8888", bad, "GC001", start, end, "HieuLuc", 100.0);
         } catch (const InvalidPhoneNumberException&) {
             threwCtor = true;
         }
@@ -154,23 +174,15 @@ void testHopDong() {
 
     bool threwNegPrice = false;
     try {
-        HopDong badPrice("HD8887", "KH8887", "0981234567", "GC001", start, end, "TraSau", "HieuLuc", -50000.0);
+        HopDong badPrice("HD8887", "KH8887", "0981234567", "GC001", start, end, "HieuLuc", -50000.0);
     } catch (const AppException&) {
         threwNegPrice = true;
     }
     ASSERT_TRUE(threwNegPrice, "Gia tri goi am phai bi tu choi");
 
-    bool threwBadType = false;
-    try {
-        HopDong badType("HD8886", "KH8886", "0981234567", "GC001", start, end, "InvalidType", "HieuLuc", 1000.0);
-    } catch (const AppException&) {
-        threwBadType = true;
-    }
-    ASSERT_TRUE(threwBadType, "Loai hop dong sai phai bi tu choi");
-
     bool threwBadStatus = false;
     try {
-        HopDong badStatus("HD8885", "KH8885", "0981234567", "GC001", start, end, "TraSau", "InvalidStatus", 1000.0);
+        HopDong badStatus("HD8885", "KH8885", "0981234567", "GC001", start, end, "InvalidStatus", 1000.0);
     } catch (const AppException&) {
         threwBadStatus = true;
     }
@@ -185,6 +197,12 @@ void testHopDong() {
     ASSERT_TRUE(ok, "Deserialization HopDong phai thanh cong");
     ASSERT_TRUE(dHd.getId() == "HD9999", "Deserialized HopDong id phai khop");
     ASSERT_TRUE(dHd.getGiaTriGoi() == 100000.0, "Deserialized HopDong giaTri phai khop");
+    ASSERT_TRUE(dHd.fromFileString("HD-OLD|KH9999|0981234567|GC999|01/01/2024|01/01/2025|TraSau|HieuLuc|100000"),
+                "Deserialization HopDong legacy 9 truong phai thanh cong");
+    ASSERT_TRUE(dHd.getTrangThai() == HopDongConstants::STATUS_ACTIVE,
+                "Legacy record phai giu dung trang thai sau khi bo truong loai");
+    ASSERT_TRUE(dHd.toFileString().find("|TraSau|") == std::string::npos,
+                "Serialization moi khong duoc luu trung loai SIM tren hop dong");
 }
 
 void testKhachHangModel() {
@@ -510,4 +528,3 @@ void testSourceFileHeaders() {
     verifyHeader("src/lib/models/hoadon.h", "Thanh vien phu trach: Nguyễn Minh Quang (B24DCVT308)");
     verifyHeader("src/lib/models/goicuoc.h", "Thanh vien phu trach: Tùng Dương (B24DCVT106)");
 }
-
