@@ -119,18 +119,11 @@ void HopDongMenu::themHopDong() {
     int chuKy = (gc != nullptr && gc->getChuKyNgay() > 0) ? gc->getChuKyNgay() : 30;
     Date ngayHH = ngayDK.addDays(chuKy);
 
-    std::cout << "Chon Loai hop dong:\n"
-              << "  [" << TYPE_CHOICE_PREPAID << "] Tra truoc \n"
-              << "  [" << TYPE_CHOICE_POSTPAID << "] Tra sau \n";
-    int loaiChoice = InputHelper::getInt("Lua chon [1-2]: ", TYPE_CHOICE_PREPAID, TYPE_CHOICE_POSTPAID);
-    if (std::cin.eof()) return;
-    std::string loaiHD = (loaiChoice == TYPE_CHOICE_PREPAID) ? HopDongConstants::TYPE_PREPAID : HopDongConstants::TYPE_POSTPAID;
-
     double gia = InputHelper::getDouble("Nhap Gia tri goi cuoc (VND): ", 0.0);
     if (std::cin.eof()) return;
 
     try {
-        HopDong hd(maHD, maKH, sdt, maGC, ngayDK, ngayHH, loaiHD, HopDongConstants::STATUS_ACTIVE, gia);
+        HopDong hd(maHD, maKH, sdt, maGC, ngayDK, ngayHH, HopDongConstants::STATUS_ACTIVE, gia);
         store.add(hd);
         std::cout << "[THANH CONG] Da them hop dong " << maHD << " vao he thong!\n";
     } catch (const AppException& e) {
@@ -149,7 +142,14 @@ void HopDongMenu::xemDanhSach() {
         return;
     }
 
-    DisplayHelper::printTable(list);
+    if (!list.empty()) {
+        list.front().displayHeader();
+        for (const HopDong& hd : list) {
+            ThueBao* sim = thueBaoStore.findById(hd.getSoDienThoai());
+            if (sim != nullptr) hd.displayRow(*sim);
+            else hd.displayRow();
+        }
+    }
     std::cout << "Tong so: " << list.size() << " hop dong.\n";
     InputHelper::pause();
 }
@@ -172,9 +172,16 @@ void HopDongMenu::timKiemHopDong() {
         if (hd == nullptr) {
             std::cout << "[THONG BAO] Khong tim thay hop dong nao co ma: " << id << "\n";
         } else {
+            ThueBao* sim = thueBaoStore.findById(hd->getSoDienThoai());
             hd->displayHeader();
-            hd->displayRow();
-            hd->displayDetail();
+            if (sim != nullptr) {
+                hd->displayRow(*sim);
+                hd->displayDetail(*sim);
+            } else {
+                hd->displayRow();
+                hd->displayDetail();
+                std::cout << "[CANH BAO] Khong tim thay SIM lien ket; loai hop dong khong xac dinh.\n";
+            }
         }
     } else if (choice == SEARCH_BY_PHONE) {
         std::string sdt = InputHelper::getString("Nhap So dien thoai can tim: ", false);
@@ -184,7 +191,12 @@ void HopDongMenu::timKiemHopDong() {
         if (results.empty()) {
             std::cout << "[THONG BAO] Khong co hop dong nao gan voi so: " << sdt << "\n";
         } else {
-            DisplayHelper::printTable(results);
+            results.front().displayHeader();
+            for (const HopDong& hd : results) {
+                ThueBao* sim = thueBaoStore.findById(hd.getSoDienThoai());
+                if (sim != nullptr) hd.displayRow(*sim);
+                else hd.displayRow();
+            }
             std::cout << "Tim thay " << results.size() << " hop dong.\n";
         }
     } else if (choice == SEARCH_BY_CUSTOMER) {
@@ -196,7 +208,12 @@ void HopDongMenu::timKiemHopDong() {
         if (results.empty()) {
             std::cout << "[THONG BAO] Khong co hop dong nao cua khach hang: " << kh << "\n";
         } else {
-            DisplayHelper::printTable(results);
+            results.front().displayHeader();
+            for (const HopDong& hd : results) {
+                ThueBao* sim = thueBaoStore.findById(hd.getSoDienThoai());
+                if (sim != nullptr) hd.displayRow(*sim);
+                else hd.displayRow();
+            }
             std::cout << "Tim thay " << results.size() << " hop dong.\n";
         }
     }
@@ -249,7 +266,9 @@ void HopDongMenu::capNhatHopDong() {
     }
 
     std::cout << "\nThong tin hien tai cua hop dong:\n";
-    hd->displayDetail();
+    ThueBao* linkedSim = thueBaoStore.findById(hd->getSoDienThoai());
+    if (linkedSim != nullptr) hd->displayDetail(*linkedSim);
+    else hd->displayDetail();
     HopDong updated = *hd;
 
     std::cout << "\nChon thong tin can cap nhat:\n"
@@ -333,7 +352,9 @@ void HopDongMenu::xoaHopDong() {
     }
 
     std::cout << "\nThong tin hop dong can xoa:\n";
-    hd->displayDetail();
+    ThueBao* linkedSim = thueBaoStore.findById(hd->getSoDienThoai());
+    if (linkedSim != nullptr) hd->displayDetail(*linkedSim);
+    else hd->displayDetail();
 
     bool confirm = InputHelper::getConfirm("Ban co chac chan muon xoa hop dong nay khoi he thong?");
     if (std::cin.eof()) return;
