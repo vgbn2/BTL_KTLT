@@ -958,7 +958,7 @@ int main(int argc, char* argv[]) {
             std::string hdId = "HD_DIR_" + std::to_string(roundCounter % 200);
             if (hopDongStore.findById(hdId) == nullptr) {
                 HopDong hd(hdId, khId, tbId, gcId, Date(1, 1, 2024), Date(1, 1, 2025),
-                           HopDongConstants::TYPE_PREPAID, HopDongConstants::STATUS_ACTIVE, 90000);
+                           HopDongConstants::STATUS_ACTIVE, 90000);
                 hopDongStore.add(hd);
                 metrics.directCrudOperations++;
                 metrics.totalTransitions++;

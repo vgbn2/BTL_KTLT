@@ -14,8 +14,8 @@ void testRepository() {
     Repository<HopDong> repo(TEST_FILE);
     repo.clear();
 
-    HopDong hd1("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 150000.0);
-    HopDong hd2("HD0002", "KH0002", "0978999888", "GC002", Date(1, 2, 2024), Date(1, 2, 2025), "TraTruoc", "HieuLuc", 90000.0);
+    HopDong hd1("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "HieuLuc", 150000.0);
+    HopDong hd2("HD0002", "KH0002", "0978999888", "GC002", Date(1, 2, 2024), Date(1, 2, 2025), "HieuLuc", 90000.0);
 
     ASSERT_TRUE(repo.add(hd1), "Them hd1 phai thanh cong");
     ASSERT_TRUE(repo.add(hd2), "Them hd2 phai thanh cong");
@@ -33,7 +33,7 @@ void testRepository() {
     ASSERT_TRUE(found != nullptr, "Phai tim thay HD0001");
     ASSERT_TRUE(found->getMaKhachHang() == "KH0001", "Khach hang phai la KH0001");
 
-    HopDong notFound = HopDong("HD9999", "KH9999", "0989999999", "GC999", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 100.0);
+    HopDong notFound = HopDong("HD9999", "KH9999", "0989999999", "GC999", Date(1, 1, 2024), Date(1, 1, 2025), "HieuLuc", 100.0);
     bool threwNotFound = false;
     try {
         repo.update("HD9999", notFound);
@@ -55,8 +55,8 @@ void testRepository() {
     const std::string SORT_FILE = "tmps/test_repo_sort.txt";
     Repository<HopDong> sortRepo(SORT_FILE);
     sortRepo.clear();
-    HopDong sortHd1("HD0002", "KH0002", "0978999888", "GC002", Date(1, 2, 2024), Date(1, 2, 2025), "TraTruoc", "HieuLuc", 90000.0);
-    HopDong sortHd2("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 150000.0);
+    HopDong sortHd1("HD0002", "KH0002", "0978999888", "GC002", Date(1, 2, 2024), Date(1, 2, 2025), "HieuLuc", 90000.0);
+    HopDong sortHd2("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "HieuLuc", 150000.0);
     sortRepo.add(sortHd1);
     sortRepo.add(sortHd2);
     ASSERT_TRUE(sortRepo.sortById(true), "Sort ID tang dan phai luu thanh cong");
@@ -106,6 +106,18 @@ void testRepository() {
     ASSERT_TRUE(!invalidHopDongStore.loadFromFile(), "File hop dong co dong sai phai bao that bai");
     ASSERT_TRUE(invalidHopDongStore.empty(), "Repository khong duoc cong bo dong hop dong sai");
 
+    const std::string LEGACY_HOPDONG_FILE = "data/test_legacy_hopdong.txt";
+    {
+        std::ofstream out(LEGACY_HOPDONG_FILE);
+        out << "HD-OLD|KH-1|0981234567|GC-1|01/01/2024|01/01/2025|TraSau|HieuLuc|1000\n";
+    }
+    Repository<HopDong> legacyHopDongStore(LEGACY_HOPDONG_FILE);
+    ASSERT_TRUE(legacyHopDongStore.loadFromFile() && legacyHopDongStore.size() == 1,
+                "Repository phai tai duoc hop dong legacy co 9 truong");
+    ASSERT_TRUE(legacyHopDongStore.getAll()[0].toFileString().find("|TraSau|") == std::string::npos,
+                "Hop dong duoc nap legacy phai luu lai theo format khong lap loai SIM");
+    std::remove(LEGACY_HOPDONG_FILE.c_str());
+
     const std::string MALFORMED_ROW_FILE = "data/test_malformed_row.txt";
     {
         std::ofstream out(MALFORMED_ROW_FILE);
@@ -148,7 +160,7 @@ void testRepository() {
 
     Repository<HopDong> updateRollbackStore("/proc/ktlt_repository_update.txt");
     updateRollbackStore.getAll().push_back(hd1);
-    HopDong changed("HD0001", "KH0002", "0978999888", "GC002", Date(1, 1, 2024), Date(1, 1, 2025), "TraTruoc", "HieuLuc", 90000.0);
+    HopDong changed("HD0001", "KH0002", "0978999888", "GC002", Date(1, 1, 2024), Date(1, 1, 2025), "HieuLuc", 90000.0);
     bool updateThrew = false;
     try {
         updateRollbackStore.update("HD0001", changed);
@@ -324,4 +336,3 @@ void testBTSRegistry() {
         ASSERT_TRUE(bts3.size() == sizeBefore, "Towers cu phai duoc giu nguyen khi load that bai");
     }
 }
-
