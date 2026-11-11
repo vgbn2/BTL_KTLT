@@ -22,7 +22,7 @@ void testMenuControllers() {
 
     Repository<HopDong> hdRepo(HD_TEST_FILE);
     hdRepo.clear();
-    HopDong sampleHd("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 150000.0);
+    HopDong sampleHd("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "HieuLuc", 150000.0);
     hdRepo.add(sampleHd);
 
     Repository<ThietBiIMEI> imeiRepo(IMEI_TEST_FILE);
@@ -371,7 +371,7 @@ void testNewRepositoriesAndMenus() {
     {
         GoiCuoc gc2("M100", "Mobi 100", 100000.0, 10, 200, 30);
         gcRepo.add(gc2);
-        HopDong hdTest("HD_GC", "KH0001", "0981112233", "M100", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 100000.0);
+        HopDong hdTest("HD_GC", "KH0001", "0981112233", "M100", Date(1, 1, 2024), Date(1, 1, 2025), "HieuLuc", 100000.0);
         hdRepo.add(hdTest);
 
         std::istringstream inputSim("6\nM100\n0\n");
@@ -394,7 +394,7 @@ void testNewRepositoriesAndMenus() {
 
     // Test ThueBaoMenu: tu choi xoa thue bao khi co hop dong dang hieu luc
     {
-        HopDong hdActive("HD_TB", "KH0001", "0981112233", "M50", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", HopDongConstants::STATUS_ACTIVE, 100000.0);
+        HopDong hdActive("HD_TB", "KH0001", "0981112233", "M50", Date(1, 1, 2024), Date(1, 1, 2025), HopDongConstants::STATUS_ACTIVE, 100000.0);
         hdRepo.add(hdActive);
 
         std::istringstream inputSim("7\n0981112233\n0\n");
@@ -559,7 +559,7 @@ void testRemainingMenuControllers() {
 
     Repository<HopDong> hdRepo(HD_TEST_FILE);
     hdRepo.clear();
-    HopDong hd("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 150000.0);
+    HopDong hd("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "HieuLuc", 150000.0);
     hdRepo.add(hd);
 
     Repository<NapTien> ntRepo(NT_TEST_FILE);
@@ -827,4 +827,3 @@ void testRemainingMenuControllers() {
     std::remove(KN_TEST_FILE.c_str());
     std::remove(IMEI_TEST_FILE.c_str());
 }
-
