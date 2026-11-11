@@ -227,14 +227,14 @@ void testDisplayHelper() {
     std::string cardStr = ossCard.str();
     ASSERT_TRUE(cardStr.find("Key A     : Value A") != std::string::npos, "Card phai in nhan va gia tri dung dinh dang");
 
-    HopDong tableItem("HD-TABLE", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 150000.0);
+    HopDong tableItem("HD-TABLE", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "HieuLuc", 150000.0);
     std::ostringstream ossTable;
     DisplayHelper::printTable(std::vector<HopDong>{tableItem}, ossTable);
     ASSERT_TRUE(ossTable.str().find("HD-TABLE") != std::string::npos,
                 "printTable phai forward output stream vao display methods");
 
     //kiem thu tich hop model
-    HopDong hd("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "TraSau", "HieuLuc", 150000.0);
+    HopDong hd("HD0001", "KH0001", "0981234567", "GC001", Date(1, 1, 2024), Date(1, 1, 2025), "HieuLuc", 150000.0);
     ThietBiIMEI tb("860123456789014", "iPhone 15", "Apple", "0981234567", Date(15, 1, 2024), "HoatDong", "BTS-HN-001");
 
     std::ostringstream ossModel;
@@ -254,4 +254,3 @@ void testDisplayHelper() {
     ASSERT_TRUE(modelOut.find("HD0001") != std::string::npos, "Output phai chua Ma HD0001");
     ASSERT_TRUE(modelOut.find("860123456789014") != std::string::npos, "Output phai chua Ma IMEI");
 }
-
