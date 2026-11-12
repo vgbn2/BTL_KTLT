@@ -7,6 +7,7 @@ Welcome to the institutional technical documentation for the **Mobile Subscriber
 ## Document Index & Core Specifications
 
 ### 1. Canonical Technical Specifications
+* **[Codebase Guide](Overview/CODEBASE_GUIDE.md)**: How the repository is structured and how startup, menus, models, persistence, and tests fit together.
 * **[Architecture & Requirements Overview](Overview/ARCHITECTURE_AND_REQUIREMENTS.md)**: Baseline functional requirements, domain entities, and data relationships.
 * **[Technical Design Specification](Operational/TECHNICAL_DESIGN_SPECIFICATION.md)**: Component breakdown, inheritance diagrams, and class responsibilities.
 * **[IMEI & Shared Libraries Report](Reports/IMEI_AND_SHARED_LIBRARIES_REPORT.md)**: Core architectural report covering 3GPP IMEI validation, generic Repository persistence, and shared infrastructure.

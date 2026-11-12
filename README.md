@@ -92,6 +92,40 @@ pacman -S mingw-w64-x86_64-gdb
 
 ## Get the source
 
+### GitHub Codespaces: individual terminal or shared session
+
+The checked-in Dev Container config installs the C++/CMake toolchain and builds the project at creation. For an individual terminal-only Codespace, install and authenticate GitHub CLI locally, then run:
+
+```bash
+gh auth login
+gh codespace create --repo OWNER/REPOSITORY --branch main
+gh codespace list
+gh codespace ssh --codespace CODESPACE_NAME
+```
+
+Replace `OWNER/REPOSITORY` with this repository's GitHub slug and `CODESPACE_NAME` with the name returned by `gh codespace list`. The last command attaches the current terminal to the Codespace. Do not run `gh codespace code` if you want to stay in a raw terminal; it opens a VS Code-compatible editor.
+
+To share one Codespace with collaborators, the host must open that Codespace in the browser or desktop VS Code, start a **Live Share** session, and send the invitation link to trusted collaborators. The Dev Container recommends the Live Share extension. Guests join through a VS Code-compatible client; this is collaboration in the host's Codespace, not separate SSH logins to a shared shell. The host must keep the Codespace and Live Share session running. Stop sharing from the Live Share panel when finished.
+
+#### Joining from Windows
+
+1. Install [Visual Studio Code](https://code.visualstudio.com/) on Windows, then install the **Live Share** extension (`MS-vsliveshare.vsliveshare`). Alternatively, open the invitation in a supported browser-based VS Code session.
+2. Sign in if prompted, then open the Live Share invitation link sent by the host and choose **Join**.
+3. To use the shared app terminal, ask the host to share a terminal and choose **read-only** or **read/write**. Terminals are not shared automatically. Read/write lets guests run commands in the host's Codespace, so only use it with trusted collaborators.
+4. In the shared terminal, run `make test` or `./build/quanlythuebao`. The terminal and filesystem belong to the host's Codespace; do not edit or commit shared `data/` files unless the host has prepared a disposable test copy.
+
+If the invitation does not open the Live Share session, install/enable the extension and ask the host to send a fresh invite while the Codespace is running.
+
+Inside the remote shell, run:
+
+```bash
+make test
+ctest --test-dir build --output-on-failure
+./build/quanlythuebao
+```
+
+The application uses the checked-out repository's `data/` files. Do not use real personal data or commit mutated test data. A normal Codespace is per-user; a Live Share guest joins the host's active session and can access the shared workspace/session features according to the host's sharing permissions. Only invite trusted people. Each participant needs the access and GitHub account eligibility required by the repository/organization. Pull requests and pushes also run the CMake build and registered CTest checks through GitHub Actions. CI is not an interactive VM; Codespaces are billed/controlled by GitHub account policy.
+
 Using Git:
 
 ```bash
@@ -298,6 +332,14 @@ Launch the interactive debugger with the main executable or test runner:
 gdb ./build/quanlythuebao
 ```
 
+Run the bounded stress workload and sample its process memory once per second (30 seconds by default):
+
+```bash
+make monitor
+```
+
+Set `DURATION=60` to change the stress run length. `make monitor` is an alias for `make monitor-stress`. For a live list of processes associated with this repository (working directory or executable path), use `make monitor-project`; to inspect a specific process use `make monitor-project PID=<pid>`. Host-wide RAM/swap totals are available with `make monitor-system`. Stop watchers with `Ctrl-C`. These commands inspect Linux memory statistics, not physical hardware registers. Use the interactive GDB instructions below for stopped-point register and address inspection.
+
 Common GDB commands:
 
 | Command | Shortcut | Description | Example |
@@ -385,29 +427,46 @@ Do not put real personal data into the repository. The checked-in examples are c
 
 ```text
 .
-├── CMakeLists.txt
-├── Makefile
-├── data/                       # Local text fixtures and BTS datasets
+├── CMakeLists.txt, Makefile     # Build targets and developer commands
 ├── src/
-│   ├── main.cpp                # Application entry point and main menu
+│   ├── main.cpp                 # Startup, data-store wiring, top-level menu
 │   └── lib/
-│       ├── shared/             # Entity, Repository, FileIO, validation, UI helpers
-│       ├── models/             # Domain models
-│       └── menus/              # Console workflow controllers
+│       ├── menus/               # Interactive workflows; coordinate model/repository calls
+│       ├── models/              # Telecom entities and domain rules
+│       └── shared/              # Entity, Repository<T>, FileIO, validation, input/display helpers
+├── data/                        # Text persistence files and offline BTS datasets
 ├── tests/
-│   ├── test_runner.cpp         # Direct assertion suite
-│   ├── stress_test_runner.cpp  # ASan/UBSan stress suite
-│   └── repro/                  # Focused regression reproducers
-└── docs/                       # Design, operational, user, and report documentation
+│   ├── test_runner.cpp          # Assertion-suite entry point
+│   ├── modules/                 # Shared, infrastructure, model, menu, and fixture test modules
+│   ├── *runner.cpp              # Stress, lifecycle, malformed-input, and deep-CRUD runners
+│   └── repro/                   # Focused regression reproducers and startup scripts
+├── docs/                        # Architecture, operations, user guides, reports, and audits
+├── scripts/                     # Packaging and documentation/build utilities
+├── workspace/                   # Session state, handoffs, and project work notes
+└── mkdocs.yml                   # Documentation site configuration
 ```
 
-The main production path is:
+### Runtime and ownership flow
 
 ```text
-main.cpp → menu controller → model and validation → Repository<T>/FileIO → data/*.txt
+main.cpp
+  → constructs repositories and menu controllers
+  → menu controller reads/validates user input and coordinates an operation
+  → model enforces entity/domain invariants and owns serialization
+  → Repository<T> owns each in-memory collection and persistence file
+  → FileIO stages and commits file changes; data/*.txt is the durable store
 ```
 
-There are no separate `services/` or per-entity `repositories/` directories. `Repository<T>` is the shared generic storage component.
+There are no separate service or per-entity repository layers: menus are the workflow coordinators, and the shared `Repository<T>` template is the storage owner. The app is a synchronous, single-process console program; it has no background worker or network service.
+
+### Build and verification structure
+
+- `quanlythuebao`: application executable (`src/main.cpp` plus shared production sources).
+- `test_runner`: modular assertion suite (`tests/test_runner.cpp` and `tests/modules/`).
+- `stress_test_runner`, `malformed_fuzzer_runner`, `crud_deep_tester`, and `lifecycle_3phase_runner`: focused stress, malformed-input, CRUD, and lifecycle executables.
+- CTest registers the unit suite, a bounded stress test, and startup from a different working directory. `make monitor` runs the stress-memory demo; `make monitor-project` and `make monitor-system` are separate monitoring modes.
+
+For the documentation map, start at [`docs/index.md`](docs/index.md). For deeper structure, see [`docs/Overview/lib.md`](docs/Overview/lib.md), [`docs/Operational/FUNCTION_CALLFLOW_SPEC.md`](docs/Operational/FUNCTION_CALLFLOW_SPEC.md), and [`docs/engineering/function_process_map.md`](docs/engineering/function_process_map.md). Those documents go deeper in their respective areas; this README is the repository-level map.
 
 ## Persistence behavior
 
