@@ -61,6 +61,50 @@ trace-stream: $(TEST_TARGET)
 	  -ex "print targetPath" \
 	  -ex "quit"
 
+monitor: monitor-stress
+
+monitor-project:
+	@if test -n "$(PID)"; then \
+	  test -r "/proc/$(PID)/status" || { echo "Cannot read /proc/$(PID)/status"; exit 2; }; \
+	  watch -n 1 -d "grep -E '^(Name|State|VmPeak|VmSize|VmHWM|VmRSS|VmSwap):' /proc/$(PID)/status"; \
+	else \
+	  while :; do \
+	    clear; printf 'Processes associated with %s (cwd or executable)\n' "$(CURDIR)"; \
+	    printf '%-8s %-24s %-12s %-12s %s\n' PID COMM RSS_KB SWAP_KB MATCH; \
+	    for proc in /proc/[0-9]*; do \
+	      test -r "$$proc/status" || continue; \
+	      cwd=$$(readlink "$$proc/cwd" 2>/dev/null) || cwd=; \
+	      exe=$$(readlink "$$proc/exe" 2>/dev/null) || exe=; \
+	      match=; \
+	      case "$$cwd/" in "$(CURDIR)/"*) match=cwd;; esac; \
+	      case "$$exe" in "$(CURDIR)/"*) match=$${match:+$$match,}exe;; esac; \
+	      test -n "$$match" || continue; \
+	      pid=$${proc##*/}; \
+	      comm=$$(cat "$$proc/comm" 2>/dev/null) || comm=?; \
+	      awk -v pid="$$pid" -v comm="$$comm" -v matched_by="$$match" 'BEGIN { rss="?"; swap="?" } /^VmRSS:/ { rss=$$2 } /^VmSwap:/ { swap=$$2 } END { printf "%-8s %-24s %-12s %-12s %s\n", pid, comm, rss, swap, matched_by }' "$$proc/status"; \
+	    done; \
+	    sleep 1; \
+	  done; \
+	fi
+
+monitor-system:
+	watch -n 1 -d "awk '/^(MemTotal|MemAvailable|SwapTotal|SwapFree):/ { print }' /proc/meminfo"
+
+monitor-stress: $(STRESS_TARGET)
+	@log="/dev/shm/ktlt-stress-monitor.$$$$.log"; \
+	./$(STRESS_TARGET) --duration $${DURATION:-30} > "$$log" 2>&1 & pid=$$!; \
+	trap 'if test -n "$$pid"; then kill "$$pid" 2>/dev/null || true; wait "$$pid" 2>/dev/null || true; fi; cat "$$log"; rm -f "$$log"' EXIT; \
+	trap 'exit 130' INT TERM; \
+	while kill -0 "$$pid" 2>/dev/null; do \
+	  if test -r "/proc/$$pid/status"; then \
+	    printf '\n--- stress runner PID %s ---\n' "$$pid"; \
+	    grep -E '^(Name|State|VmPeak|VmSize|VmHWM|VmRSS|VmSwap):' "/proc/$$pid/status"; \
+	  fi; \
+	  sleep 1; \
+	done; \
+	wait "$$pid"; result=$$?; pid=; \
+	cat "$$log"; rm -f "$$log"; trap - EXIT INT TERM; exit "$$result"
+
 stress: $(STRESS_TARGET)
 	./$(STRESS_TARGET) --duration 300
 
@@ -73,4 +117,4 @@ clean:
 run: $(TARGET)
 	./$(TARGET)
 
-.PHONY: all test clean run stress
+.PHONY: all test clean run stress monitor monitor-project monitor-system monitor-stress
