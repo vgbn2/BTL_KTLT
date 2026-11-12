@@ -21,7 +21,7 @@ void ThueBaoMenu::showMenu() {
                   << "  [" << MENU_ADD << "] Them thue bao moi\n"
                   << "  [" << MENU_LIST << "] Xem danh sach thue bao\n"
                   << "  [" << MENU_SEARCH << "] Tim kiem thue bao theo SĐT / Ma KH\n"
-                  << "  [" << MENU_REGISTER_PACKAGE << "] Dang ky / Doi goi cuoc cho thue bao\n"
+                  << "  [" << MENU_REGISTER_PACKAGE << "] Doi goi cuoc cho thue bao\n"
                   << "  [" << MENU_LOCK_UNLOCK << "] Khoa / Mo chieu thue bao\n"
                   << "  [" << MENU_TOPUP << "] Nap tien vao tai khoan thue bao\n"
                   << "  [" << MENU_DELETE << "] Xoa thue bao\n"
@@ -167,7 +167,7 @@ void ThueBaoMenu::timKiemThueBao() {
 
 // 4. dang ky goi cuoc cho thue bao
 void ThueBaoMenu::dangKyGoiCuoc() {
-    std::cout << "\n>>> DANG KY / DOI GOI CUOC CHO THUE BAO <<<\n";
+    std::cout << "\n>>> DOI GOI CUOC CHO THUE BAO <<<\n";
     std::string sdt = InputHelper::getString("Nhap so dien thoai thue bao: ");
     if (std::cin.eof()) return;
     ThueBao* tb = store.findById(sdt);
@@ -177,7 +177,7 @@ void ThueBaoMenu::dangKyGoiCuoc() {
     }
 
     tb->displayDetail();
-    std::string maGC = InputHelper::getString("Nhap ma goi cuoc moi muon dang ky: ");
+    std::string maGC = InputHelper::getString("Nhap ma goi cuoc moi muon doi: ");
     if (std::cin.eof()) return;
     maGC = Normalized::toUpper(Normalized::trim(maGC));
     GoiCuoc* gc = goiCuocStore.findById(maGC);
